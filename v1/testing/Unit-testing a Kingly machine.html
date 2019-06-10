@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Testing a Kingly machine — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Testing a Kingly machine — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Testing a Kingly machine — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', '', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/testing/Unit-testing a Kingly machine.html" class="sidebar-link current">Testing a Kingly machine</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/testing/testing command handlers.html" class="sidebar-link">Testing command handlers</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/testing/testing interfaced systems.html" class="sidebar-link">Testing interfaced systems</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content old with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>Testing a Kingly machine</h1>
+  
+  
+    <p>Remember how in a previous section, we explained that a user interface can be specified by a relation between events received by the user interfaces and actions to be performed as a result on the interfaced system. We identified equivalent function $f$ and $g$ such that</p>
+<script type="math/tex; mode=display">\begin{cases} actions &=& f(state, event) \\
+(actions_n, state_{n+1}) &=& g (state_n, event_n) &\forall n& \end{cases}</script><p>We then explained that a state machine is just a breakdown of the <code>state</code> variable into a control state variable and an extended state variable. We now introduce a pure function $h$ which allows us to perform testing. That gives us three equivalent versions of the same relation:</p>
+<script type="math/tex; mode=display">\begin{cases} actions &=& f(state, event) \\
+(actions_n, state_{n+1}) &=& g (state_n, event_n)  &\forall n& \\
+[actions_1, ..., actions_n] &=& h([event_1, ..., event_n]) &\forall n& \end{cases}</script><p>Intuitively this is easy to see. If you take a user interface in its initial state, given that its internal state is only modified by itself as a result of incoming events, given that actions are only emitted as a result of incoming events, then the sequence of events entirely determines the sequence of actions. Having a pure function, we have a straightforward testing methodology. We generate input sequences for the machine, we observe the sequence of outputs of the machine and compare that with what is expected per the specifications.</p>
+<p>Let’s see this in practice with the simple counter application:</p>
+<p><img src="../../graphs/trivial counter machine.png" alt="counter machine"></p>
+<p>The machine only accepts one event (<code>clicked</code>) and has only one state (<code>counting</code>):</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> fsmDef = &#123;
+  <span class="hljs-attr">states</span>: &#123; <span class="hljs-attr">counting</span>: <span class="hljs-string">""</span> &#125;,
+  <span class="hljs-attr">events</span>: [<span class="hljs-string">"clicked"</span>],
+  <span class="hljs-attr">initialExtendedState</span>: &#123; <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> &#125;,
+  <span class="hljs-attr">initialControlState</span>: <span class="hljs-string">"counting"</span>,
+  <span class="hljs-attr">transitions</span>: [
+    &#123;
+      <span class="hljs-attr">from</span>: <span class="hljs-string">"counting"</span>,
+      <span class="hljs-attr">event</span>: <span class="hljs-string">"clicked"</span>,
+      <span class="hljs-attr">to</span>: <span class="hljs-string">"counting"</span>,
+      <span class="hljs-attr">action</span>: incCounterAndDisplay
+    &#125;
+  ],
+  updateState
+&#125;;</code></pre>
+<p>Any legal sequence of events can be described by the regular expression <code>e+</code> where <code>e</code> stands for the click event <code>{clicked: void 0}</code>. Here is a portion of the $h$ functional mapping:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Event sequence</th>
+<th style="text-align:left">Actions sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">e</td>
+<td style="text-align:left"><code>[ [display counter 1] ]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">e</td>
+<td style="text-align:left"><code>[ [display counter 1], [display counter 2] ]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">e</td>
+<td style="text-align:left"><code>[ [display counter 1], [display counter 2], [display counter 3] ]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>display counter n</code> here represents the render command produced by the machine. We denote that by $g(n)$:</p>
+<pre><code class="hljs js">&#123;
+  <span class="hljs-attr">command</span>: <span class="hljs-string">"render"</span>,
+  <span class="hljs-attr">params</span>: n
+&#125;</code></pre>
+<label for="mn-demo-1" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-1" class="margin-toggle"><span class="marginnote"><p><img src="../../graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly%20selected%20kingly.png" alt="kingly-favoured ui architecture"></p>
+</span>
+<p>We just describe one testing strategy for the Kingly’s machine: produce input sequences, run them through the machine, compare the resulting output sequences to the expected output sequences. In this simple case, we have a formula for the output sequences. We call that an <strong>oracle</strong>, not in honour of a famous database company, but alluding to a “priest or priestess acting as a medium through whom advice or prophecy was sought from the gods in classical antiquity”. An oracle is a function which applied to an input sequence gives us the expected output sequences.</p>
+<p>Our test space for the <code>e+</code> is infinite. We need only pick a number $n$ of repetitions to describe our test sequence so the test space is equivalent to ($~[1, \infty[$), and we won’t be going through an infinite test space in finite time, so we will naturally only generate a limited amount of tests. Ideally we pick those tests so that they maximize our confidence in the good behaviour of our application, or identify bugs in our implementation. One way to do this here would be to pick a random number $n$, generate the sequence and compare the results with the oracle. This technique is called <strong>random testing</strong> and belongs to the statistical testing techniques. Random testing may be used to eliminate the bias from the tester when manually picking input sequences from a large test space.</p>
+<p>A broader technique is to establish properties that the output sequences must fulfill, and use that to test against the results. The oracle which tells us that $h([e, \ldots, e]) = [g(1), \ldots , g(n)]$ is itself a property. Another property could be that whatever the length of the input sequence made of repeated <code>e</code>, the last output of the output sequence is $g(n)$: $\forall n, h([e, \ldots, e])  = […, g(n)]$.</p>
+<p>That technique is called <strong>property-based testing</strong>, and is pretty useful when there is no oracle available for verifying the output sequences. Incidentally, there is a core property that all Kingly’s machine must have: they must compute something! That means that they cannot throw an exception. When there is nothing else we can say about a machine, we can always at least check that it does not throw exceptions under any input sequences.</p>
+<p>Alright, this was a little bit of a trivial example. We will take it up a notch when we will test the password meter and the chess games from the tutorials. However, we will apply the same techniques, so it is good if you get familiar with them with a simple example.</p>
+
+  
+  
+  <div class="footer">
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

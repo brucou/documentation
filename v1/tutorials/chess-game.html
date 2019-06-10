@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Two-player chess game — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Two-player chess game — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Two-player chess game — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', '', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          Tutorials
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+        <li><h3>Introduction</h3></li>
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/index.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Password meter</h3></li>
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-implementation.html" class="sidebar-link">Machine implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Chess game</h3></li>
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link current">Two-player chess game</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content tutorials with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>Two-player chess game</h1>
+  
+  
+    <p>In the previous sections, we saw how to implement a password meter, whose behaviour is modelized with state machines. We illustrated basic concepts which will be constantly recurring, such as control states, extended state, transitions, guards, actions, commands. In this section, we will modelize a more complex interface, and illustrate advanced concepts like state nesting, compound control states, initial transitions, and command and effect handlers.</p>
+<h2 id="Specifications"><a href="#Specifications" class="headerlink" title="Specifications"></a>Specifications</h2><p>This application is a two-player chess game. Follows some screens sample of the application in different states:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Initial screen</th>
+<th style="text-align:center">Random position</th>
+<th style="text-align:center">Piece selected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="../../images/chess%20game/game%20starting%20position.png" alt="initial screen"></td>
+<td style="text-align:center"><img src="../../images/chess%20game/game%20random%20position.png" alt="random position"></td>
+<td style="text-align:center"><img src="../../images/chess%20game/white%20piece%20selected.png" alt="white piece selected"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In short:</p>
+<ul>
+<li>The board starts in the chess game initial configuration</li>
+<li>The chess games rules apply<ul>
+<li>game start with whites</li>
+<li>white plays, then black plays repeatedly till a game end condition is reached</li>
+</ul>
+</li>
+<li>When a player whose turn it is clicks on one of his pieces, the piece is temporarily highlighted till the move is performed. The player must subsequently click on a board location to indicate the target location for the piece. The piece is removed from its current position and moved to the target location.</li>
+<li>When the game is over, as per the chess game rules, no more actions may be performed by the players.</li>
+</ul>
+<h2 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h2><p>The previously informally specified behaviour can be modelized formally with the following state machine:</p>
+<p><img src="../../graphs/chess%20game%20with%20hierarchy%20no%20undo.jpg" alt="chess game no undo"></p>
+<p>This machine presents new aspects vs. what we presented in the previous example. First of all, it has hierarchy. The <em>White plays</em> control state is <strong>nested within</strong> the <em>White turn</em> control state. We will say that <em>White turn</em> is a <strong>compound state</strong>, and in contrast, that <em>White plays</em> is an <strong>atomic state</strong>. </p>
+<p>Compound states have an initial control state which is obtained as the target control state for the initial transition for that compound state. The initial transition is recognizable by the fact that its origin control state is the <em>init</em> control state — singled out from the other nodes using a smaller node size, and a different colour. In our modelization, the initial control state for <em>White turn</em> is <em>White plays</em>. </p>
+<p>In our modelization, the machine starts in the <em>White turn</em> initial control state. As this is a compound state, the machine then immediately moves to the initial control state of that state, which is <em>White plays</em>. As the latter control state is atomic, the machine remains in that initial control state and starts listening to events.</p>
+<p>In the general case, the mechanism is identical. When a machine transitions to a compound state, it immediately transitions to the initial state for that compound state.</p>
+<h2 id="API-dive"><a href="#API-dive" class="headerlink" title="API dive"></a>API dive</h2><p>With Kingly, we will call that transition, an <strong>initial transition</strong>, and we will add it to the data structure passed to the state machine factory: </p>
+<label for="mn-demo-6" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-6" class="margin-toggle"><span class="marginnote"><p>Note that the initial transition <strong>must use the exported <code>INIT_EVENT</code> as event.</strong> This event is reserved and cannot be used for other purposes. </p>
+</span>
+<pre><code class="hljs js">&#123; <span class="hljs-attr">from</span>: WHITE_TURN, <span class="hljs-attr">event</span>: INIT_EVENT, <span class="hljs-attr">to</span>: WHITE_PLAYS, <span class="hljs-attr">action</span>: displayInitScreen &#125;,</code></pre>
+<p>The following transition translated from the graph contains a unique guard:</p>
+<pre><code class="hljs js">&#123;
+    <span class="hljs-attr">from</span>: WHITE_PLAYS, <span class="hljs-attr">event</span>: BOARD_CLICKED, <span class="hljs-attr">guards</span>: [
+      <span class="hljs-comment">// DOC: guards should always cover the full space!! we don't do it here not to desviate from the drawing</span>
+      &#123; 
+         <span class="hljs-attr">predicate</span>: isWhitePieceClicked, <span class="hljs-attr">to</span>: WHITE_PIECE_SELECTED, <span class="hljs-attr">action</span>: highlightWhiteSelectedPiece 
+      &#125;
+    ]
+&#125;</code></pre>
+<label for="mn-demo-14" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-14" class="margin-toggle"><span class="marginnote"><p>However, it is recommended to always configure a set of predicates that is mutually exclusive and which cover the entire space of possibilities. Ideally, one and only one predicate must be satisfied to avoid ambiguity. If multiple predicates are satisfied when evaluating a transition, the first satisfied predicate defined in the guard array is used for determining the transition to take.</p>
+</span>
+<p>If the guard’s predicate <code>isWhitePieceClicked</code> is not fulfilled, the machine <strong>will not change state nor execute any action factory</strong>. This contributes to the robustness of our interface.</p>
+<p>We also have to indicate the nesting of control states in the <code>states</code> property as follows:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> states = &#123;
+  [OFF]: <span class="hljs-string">""</span>,
+  <span class="hljs-comment">// `WHITE_PLAYS` is nested under `WHITE_TURN`</span>
+  [WHITE_TURN]: &#123;
+    [WHITE_PLAYS]: <span class="hljs-string">""</span>,
+    [WHITE_PIECE_SELECTED]: <span class="hljs-string">""</span>
+  &#125;,
+  [BLACK_TURN]: &#123;
+    [BLACK_PLAYS]: <span class="hljs-string">""</span>,
+    [BLACK_PIECE_SELECTED]: <span class="hljs-string">""</span>
+  &#125;,
+  [GAME_OVER]: <span class="hljs-string">""</span>,
+&#125;;</code></pre>
+<p>Furthermore, we will inject our event emitter and the chess engine with the optional <code>settings</code> parameter of the <code>createStateMachine</code> factory:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> gameFsm = createStateMachine(gameFsmDef, &#123;
+  <span class="hljs-attr">debug</span>: &#123; <span class="hljs-built_in">console</span>, <span class="hljs-attr">checkContracts</span>: <span class="hljs-literal">null</span> &#125;,
+  <span class="hljs-comment">// Injecting necessary dependencies</span>
+  eventEmitter,
+  chessEngine
+&#125;);</code></pre>
+<label for="mn-demo-18" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-18" class="margin-toggle"><span class="marginnote"><p>We use here the chess engine to establish the validity of a move and detect the end game, but take care of reversing its effects. As a rule, guards and action factories <strong>must be pure functions</strong>. This avoids difficult-to-detect bugs where the game state is de-synchronized from the machine state. </p>
+</span>
+<p>Doing so make the event emitter and engine visible in guards and action factories. For instance:</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isLegalNonWinningMove</span>(<span class="hljs-params">extendedState, eventData, settings</span>)</span>&#123;
+  <span class="hljs-keyword">const</span> &#123;chessEngine&#125; = settings;
+  <span class="hljs-keyword">const</span> &#123;pieceSquare&#125; = extendedState;
+  <span class="hljs-keyword">const</span> square = eventData;
+
+  <span class="hljs-keyword">const</span> move = chessEngine.move(&#123;
+    <span class="hljs-attr">from</span>: pieceSquare,
+    <span class="hljs-attr">to</span>: square,
+    <span class="hljs-attr">promotion</span>: <span class="hljs-string">"q"</span> <span class="hljs-comment">// always promote to a queen for example simplicity</span>
+  &#125;);
+  <span class="hljs-keyword">const</span> isLegalMove = move != <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">const</span> hasWon= chessEngine.game_over();
+  chessEngine.undo();
+
+  <span class="hljs-keyword">return</span> isLegalMove  &amp;&amp; !hasWon
+&#125;</code></pre>
+<p>Unlike the previous example, we need to inject the event emitter in the machine. As a matter of fact, the <code>ChessBoard</code> stateless React component, exposes an <code>onSquareClick</code> handler which is run when a player clicks on a board square. We thus need to pass the <code>click</code> event to the machine and to do so we need to access the machine’s event emitter. In the previous example, as we were the author of the rendering component, we injected directly the event emitter as property of the component. We cannot do that here as we cannot (and should not) modify the source code for <code>ChessBoard</code>:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> onSquareClickFactory = memoize(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">eventEmitter</span>)</span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onSquareClick</span>(<span class="hljs-params">square</span>) </span>&#123;
+    eventEmitter.next(&#123;[BOARD_CLICKED]: square&#125;)
+  &#125;
+&#125;)
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">moveWhitePiece</span>(<span class="hljs-params">extendedState, eventData, settings</span>)</span>&#123;
+  <span class="hljs-keyword">const</span> &#123; draggable, width, boardStyle, <span class="hljs-attr">pieceSquare</span>:fromSquare, <span class="hljs-attr">whitePiecesPos</span>: wPP, <span class="hljs-attr">blackPiecesPos</span>:bPP &#125; = extendedState;
+  <span class="hljs-keyword">const</span> &#123;eventEmitter, chessEngine&#125; = settings;
+  <span class="hljs-keyword">const</span> square = eventData;
+  <span class="hljs-keyword">const</span> onSquareClick = onSquareClickFactory(eventEmitter);
+  <span class="hljs-keyword">const</span> squareStyles = <span class="hljs-string">''</span>;
+  <span class="hljs-comment">// remove old white piece position and add new one</span>
+  <span class="hljs-keyword">const</span>  whitePiecesPos = wPP.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x !== fromSquare).concat([square]);
+  <span class="hljs-comment">// remove old black piece position if any - case when a white piece gobbles a black one</span>
+  <span class="hljs-keyword">const</span>  blackPiecesPos = bPP.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x !== square);
+
+  <span class="hljs-comment">// Use the chess engine to get the Forsyth–Edwards Notation (`fen`)</span>
+  chessEngine.move(&#123;<span class="hljs-attr">from</span>:fromSquare, <span class="hljs-attr">to</span>: square, <span class="hljs-attr">promotion</span>:<span class="hljs-string">"q"</span>&#125;);
+  <span class="hljs-keyword">const</span> position = chessEngine.fen();
+  chessEngine.undo();
+
+  <span class="hljs-comment">// As the move is over, reset the piece</span>
+  <span class="hljs-keyword">const</span> pieceSquare= <span class="hljs-string">""</span>;
+
+  <span class="hljs-keyword">return</span> &#123;
+    <span class="hljs-attr">updates</span>: [
+      &#123;pieceSquare&#125;,
+      &#123;position&#125;,
+      &#123;squareStyles&#125;,
+      &#123;whitePiecesPos&#125;,
+      &#123;blackPiecesPos&#125;,
+    ],
+    <span class="hljs-attr">outputs</span>: [
+      &#123;
+        <span class="hljs-attr">command</span>: COMMAND_RENDER,
+        <span class="hljs-attr">params</span>: &#123; draggable, width, position, boardStyle, squareStyles, onSquareClick &#125;
+      &#125;,
+      &#123;
+        <span class="hljs-attr">command</span>: MOVE_PIECE,
+        <span class="hljs-attr">params</span>: &#123;<span class="hljs-attr">from</span>: fromSquare, <span class="hljs-attr">to</span>:square&#125;
+      &#125;
+    ]
+  &#125;
+&#125;</code></pre>
+<p>The command <code>MOVE_PIECE</code> requests execution of the player’s move in the chess engine. As the implementation uses React, we use the <a href="https://github.com/brucou/react-state-driven" target="_blank" rel="noopener">react-state-driven</a> library to integrate with React. This library is documented in its own section. It suffices to say for now that <code>react-state-driven</code> exposes a <code>&lt;Machine /&gt;</code> component which takes a machine, an event emitter, a React component to execute the <code>render</code> commands received from the machine, command handlers and event handlers to actually run the received commands.</p>
+<p>The usage with <code>react-state-driven</code> is to issue render commands whose parameters specify a screen to render. By default, the configured <code>renderWith</code> React component (here <code>ChessBoard</code>) is called with those parameters. For instance:</p>
+<pre><code class="hljs js">&#123;
+  <span class="hljs-attr">command</span>: COMMAND_RENDER,
+  <span class="hljs-attr">params</span>: &#123; draggable, width, position, boardStyle, squareStyles, onSquareClick &#125;
+&#125;,</code></pre>
+<p>will lead to rendering the React element <code>ChessBoard(draggable, width, position, boardStyle, squareStyles, onSquareClick)</code>.</p>
+<p>Non-render commands are addressed by specifying a command handler which receive in addition to the commands parameters, the event emitter, and the effect handlers. Effect handlers isolate the execution of effects into single-concern functions. In our example, the <code>MOVE_PIECE</code> command handler will be called as a <code>function (next, {from, to}, effectHandlers)</code>, matching the parameters of the command (<code>params: {from: fromSquare, to:square}</code>): </p>
+<label for="mn-demo-23" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-23" class="margin-toggle"><span class="marginnote"><p>Note as the chess engine is passed as effect handler, and made available to the <code>MOVE_PIECE</code> command handler. At testing time, it will be easy to replace the chess engine by a mock without recurring to an extra mocking library or tying tests to a specific framework. This is yet another facet of Kingly’s portable UI philosophy.</p>
+</span> 
+<pre><code class="hljs js">render(
+  h(
+    Machine,
+    &#123;
+      <span class="hljs-attr">fsm</span>: gameFsm,
+      <span class="hljs-attr">eventHandler</span>: eventEmitter,
+      <span class="hljs-attr">commandHandlers</span>: &#123;
+        <span class="hljs-attr">MOVE_PIECE</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">next, &#123;from, to&#125;, effectHandlers</span>)</span>&#123;
+          <span class="hljs-keyword">const</span> &#123;chessEngine&#125; = effectHandlers;
+          chessEngine.move(&#123;
+            <span class="hljs-keyword">from</span>,
+            to,
+            <span class="hljs-attr">promotion</span>: <span class="hljs-string">"q"</span> <span class="hljs-comment">// always promote to a queen for example simplicity</span>
+          &#125;);
+        &#125;
+      &#125;,
+      <span class="hljs-attr">effectHandlers</span>: &#123;
+        chessEngine
+      &#125;,
+      <span class="hljs-attr">renderWith</span>: Chessboard,
+      <span class="hljs-attr">options</span>: &#123; <span class="hljs-attr">initialEvent</span>: &#123; <span class="hljs-attr">START</span>: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> &#125; &#125;
+    &#125;,
+    []
+  ),
+  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"root"</span>)
+);</code></pre>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>We will use for the implementation the <code>ChessBoard</code> component from the <a href="https://github.com/willb335/chessboardjsx" target="_blank" rel="noopener">chessboardjsx</a> library, and the chess engine from <a href="https://github.com/jhlywa/chess.js" target="_blank" rel="noopener">chess.js</a>. As <code>ChessBoard</code> is a React component, we will thus use React as a UI library. The <code>chess.js</code> library allows us to identify the validity of a player move and detect end game situations.</p>
+<!-- Copy and Paste Me -->
+<div class="glitch-embed-wrap" style="height: 500px; width: 1000px;">
+  <iframe src="https://glitch.com/embed/#!/embed/chess-game-basics?path=src/fsm.js&sidebarCollapsed=true&attributionHidden=true&previewSize=40" alt="chess-game-basics on Glitch" style="height: 100%; width: 100%; border: 0;">
+  </iframe>
+</div>
+
+<h2 id="What-we-learnt"><a href="#What-we-learnt" class="headerlink" title="What we learnt"></a>What we learnt</h2><p>This example introduced new concepts and learnings:</p>
+<ul>
+<li>control states can be nested — the machine is then called a <strong>hierarchical state machine</strong></li>
+<li>compound states are control states which can have nested control states</li>
+<li>compound states specify their initial control state with an initial transition to the target control state</li>
+<li>the <code>createStateMachine</code> factory accepts an optional parameter which allows developers to inject dependencies into guards, and action factories</li>
+<li>integration with React can be achieved manually or via the <a href="https://github.com/brucou/react-state-driven" target="_blank" rel="noopener"><code>react-state-driven</code></a> library</li>
+<li>the state machine controls the UI and necessitates only of React stateless components. No hooks, mixin and other React paraphernalia to learn.</li>
+<li>a functional design which separates effect execution from other effectless computations, concentrates effect execution into single-concern functions, and gathers all orchestration concerns into a single state machine enables cohesion, low coupling and easy testing.</li>
+</ul>
+<p>Additionally, we illustrated the integration of Kingly with React through the <code>react-state-driven</code> library’s <code>&lt;Machine renderWith fsm eventHandler commandHandlers effectHandlers&gt;</code> component:</p>
+<ul>
+<li>the configured machine <code>fsm</code> emits render commands whose parameters are <em>props</em> for the <code>renderWith</code> React component</li>
+<li>the <code>eventHandler</code> is a subject which proxies events to the machine <code>fsm</code></li>
+<li>the <code>commandHandlers</code> <em>prop</em> corresponds to the command handlers module of the <a href="./model-with-machines.html#Architecture">Kingly’s preferred architecture</a></li>
+<li>the <code>effectHandlers</code> <em>prop</em> may be used to access and realize effects on the interfaced systems. Effects may also be realized directly in the <code>commandHandlers</code>. However, we recommend delegating single effects to the <code>effectHandlers</code> while leaving <code>commandHandlers</code> in charge of coordinating effects to realize commands. This is separation of concerns at work, which pays off in terms of testing and maintainability of larger applications. However, for small demo applications like those in our tutorials, the benefits are smaller.</li>
+</ul>
+
+  
+  
+    <div class="next-links">
+      
+      
+        <span>← <a href="/documentation/v1/tutorials/password-meter-learnt.html">What we learnt</a></span>
+      
+      
+      
+        <span style="float: right;"><a href="/documentation/v1/tutorials/chess-game-evolved.html">Chess game - adding features</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

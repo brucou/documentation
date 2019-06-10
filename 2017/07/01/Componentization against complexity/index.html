@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Componentization against complexity — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Componentization against complexity — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Componentization against complexity — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', '', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  
+  
+    <h1>Componentization against complexity</h1>
+  
+  
+    <h1 id="The-power-of-abstraction"><a href="#The-power-of-abstraction" class="headerlink" title="The power of abstraction"></a>The power of abstraction</h1><p>We have <a href="/posts/user-interfaces-as-reactive-systems/">previously</a> seen that a reactive system can be described by equations involving a reactive function <code>f</code> such that <code>actions = f(state, events)</code>. In theory, the function <code>f</code> is as complex as the specification of the reactive system to implement. In practice, it is often much more so, as dictated by the particular implementation choices made.</p>
+<p>Complexity resists to a uniformally useful definition. However, it is generally accepted that there is a component of complexity which cannot be reduced by any particular technique. <em>How many systems do we have? In what convoluted manner are they connected? What the requirement for operating these systems? How many parameters or subtasks are necessary to specify a task?</em>. That complexity increases every year, as the trend is into interconnecting more and more systems to satisfy ever astringent user requirements to do more things in less time. To reuse a commonly used term, we will call this the essential complexity of the system under specification.</p>
+<p>Oddly enough, at the same time, on a subjective level, things that were complex last year are less complex now. That subjective but very real component of complexity relates the number of things that cause problems to our ability to deal with them. Our ability to deal with them goes up as we develop better languages, tools, interfaces, architecture, infrastructure, etc. and are able to do more with less. We would define this component of complexity as accidental complexity, and as being the complexity that an <strong>implementation approach</strong> adds to the essential complexity corresponding to the <strong>specification</strong> of a system.</p>
+<p>As a side note, a user interface itself is precisely an attempt at shielding the user from the complexity of underlying systems so he can focus on the domain at hand and the tasks it encompasses. In other words, the user interface <strong>abstracts</strong> out the underlying system layer. As a matter of fact, most advances against accidental complexity (in <strong>any</strong> field) are made by better and/or more powerful abstractions.</p>
+<p>As a matter of fact, we can list a short range of abstractions taking aim at specific sources of<br>complexity, at the system implementation level :</p>
+<ul>
+<li>domain : domain modeling</li>
+<li>programming language : domain-specific language</li>
+<li>persistence : databases</li>
+<li>asynchrony : promises, tasks, streams (!!)</li>
+<li>memory : garbage collector, constructors/destructors</li>
+<li>testing : model-based testing</li>
+<li>design : componentization</li>
+<li>programming paradigm : declarative programming (including functional programming, dataflow programming, logic programming)  </li>
+</ul>
+<p>In the current state of my knowledge, I believe that the most effective levers in mastering complexity are domain modelling, domain-specific languages, and components, glued together by means of declarative programming.</p>
+<p>We will detail in what follows what makes componentization an abstraction, the benefits to be expected, but also the costs and barriers associated, concluding that componentization is a strategic decision to be pondered over.</p>
+<h1 id="Componentization-as-an-abstraction"><a href="#Componentization-as-an-abstraction" class="headerlink" title="Componentization as an abstraction"></a>Componentization as an abstraction</h1><p>The major goal in software construction is to build software that is robust (i.e. performs correctly and does not crash even in unforeseen cases), flexible (i.e. can be used in many seemingly different applications), extensible (i.e. can be extended with minimal if not no modification of existing code), easy to maintain (i.e. to modify to improve performance or fix “bugs”). The main tool of the trade of software developers can be summarized in one word: abstraction.</p>
+<p>The abstraction process involves several steps:</p>
+<ul>
+<li>Eliminate all unnecessary details and get to the essential elements of the problem and express them clearly and concisely as invariants</li>
+<li>Encapsulate those which vary and express them as variants.  The variants of abstractly equivalent behaviors are grouped into an appropriate taxonomy of abstract classes and subclasses</li>
+<li>Define the dynamics of the system in terms of the  interplay between the invariants and the variants.  Sometimes the invariants/variants interplays can be straightforward, but more than often they can be subtle like the case when an invariant can be expressed in terms of many variants</li>
+</ul>
+<p>The effort spent in identifying and delineating the invariants from the variants usually leads to the construction of what is called a component framework system where the invariants form the framework and the variants constitute the components.</p>
+<p><img src="https://www.clear.rice.edu/comp310/JavaResources/frameworks/frameworks.png" alt="Component framework"></p>
+<p>Hence, in essence, component frameworks break the system down into variant “components” that represent abstract processing that the system supports. These components are generally thought of as “pluggable” in the sense that the system can be configured with a set of components to accomplish a particular task or set of tasks.   In many systems, the components can be dynamically swapped in and out.   The framework, on the other hand, is the invariant “superstructure” that manages the components, providing services to each component that, when combined with the services/behaviors supplied by that component, create the net behavior defined by that component in that framework.    The framework has the effect of decoupling or isolating the components <strong>from each other</strong> while coupling them to the framework.</p>
+<h1 id="Benefits"><a href="#Benefits" class="headerlink" title="Benefits"></a>Benefits</h1><p>As previously mentioned, the benefits are :</p>
+<ul>
+<li>productivity, coming from a component framework design targeted at reuse, and composability</li>
+<li>readability<ul>
+<li>when a given component addresses a specific concern, and do so exclusively (i.e. achieving separation of concerns), the reactive system is easier to reason about</li>
+</ul>
+</li>
+<li>maintainability<ul>
+<li>components can be replaced easily, by a better or equivalent version, as long as its<br>interface its kept (<a href="https://tuhrig.de/programming-to-an-interface/" target="_blank" rel="noopener">program to an interface, not to an implementation</a>)  </li>
+</ul>
+</li>
+<li>reliability<ul>
+<li>in the measure that components and the component framework are properly tested and reliable, the surface area on which bugs can attach themselves is considerably lower</li>
+</ul>
+</li>
+</ul>
+<h1 id="Barriers-to-reuse"><a href="#Barriers-to-reuse" class="headerlink" title="Barriers to reuse"></a>Barriers to reuse</h1><p>Despite all the potential of componentization, significant barriers to component reuse have been observed :</p>
+<ul>
+<li>The business model is unclear</li>
+<li>It costs a client too much to understand and use a component</li>
+<li>Components have conflicting world views</li>
+</ul>
+<p>Componentization is hence a strategic decision which will depend on a company’s strategic context.</p>
+<h2 id="Unclear-business-model"><a href="#Unclear-business-model" class="headerlink" title="Unclear business model"></a>Unclear business model</h2><p>Design is expensive, and reusable designs are very expensive. It costs between ½ and 2 times as much to build a module with a clean interface that is well-designed for your system as to just write some code, depending on how lucky you are. But a reusable component costs 3 to 5 times as much as a good module.</p>
+<p>The extra money pays for:</p>
+<ul>
+<li>generality<ul>
+<li>A reusable module must meet the needs of a fairly wide range of ‘foreign’ clients, not just of people working on the same project. Figuring out what those needs are is hard, and designing an implementation that can meet them efficiently enough is often hard as well.</li>
+</ul>
+</li>
+<li>simplicity<ul>
+<li>Foreign clients must be able to understand the interface to a module fairly easily, or it’s no use to them.</li>
+</ul>
+</li>
+<li>customization<ul>
+<li>To make the module general enough, it probably must be customizable, either with some well-chosen parameters or with some kind of programmability</li>
+</ul>
+</li>
+<li>testing<ul>
+<li>Foreign clients have higher expectations for the quality of a module, and they use it in more different ways. The generality and customization must be tested as well</li>
+</ul>
+</li>
+<li>documentation<ul>
+<li>Foreign clients need more documentation, since they can’t come over to your office</li>
+</ul>
+</li>
+<li>stability<ul>
+<li>Foreign clients are not tied to the release cycle of a system. Ideally for them, a module’s behaviour should remain unchanged (or upward compatible) for years, probably for the lifetime of their system</li>
+</ul>
+</li>
+</ul>
+<p>Designing for all those aspects is an investment that must be recouped in the future. Apart from very large companies, such as google or facebook, and some popular open-source projects, or large software development firms, the business case for such investment is not clear.</p>
+<h2 id="Cost-to-understand"><a href="#Cost-to-understand" class="headerlink" title="Cost to understand"></a>Cost to understand</h2><p>To use a component, the client must understand its behaviour. This is not just the functional specification, but also the resource consumption, the exceptions it raises, its customization facilities, its bugs, and what workarounds to use when it doesn’t behave as expected or desired.</p>
+<p>Furthermore, because the written spec is often quite inadequate, there is uncertainty about the cost to discover the things that are not in the spec, and about the cost to deal with the surprises that turn up. If the module has been around for a while and has many satisfied users, these risks are of course smaller, but it is difficult to reach this happy<br>state.</p>
+<h2 id="Conflicting-world-views"><a href="#Conflicting-world-views" class="headerlink" title="Conflicting world views"></a>Conflicting world views</h2><p>Components are tied to a component framework, which defines its interface and lifecycle, by thus limiting the scope of their reuse out of that framework. Adapters and bridges can be built to palliate that situation. However that is not always possible or practical.</p>
+<p>As a matter of fact, Angular2 components can hardly be reused out of Angular2, React components<br>can be adapted to React-like frameworks but it takes some efforts, etc. Web components, which are supposed to be a common standard, allowing reuse in all browsers, have been arriving for many years, and are still a work in progress, illustrating the difficulty of designing simultaneously for many targets.</p>
+<h2 id="Componentization-is-a-strategic-decision"><a href="#Componentization-is-a-strategic-decision" class="headerlink" title="Componentization is a strategic decision"></a>Componentization is a strategic decision</h2><p>The option of componentization to implement a reactive system, must, like any architectural decision, be weighted in the context of the specific implementing company/project/team. A start-up who will anyways trash its minimum viable product the next year after receiving funding  might prefer to avoid going through the trouble, while companies which are constantly developing software might want to invest in carefully designed components.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>The eternal quest for productivity in software development is a quest for managing complexity, in<br> particular the accidental complexity that we create ourselves by the particular design, set of<br> tools, implementation, etc. thrown at the problem at hand. Four abstractions, in my (unscientific)<br> opinion, give the best result for complexity reduction : declarative programming, domain modeling,<br> domain specific languages, and componentization. </p>
+<p>Componentization, however, is a double-edge sword : increasing productivity through reuse in the long-term, but costly in the short-term. As such, the decision of embarking on a componentization effort, and calibrating the scope of such, is a strategic decision which must be taken on a case-by-case basis.</p>
+<h1 id="Bibliography"><a href="#Bibliography" class="headerlink" title="Bibliography"></a>Bibliography</h1><ul>
+<li>F. P. Brooks Jr. No silver bullet - essence and accidents of software engineering. IEEE<br>Computer, 20(4):10–19, 1987</li>
+<li>Fundamental Approaches to Software Engineering: 9th International Conference, FASE 2006, Held<br>as Part of the Joint European Conferences on Theory and Practice of Software, ETAPS 2006, Vienna, Austria, March 27-28, 2006, Proceedings</li>
+<li><a href="https://www.dre.vanderbilt.edu/~schmidt/reuse-lessons.html" target="_blank" rel="noopener">Why Software Reuse has Failed and How to Make It Work for You</a></li>
+<li><a href="https://www.sei.cmu.edu/podcasts/podcast_episode.cfm?episodeid=443886" target="_blank" rel="noopener">Reducing Complexity in Software &amp; Systems</a></li>
+<li><a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.450.9230&amp;rep=rep1&amp;type=pdf" target="_blank" rel="noopener">Software Component Models - Component Life Cycle</a></li>
+<li><a href="http://www.win.tue.nl/~johanl/educ/2II45/ADS.09.CBSE.pdf" target="_blank" rel="noopener">Component Based Systems - 2011</a></li>
+<li><a href="https://www.clear.rice.edu/comp310/JavaResources/frameworks" target="_blank" rel="noopener">Component-Framework Systems</a></li>
+<li><a href="https://link.springer.com/content/pdf/10.1007/3-540-45923-5_3.pdf" target="_blank" rel="noopener">A Generic Component Framework for System Modeling</a></li>
+<li><a href="https://www.microsoft.com/en-us/research/publication/software-components-only-the-giants-survive/" target="_blank" rel="noopener">Software Components: Only The Giants Survive</a></li>
+</ul>
+
+  
+  
+  <div class="footer">
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

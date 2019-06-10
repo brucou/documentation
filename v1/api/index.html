@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Overview — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Overview — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Overview — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', '', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          API
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/api/index.html" class="sidebar-link current">Overview</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/api/createStateMachine.html" class="sidebar-link">createStateMachine</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/api/traceFSM.html" class="sidebar-link">traceFSM</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/api/makeWebComponent.html" class="sidebar-link">makeWebComponentFromFsm</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/api/API extensions.html" class="sidebar-link">Possible API extensions</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/api/terminology.html" class="sidebar-link">Terminology</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content api with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>Overview</h1>
+  
+  
+    <p><strong>TODO</strong>: add debug option and enforce contracts option, document those contracts, review the throw to remove them, image link failing, formatting (footnotes in margin), check all INIT are code formatteed, add a github or twitter icon? raise an issue, very important not to loose a good work   </p>
+<p>To start defining state machine with Kindly, it is necessary to get acquainted with:</p>
+<ul>
+<li>the basic state machine formalism</li>
+<li>its extension, including hierarchy (compound states), and history states</li>
+<li>the library API</li>
+<li>the semantics for a Kingly machine</li>
+</ul>
+<p>For those with interest in software architecture, we will start with the principles at the core of Kingly design. Alternatively, you can skip to the next section where we introduce the Kingly configuration for standard state machines and hierarchical state machines. We then cover in detail the API semantics. </p>
+<p>In the remainder of this page, we will dedicate a section to each function part of the Kingly API. Those sections aims to serve as reference documentation for the function. If there is anything you would like to add, ping me on <a href="https://twitter.com/bricoi1" target="_blank" rel="noopener">twitter</a>. </p>
+<h2 id="API-design"><a href="#API-design" class="headerlink" title="API design"></a>API design</h2><p>The key objectives for the API was:</p>
+<ul>
+<li><strong>generality</strong>, <strong>reusability</strong> and <strong>simplicity</strong> <ul>
+<li>there is no explicit provision made to accommodate specific use cases or frameworks</li>
+<li>it must be possible to add a <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.92.6145&amp;rep=rep1&amp;type=pdf" target="_blank" rel="noopener">concurrency and/or communication mechanism</a> on top of the current design</li>
+<li>it must be possible to integrate smoothly into React, Angular and your popular framework</li>
+<li>support for both interactive and reactive programming</li>
+</ul>
+</li>
+<li>parallel and sequential composability of state machines</li>
+</ul>
+<p>As a result of this, the following choices were made:</p>
+<ul>
+<li><strong>functional interface</strong>: the state machine is just a function. As such, it is a black-box, and only its computed outputs can be observed</li>
+<li><strong>complete encapsulation</strong> of the state of the machine</li>
+<li><strong>no effects</strong> performed by the machine</li>
+<li>no exit and entry actions, or activities as in other state machine formalisms<ul>
+<li>there is no loss of generality as both entry and exit actions can be implemented with our state machine. There is simply no syntactic support for it in the core API. This can however be provided through standard functional programming patterns (higher-order functions, etc.)</li>
+</ul>
+</li>
+<li>every computation performed is synchronous (asynchrony is an effect)</li>
+<li>action factories return the <strong>updates</strong> to the extended state to avoid any unwanted direct modification of the extended state (API user must provide such update function, which in turn allows him to use any formalism to represent state - for instance <code>immutable.js</code>)</li>
+<li>no restriction is made on output of Kingly machines, but inputs must follow some conventions (if a machine’s output match those conventions, two such machines can be sequentially composed</li>
+<li>parallel composition naturally occurs by feeding two state machines the same input(s))<ul>
+<li>as a result, reactive programming is naturally enabled. If <code>inputs</code> is a stream of well-formatted machine inputs, and <code>f</code> is the fsm, then the stream of outputs will be <code>inputs.map(f)</code>. It is so simple that we do not even surface it at the API level.</li>
+</ul>
+</li>
+</ul>
+<p>Concretely, our state machine will be created by the factory function <code>createStateMachine</code>, which returns a state machine which:</p>
+<ul>
+<li>immediately positions itself in its configured initial state (as defined by its initial control state and initial extended state) </li>
+<li>will compute an output for any input that is sent to it since that</li>
+</ul>
+<p>Let us insist again on the fact that the state machine is not, in general, a pure function of its inputs. However, a given output of the machine depends exclusively on the sequence of inputs it has received so far (<a href="https://en.wikipedia.org/wiki/Causal_system" target="_blank" rel="noopener">causality property</a>). This means that it is possible to associate to a state machine another function which takes a sequence of inputs into a sequence of outputs, in a way that <strong>that</strong> function is pure. This is what enables simple and automated testing.</p>
+<h2 id="General-concepts"><a href="#General-concepts" class="headerlink" title="General concepts"></a>General concepts</h2><p>We encourage the novice reader to refer to the <a href="../tutorials">tutorials</a> for a step-by-step introduction to the concepts, with examples analyzed by order of complexity. In this section, we will use the example of a reasonably complex CD player application, whose behaviour is modelled by a hierarchical state machine. For this example, we will show a run of the machine, and by doing so, illustrate advanced concepts such as compound states, and history states. This example will be focused on the modelling rather than the implementation. The reader can refer to the <a href="../examples">examples</a> section of this documentation for full-fledged examples. </p>
+<h3 id="CD-drawer-modelization"><a href="#CD-drawer-modelization" class="headerlink" title="CD drawer modelization"></a>CD drawer modelization</h3><p>This example is taken from Ian Horrock’s seminal book on statecharts and is the specification of a CD player. The behaviour of the CD player is pretty straight forward and understandable immediately from the visualization. From a didactical point of view, the example serves to feature advanced characteristics of hierarchical state machines, including history states, composite states,  transient states, automatic transitions, and entry points. For a deeper understanding of how the transitions work in the case of a hierarchical machine, you can have a look at the <a href="https://github.com/brucou/kingly#terminology" target="_blank" rel="noopener">terminology</a> and <a href="#Example-run">sample run</a> for the CD player machine.</p>
+<p><img src="http://i.imgur.com/ygsOVi9.jpg" alt="cd player state chart"></p>
+<p>The salient facts are:</p>
+<ul>
+<li><code>NO Cd loaded</code>, <code>CD_Paused</code> are control states which are composite states: they are themselves state machines comprised on control states.</li>
+<li>The control state <code>H</code> is a pseudo-control state called shallow history state</li>
+<li>All composite states feature an entry point and an automatic transition. For instance <code>CD_Paused</code> has the sixth control state as entry point, and the transition from <code>CD_Paused</code> into that control state is called an automatic transition. Entering the <code>CD_Paused</code> control state automatically triggers that transition.</li>
+<li><code>Closing CD drawer</code> is a transient state. The machine will automatically transition away from it, picking a path according to the guards configured on the available exiting transitions</li>
+</ul>
+<h3 id="Example-run"><a href="#Example-run" class="headerlink" title="Example run"></a>Example run</h3><p>To illustrate the previously described machine semantics, let’s run the CD player example.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Control state</th>
+<th style="text-align:center">Internal event</th>
+<th>External event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INIT_STATE</td>
+<td style="text-align:center">INIT_EVENT</td>
+<td></td>
+</tr>
+<tr>
+<td>No Cd Loaded</td>
+<td style="text-align:center">INIT</td>
+<td></td>
+</tr>
+<tr>
+<td>CD Drawer Closed</td>
+<td style="text-align:center">—</td>
+<td></td>
+</tr>
+<tr>
+<td>CD Drawer Closed</td>
+<td style="text-align:center"></td>
+<td>Eject</td>
+</tr>
+<tr>
+<td>CD Drawer Open</td>
+<td style="text-align:center"></td>
+<td>Eject (put a CD)</td>
+</tr>
+<tr>
+<td>Closing CD Drawer</td>
+<td style="text-align:center">eventless</td>
+<td></td>
+</tr>
+<tr>
+<td>CD Loaded</td>
+<td style="text-align:center">INIT</td>
+<td></td>
+</tr>
+<tr>
+<td>CD Loaded subgroup</td>
+<td style="text-align:center">INIT</td>
+<td></td>
+</tr>
+<tr>
+<td>CD Stopped</td>
+<td style="text-align:center">—</td>
+<td></td>
+</tr>
+<tr>
+<td>CD stopped</td>
+<td style="text-align:center"></td>
+<td>Play</td>
+</tr>
+<tr>
+<td>CD playing</td>
+<td style="text-align:center"></td>
+<td>Forward down</td>
+</tr>
+<tr>
+<td>Stepping forwards</td>
+<td style="text-align:center"></td>
+<td>Forward up</td>
+</tr>
+<tr>
+<td><strong>CD playing</strong></td>
+<td style="text-align:center">—</td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note:</p>
+<ul>
+<li>the state entry semantics — entering <code>No Cd Loaded</code> leads to enter <code>CD Drawer Closed</code></li>
+<li>the guard — because we put a CD in the drawer, the machine transitions from <code>Closing CD Drawer</code> to <code>CD Loaded</code> </li>
+<li>the eventless transition — the latter is an eventless transition: the guards are automatically evaluated to select a transition to progress the state machine (by contract, there must be one)</li>
+<li>the hierarchy of states — the <code>Forward down</code> event transitions the state machines to <code>Stepping forwards</code>, as it applies to all atomic states nested in the <code>CD Loaded subgroup</code> control state</li>
+<li>the history semantics — releasing the forward key on the CD player returns to <code>CD Playing</code> the last atomic state for compound state <code>CD Loaded subgroup</code>.</li>
+</ul>
+<h2 id="Kingly-machine-semantics"><a href="#Kingly-machine-semantics" class="headerlink" title="Kingly machine semantics"></a>Kingly machine semantics</h2><p>We give here a quick summary of the behaviour of the state machine:</p>
+<p><strong>Preconditions</strong></p>
+<ul>
+<li>the machine is configured with a set of control states, an initial extended state, transitions, guards, action factories, and user settings</li>
+<li>the machine configuration is valid (cf. contracts)</li>
+<li>Input events have the shape <code>{[event_label]: event_data}</code></li>
+</ul>
+<p><strong>Event processing</strong></p>
+<ul>
+<li>Calling the machine factory creates a machine according to specifications and triggers the reserved <code>INIT_EVENT</code> event which advances the state machine out of the reserved <strong>internal</strong> initial control state towards the relevant <strong>user-configured</strong> initial control state<ul>
+<li>the <code>INIT_EVENT</code> event carries the initial extended state as data</li>
+<li>if there is no initial transition, API consumers must pass an initial control state</li>
+<li>if there is no initial control state, API consumers must configure an initial transition</li>
+<li>an initial transition is a transition from the reserved <code>INIT_STATE</code> initial control state, triggered by the reserved initial event <code>INIT_EVENT</code></li>
+</ul>
+</li>
+<li><strong>Loop</strong></li>
+<li>Search for a feasible transition in the configured transitions<ul>
+<li>a feasible transition is a transition which is configured to deal with the received event, and for which there is a fulfilled guard </li>
+</ul>
+</li>
+<li>If there are no feasible transitions:<ul>
+<li>issue memorized output (<code>NO_OUTPUT</code> if none); extended state and control state do not change. </li>
+<li><strong>break</strong> away from the loop</li>
+</ul>
+</li>
+<li>If there is a feasible transition, select the first transition according to what follows:<ul>
+<li>if there is an <code>INIT</code> transition, select that</li>
+<li>if there is an eventless transition, select that</li>
+<li>otherwise select the first transition whose guard is fulfilled (as ordered per array index)</li>
+</ul>
+</li>
+<li>evaluate the selected transition<ul>
+<li>if the target control state is an history state, replace it by the control state it references (i.e. the last seen nested state for that compound state)</li>
+<li>run the action factory defined in the selected transition to get extended state updates, and machine outputs</li>
+<li><strong>update the extended state</strong> (with the updates produced by the action factory)</li>
+<li><strong>aggregate</strong> and memorize the outputs</li>
+<li>update the control state to the target control state defined by the selected transition</li>
+<li>update the history for the control state (applies only if control state is a compound state)</li>
+</ul>
+</li>
+<li>iterate on <strong>Loop</strong></li>
+<li><strong><em>THE END</em></strong></li>
+</ul>
+<p>A few interesting points: </p>
+<ul>
+<li>a machine always transitions towards an atomic state at the end of event processing</li>
+<li>on that path towards an atomic target state, all intermediary extended state updates are performed. Guards and action factories on that path are thus receiving a possibly evolving extended state. The computed outputs will be aggregated in an array of outputs.</li>
+</ul>
+<p>The aforedescribed behaviour is loosely summarized here:</p>
+<figure class="fullwidth"><p><img src="../../api-assets/FSM%20event%20processing%20semantics.png" alt="event processing"></p>
+</figure>
+<p><strong>History states semantics</strong></p>
+<p>An history state relates to the past configuration a compound state. There are two kinds of history states: shallow history states (H), and deep history states (H*). A picture being worth more than words, thereafter follows an illustration of both history states:</p>
+<figure class="fullwidth"><p><img src="../../api-assets/history%20transitions,%20INIT%20event%20CASCADING%20transitions.png" alt="deep and shallow history"></p>
+</figure>
+<p>Assuming the corresponding machine has had the following run <code>[INIT, EVENT1, EVENT3, EVENT5, EVENT4]</code>:</p>
+<ul>
+<li>the configurations for the <code>OUTER</code> control state will have been <code>[OUTER.A, INNER, INNER.S, INNER.T]</code><ul>
+<li>the shallow history state for the <code>OUTER</code> control state will correspond to the <code>INNER</code> control state (the last direct substate of <code>OUTER</code>), leading to an automatic transition to INNER_S  </li>
+<li>the deep history state for the <code>OUTER</code> control state will correspond to the <code>INNER.T</code> control state (the last substate of <code>OUTER</code> before exiting it)</li>
+</ul>
+</li>
+</ul>
+<p>In short the history state allows to short-circuit the default fixed entry behaviour for a compound state, which is to follow the transition triggered by the <code>INIT</code> event. When transitioning to the history state, transition is towards the last seen state for the entered compound state.</p>
+<h3 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h3><h4 id="Format"><a href="#Format" class="headerlink" title="Format"></a>Format</h4><ul>
+<li>state names (from <code>fsmDef.states</code>) must be unique and be JavaScript strings</li>
+<li>event names (from <code>fsmDef.events</code>) must be unique and be JavaScript strings</li>
+<li>reserved states (like <code>INIT_STATE</code>) cannot be used when defining transitions</li>
+<li>at least one control state must be declared in <code>fsmDef.states</code></li>
+<li>all transitions must be valid:<ul>
+<li>the transition syntax must be followed (cf. types)</li>
+<li>all states referenced in the <code>transitions</code> data structure must be defined in the <code>states</code> data structure</li>
+<li>all transitions must define an action (even if that action does not modify the extended state or returns <code>NO_OUTPUT</code>)</li>
+</ul>
+</li>
+<li>all action factories must fill in the <code>updates</code> and <code>outputs</code> property (no syntax sugar)<ul>
+<li><code>NO_OUTPUT</code> must be used to indicate the absence of outputs</li>
+</ul>
+</li>
+<li>all transitions for a given origin control state and triggering event must be defined in one row of <code>fsmDef.transitions</code></li>
+<li><code>fsmDef.settings</code> must include a <code>updateState</code> function covering the state machine’s extended state update concern.</li>
+</ul>
+<h4 id="Initial-event-and-initial-state"><a href="#Initial-event-and-initial-state" class="headerlink" title="Initial event and initial state"></a>Initial event and initial state</h4><p>By initial transition, we mean the transition with origin the machine’s default initial state.</p>
+<ul>
+<li>An initial transition must be configured:<ul>
+<li>by way of a starting control state defined at configuration time</li>
+<li>by way of a initial transition at configuration time</li>
+</ul>
+</li>
+<li><del>the init event has the initial extended state as event data</del></li>
+<li><del>The machine cannot stay blocked in the initial control state. This means that at least one<br>transition must be configured and be executed between the initial control state and another state<br>.   This is turn means:</del><ul>
+<li><del>at least one non-reserved control state must be configured</del></li>
+<li><del>at least one transition out of the initial control state must be configured</del></li>
+<li><del>of all guards for such transitions, if any, at least one must be fulfilled to enable a<br>transition away from the initial control state</del></li>
+</ul>
+</li>
+<li>there is exactly one initial transition, whose only effect is to determine the starting<br>control state for the machine<ul>
+<li>the action on any such transitions is the <em>identity</em> action</li>
+<li>the control state resulting from the initial transition may be guarded by configuring<br><code>guards</code> for the initial transition</li>
+</ul>
+</li>
+<li>there are no incoming transitions to the reserved initial state</li>
+</ul>
+<p>Additionally the following applies:</p>
+<ul>
+<li>the initial event can only be sent internally (external initial events will be ignored, and the<br>machine will return <code>NO_OUTPUT</code>)</li>
+<li>the state machine starts in the reserved initial state</li>
+</ul>
+<h4 id="Coherence"><a href="#Coherence" class="headerlink" title="Coherence"></a>Coherence</h4><ul>
+<li>the initial control state (<code>fsmDef.initialControlState</code>) must be a state declared in <code>fsmDef.states</code></li>
+<li>transitions featuring the initial event (<code>INIT_EVENT</code>) are only allowed for transitions involving compound states<ul>
+<li>e.g. <code>A -INIT_EVENT-&gt; B</code> iff A is a compound state or A is the initial state</li>
+</ul>
+</li>
+<li>all states declared in <code>fsmDef.states</code> must be used as target or origin of transitions in <code>fsmDef.transitions</code></li>
+<li>all events declared in <code>fsmDef.events</code> must be used as triggering events of transitions in <code>fsmDef.transitions</code></li>
+<li>history pseudo states must be target states and refer to a given declared compound state</li>
+<li>there cannot be two transitions with the same <code>(from, event, predicate)</code> - sameness defined for predicate by referential equality</li>
+</ul>
+<h4 id="Semantical-contracts"><a href="#Semantical-contracts" class="headerlink" title="Semantical contracts"></a>Semantical contracts</h4><ul>
+<li>The machine behaviour is as explicit as possible<ul>
+<li>if a transition is taken, and has guards configured, one of those guards must be fulfilled, i.e. guards must cover the entire state space when they exist</li>
+</ul>
+</li>
+<li>A transition evaluation must end<ul>
+<li>eventless transitions must progress the state machine<ul>
+<li>at least one guard must be fulfilled, otherwise we would remain forever in the same state</li>
+</ul>
+</li>
+<li>eventless self-transitions are forbidden (while theoretically possible, the feature is of little practical value, though being a possible source of ambiguity or infinite loops)</li>
+<li><del>eventless self-transitions must modify the extended state</del><ul>
+<li><del>lest we loop forever (a real blocking infinite loop)</del></li>
+<li><del>note that there is not really a strong rationale for eventless self-transition, I recommend<br>just staying away from it</del></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>the machine is deterministic and unambiguous<ul>
+<li>to a (from, event) couple, there can only correspond one row in the <code>transitions</code> array of the state machine (but there can be several guards in that row)<ul>
+<li>(particular case) eventless transitions must not be contradicted by event-ful transitions</li>
+<li>e.g. if there is an eventless transition <code>A -eventless-&gt; B</code>, there cannot be a competing <code>A -ev-&gt; X</code><label for="mn-demo-19" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-19" class="margin-toggle"><span class="marginnote"><p><em>*</em> There exists however semantics which allow such transitions, thus possibilitating event bubbling.</p>
+</span></li>
+</ul>
+</li>
+<li><code>A -ev&gt; B</code> and <code>A &lt; OUTER_A</code> with <code>OUTER_A -ev&gt; C</code> !!: there are two valid transitions triggered by <code>ev</code>. Such transitions would unduely complicate the input testing generation, and decrease the readability of the machine so we forbid such transitions<sup><a href="#fn_*" id="reffn_*">*</a></sup></li>
+</ul>
+</li>
+<li>no transitions from the history state (history state is only a target state)</li>
+<li>A transition evaluation must always end (!), and end in an atomic state<ul>
+<li>Every compound state must have eactly one inconditional (unguarded) INIT transition, i.e. a transition whose triggering event is <code>INIT_EVENT</code>. That transition must have a target state which is a substate of the compound state (no hierarchy crossing), and which is not a history pseudo state</li>
+<li>Compound states must not have eventless transitions defined on them (would introduce ambiguity with the <code>INIT</code> transition)</li>
+<li>(the previous conditions ensure that there is always a way down the hierarchy for compound states, and that way is always taken when entering the compound state, and the descent process always terminate)</li>
+</ul>
+</li>
+<li>the machine does not perform any effects<ul>
+<li>guards, action factories are pure functions<ul>
+<li>as such exceptions while running those functions are fatal, and will not be caught</li>
+</ul>
+</li>
+<li><code>updateState:: ExtendedState -&gt; ExtendedStateUpdates -&gt; ExtendedState</code> must be a pure function (this is important in particular for the tracing mechanism which triggers two execution of this function with the same parameters)</li>
+</ul>
+</li>
+</ul>
+<p>Those contracts ensure a good behaviour of the state machine. and we recommend that they all be observed. However, some of them are not easily enforcable:</p>
+<ul>
+<li>we can only check at runtime that transition with guards fulfill at least one of those guards.<br>In these cases, we only issue a warning, as this is not a fatal error. This leaves some flexibility to have a shorter machine configuration. Note that we recommend explicitness and disambiguity vs. conciseness. </li>
+<li>purity of functions cannot be checked, even at runtime</li>
+</ul>
+<p>Contracts enforcement can be parameterized with <code>settings.debug.checkContracts</code>.</p>
+
+  
+  
+  <div class="footer">
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

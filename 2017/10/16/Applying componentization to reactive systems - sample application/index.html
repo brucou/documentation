@@ -1,0 +1,1117 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Applying componentization to reactive systems : sample application — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Applying componentization to reactive systems : sample application — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Applying componentization to reactive systems : sample application — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', '', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  
+  
+    <h1>Applying componentization to reactive systems : sample application</h1>
+  
+  
+    <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>As discussed in a <a href="/posts/user-interfaces-as-reactive-systems">former post</a>, user interfaces are<br>reactive systems, and can be specified through a reactive function which associate events<br>(originating from the user, or the interfaced systems) to actions to be executed. Expressing events, actions, and local state as streams, and expressing local state update also as an action, we have  : $actions = f(state, events)$, where $f$ is a pure function. In addition to that function, which expresses the logic of the<br>application, interfaces with the relevant systems must be defined. Typically this means<br>interfaces to receive events, and execute actions.</p>
+<p>Our proposed approach is based on cyclejs framework, in which actions are executed through<br>a dedicated interface called <code>driver</code> and events streams are created where and when necessary<br>through streams and streams factories. Those streams factories themselves are passed as parameters<br> to the reactive function. As such the reactive function, in a <code>cyclejs</code> context is not pure.<br> Adjusting for this caveat, our reactive equation still holds.</p>
+<p>We enrich the <code>cyclejs</code> architectural choices, with a <a href="/posts/a-componentization-framework-for-cyclejs">componentization model</a>, which allows to<br>build a larger application from a number of small components with the help of component<br>combinators. A combinator library is provided to cover the most generic needs occurring while<br>building a componentized application, including, but not limited to, sequential composition, data<br>injection, control flow, routing, iteration, change propagation.</p>
+<p>The present document aims at showing how to translate a reactive system specification into an<br>implementation with our proposed componentization model. It is hence :</p>
+<ul>
+<li>part documentation, addressing the question <em>How to leverage the proposed component model to write<br>an application</em></li>
+<li>part showcase, in which the advantages of the componentization approach appear in connection with<br>an iterative software development process</li>
+</ul>
+<p>In the first section, we will quickly describe the application under development. We will then<br>proceed with setting up the structure (shell) in which the application logic will be contained.<br>We will then in subsequent sections, iteratively extend our code to implement more and more of<br>our target application. For each section, we will provide a link to the corresponding source<br>code, contained in a dedicated branch of the demo repository. We will however not develop the<br>whole application here, but the minimum subset necessary for us to reach our documentation and<br>showcasing goals.</p>
+<h1 id="Target-application"><a href="#Target-application" class="headerlink" title="Target application"></a>Target application</h1><p>The target application is a task management application, taken from the <a href="https://github.com/PacktPublishing/Mastering-Angular-2-Components" target="_blank" rel="noopener">Mastering Angular2<br>components</a> book. Users handle projects, projects have tasks, which can be in status finalized or pending. The user can review and update existing tasks, create new tasks, and delete existing ones. Tasks can be filtered by status. The user can add comments to a project which are presented chronologically. A summary of activities can be consulted in a dedicated section. A dashboard provides a summary view of the projects and tasks. Finally, plugins can be administered and integrated into the application to extend its functionality.</p>
+<p>This is an application with a reasonable size, and we will not seek to implement the full<br>functionality previously described, in one go. In the present version of this document, we will<br>focus on a first batch of features, which includes only the project browsing and task management<br>. We will also detail only portions of our implementation, selecting and detailing those portions which<br>illustrates a use of the component model not previously illustrated. This aims at covering as<br>large a percentage possible of the available component combinators, and illustrating as many<br>different techniques as possible.</p>
+<p>Rather than producing a detailed written specification, we will provide the following<br>screenshot, from which a feature list is easy to guess. For supplementary details, we refer the<br>reader to the book.</p>
+<p><img src="/img/screens/main_screen_ang2_example.png" alt="Angular2 project application"></p>
+<p>In addition to this, the following routes are specified :</p>
+<ul>
+<li><code>/dashboard</code> : handles the dashboard functionality</li>
+<li><code>/projects/:projectId</code> : shows the project description, together with a tab bar (<code>Tasks</code>,<br><code>Comments</code>, <code>Activities</code>)<ul>
+<li><code>/projects/:projectId/tasks</code> : additionally shows the tasks belonging a project with the given<br><code>projectId</code>, together with a button group to filter tasks, and a input field to enter new tasks</li>
+<li><code>/projects/:projectId/task/:nr</code> : additionally shows a specific task details, with the ability<br>to modify those details </li>
+<li><code>/projects/:projectId/comments</code> : additionally shows the comments logged for a given project </li>
+<li><code>/projects/:projectId/activities</code> : additionally shows the activities logged for a given<br>project </li>
+</ul>
+</li>
+<li><code>/plugins</code> : handles the plugin functionality</li>
+</ul>
+<h1 id="Step-0-set-up"><a href="#Step-0-set-up" class="headerlink" title="Step 0 : set up"></a>Step 0 : set up</h1><h2 id="Domain-model"><a href="#Domain-model" class="headerlink" title="Domain model"></a>Domain model</h2><p>We will work with a domain model with three entities : projects, tasks, and activities. Data is stored remotely in a firebase repository. Thereafter follows an example of the physical data model (dictated only by<br>our self-imposed constraint to allow for direct comparison with the Angular2 application - there<br>are other ways to design that physical data model):</p>
+<pre><code class="hljs javascript">projects: &#123;
+    <span class="hljs-attr">_id</span>: <span class="hljs-string">'project-1'</span>,
+    <span class="hljs-attr">type</span>: <span class="hljs-string">'project'</span>,
+    <span class="hljs-attr">deleted</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'Your first project'</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'This is your first project in the task management system you\'re building within the context of the Angular 2 Components book.'</span>,
+    <span class="hljs-attr">tasks</span>: [&#123;
+      <span class="hljs-attr">type</span>: <span class="hljs-string">'task'</span>,
+      <span class="hljs-attr">nr</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">position</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">title</span>: <span class="hljs-string">'Task 1'</span>,
+      <span class="hljs-attr">done</span>: <span class="hljs-literal">null</span>,
+      <span class="hljs-attr">created</span>: +Moment(now),
+      <span class="hljs-attr">efforts</span>: &#123;
+        <span class="hljs-attr">estimated</span>: <span class="hljs-number">86400000</span>,
+        <span class="hljs-attr">effective</span>: <span class="hljs-number">0</span>
+      &#125;
+    &#125;]
+  &#125;
+
+activities: [
+    &#123;
+    <span class="hljs-attr">type</span>: <span class="hljs-string">'activity'</span>,
+    <span class="hljs-attr">user</span>: &#123;
+      <span class="hljs-attr">name</span>: <span class="hljs-string">'You'</span>,
+      <span class="hljs-attr">pictureDataUri</span>: <span class="hljs-string">'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4yLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDMxMS41IDMxMS41IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAzMTEuNSAzMTEuNTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe2ZpbGw6IzMzMzMzMzt9DQo8L3N0eWxlPg0KPGc+DQoJPGc+DQoJCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNTUuOCwwQzY5LjcsMCwwLDY5LjcsMCwxNTUuOGMwLDM3LjUsMTMuMyw3MS45LDM1LjMsOTguOGMzLjQtMjcuMywzMC42LTUwLjMsNjguOC02MS4yDQoJCQljMTMuOSwxMywzMiwyMC45LDUxLjcsMjAuOWMxOS4yLDAsMzYuOS03LjUsNTAuNy0xOS45YzM4LjUsMTEuOSw2NS4xLDM2LjMsNjYsNjQuNmMyNC4zLTI3LjUsMzkuMS02My42LDM5LjEtMTAzLjENCgkJCUMzMTEuNSw2OS43LDI0MS44LDAsMTU1LjgsMHogTTE1NS44LDE5NS43Yy05LjksMC0xOS4zLTIuNy0yNy42LTcuNWMtMjAuMS0xMS40LTMzLjktMzQuOC0zMy45LTYxLjdjMC0zOC4xLDI3LjYtNjkuMiw2MS41LTY5LjINCgkJCWMzMy45LDAsNjEuNSwzMSw2MS41LDY5LjJjMCwyNy40LTE0LjIsNTEtMzQuOCw2Mi4yQzE3NC40LDE5My4yLDE2NS4zLDE5NS43LDE1NS44LDE5NS43eiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K'</span>
+    &#125;,
+    <span class="hljs-attr">time</span>: +Moment(now),
+    <span class="hljs-attr">subject</span>: <span class="hljs-string">'project-1'</span>,
+    <span class="hljs-attr">category</span>: <span class="hljs-string">'tasks'</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'A task was updated'</span>,
+    <span class="hljs-attr">message</span>: <span class="hljs-string">'The task \'New task created\' was updated on #project-1.'</span>,
+    <span class="hljs-attr">_id</span>: <span class="hljs-string">'ECEF8127-C237-9612-924B-2A087D6FACA4'</span>
+  &#125;,
+  ]
+<span class="hljs-string">``</span><span class="hljs-string">` 
+
+## Interfaced systems' drivers
+Actions that are undertaken as a response to events are : domain data update, DOM update, route 
+change, and of course updating local state (persisted and non persisted). 
+As per events to be handled by the system, we have : user events (i.e. DOM events), local state 
+update notification, route change notification.
+
+This leads to the following drivers :
+
+- write drivers : DOM driver, router driver, domain update driver, local state update driver 
+- read drivers : DOM driver, router driver, domain query driver, local state query driver
+
+We will use :
+
+- router driver : for read and write, we use the same [history driver](https://github.com/cyclejs/cyclejs/tree/master/history) from `</span>cycle<span class="hljs-string">`
+- DOM write driver : standard snabbdom default DOM `</span>cycle<span class="hljs-string">` driver
+- DOM read driver : document driver which injects the `</span><span class="hljs-built_in">document</span><span class="hljs-string">` dependency to read from the DOM
+- domain update and query drivers : we use a domain [Query](/projects/component-combinators/querydriver) 
+driver and domain [Action](/projects/component-combinators/actiondriver) driver, where entities 
+and the methods applicable to them are defined 
+- local state drivers : we use a in-memory store to query and update data in the local domain
+
+This leads us to the following set up code :
+
+`</span><span class="hljs-string">``</span>javascript
+    <span class="hljs-keyword">const</span> &#123; sources, sinks &#125; = run(App, &#123;
+      [DOM_SINK]: filterNull(makeDOMDriver(<span class="hljs-string">'#app'</span>, &#123;
+        <span class="hljs-attr">transposition</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">modules</span>: defaultModules
+      &#125;)),
+      <span class="hljs-attr">document</span>: documentDriver,
+      <span class="hljs-attr">domainQuery</span>: makeDomainQueryDriver(repository, domainObjectsQueryMap),
+      <span class="hljs-attr">domainAction$</span>: makeDomainActionDriver(repository, domainActionsConfig),
+      <span class="hljs-attr">storeAccess</span>: makeDomainQueryDriver(inMemoryStore, inMemoryStoreQueryMap),
+      <span class="hljs-attr">storeUpdate$</span>: makeDomainActionDriver(inMemoryStore, inMemoryStoreActionsConfig),
+      <span class="hljs-attr">router</span>: makeHistoryDriver(createHistory(), &#123; <span class="hljs-attr">capture</span>: <span class="hljs-literal">true</span> &#125;),
+    &#125;);</code></pre>
+<p>For the full code and running demo, see <a href="https://github.com/brucou/component-combinators/tree/project-management-app-step-0/examples/AllInDemo" target="_blank" rel="noopener">here</a>. </p>
+<h1 id="Step-1-SidePanel-navigation-and-MainPanel"><a href="#Step-1-SidePanel-navigation-and-MainPanel" class="headerlink" title="Step 1 : SidePanel (navigation) and MainPanel"></a>Step 1 : SidePanel (navigation) and MainPanel</h1><p>We divide the application in two independent components, one handling the side navigation<br>(<code>SidePanel</code>) and the other one handling functionalities depending on the current route<br>(<code>MainPanel</code>). </p>
+<p>Our starting code for the <code>App</code> is then :</p>
+<pre><code class="hljs javascript">App = Combine(&#123;&#125;, [Div(<span class="hljs-string">'.app'</span>), [
+                    SidePanel,
+                    MainPanel
+                  ]])</code></pre>
+<p>This deserves a few words of explanation. <code>Combine</code> is a combinator which takes some components (let’s call them children components), and returns a combined component. That combined component will pass its sources and settings (here <code>{}</code>) to all<br>children components to compute their sinks, merge<sup><a href="#fn_merge" id="reffn_merge">merge</a></sup> the resulting non-DOM sinks from the children components, and combine the DOM sinks <a href="/projects/component-combinators/m-component---merge-default-functions/#slotted-dom-merge">à la web components</a>, by dispatching children DOM content into its respective slots (the container component holds the slot definition — here <code>Div(&#39;.app&#39;)</code> does not define any<br> slot). The full details of how <code>Combine</code>‘s merge mechanism works can be found in the <a href="/projects/component-combinators/m-component---merge-default-functions/">corresponding documentation</a>. Note that it is important to understand how <code>Combine</code> merges children sinks, as most of the combinators in the library, merge sinks in the same way.</p>
+<blockquote id="fn_merge">
+<sup>merge</sup>. Simple merge is used for non-DOM sinks (as in <code>Rx.Observable.merge</code>). Another example of such simple merge can be found in the <a href="https://github.com/cyclejs-community/cyclejs-utils" target="_blank" rel="noopener"><code>cyclejs-utils</code></a> utility library for cycle.<a href="#reffn_merge" title="Jump back to footnote [merge] in the text."> &#8617;</a>
+</blockquote>
+<p>We are however going to do two things : inject pieces of state that will be used by both<br>components, and massage the route input arriving through the router driver in a convenient form<br>(basically removing a leading <code>/</code> if any). This can be done at any relevant level. However, as<br>those sources of events and pieces of state will be used by the whole application, it is more DRY<br> to inject them at the top level, so that all downstream components inherit them unless otherwise<br>  configured. For the same reason, we will configure the settings of the router driver once for all, and<br>  declare the list of sinks that the application handles at this level. <code>sinkNames</code> is mandatory<br>  for several components combinators to filter the sinks returned from children components, so we<br>   put it at the top level for the same DRY reasons. </p>
+<p>   The <code>settings</code> and <code>sources</code> inheritance mechanism is described in the documentation for the<br>   <code>m</code> combinator and the <a href="/projects/component-combinators/injectsourcesandsettings/"><code>InjectSourcesAndSettings</code> combinator</a>. </p>
+<p>The corresponding code includes :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> App = InjectSourcesAndSettings(&#123;
+    <span class="hljs-attr">sourceFactory</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">sources, settings</span>) </span>&#123;
+      <span class="hljs-comment">// NOTE : we need the current route which is a behaviour</span>
+      <span class="hljs-keyword">const</span> &#123; router, domainQuery &#125; = sources;
+      <span class="hljs-keyword">const</span> currentRouteBehaviour = router
+        .map(<span class="hljs-function"><span class="hljs-params">location</span> =&gt;</span> &#123;
+          <span class="hljs-keyword">const</span> route = location.pathname;
+          <span class="hljs-keyword">return</span> (route &amp;&amp; route[<span class="hljs-number">0</span>] === <span class="hljs-string">'/'</span>) ? route.substring(<span class="hljs-number">1</span>) : route
+        &#125;)
+        <span class="hljs-comment">// starts with home route</span>
+        .startWith(<span class="hljs-string">''</span>)
+        .shareReplay(<span class="hljs-number">1</span>);
+      <span class="hljs-comment">// NOTE : we need the route change event</span>
+      <span class="hljs-comment">// Now it was important to do this in that order, because we want currentRouteBehaviour to</span>
+      <span class="hljs-comment">// be subscribed before (no route change before having a current route)</span>
+      <span class="hljs-comment">// A former implementation url$ = incomingRouteEvents$.shareReplay(1) failed as url$ was not</span>
+      <span class="hljs-comment">// subscribed till after the route had changed, and by then the new route value was already</span>
+      <span class="hljs-comment">// emitted, so url$ would not emit anything... One has to be very careful dealing with</span>
+      <span class="hljs-comment">// streams and ordering</span>
+      <span class="hljs-keyword">const</span> incomingRouteEvents$ = currentRouteBehaviour.share();
+      <span class="hljs-keyword">const</span> projects$ = domainQuery.getCurrent(PROJECTS);
+      <span class="hljs-keyword">const</span> user$ = domainQuery.getCurrent(USER);
+
+      <span class="hljs-keyword">return</span> &#123;
+        <span class="hljs-comment">// router</span>
+        url$: currentRouteBehaviour,
+        [ROUTE_SOURCE]: incomingRouteEvents$,
+        <span class="hljs-comment">// NOTE : domain driver always send behaviour observables (i.e. sharedReplayed already)</span>
+        user$,
+        <span class="hljs-comment">// NOTE : `values` to get the actual array because firebase wraps it around indices</span>
+        projects$: projects$.map(values),
+        <span class="hljs-attr">projectsFb$</span>: projects$
+      &#125;
+    &#125;,
+    <span class="hljs-attr">settings</span>: &#123;
+      <span class="hljs-attr">sinkNames</span>: [<span class="hljs-string">'domainAction$'</span>, <span class="hljs-string">'storeUpdate$'</span>, DOM_SINK, <span class="hljs-string">'router'</span>, <span class="hljs-string">'focus'</span>],
+      <span class="hljs-attr">routeSource</span>: ROUTE_SOURCE
+    &#125;
+  &#125;, [Div(<span class="hljs-string">'.app'</span>), [
+    SidePanel,
+    MainPanel
+  ]]
+);</code></pre>
+<p><strong>Pay attention to</strong> :</p>
+<ul>
+<li>the querying for domain entities related to the projects and the user through the query<br>driver (for instance <code>domainQuery.getCurrent(PROJECTS)</code>)</li>
+<li>the use of <code>Div(&#39;.app&#39;)</code> as a container for the list of components (main and side panels). Full explanation of the feature can be found at the <a href="/projects/component-combinators/m-component---merge-default-functions/#regular-dom-merge">corresponding documentation page</a> (the container here acts as parent component). In short, all DOM trees returned by the enclosed components will be inserted within the DOM tree of the container. </li>
+<li>the distinction between the route change event, and the route state which is a behaviour<sup><a href="#fn_behaviour" id="reffn_behaviour">behaviour</a></sup>. The<br>general, and very important rule, is to <strong>systematically</strong> decide whether a reactive entity of<br>interest is modelized better by an event or a behaviour, and to apply the corresponding marker<br>(<code>share()</code> for events, <code>shareReplay(1)</code> for behaviours)<sup><a href="#fn_marker" id="reffn_marker">marker</a></sup>. Failing to do this is the origin<br>of a <strong>large portion of bugs</strong> encountered when manipulating streams.</li>
+</ul>
+<blockquote id="fn_behaviour">
+<sup>behaviour</sup>. The reason why we need both the route change event and the route state is that sometimes we want to get the current route without reacting to a route change, and the best way to achieve this is to use <code>shareReplay(1)</code> in connection with <code>sample</code> or <code>withLatestFrom</code>. <a href="#reffn_behaviour" title="Jump back to footnote [behaviour] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_marker">
+<sup>marker</sup>. A good way to enforce this is to build on top of the stream library constructors for events and behaviours, and enforce their usage, effectively prohibiting direct manipulation of the underlying streams. We do not follow this option however, to avoid adding extra syntax. We might reconsider later on, based on feedback.<a href="#reffn_marker" title="Jump back to footnote [marker] in the text."> &#8617;</a>
+</blockquote>
+<p>For the full code and running demo, see <a href="https://github.com/brucou/component-combinators/tree/project-management-app-step-1/examples/AllInDemo" target="_blank" rel="noopener">here</a>. </p>
+<p>This example allows us to illustrate an important componentization tip. </p>
+<h2 id="Tip-What-makes-a-good-breakdown"><a href="#Tip-What-makes-a-good-breakdown" class="headerlink" title="Tip : What makes a good breakdown"></a><strong>Tip</strong> : What makes a good breakdown</h2><p>What makes this breakdown a good one? Independence or loose coupling is the key here :</p>
+<ul>
+<li><code>MainPanel</code> can be implemented fairly independently from <code>SidePanel</code></li>
+<li>the only reason for change of <code>SidePanel</code> that would affect <code>MainPanel</code> is a change in the<br>route associated to the projects<sup><a href="#fn_routechange" id="reffn_routechange">routechange</a></sup></li>
+<li>both components share no common events or actions or logic. We took our initial reactive system, split it in two, smaller, largely independent subsystems, whose complexity is strictly lower than the original system, and<br>easier to write</li>
+</ul>
+<blockquote id="fn_routechange">
+<sup>routechange</sup>. The corresponding change could be anticipated by designing the main panel to allow for parameterization of these routes. This would ensure that a change in <code>SidePanel</code> does not entail a change in <code>MainPanel</code> implementation, but rather a change in parameterization (we have decided not to refactor our sample application in that direction though, to not distract the learner with implementation details)<a href="#reffn_routechange" title="Jump back to footnote [routechange] in the text."> &#8617;</a>
+</blockquote>
+<p>More generally, it is desirable to build a complex system by assembling, in a cohesive way, loosely<br>coupled components, so that the cost of redesigning each of such adoptable components (or replacing<br>by a better component) can be minimized.</p>
+<h1 id="Step-2-SidePanel"><a href="#Step-2-SidePanel" class="headerlink" title="Step 2 : SidePanel"></a>Step 2 : SidePanel</h1><p>Let’s implement our <code>SidePanel</code> component. Here are the specifications we can extract from the<br>overall application’s specifications :</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Events</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INIT</td>
+<td>DOM : display welcome message and task summary</td>
+</tr>
+<tr>
+<td></td>
+<td>DOM : display 3 sections with  possibly subsections</td>
+</tr>
+<tr>
+<td>click on subsections</td>
+<td>navigate to the corresponding route</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We define the routes to be navigated to as per specification :</p>
+<ul>
+<li><code>/projects/:projectId</code></li>
+<li><code>/dashboard</code></li>
+<li><code>/plugins</code></li>
+</ul>
+<p>To compute the DOM view (in particular the task summary and the projects section), we will need a<br> local copy of the remotely persisted following domain entities:</p>
+<ul>
+<li><code>projects</code></li>
+<li><code>user</code></li>
+</ul>
+<p>As explained in the previous step, we have already injected those sources at the top level of<br>the application. This means that those sources will be available for every component under<br><code>sources.user$</code>, and <code>sources.projects$</code>. We will then seek to write <code>SidePanel</code> as :</p>
+<pre><code class="hljs javascript">SidePanel =
+  Combine(&#123;&#125;, [Div(<span class="hljs-string">'.app__l-side'</span>), [
+    Navigation(&#123;&#125;, [
+      NavigationSection(&#123; <span class="hljs-attr">title</span>: <span class="hljs-string">'Main'</span> &#125;, [
+        NavigationItem(&#123; <span class="hljs-attr">project</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">'Dashboard'</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">'dashboard'</span> &#125; &#125;, [])
+      ]),
+      NavigationSection(&#123; <span class="hljs-attr">title</span>: <span class="hljs-string">'Projects'</span> &#125;, [
+        InSlot(<span class="hljs-string">'navigation-item'</span>, [ListOfItemsComponent])
+      ]),
+      NavigationSection(&#123; <span class="hljs-attr">title</span>: <span class="hljs-string">'Admin'</span> &#125;, [
+        NavigationItem(&#123; <span class="hljs-attr">project</span>: &#123; <span class="hljs-attr">title</span>: <span class="hljs-string">'Manage Plugins'</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">'plugins'</span> &#125; &#125;, [])
+      ]),
+    ])
+  ]]);</code></pre>
+<p>where :</p>
+<ul>
+<li><code>Navigation</code> is a ad-hoc component combinator which<ul>
+<li>accepts children components as an array of components</li>
+<li>wraps all <code>navigation-section</code> slot content from its children components into a <code>nav</code> tag</li>
+<li>passes up unmodified all non-DOM actions (carried by the non-DOM sinks)</li>
+<li>adds some style specific to its navigation concern</li>
+</ul>
+</li>
+<li><code>NavigationSection</code> is a component combinator which<ul>
+<li>can (must) be parametrized by a <code>title</code> property</li>
+<li>accepts children components as an array of components</li>
+<li>wraps all <code>navigation-item</code> slot content from its children components into a list item (<code>li</code>)</li>
+<li>passes up unmodified all non-DOM actions from its children component (carried by the non-DOM sinks)</li>
+<li>adds some style specific to its navigation concern</li>
+</ul>
+</li>
+<li><code>NavigationItem</code> is a component combinator which<ul>
+<li>can (must) be parametrized by the <code>title</code> and <code>link</code> properties</li>
+<li>does not accept children components</li>
+<li>displays the title, and a click on that title triggers a routing action passed through the router sink</li>
+<li>emphasizes the current project selection as determined by the route <code>/projects/:projectId</code></li>
+</ul>
+</li>
+<li><code>ListOfItemsComponent</code> is a component which, from <code>projects</code> :<pre><code>- get the current list of projects,
+- computes a title (project name) and a link (`/project/projectId`),
+- and for each project in that list, accumulates it in the shape of a `NavigationItem` parameterized with the computed title and link
+</code></pre></li>
+</ul>
+<p>Let’s go in detail about the implementation, and by doing so learn about the slot mechanism, how<br>to write ad-hoc combinators, and components which displays a list of items.</p>
+<h2 id="Slots-and-container-components"><a href="#Slots-and-container-components" class="headerlink" title="Slots and container components"></a>Slots and container components</h2><p>Combinators accept either a list of components (<code>Array&lt;Component&gt;</code>), or a container and a list of<br>components (<code>[ContainerComponent, Array&lt;ChildrenComponent&gt;]</code>). The container component is used to apply some processing to the children components’ sinks. Unless otherwise specified, the default processing is to merge all non-DOM actions from the children components’ sinks, and to merge DOM sinks from the children components’ sinks following a slot mechanism à la web components. </p>
+<p>The container component may define a slot or location, where children DOM sinks will be inserted.<br> The container component hence provides a template, and the children DOM sinks provide the<br> content filling that template. For more details of the slot mechanism, see the <a href="/projects/component-combinators/m-component---merge-default-functions/#slotted-dom-merge">documentation</a>. A<br> simple way to set a slot for the DOM content for children components is to use the [<code>InSlot</code>]<br> (/projects/components-combinators/inslot) combinator.</p>
+<p>For our <code>Navigation</code> combinator, we want to put the DOM sinks corresponding to the navigation<br>sections after displaying the welcome message, and within a styling <code>div</code>.</p>
+<p>We define first the container component, which displays the welcome message and task count(termed<br><code>TaskSummary</code> here), and declares the slot for the navigation sections :</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NavigationContainerComponent</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; user$, projects$ &#125; = sources;
+  <span class="hljs-comment">// combineLatest allows to construct a behaviour from other behaviours</span>
+  <span class="hljs-keyword">const</span> state$ = $.combineLatest(user$, projects$, (user, projects) =&gt; (&#123; user, projects &#125;))
+
+  <span class="hljs-keyword">return</span> &#123;
+    [DOM_SINK]: state$.map(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> &#123;
+      <span class="hljs-keyword">return</span> div(<span class="hljs-string">'.navigation'</span>, [
+        renderTasksSummary(state),
+        nav(&#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'navigation-section'</span> &#125;, [])
+      ])
+    &#125;)
+  &#125;
+&#125;</code></pre>
+<h2 id="Navigation-combinator"><a href="#Navigation-combinator" class="headerlink" title="Navigation combinator"></a>Navigation combinator</h2><p>After that, we are ready to define the <code>Navigation</code> combinator :</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Navigation</span>(<span class="hljs-params">navigationSettings, componentArray</span>)</span>&#123;
+  <span class="hljs-keyword">return</span> Combine(navigationSettings, [NavigationContainerComponent, componentArray])
+&#125;</code></pre>
+<h2 id="NavigationSection-combinator"><a href="#NavigationSection-combinator" class="headerlink" title="NavigationSection combinator"></a>NavigationSection combinator</h2><p>In the same way, we can write the <code>NavigationSection</code> as :</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NavigationSectionContainerComponent</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; title &#125; = settings;
+
+  <span class="hljs-keyword">return</span> &#123;
+    [DOM_SINK]: $.<span class="hljs-keyword">of</span>(
+      div(<span class="hljs-string">'.navigation-section'</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'navigation-section'</span> &#125;, [
+        h2(<span class="hljs-string">'.navigation-section__title'</span>, title),
+        ul(<span class="hljs-string">'.navigation-section__list'</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'navigation-item'</span> &#125;, [])
+      ])
+    )
+  &#125;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NavigationSection</span>(<span class="hljs-params">navigationSectionSettings, componentArray</span>)</span>&#123;
+  <span class="hljs-keyword">return</span> Combine(navigationSectionSettings, [NavigationSectionContainerComponent, componentArray])
+&#125;</code></pre>
+<p>Pay attention to how :</p>
+<ul>
+<li>the <code>div</code> vNode combinator has been extended with a slot module. That slot module marks<br>the corresponding vTree with the name of the slot it belongs to. Note also how we set the slot<br>for the <code>NavigationItem</code> components (reminder : <code>NavigationItem</code> are the expected children<br>components for <code>NavigationSection</code>)</li>
+<li>For the <code>navigation-section</code> slot, content is provided. For the <code>navigation-item</code>, content is not provided, as it will be filled in by children components.</li>
+<li><code>navigation-section</code> slot is at the top level of the <code>vNode</code> tree for the<br><code>NavigationSectionContainerComponent</code>. Similarly, <code>NavigationItem</code> components will also have to<br>have their slot set at top level, because slot merging only looks at the children’s DOM top vNode<br>for slots.</li>
+</ul>
+<h2 id="ListOfItemsComponent-component"><a href="#ListOfItemsComponent-component" class="headerlink" title="ListOfItemsComponent component"></a>ListOfItemsComponent component</h2><p>Last, let’s see how to write a component which displays a list of items. We have the <a href="/projects/component-combinators/listof"><code>ListOf</code></a> combinator which does just that, but we have to call it<br>with the right inputs. To do so, we will first inject the relevant piece of state (the list to<br>project titles to be displayed, and the links to navigate to) with <code>InjectSourcesAndSettings</code>. We<br> also want the side panel updated whenever the project titles change in the source of<br> truth (remote repository). The <a href="/projects/component-combinators/foreach"><code>ForEach</code></a> allows to activate a component tree whenever the value of a behaviour changes, or an event is emitted ; and will cover our requirements nicely. This leads to the following code :</p>
+ <pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getProjectNavigationItems$</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+   <span class="hljs-keyword">return</span> sources.projects$
+     .map(filter(<span class="hljs-function"><span class="hljs-params">project</span> =&gt;</span> !project.deleted))
+     .map(map(<span class="hljs-function"><span class="hljs-params">project</span> =&gt;</span> (&#123;
+       <span class="hljs-attr">title</span>: project.title,
+       <span class="hljs-attr">link</span>: [<span class="hljs-string">'projects'</span>, project._id].join(<span class="hljs-string">'/'</span>)
+     &#125;)))
+     .distinctUntilChanged()
+     <span class="hljs-comment">// NOTE : this is a behaviour</span>
+     .shareReplay(<span class="hljs-number">1</span>)
+     ;
+&#125;
+
+<span class="hljs-keyword">const</span> ListOfItemsComponent =
+  InjectSources(&#123; <span class="hljs-attr">projectNavigationItems$</span>: getProjectNavigationItems$ &#125;, [
+    ForEach(&#123; <span class="hljs-attr">from</span>: <span class="hljs-string">'projectNavigationItems$'</span>, <span class="hljs-attr">as</span>: <span class="hljs-string">'projectList'</span> &#125;, [
+      ListOf(&#123; <span class="hljs-attr">list</span>: <span class="hljs-string">'projectList'</span>, <span class="hljs-attr">as</span>: <span class="hljs-string">'project'</span> &#125;, [
+        EmptyComponent,
+        NavigationItem
+      ])
+    ])
+  ]);
+<span class="hljs-string">``</span><span class="hljs-string">`   
+
+For each new value of `</span>projectNavigationItems$<span class="hljs-string">`, the setting property `</span>projectList<span class="hljs-string">` will be 
+updated to that value, and a list of `</span>NavigationItem<span class="hljs-string">` will be activated. Each of the 
+`</span>NavigationItem<span class="hljs-string">` will receive a `</span>project<span class="hljs-string">` setting property which holds the value of one element of
+ the `</span>projectList<span class="hljs-string">` array, together with the index of that particular element. For more 
+ information, see the corresponding documentation of both operators. 
+
+For the full code and running demo, see [here](https://github.com/brucou/component-combinators/tree/project-management-app-step-2/examples/AllInDemo). 
+
+# Step 3 : Main panel
+As per specifications, the main panel is url-driven. This gives us the following breakdown :
+
+`</span><span class="hljs-string">``</span>javascript
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> MainPanel =
+  Combine(&#123;&#125;, [Div(<span class="hljs-string">`.app__l-main`</span>), [
+    OnRoute(&#123; <span class="hljs-attr">route</span>: <span class="hljs-string">'dashboard'</span> &#125;, [ProjectsDashboard]),
+    OnRoute(&#123; <span class="hljs-attr">route</span>: <span class="hljs-string">'projects/:projectId'</span> &#125;, [Project]),
+    OnRoute(&#123; <span class="hljs-attr">route</span>: <span class="hljs-string">'plugins'</span> &#125;, [ManagePlugins]),
+  ]]);</code></pre>
+<p>where :</p>
+<ul>
+<li><code>ProjectsDashboard</code> handles the dashboard functionality</li>
+<li><code>ManagePlugins</code> handles the plugin functionality</li>
+<li><code>Project</code> handles the display of information about the projects and the tab bar (<code>Task</code>, <code>Comment</code>,<br><code>Activities</code>)</li>
+</ul>
+<p>As it is immediately visible from the example, configuring components to be activated on a given<br>route is pretty straight forward. Not immediately visible here, in the case of a route with<br>parameter (<code>projects/:projectId</code>), the parameters (<code>projectId</code>) will be passed to downstream<br>components through <code>settings</code>. For more details on the <code>OnRoute</code> combinator, see the<br><a href="/projects/component-combinators/router/">documentation</a>. </p>
+<p>We will not go into detail about all three components, but rather focus on detailing the<br><code>Project</code> component.</p>
+<h2 id="Project-component"><a href="#Project-component" class="headerlink" title="Project component"></a>Project component</h2><p>The project component has the following specifications :</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Events</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INIT</td>
+<td>DOM : display project header and tab bar with no tab selected</td>
+</tr>
+<tr>
+<td>route change to <code>tasks</code></td>
+<td>DOM : display project task list</td>
+</tr>
+<tr>
+<td>route change to <code>task/:nr</code></td>
+<td>DOM : display task detail for task <code>nr</code></td>
+</tr>
+<tr>
+<td>route change to <code>comments</code></td>
+<td>DOM : display project’s comments</td>
+</tr>
+<tr>
+<td>route change to <code>activities</code></td>
+<td>DOM : display project’s activities</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The relevant piece of state here (reminder : the route here is <code>projects/:projectId</code>) is<br>information about the specific project pointed at by the route. This is the object from which we<br>will get the project’s comments, activities, etc.</p>
+<p>The state we need is retrieved as follows : </p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">projectsStateFactory</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; [ROUTE_PARAMS]: &#123; projectId &#125; &#125; = settings;
+
+  <span class="hljs-keyword">return</span> sources.projectsFb$
+    .map(<span class="hljs-function"><span class="hljs-params">projectsFb</span> =&gt;</span> &#123;
+      <span class="hljs-keyword">const</span> fbKeys = keys(projectsFb);
+      <span class="hljs-keyword">const</span> _values = values(projectsFb);
+      <span class="hljs-keyword">const</span> index = _values.findIndex(<span class="hljs-function"><span class="hljs-params">project</span> =&gt;</span> project._id === projectId);
+      <span class="hljs-keyword">const</span> fbIndex = fbKeys[index];
+      <span class="hljs-keyword">const</span> project = _values[index];
+
+      <span class="hljs-keyword">return</span> &#123;
+        fbIndex,
+        project
+      &#125;
+    &#125;)
+    .shareReplay(<span class="hljs-number">1</span>)
+&#125;</code></pre>
+<p>Not how <code>projectId</code> from the route is passed through <code>settings</code>. Then <code>Project</code> can be written as :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> Project =
+  InjectSources(&#123; <span class="hljs-attr">projectFb$</span>: projectsStateFactory &#125;, [Div(<span class="hljs-string">'.project'</span>), [
+    ProjectHeader,
+    Combine(&#123; tabItems &#125;, [TabContainer, [
+      OnRoute(&#123; <span class="hljs-attr">route</span>: <span class="hljs-string">'tasks'</span> &#125;, [ProjectTaskList]),
+      OnRoute(&#123; <span class="hljs-attr">route</span>: <span class="hljs-string">'task/:nr'</span> &#125;, [Div(<span class="hljs-string">'.task-details'</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'tab'</span> &#125;), [ProjectTaskDetails]]),
+      OnRoute(&#123; <span class="hljs-attr">route</span>: <span class="hljs-string">'comments'</span> &#125;, [Div(<span class="hljs-string">'.comments'</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'tab'</span> &#125;), [ProjectComments]]),
+      OnRoute(&#123; <span class="hljs-attr">route</span>: <span class="hljs-string">'activities'</span> &#125;, [Div(<span class="hljs-string">'.activities'</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'tab'</span> &#125;), [ProjectActivities]])
+    ]])
+  ]]);</code></pre>
+<p>where :</p>
+<ul>
+<li><code>ProjectHeader</code> displays the title of the project together with some description</li>
+<li><code>TabContainer</code> is a container component, also handling the tab logic (i.e. emphasizing the tab<br>which is active)</li>
+<li><code>ProjectTaskList</code> handles displaying the panel which displays a list of tasks, allows to enter a<br>new task, and/or filter the list of tasks. </li>
+<li><code>ProjectTaskDetail</code> handles displaying the details for a task, and allows the user to modify<br>those details</li>
+<li><code>ProjectComments</code> handles displaying the comments for a project </li>
+<li><code>ProjectActivities</code> handles displaying the activities related to a project </li>
+</ul>
+<p>Note how we have nested routes (<code>projects/:projectId/tasks</code>) as naturally as we have flat routes. </p>
+<p>For more details on how the slot logic interacts with the <code>TabContainer</code> component, see the<br><code>TabContainer</code> code. For the full code and running demo, see <a href="https://github.com/brucou/component-combinators/tree/project-management-app-step-3/examples/AllInDemo" target="_blank" rel="noopener">here</a>. </p>
+<h1 id="Step-4-ProjectTaskList-component"><a href="#Step-4-ProjectTaskList-component" class="headerlink" title="Step 4 : ProjectTaskList component"></a>Step 4 : <code>ProjectTaskList</code> component</h1><p>We will seek to write the <code>ProjectTaskList</code> component as follows :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> ProjectTaskListContainer = vLift(
+  div(<span class="hljs-string">'.task-list.task-list__l-container'</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'tab'</span> &#125;, [
+    div(<span class="hljs-string">'.task-list__l-box-a'</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'toggle'</span> &#125;, []),
+    div(<span class="hljs-string">'.task-list__l-box-b'</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'enter-task'</span> &#125;, []),
+    div(<span class="hljs-string">'.task-list__l-box-c'</span>, [
+      div(<span class="hljs-string">'.task-list__tasks'</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'tasks'</span> &#125;, [])
+    ])
+  ]));
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ProjectTaskList =
+  Combine(&#123;&#125;, [ProjectTaskListContainer, [
+    InSlot(<span class="hljs-string">'toggle'</span>, [ToggleButton]),
+    InSlot(<span class="hljs-string">'enter-task'</span>, [EnterTask]),
+    InSlot(<span class="hljs-string">'tasks'</span>, [TaskList])
+  ]]);</code></pre>
+<p>where :</p>
+<ul>
+<li><code>ProjectTaskListContainer</code> is a container component which allocates children content into their<br>slots and applies some styling</li>
+<li><code>ToggleButton</code> handles the tasks filter (values to be picked within <code>All</code>, <code>Open</code>, <code>Done</code>)</li>
+<li><code>EnterTask</code> allows the user to enter a new task for the active project</li>
+<li><code>TaskList</code> displays a list of project tasks, taking into account the task filter set by the user</li>
+</ul>
+<p>Note again how the slot mechanism allows to separate a template (fixed part of the target<br><code>vTree</code>), from the contents filling that template (variable part). It is important to become<br>familiar with the mechanism, as it is fundamental to divide the user interface in ever smaller<br>and isolated pieces. Pay attention also to how slots are declared : either directly through the<br>slot module, or with the <code>InSlot</code> combinator. The latter is useful in combination with other<br>components which do not declare slots for their DOM content, for instance generic components.<br><code>InSlot</code> can also be used to override existing slots for a given component’s DOM content. </p>
+<p>Note the use of the utility function <a href="https://github.com/brucou/component-combinators/blob/master/src/utils.js#L1118" target="_blank" rel="noopener"><code>vLift</code></a>, which takes a <code>Vtree</code> and lifts it into a component (whose only sink is a DOM sink emitting that <code>vTree</code>).</p>
+<p>Let’s go in further details about the <code>EnterTask</code> component (illustrating domain driver write<br>actions), and the <code>ToggleButton</code> component (illustrating local state driver actions).</p>
+<h2 id="Adding-a-task"><a href="#Adding-a-task" class="headerlink" title="Adding a task"></a>Adding a task</h2><p>The <code>EnterTask</code> has obvious specifications :</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Events</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INIT</td>
+<td>DOM : display input field and <code>Add</code> button</td>
+</tr>
+<tr>
+<td>click on <code>Add</code> button</td>
+<td>domainAction$ : add a new task to the project’s tasks entity</td>
+</tr>
+<tr>
+<td></td>
+<td>domainAction$ : add a new activity to the project’s activity entity</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The relevant state is constituted of :</p>
+<ul>
+<li>relevant information about the project under review</li>
+<li>relevant information about the user (activities are linked to users)</li>
+<li>task description as found in the input field</li>
+</ul>
+<p>We will write the <code>EnterTask</code> component as follows :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">EnterTask</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> key = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">const</span> &#123; projectFb$, user$, <span class="hljs-built_in">document</span> &#125; = sources;
+  <span class="hljs-keyword">const</span> &#123; [ROUTE_PARAMS]: &#123; projectId &#125; &#125; = settings;
+  <span class="hljs-keyword">const</span> taskEnterButtonClick$ = sources[DOM_SINK].select(taskEnterButtonSelector).events(<span class="hljs-string">'click'</span>)
+  <span class="hljs-comment">// NOTE : is event -&gt; share</span>
+    .share();
+
+  <span class="hljs-comment">// NOTE :: we use a key here which changes all the time to force snabbdom to always render the</span>
+  <span class="hljs-comment">// input vNodes. Because we read from the actual DOM, the input vNodes are no longer the</span>
+  <span class="hljs-comment">// soruce of truth for the input state. From a snabbdom point of view, without that key, we</span>
+  <span class="hljs-comment">// render two exact same vNodes and hence it does not do anything. So we have to force the </span>
+  <span class="hljs-comment">// update by making the successive vNodes differ.</span>
+  <span class="hljs-keyword">return</span> &#123;
+    [DOM_SINK]: taskEnterButtonClick$
+      .map(<span class="hljs-function"><span class="hljs-params">_</span> =&gt;</span> renderTaskEntryArea(++key))
+      .startWith(renderTaskEntryArea(++key)),
+    <span class="hljs-attr">domainAction$</span>: taskEnterButtonClick$
+      .do(preventDefault)
+      .withLatestFrom(projectFb$, user$, (ev, projectFb, user) =&gt; &#123;
+        <span class="hljs-keyword">const</span> &#123;<span class="hljs-attr">fbIndex</span> : projectFbIndex, project&#125; = projectFb;
+        <span class="hljs-keyword">const</span> tasks = project.tasks;
+        <span class="hljs-keyword">const</span> newTaskPosition = tasks.length;
+        <span class="hljs-keyword">const</span> nr = tasks.reduce(<span class="hljs-function">(<span class="hljs-params">maxNr, task</span>) =&gt;</span> task.nr &gt; maxNr ? task.nr : maxNr, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>;
+        <span class="hljs-comment">// NOTE : has to be computed just before it is used, otherwise might not get the current</span>
+        <span class="hljs-comment">// value</span>
+        <span class="hljs-keyword">const</span> _taskEnterDescription = getInputValue(<span class="hljs-built_in">document</span>, taskEnterInputSelector);
+        <span class="hljs-keyword">const</span> taskEnterDescription = _taskEnterDescription ? _taskEnterDescription : <span class="hljs-string">'Task'</span>;
+
+        <span class="hljs-comment">// NOTE : We have two domain actions to perform here</span>
+        <span class="hljs-keyword">return</span> $.<span class="hljs-keyword">from</span>([&#123;
+          <span class="hljs-attr">context</span>: TASKS,
+          <span class="hljs-attr">command</span>: ADD_NEW_TASK,
+          <span class="hljs-attr">payload</span>: &#123;
+            projectFbIndex,
+            <span class="hljs-attr">newTask</span>: taskFactory(taskEnterDescription, newTaskPosition, nr),
+            tasks
+          &#125;
+        &#125;, &#123;
+          <span class="hljs-attr">context</span>: ACTIVITIES,
+          <span class="hljs-attr">command</span>: LOG_NEW_ACTIVITY,
+          <span class="hljs-attr">payload</span>: activityFactory(&#123;
+            user,
+            <span class="hljs-attr">time</span>: +<span class="hljs-built_in">Date</span>.now(),
+            <span class="hljs-attr">subject</span>: projectId,
+            <span class="hljs-attr">category</span>: <span class="hljs-string">'tasks'</span>,
+            <span class="hljs-attr">title</span>: <span class="hljs-string">'A task was added'</span>,
+            <span class="hljs-attr">message</span>: <span class="hljs-string">`A new task "'A task was added'" was added to #<span class="hljs-subst">$&#123;projectId&#125;</span>.`</span>
+          &#125;)
+        &#125;
+        ])
+      &#125;)
+      .switch()
+  &#125;
+&#125;</code></pre>
+<p>Note how we use the domain update driver, and request methods execution on domain entities. </p>
+<h2 id="Setting-the-task-filter"><a href="#Setting-the-task-filter" class="headerlink" title="Setting the task filter"></a>Setting the task filter</h2><p>Specifications for the <code>ToggleButton</code> component are as follows :</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Events</th>
+<th>State</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INIT</td>
+<td>task filter</td>
+<td>DOM : display all tabs, emphasizing the tab corresponding to the task filter (i.e. active tab)</td>
+</tr>
+<tr>
+<td>click on a tab</td>
+<td>task filter</td>
+<td>local state : update the task filter</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We will use the in-memory store driver to keep track of the task filter. As the<br> task filter will also be used by the <code>TaskList</code> component to filter out the project’s tasks,<br> it needs to be accessible by several components which are not in a parent/child relationship.<br> There are basically two ways to handle this :</p>
+<ul>
+<li><p>The first one is to create and inject that piece of state at the closest ancestor level (this would be here at <code>ProjectTaskList</code> level). </p>
+<ul>
+<li>The second one is to create that piece of state at the global level (i.e. cutting across the component<br>hierarchy - that is what the in-memory store is), and access it anywhere necessary. </li>
+</ul>
+<p>We chose the second solution for didactic purposes (injecting <code>tasksFilter$</code>), as an example of use of the in-memory store driver. Concretely, the breakdown is as follows :</p>
+</li>
+</ul>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ToggleButton =
+  InjectSourcesAndSettings(&#123;
+      <span class="hljs-attr">sourceFactory</span>: tasksFilter$,
+      <span class="hljs-attr">settings</span>: tasksButtonGroupSettings
+    &#125;, tasksButtonGroupSettings.buttonGroup.labels.map(<span class="hljs-function">(<span class="hljs-params">buttonLabel, index</span>) =&gt;</span> &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">sources, settings</span>) </span>&#123;
+        <span class="hljs-keyword">return</span> ButtonFromButtonGroup(sources, merge(settings, &#123;
+          buttonLabel,
+          index
+        &#125;))
+      &#125;
+    &#125;)
+  );</code></pre>
+<p>where the injected state is : </p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getStateInStore</span>(<span class="hljs-params">context, sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123;storeAccess, storeUpdate$&#125; = sources;
+
+  <span class="hljs-keyword">return</span>  storeAccess.getCurrent(context)
+    .concat(storeUpdate$.getResponse(context).map(path([<span class="hljs-string">'response'</span>])))
+    <span class="hljs-comment">// NOTE : this is a behaviour</span>
+    .shareReplay(<span class="hljs-number">1</span>)
+&#125;
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tasksFilter$</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> &#123;
+    <span class="hljs-attr">taskFilter$</span>: getStateInStore(TASKS_FILTER, sources, settings)
+      .map(prop(<span class="hljs-string">'filter'</span>))
+      <span class="hljs-comment">// In case the `TASKS_FILTER` entity has changed but the tasks filter property has not</span>
+      .distinctUntilChanged()
+  &#125;
+&#125;</code></pre>
+<p>Note how we combine the store read and write drivers (<code>storeAccess</code>, <code>storeUpdate$</code>) to get<br>a <em>live</em> <code>taskFilter$</code> which emits the current value of the task filter and then the new values of<br>the task filter, every time that value changes. To ensure this, we listen on responses to<br>in-memory entity update requests. Such responses are objects which hold the updated entity in the<br><code>response</code> property. For extra details, refer to the <a href="https://github.com/brucou/component-combinators/blob/master/examples/AllInDemo/src/inMemoryStore/index.js#L21" target="_blank" rel="noopener">configuration</a><br> of the in-memory driver, and at the documentation for the <a href="/projects/component-combinators/actiondriver/">domain <code>Action</code> driver</a>.</p>
+<p>The <code>ButtonFromButtonGroup</code> is a component which will display a button with a label passed<br>through <code>settings</code> and update the task filter when the button is clicked :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> updateTaskTabButtonGroupStateAction = <span class="hljs-function"><span class="hljs-params">label</span> =&gt;</span> (&#123;
+    <span class="hljs-attr">context</span>: TASKS_FILTER,
+    <span class="hljs-attr">command</span>: PATCH,
+    <span class="hljs-attr">payload</span>: [
+      &#123; <span class="hljs-attr">op</span>: <span class="hljs-string">"add"</span>, <span class="hljs-attr">path</span>: <span class="hljs-string">'/filter'</span>, <span class="hljs-attr">value</span>: label &#125;,
+    ]
+  &#125;);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ButtonFromButtonGroup</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; taskFilter$ &#125; = sources;
+  <span class="hljs-keyword">const</span> &#123; buttonLabel, index, <span class="hljs-attr">buttonGroup</span>: &#123; labels, namespace, buttonClasses &#125; &#125; = settings;
+  <span class="hljs-keyword">const</span> buttonGroupSelector = makeButtonGroupSelector(&#123; <span class="hljs-attr">label</span>: buttonLabel, index, namespace &#125;);
+
+  <span class="hljs-keyword">const</span> events = &#123;
+    <span class="hljs-attr">click</span>: sources[DOM_SINK].select(buttonGroupSelector).events(<span class="hljs-string">'click'</span>)
+      .map(always(buttonLabel))
+  &#125;;
+  <span class="hljs-keyword">const</span> state$ = taskFilter$;
+  
+  <span class="hljs-keyword">return</span> &#123;
+    [DOM_SINK]: state$.map(<span class="hljs-function"><span class="hljs-params">taskFilter</span> =&gt;</span> &#123;
+      <span class="hljs-keyword">const</span> classes = [<span class="hljs-string">''</span>]
+        .concat(buttonClasses(taskFilter, buttonLabel))
+        .join(<span class="hljs-string">'.'</span>) + buttonGroupSelector;
+
+      <span class="hljs-keyword">return</span> button(classes, buttonLabel)
+    &#125;),
+    <span class="hljs-attr">storeUpdate$</span>: events.click
+      .withLatestFrom(state$, (label, taskFilter) =&gt; (&#123; label, taskFilter &#125;))
+      <span class="hljs-comment">// no need to do anything if clicking on a button already active</span>
+      .filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.label !== x.taskFilter)
+      .map(prop(<span class="hljs-string">'label'</span>))
+      .map(updateTaskTabButtonGroupStateAction)
+  &#125;
+&#125;</code></pre>
+<p>Note that <a href="https://github.com/brucou/component-combinators/blob/master/examples/AllInDemo/src/inMemoryStore/index.js#L29" target="_blank" rel="noopener">in-memory store driver</a> uses <a href="http://jsonpatch.com/" target="_blank" rel="noopener">json patch</a> to describe the updates to the in-memory entity.</p>
+<p>For the full code and running demo, see <a href="https://github.com/brucou/component-combinators/tree/project-management-app-step-4/examples/AllInDemo" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="Displaying-a-list-of-tasks"><a href="#Displaying-a-list-of-tasks" class="headerlink" title="Displaying a list of tasks"></a>Displaying a list of tasks</h2><p>A <code>TaskList</code> is a list of tasks. We inject the corresponding state, compute the component with<br><code>ListOf</code> combinator, and affect the DOM content to the corresponding slot :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> TaskList = InjectSourcesAndSettings(&#123; <span class="hljs-attr">sourceFactory</span>: taskListStateFactory &#125;, [TaskListContainer, [
+  InSlot(<span class="hljs-string">'task'</span>, [
+    ForEach(&#123; <span class="hljs-attr">from</span>: <span class="hljs-string">'filteredTasks$'</span>, <span class="hljs-attr">as</span>: <span class="hljs-string">'filteredTasks'</span> &#125;, [
+      ListOf(&#123; <span class="hljs-attr">list</span>: <span class="hljs-string">'filteredTasks'</span>, <span class="hljs-attr">as</span>: <span class="hljs-string">'filteredTask'</span> &#125;, [
+        EmptyComponent,
+        Task
+      ])
+    ])
+  ])
+]]);</code></pre>
+<p>a <code>Task</code> is made of a checkbox to change its status, a button to allow deletion, another button<br>to allow task edition, and the task information. Clicking on a task detail button should route<br>the user to another screen where he can modify the task information. The breakdown is hence<br>as follows : </p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TaskContainer</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">filteredTask</span>: &#123; done, title &#125;, listIndex &#125; = settings;
+  <span class="hljs-keyword">const</span> coreVnodes = div(<span class="hljs-string">'.task'</span>, [
+    div(<span class="hljs-string">".task__l-box-a"</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'checkbox'</span> &#125;, []),
+    div(<span class="hljs-string">".task__l-box-b"</span>, [
+      div(<span class="hljs-string">".task__title"</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'editor'</span> &#125;, []),
+      button(taskDeleteSelector(listIndex)),
+      div(<span class="hljs-string">'.task-infos'</span>, &#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'task-infos'</span> &#125;, []),
+      div(&#123; <span class="hljs-attr">slot</span>: <span class="hljs-string">'task-link'</span> &#125;, []),
+    ])
+  ]);
+
+  <span class="hljs-keyword">return</span> &#123;
+    [DOM_SINK]: $.<span class="hljs-keyword">of</span>(
+      done
+        ? div(<span class="hljs-string">`.task--done`</span>, [coreVnodes])
+        : coreVnodes
+    )
+  &#125;
+&#125;
+<span class="hljs-keyword">const</span> Task = InjectSourcesAndSettings(&#123;
+  <span class="hljs-attr">settings</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">settings</span>) </span>&#123;
+    <span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">filteredTask</span>: &#123; done, title &#125;, listIndex &#125; = settings;
+
+    <span class="hljs-keyword">return</span> &#123;
+      <span class="hljs-attr">checkBox</span>: &#123; <span class="hljs-attr">isChecked</span>: !!done, <span class="hljs-attr">namespace</span>: [TASKS, listIndex].join(<span class="hljs-string">'_'</span>), <span class="hljs-attr">label</span>: <span class="hljs-literal">undefined</span> &#125;,
+      <span class="hljs-attr">editor</span>: &#123; <span class="hljs-attr">showControls</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">initialEditMode</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">initialContent</span>: title &#125;
+    &#125;
+  &#125;
+&#125;, [TaskContainer, [
+  InSlot(<span class="hljs-string">'checkbox'</span>, [
+    Pipe(&#123;&#125;, [
+      CheckBox,
+      ComputeCheckBoxActions
+    ]),
+  ]),
+  InSlot(<span class="hljs-string">'editor'</span>, [
+    Pipe(&#123;&#125;, [
+      Editor,
+      ComputeEditorActions
+    ]),
+  ]),
+  InSlot(<span class="hljs-string">'task-infos'</span>, [
+    TaskInfo,
+  ]),
+  TaskDelete,
+  InSlot(<span class="hljs-string">'task-link'</span>, [
+    TaskLink
+  ]),
+]]);</code></pre>
+<p>Using <code>CheckBox</code> and <code>Editor</code> generic UI components requires us to do some adaption of input,<br>and output to fit their APIs. This allows to illustrate two interesting techniques :</p>
+<ul>
+<li>Inputs (here <code>settings</code>) are adapted through <code>InjectSourcesAndSettings</code> ahead of using the<br>generic UI components</li>
+<li>Outputs are adapted through the use of the <code>Pipe</code> combinator. For instance, <code>Editor</code> returns a<br><code>save$</code> sink which needs to be mapped to a <code>domainAction</code> sink to update the corresponding domain<br>entity. As a matter of fact, the <a href="/projects/component-combinators/pipe"><code>Pipe</code> combinator</a> allows to pass sinks of a component in the<br>pipe as sources for the next component in the pipe. In the mentioned case, for instance the<br>output adaptation is performed by <code>ComputeEditorActions</code>.</li>
+</ul>
+<h1 id="TIP-How-to-write-a-component"><a href="#TIP-How-to-write-a-component" class="headerlink" title="TIP : How to write a component"></a>TIP : How to write a component</h1><p>Within the chosen architecture (cycle), writing a <em>leaf</em> component, i.e. a component<br>which is not derived from other components, but only from <code>sources</code> and <code>settings</code>, means :</p>
+<ul>
+<li>having clear specifications as per the reactive behaviour to implement<ul>
+<li>from the equation <code>actions = f(state, events)</code> :<ul>
+<li>identify the relevant events the component reacts to</li>
+<li>identify the actions to trigger in response to events</li>
+<li>identify the necessary pieces of state to compute the actions from the events</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>decide on the parameterization of the component<ul>
+<li>this means deciding which parts, if any, of the component’s behaviour will be parameterizable<br>through the component’s <code>settings</code> property</li>
+</ul>
+</li>
+<li>compute the events<ul>
+<li>while doing so, ensure in particular that events are coupled to unique selectors : this is<br>particularly important when operating within the cycle architecture where events are decoupled<br>from the elements that originate them.</li>
+</ul>
+</li>
+<li>compute the necessary pieces of state</li>
+<li>compute the actions, as a function of the events and pieces of state</li>
+</ul>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>We want to implement a <code>NavigationItem</code> component with the following specifications :</p>
+<ul>
+<li>displays a project</li>
+<li>parameterized by a project title and a route corresponding to that project (termed project link)</li>
+<li>if the current route corresponds to the project link, emphasize visually that project </li>
+</ul>
+<p>This gives us, the following reactive function :</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Events</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INIT (route == project link)</td>
+<td>DOM : display project title</td>
+</tr>
+<tr>
+<td>INIT (route != project link)</td>
+<td>DOM : display emphasized project title</td>
+</tr>
+<tr>
+<td>click on project title</td>
+<td>router : navigate to the project link</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This helps us identifying the pieces of state part of the reactive function :</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Events</th>
+<th>State</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INIT</td>
+<td>isLinkActive : true (i.e. <code>route == project link</code>)</td>
+<td>DOM : display project title</td>
+</tr>
+<tr>
+<td>INIT</td>
+<td>isLinkActive : false (i.e. <code>route != project link</code>)</td>
+<td>DOM : display emphasized project title</td>
+</tr>
+<tr>
+<td>click on project title</td>
+<td>—</td>
+<td>router : navigate to the project link</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We assure the unicity of the selector for the click event, by coupling the corresponding element<br>to the project link, which is unique as per the specification. This is a tradeoff of <code>cyclejs</code>‘s<br>architectural choice to separate the event creation from the declaration of the view structure.<br>As a matter of fact, the view is conceptually tightly coupled to the event handlers, and forcing<br>the decoupling of the two results in having to define unequivocally, for each event handler, the DOM element to<br>which it relates. On the positive side of that tradeoff, we are able to test components, by<br>mocking their inputs. For readability and DRY reasons, we recommend to isolate the <code>css</code> selector by<br>which event handler and element are coupled into a separate variable. </p>
+<p>This leads to the implementation below : </p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NavigationItem</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; url$ &#125; = sources;
+  <span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">project</span>: &#123; title, link &#125; &#125; = settings;
+  <span class="hljs-keyword">const</span> linkSanitized = link.replace(<span class="hljs-regexp">/\//i</span>, <span class="hljs-string">'_'</span>);
+
+  <span class="hljs-keyword">const</span> events = &#123;
+    <span class="hljs-comment">// NOTE : we avoid having to isolate by using the link which MUST be unique over the whole</span>
+    <span class="hljs-comment">// application (unicity of a route)</span>
+    click : sources.DOM.select(<span class="hljs-string">`.navigation-section__link.<span class="hljs-subst">$&#123;linkSanitized&#125;</span>`</span>).events(<span class="hljs-string">'click'</span>)
+  &#125;;
+  <span class="hljs-keyword">const</span> state$ = url$
+    .map(<span class="hljs-function"><span class="hljs-params">url</span> =&gt;</span> url.indexOf(link) &gt; <span class="hljs-number">-1</span>)
+    .shareReplay(<span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">const</span> actions = &#123;
+    <span class="hljs-attr">domUpdate</span> : state$.map(<span class="hljs-function"><span class="hljs-params">isLinkActive</span> =&gt;</span> &#123;
+      <span class="hljs-keyword">const</span> isLinkActiveClass = isLinkActive ? <span class="hljs-string">'.navigation-section__link--active'</span> : <span class="hljs-string">''</span>;
+
+      <span class="hljs-keyword">return</span> a(
+        <span class="hljs-string">`<span class="hljs-subst">$&#123;isLinkActiveClass&#125;</span>.navigation-item.navigation-section__link.<span class="hljs-subst">$&#123;linkSanitized&#125;</span>`</span>,
+        &#123; <span class="hljs-attr">attrs</span>: &#123; <span class="hljs-attr">href</span>: link &#125;, <span class="hljs-attr">slot</span>: <span class="hljs-string">'navigation-item'</span> &#125;,
+        title)
+    &#125;),
+    <span class="hljs-attr">router</span> : events.click
+      .do(preventDefault)
+      .map(always(<span class="hljs-string">'/'</span> + link + <span class="hljs-string">'/'</span>))
+  &#125;
+
+  <span class="hljs-keyword">return</span> &#123;
+    [DOM_SINK]: actions.domUpdate,
+    <span class="hljs-attr">router</span>: actions.router
+  &#125;
+&#125;</code></pre>
+<h1 id="TIP-How-to-write-a-component-combinator"><a href="#TIP-How-to-write-a-component-combinator" class="headerlink" title="TIP : How to write a component combinator"></a>TIP : How to write a component combinator</h1><p>We have already given two examples of component combinators (<a href="/posts/applying-componentization-to-reactive-system---sample-application/#navigation-combinator">here</a>, and <a href="/posts/applying-componentization-to-reactive-system---sample-application/#navigationsection-combinator">here</a>). The general<br>process is as follows :</p>
+<ul>
+<li>having clear specifications as per the combining behaviour to implement<ul>
+<li>how is the component combinator to be parameterized ?</li>
+<li>is a container component necessary ?</li>
+<li>what are the contracts which settings or component tree must fulfill?</li>
+<li>how are the components’ sinks combined?<ul>
+<li>are default combining functions sufficient ?</li>
+<li>are specific combining functions necessary ?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>implement the target behaviour<ul>
+<li>reuse as much as possible existing combinators</li>
+<li>select, when necessary, the most appropriate form of the <code>m</code> combinator (out of the three<br>reducing patterns)<ul>
+<li>reminder : <code>= m(componentCombinatorSpec, componentCombinatorSettings,
+childrenComponents | componentTree)</code></li>
+<li>understanding <code>m</code> default reducing functions is paramount : often times, they have the<br>behaviour that is sought for</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Generic-reusable-components"><a href="#Generic-reusable-components" class="headerlink" title="Generic, reusable components"></a>Generic, reusable components</h1><p>Components developed for a specific application usually have to be generalized to make them<br>reusable. The generalized component can then be adapted, specialized or parameterized to be used<br>for the specific application use case.</p>
+<p>For instance, in our application’s UI, we have a checkbox on which a click leads to miscellaneous<br>actions on the domain model. Abstracting out the actions specific to the domain model, we can<br>build a reusable checkbox UI component, where the clicks will emit a dummy action passing on the<br>status of the checkbox (checked/unchecked).</p>
+<p>That generic UI checkbox can then be reused in different contexts, within the application, or in<br>other applications, by specifying how the clicks translates into actions on the given domain<br>model : the UI checkbox component is <strong>adapted</strong> to the application under development.</p>
+<p>In other cases, the generalized component will be specialized (the <code>m</code> combinator is such a case,<br> where the programmer can specialize the reduction of the component tree to one of three patterns).</p>
+<p>In yet other cases, the generalized component behaviour will be configured by parameterization<br>through the component settings.</p>
+<p>In our application, we have identified the following reusable UI components :</p>
+<ul>
+<li><code>CheckBox</code> component<ul>
+<li>for each click on the checkbox, passes the state of that checkbox  </li>
+</ul>
+</li>
+<li><code>Editor</code> component<ul>
+<li>allows to define an editable user content zone where the user can modify, save, delete<br>content.</li>
+</ul>
+</li>
+</ul>
+<p>Potential candidates for further refactoring into reusable components are :</p>
+<ul>
+<li>ToggleButton (<em>xor</em> button group component)</li>
+<li>EnterTask (input entry)</li>
+</ul>
+<p>A component such as <code>TaskInfo</code> is not a fruitful target for a generalization that allows to reuse<br>it in other domains, as its behaviour seems very much tied (coupled) to the application’s domain<br>model. However, should that component be needed with slight modifications more than twice (<a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming" target="_blank" rel="noopener">rule of three</a>) in our application, we would have considered<br>writing a generalized version of the component.</p>
+<p>Ideally, there is already at hand a component (UI or domain) )library that is already tested, and<br>documented. That could be the case for example for UI components, such as those exposed<br>previously. This could also be the case if domain experts have succeeded in identifying repeating<br> patterns in their domain, and produced a domain-specific component library. In the general case,<br>  the software designer will have to find and assess the abstraction/generalization opportunities presented to<br> him. Those opportunities are generally identified while refactoring. As explained in a <a href="/posts/componentization-against-complexity/#barriers-to-reuse">former article</a>, refactoring for reuse has a<br> cost, and the possible benefits to be derived have to be weighted against that cost.</p>
+<p>For illustration purposes, here is part of the source code for the <code>CheckBox</code> component:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CheckBox</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">checkBox</span>: &#123; <span class="hljs-attr">label</span>: _label, namespace, isChecked &#125; &#125; = settings;
+  <span class="hljs-keyword">const</span> checkBoxSelector = <span class="hljs-string">'.'</span> + [defaultTo(defaultNamespace, namespace), ++counter].join(<span class="hljs-string">'-'</span>);
+  <span class="hljs-keyword">const</span> __label = defaultTo(<span class="hljs-string">''</span>, _label);
+
+  assertContract(isCheckBoxSettings, [settings.checkBox], <span class="hljs-string">`CheckBox : Invalid check box settings! : <span class="hljs-subst">$&#123;format(settings.checkBox)&#125;</span>`</span>)
+
+  <span class="hljs-keyword">const</span> events = &#123;
+    <span class="hljs-string">'change'</span> : sources[DOM_SINK]
+      .select(checkBoxSelector).events(<span class="hljs-string">'change'</span>)
+      .map(<span class="hljs-function"><span class="hljs-params">ev</span> =&gt;</span> ev.target.checked)
+  &#125;;
+
+  <span class="hljs-keyword">return</span> &#123;
+    [DOM_SINK]: $.<span class="hljs-keyword">of</span>(div(<span class="hljs-string">'.checkbox'</span>, [
+      label(labelSelector, [
+                input([inputSelector, checkBoxSelector].join(<span class="hljs-string">''</span>), &#123;
+                  <span class="hljs-string">"attrs"</span>: &#123;
+                    <span class="hljs-string">"type"</span>: <span class="hljs-string">"checkbox"</span>,
+                    <span class="hljs-string">"checked"</span>: isChecked,
+                  &#125;
+                &#125;),
+                span(checkBoxTextSelector, __label)
+              ])
+    ])),
+    <span class="hljs-attr">isChecked$</span>: events.change
+  &#125;
+&#125;</code></pre>
+<p>The <code>isChecked$</code> sink can later on be used in coordination with the <code>Pipe</code> combinator to produce<br>the desired sink.</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>We have seen while implementing the sample application how to address common issues arising when<br>implementing a web application :</p>
+<ul>
+<li><strong>routing</strong> : a quintessential requirement such as routing is very naturally expressed with<br>the <code>OnRoute</code> combinator.</li>
+<li><strong>state management</strong> : state can be injected at any point of the component tree and becomes<br>visible to any component down the injection point. Alternatively, state can also be kept at the<br>root level, through the use of in-memory store.</li>
+<li><strong>change propagation</strong> : at the lowest level, using streams as the corner stone of our<br>architecture solves the issue of updating a variable (behaviour) when one of its dependencies<br>change. <em>Live queries</em> can then be built on top of read and write drivers as exemplified in the<br>sample application. Additionally, we offer the <code>ForEach</code> combinator, to execute a given logic on<br>a every change of a behaviour. </li>
+<li><strong>communication between components</strong> : parent-child communication may occur through passing<br>settings and sources, child-parent communication and communication between components with no<br>direct ascendency relationship in the component tree may occur via shared state. </li>
+<li><strong>lists</strong> : list of things are dealt with reactively with the <code>ListOf</code> and <code>ForEach</code> combinators. </li>
+</ul>
+<p>While these were not encountered in the present sample application, our combinator library also<br>helps deal with :</p>
+<ul>
+<li><strong>control flow</strong> : Two combinators (<code>Switch</code> and <code>FSM</code>) allow to implement both simple and<br>complex control flow logic. A <a href="https://github.com/brucou/component-combinators/tree/master/examples/volunteerApplication" target="_blank" rel="noopener">realistic example</a> for the <code>FSM</code> combinator showcases the advantage of state machines to that purpose.</li>
+</ul>
+<p>We have showcased our componentization model, and the accompanying combinator library. By<br>dividing the target reactive system into smaller components, and expliciting the event-state-action<br> relation, it is possible to reach a breakdown where each leaf component is easy to write. At the<br>  same time, those relatively independent components are glued into the cohesive whole that is<br>  the target application, in a way that is made both concise and readable by the use of combinators.</p>
+
+  
+  
+  <div class="footer">
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

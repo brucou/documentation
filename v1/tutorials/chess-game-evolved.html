@@ -1,0 +1,632 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Chess game - adding features — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Chess game - adding features — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Chess game - adding features — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', '', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          Tutorials
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+        <li><h3>Introduction</h3></li>
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/index.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Password meter</h3></li>
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-implementation.html" class="sidebar-link">Machine implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Chess game</h3></li>
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link current">Chess game - adding features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content tutorials with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>Chess game - adding features</h1>
+  
+  
+    <p>In this section, we are going to add features to our chess application. In the process, we will evaluate the maintainability of a state machine modelling. The new features will also allow us to illustrate how using compound control states decreases the size of our modelling graphs.</p>
+<h2 id="New-features’-specifications"><a href="#New-features’-specifications" class="headerlink" title="New features’ specifications"></a>New features’ specifications</h2><p>We will add an info area which will indicate:</p>
+<ul>
+<li>the player who must play next</li>
+<li>a status message indicating whether the game is ongoing, or over</li>
+</ul>
+<p>We will also add an action area with:</p>
+<ul>
+<li>a undo button which will return the game to the state it was in the previous move</li>
+</ul>
+<p>Follows some screens sample of the application in different states:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Initial screen</th>
+<th style="text-align:left">Black turn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><img src="../../images/chess%20game/initial%20position.jpg" alt="initial screen"></td>
+<td style="text-align:left"><img src="../../images/chess%20game/black%20turn.png" alt="black turn"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">White turn - piece selected</th>
+<th style="text-align:left">White wins</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><img src="../../images/chess%20game/white%20turn%20-%20white%20piece%20selected.jpg" alt="white turn"></td>
+<td style="text-align:left"><img src="../../images/chess%20game/white%20wins.png" alt="white wins"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Modification-targets"><a href="#Modification-targets" class="headerlink" title="Modification targets"></a>Modification targets</h2><p>Remember that the functional design of Kingly encourages implementing a user interface with three modules with non-overlapping concerns:</p>
+<p><img src="../../graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly.jpg" alt="kingly-favoured ui architecture"></p>
+<p>The interfaced systems, including the input device (e.g. your laptop or mobile phone) send events to the Kingly machine. The machine computes commands which are executed by command handlers. Those commands may result in API calls on the interfaced systems, whose responses may be processed by the command handler module, which in turn decides whether to send an event back to the machine for processing. This is the architecture that is implemented through the <code>react-state-driven</code> library for use within the React ecosystem.</p>
+<p>As such, modifying our current chess game implementation potentially implies modifying all, some or none of the three modules.</p>
+<p>We will examine these modules one by one and see how adding the new features impact the current code. Let’s start with the machine.</p>
+<h3 id="The-machine"><a href="#The-machine" class="headerlink" title="The machine"></a>The machine</h3><p>A modification of the machine behaviour is a modification of the parameters of its factory function, namely:</p>
+<ul>
+<li>states</li>
+<li>events</li>
+<li>initial control state</li>
+<li>initial extended state</li>
+<li>transitions<ul>
+<li>guards</li>
+<li>action factories<ul>
+<li>extended state updates</li>
+<li>commands </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The first two added features do not modify the control flow of the machine (i.e. the transitions of the machine). Instead, they involve displaying additional information. The impact thus is limited to the rendering command, which may extend to an impact on the action factories producing those commands. Those factories themselves takes as parameter the extended state of the machine, and the triggering event. The two new features add no new events, hence we are left with examining the possible modifications of the extended state of the machine. To summarize, the impact is limited to all rendering commands, action factories producing rendering commands, and the extended state of the machine.</p>
+<p>The <em>undo</em> feature introduces a new <code>Undo</code> event, corresponding to the new <em>undo</em> button. The new behaviour can be described as follows:</p>
+<ul>
+<li>in the absence of <em>undo</em> click, the machine behaves as before</li>
+<li>when the user clicks on <em>undo</em>:<ul>
+<li>if the machine was in the <em>White plays</em> or <em>White piece selected</em> control state, then it should move to the <em>Black plays</em> control state, its extended state should be the one it had before the move, and the last executed command on the interfaced systems (here the chess engine) should be reversed</li>
+<li>if the machine was in the <em>Black plays</em> or <em>Black piece selected</em> control state, then it should move to the <em>White plays</em> control state, its extended state should be the one it had before the move, and the last executed command on the interfaced systems (here the chess engine and the output device — the screen) should be reversed</li>
+<li>all the previous being true obviously if there was a move to undo in the first place</li>
+</ul>
+</li>
+</ul>
+<p>This gives us the following modelization:</p>
+<label for="mn-demo-8" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-8" class="margin-toggle"><span class="marginnote"><p>The machine modification are emphasized in red. Rendering commands are not represented for the sake of readability.</p>
+</span>
+<p><img src="../../graphs/chess%20game%20with%20hierarchy%20with%20undo%20with%20emphasis%20no%20grouping.jpg" alt>  </p>
+<p>It turns out that we can simplify our graph. The <em>Black plays</em> and <em>Black piece selected</em> are the totality of the control states of the compound state <em>Black turn</em>. We are going to factor the arrows leaving the two black atomic states into a unique one, linking the <em>Black turn</em> control state, and the common target control state <em>White plays</em>. We naturally do the same for whites, and the modelization becomes:</p>
+<p><img src="../../graphs/chess%20game%20with%20hierarchy%20with%20undo%20with%20emphasis.jpg" alt></p>
+<p>If that helps, you can think about it like an application of the good old distributivity law $ab + ac = a(b+c)$ with convenient definition of addition and multiplication operations. The bottom line is that we simplified our graph by reducing the number of edges (transitions) between nodes (control states). </p>
+<p>Why is that a good thing? First of all, this helps visualization. Having less edges to draw gives a clearer graph, which is important to communicate our design. Communicate our design in turn is important to evolve and maintain it. Maintaining 4 edges instead of 2 is more error-prone. Additionally, provided our compound states have some meaning, it reformulates more concisely the behaviour! That helps avoiding errors (say you had 5 control states in the <em>Black turn</em> and you forgot to wire one) and finding errors in our machine design (it would be weird if one control state would go to <em>White piece selected</em> instead of <em>White plays</em>).</p>
+<p>There is a last dimension to that. You could have for instance started your design in a top-down manner by identifying the <em>White turn</em> and <em>Black turn</em> control states, arriving first to this modelization:</p>
+<p><img src="../../graphs/chess%20game%20with%20hierarchy%20with%20undo%20with%20emphasis%20high%20level.jpg" alt></p>
+<p>This modelization is correct and complete, but less detailed. For instance, if in the <em>White turn</em> atomic control state, we have a <em>Click</em> event, and that <em>somehow</em> indicates a valid move which is not final, then we should indeed go to the <em>Black turn</em> atomic state. Our more detailed designed explicits the <em>somehow</em> by introducing a second inner state for when a piece has already been clicked. This process by which an atomic state becomes a compound state by introducing sub-states is called <em>refinement</em>. We will not say more about this at the moment. This will be the object of a separate tutorial dedicated to modelling techniques. It suffices for now to understand that modelling can be an iterative top-down process by which control states are identified and then refined till a sufficient level of details is reached. </p>
+<p>Back to the subject matter of eliciting targets for modification to implement the new features, we have finished identifying the impact of the <em>undo</em> feature on the machine graph. We have a new event for the machine to process. The new transitions will come with new guards and action factories. The action factories should update the extended state of the machine so that it is reversed to its previous value, and produce a new <em>Undo</em> command to update the chess engine which implements the game logic. The extended state of the machine may have to be augmented to keep a history of previous moves — that would impact the <em>Move</em> action factories related. </p>
+<p>As a conclusion, as a result of the new features, we need to review all rendering commands, the action factories producing these commands, the extended state of the machine (adding properties to discriminate the player turn and the game status, and keeping a history of previous states), and add two new transitions.</p>
+<p> The updated machine is as follows:</p>
+<label for="mn-demo-15" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-15" class="margin-toggle"><span class="marginnote"><p>We reproduce here only the changes to the state machine. The full history of changes (rendering commands, action factories, etc.) can be observed by comparing with the <a href="https://glitch.com/~chess-game-basics" target="_blank" rel="noopener">code playground</a> from the previous implementation. At the machine level, the changes are the introduction of a new <code>Undo</code> event, two new properties to the extended state, and two new transitions.</p>
+</span>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> events = [UNDO, BOARD_CLICKED, START];</code></pre>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> initialExtendedState = &#123;
+  (...)
+  status: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">turn</span>: IS_WHITE_TURN,
+&#125;;</code></pre>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> transitions = [
+  (...)
+  &#123;
+    <span class="hljs-attr">from</span>: WHITE_TURN, <span class="hljs-attr">event</span>: UNDO, <span class="hljs-attr">guards</span>: [
+      &#123; <span class="hljs-attr">predicate</span>: isMoveHistoryNotEmpty, <span class="hljs-attr">to</span>: BLACK_PLAYS, <span class="hljs-attr">action</span>: undoMove &#125;,
+    ]
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: BLACK_TURN, <span class="hljs-attr">event</span>: UNDO, <span class="hljs-attr">guards</span>: [
+      &#123; <span class="hljs-attr">predicate</span>: isMoveHistoryNotEmpty, <span class="hljs-attr">to</span>: WHITE_PLAYS, <span class="hljs-attr">action</span>: undoMove &#125;,
+    ]
+  &#125;,
+];</code></pre>
+<h3 id="Interfaced-systems"><a href="#Interfaced-systems" class="headerlink" title="Interfaced systems"></a>Interfaced systems</h3><p>The interfaced systems are two: the chess engine, and the output device (screen).</p>
+<p>The chess engine need not change, as it already has all the necessary API to perform the required tasks. Concretely, the chess engine exposes an <code>.undo</code> API which undoes the latest move. This is thanks to the great API design of the chess engine which has included features covering all the foreseen use cases for the chess engine.</p>
+<p>The screens produced by our application must however be updated so that an event listener is added to the <em>Undo</em> button and propagate its click event to the state machine. The component which renders the UI also need to change. Concretely, we now use a <code>ChessBoardWithInfo</code> React component:</p>
+<label for="mn-demo-20" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-20" class="margin-toggle"><span class="marginnote"><p>We add two new components <code>InfoArea</code> and <code>ActionArea</code> to handle the display of the player turn and game status and the undo button. Unlike previously where we did not have control of the <code>ChessBoard</code> component, we can use the <code>next</code> <em>props</em> which is injected by the <code>&lt;Machine&gt;</code> component from the <code>react-state-driven</code> library to pass events to the machine. </p>
+</span>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">InfoArea</span>(<span class="hljs-params">props</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; status, turn &#125; = props;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`status`</span>, status, props)
+  <span class="hljs-keyword">const</span> bgColor = turn === IS_WHITE_TURN ? <span class="hljs-string">'white'</span> : <span class="hljs-string">'black'</span>;
+  <span class="hljs-keyword">return</span> div(<span class="hljs-string">".game-info"</span>, [
+    div(<span class="hljs-string">".turn"</span>, [strong(<span class="hljs-string">"Turn"</span>)]),
+    div(<span class="hljs-string">"#player-turn-box"</span>, &#123; <span class="hljs-attr">style</span>: &#123; <span class="hljs-string">'backgroundColor'</span>: bgColor &#125; &#125;, []),
+    div(<span class="hljs-string">".game-status"</span>, [status])
+  ])
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ActionArea</span>(<span class="hljs-params">props</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123;next&#125; = props;
+  <span class="hljs-keyword">return</span> figure(&#123;<span class="hljs-attr">onClick</span> : <span class="hljs-function"><span class="hljs-params">ev</span> =&gt;</span> next(&#123;<span class="hljs-attr">UNDO</span>: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>&#125;)&#125;, [
+    img(<span class="hljs-string">".undo"</span>, &#123; <span class="hljs-attr">src</span>: <span class="hljs-string">"https://img.icons8.com/carbon-copy/52/000000/undo.png"</span>, <span class="hljs-attr">alt</span>: <span class="hljs-string">"undo"</span> &#125;),
+    figcaption([
+      strong(<span class="hljs-string">"Undo"</span>)
+    ])
+  ])
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ChessBoardWithInfo</span>(<span class="hljs-params">props</span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`props`</span>, props)
+  <span class="hljs-keyword">const</span> &#123; draggable, width, position, boardStyle, squareStyles, onSquareClick, turn, status, undo, next &#125; = props;
+  <span class="hljs-keyword">const</span> chessBoardProps = &#123; draggable, width, position, boardStyle, squareStyles, onSquareClick, undo &#125;;
+  <span class="hljs-keyword">const</span> infoAreaProps = &#123; turn, status &#125;;
+  <span class="hljs-keyword">const</span> actionAreaProps = &#123;next&#125;;
+
+  <span class="hljs-built_in">console</span>.info(<span class="hljs-string">`chessBoardProps`</span>, position);
+
+  <span class="hljs-keyword">return</span> div(<span class="hljs-string">".game"</span>, [
+    div(<span class="hljs-string">".game-board"</span>, [
+      h(Chessboard, chessBoardProps)
+    ]),
+    h(InfoArea, infoAreaProps),
+    h(ActionArea, actionAreaProps)
+  ])
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ChessBoardWithInfo</code></pre>
+<h3 id="Command-handlers"><a href="#Command-handlers" class="headerlink" title="Command handlers"></a>Command handlers</h3><p>We had two commands in the basic version of the chess game: <em>Render</em> and <em>Move</em>. We now have the new <em>Undo</em> command. Executing this commands simply means executing the <code>.undo</code> API of the chess engine:</p>
+<pre><code class="hljs js">commandHandlers: &#123;
+  (...)
+  UNDO_MOVE: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">next, _, effectHandlers</span>) </span>&#123;
+    <span class="hljs-keyword">const</span> &#123; chessEngine &#125; = effectHandlers;
+    chessEngine.undo();
+  &#125;
+&#125;,</code></pre>
+<h3 id="Altogether-now"><a href="#Altogether-now" class="headerlink" title="Altogether now"></a>Altogether now</h3><p>The previously presented pieces are glued together by the <code>&lt;Machine&gt;</code> component. The corresponding implementation can be reviewed here:</p>
+<!-- Copy and Paste Me -->
+<div class="glitch-embed-wrap" style="height: 500px; width: 1000px;">
+  <iframe src="https://glitch.com/embed/#!/embed/chess-game-evolved?path=src/fsm.js&sidebarCollapsed=true&attributionHidden=true&previewSize=40" alt="chess-game-basics on Glitch" style="height: 100%; width: 100%; border: 0;">
+  </iframe>
+</div>
+
+<h2 id="Comparing-with-a-non-state-machine-implementation"><a href="#Comparing-with-a-non-state-machine-implementation" class="headerlink" title="Comparing with a non-state-machine implementation"></a>Comparing with a non-state-machine implementation</h2><p>So we did this with state machines. But how would it be it we would do a simple React application with the standard techniques? Let’s have a look at this <a href="http://www.talhaawan.net/react-chess/" target="_blank" rel="noopener">chess game demo</a>, which is very similar in features:</p>
+<p> <img src="../../images/chess%20game/react%20chess%20image.png" alt="alternative chess demo"></p>
+<p>Thereafter follows a summary of the click event handler:</p>
+<pre><code class="hljs js">handleClick(i)&#123;
+    (...)
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.state.sourceSelection === <span class="hljs-number">-1</span>)&#123;
+      <span class="hljs-keyword">if</span>(!squares[i] || squares[i].player !== <span class="hljs-keyword">this</span>.state.player)&#123;
+        <span class="hljs-keyword">this</span>.setState(...);
+        <span class="hljs-keyword">if</span> (squares[i]) &#123;
+          squares[i].style = &#123;...squares[i].style, <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">""</span>&#125;;
+        &#125;
+      &#125;
+      <span class="hljs-keyword">else</span>&#123;
+        squares[i].style = &#123;...squares[i].style, <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">"RGB(111,143,114)"</span>&#125;; <span class="hljs-comment">// Emerald from http://omgchess.blogspot.com/2015/09/chess-board-color-schemes.html</span>
+        <span class="hljs-keyword">this</span>.setState(...);
+      &#125;
+    &#125;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.state.sourceSelection &gt; <span class="hljs-number">-1</span>)&#123;
+      squares[<span class="hljs-keyword">this</span>.state.sourceSelection].style = &#123;...squares[<span class="hljs-keyword">this</span>.state.sourceSelection].style, <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">""</span>&#125;;
+      <span class="hljs-keyword">if</span>(squares[i] &amp;&amp; squares[i].player === <span class="hljs-keyword">this</span>.state.player)&#123;
+        <span class="hljs-keyword">this</span>.setState(...);
+      &#125;
+      <span class="hljs-keyword">else</span>&#123;
+        (...)
+        <span class="hljs-keyword">if</span>(isMovePossible &amp;&amp; isMoveLegal)&#123;
+          <span class="hljs-keyword">if</span>(squares[i] !== <span class="hljs-literal">null</span>)&#123;
+            <span class="hljs-keyword">if</span>(squares[i].player === <span class="hljs-number">1</span>)&#123;
+              whiteFallenSoldiers.push(squares[i]);
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+              blackFallenSoldiers.push(squares[i]);
+            &#125;
+          &#125;
+          squares[i] = squares[<span class="hljs-keyword">this</span>.state.sourceSelection];
+          squares[<span class="hljs-keyword">this</span>.state.sourceSelection] = <span class="hljs-literal">null</span>;
+          <span class="hljs-keyword">let</span> player = <span class="hljs-keyword">this</span>.state.player === <span class="hljs-number">1</span>? <span class="hljs-number">2</span>: <span class="hljs-number">1</span>;
+          <span class="hljs-keyword">let</span> turn = <span class="hljs-keyword">this</span>.state.turn === <span class="hljs-string">'white'</span>? <span class="hljs-string">'black'</span> : <span class="hljs-string">'white'</span>;
+          <span class="hljs-keyword">this</span>.setState(...);
+        &#125;
+        <span class="hljs-keyword">else</span>&#123;
+          <span class="hljs-keyword">this</span>.setState(...);
+        &#125;
+      &#125;
+    &#125;
+  &#125;</code></pre>
+<p>Can you tell at a glance the logic that the click handler implemented? We have a lot of branches — the <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" target="_blank" rel="noopener">cyclomatic complexity</a> is 14! While it is certainly possible to decipher what case each branch handles, in the absence of code comments, it requires looking into the implementation details. Even when you understand the branches logic, you still have to map that logic to the problem space (i.e. how does that connect to the rules of a chess game). For instance this application allows players to continue playing even after the game is over, e.g. it does not have a branch to detect and handle when the game is over. This is hard to guess from the code. Furthermore, how would you go about adding an undo feature?? Modifying that code, requires understanding which branch(es) to modify and the certainty that we do not inadvertently modify the behaviour of the other branches…</p>
+<p>In comparison, the control flow implemented by the <code>if</code> branches is immediately visible in our state machine. The behaviour of the machine is understandable without reaching for the code. The graph does not give all the details of the implementation but it serves as high-level documentation for the chess application. Code-wise, having a machine that is the direct translation of that graph allows us to access the implementation details immediately, i.e. the machine definition is a low-level, precise documentation for the behaviour. The machine itself being automatically generated from the machine definition, developers cannot mess the implementation of the control flow. As the machine is modified to incorporate new features, the high- and low-level documentation can be automatically or semi-automatically updated, so that there is a <a href="https://johnfergusonsmart.com/living-documentation-not-just-test-reports/" target="_blank" rel="noopener">living documentation</a> of the application.</p>
+<p>How easy was it to modify our chess application? Identfying the impact of a new feature is relatively easy. Adding transitions, control states, guards is easy — they have a localized impact on the rest of the machine. However, changing the extended state potentially impacts the whole machine. In practice, with a good design, the impact area can be narrowed down. We will discuss modelling and modularization techniques in further sections of the tutorial.</p>
+<h2 id="What-we-learnt"><a href="#What-we-learnt" class="headerlink" title="What we learnt"></a>What we learnt</h2><p>We learnt a lot in this section. </p>
+<p>Compound states introduces a hierarchy of states which helps to hide complexity (the sub-states in the compound state) behind an abstraction layer (the compound state). In the bottom-up design process we followed, we reached a graph with 7 control states, which gives a detailed vision of the chess application behaviour. We also shown how a high-level graph, with only 3 states, can be automatically obtained by simply hiding the content of the compound states. Both visions have their value, and hierarchical state machines allow us to go back and forth between level of details seamlessly.</p>
+<p>Furthermore, we shown that compound states allows the designer to simplify the visualization of a model by substituting $n$ transitions by one transition when some conditions apply. That economy is desirable as it helps control the growing complexity that characterizes an iterative development process.</p>
+<p>We compared our machine-based interface implementation with a standard implementation and outlined that our implementation facilitates the maintainability of the application. It is easier and faster to understand the behaviour as a result of the visualization of the design, and the separation of concerns realized when breaking down the behaviour in control states, separating logic from effects, and using single-concern functions: guards, action factories, command handlers.</p>
+<p>We are also decreasing the surface area of bugs, as an executable version of the machine is generated by Kingly from the machine definition. Provided that Kingly itself is exempt of bugs, the produced machine (i.e. function) is guaranteed to follow the specified definition. </p>
+<p>Additionally, our behaviour model implemented by the machine serves as a living documentation of the specifications of the application’s behaviour.</p>
+<h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><p>The following exercises should help you check your understanding:</p>
+<ul>
+<li>It would be nice to display the pieces as they are captured in the game. How would you add the feature? <strong>HINT:</strong> the ChessBoard React component <a href="https://www.chessboardjsx.com/props" target="_blank" rel="noopener">has a <em>prop</em></a> to that effect. </li>
+<li>We can improve on the info area by adding a message when a player is checked. Can you add the feature? <strong>HINT:</strong> the chess engine exposes the <code>.in_check</code> API to test the condition. </li>
+<li>We can improve on the info area by adding a message when the player attempts to make an invalid move. Do you see how to do it?</li>
+<li>The current specification do not allow for undo operations once the game is over. Can you change that so a player can undo also when the game is ended?</li>
+</ul>
+
+  
+  
+    <div class="next-links">
+      
+      
+        <span>← <a href="/documentation/v1/tutorials/chess-game.html">Two-player chess game</a></span>
+      
+      
+      
+        <span style="float: right;"><a href="/documentation/v1/tutorials/chess-game-ultimate.html">Chess game - more features</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
