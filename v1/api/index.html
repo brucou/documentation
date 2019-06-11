@@ -220,7 +220,7 @@
     <h1>Overview</h1>
   
   
-    <p><strong>TODO</strong>: add debug option and enforce contracts option, document those contracts, review the throw to remove them, image link failing, formatting (footnotes in margin), check all INIT are code formatteed, add a github or twitter icon? raise an issue, very important not to loose a good work   </p>
+    <p><strong>TODO</strong>: add debug option and enforce contracts option, document those contracts, add a github or twitter icon? raise an issue, very important not to loose a good work   </p>
 <p>To start defining state machine with Kindly, it is necessary to get acquainted with:</p>
 <ul>
 <li>the basic state machine formalism</li>
@@ -511,7 +511,7 @@
 </li>
 <li>no transitions from the history state (history state is only a target state)</li>
 <li>A transition evaluation must always end (!), and end in an atomic state<ul>
-<li>Every compound state must have eactly one inconditional (unguarded) INIT transition, i.e. a transition whose triggering event is <code>INIT_EVENT</code>. That transition must have a target state which is a substate of the compound state (no hierarchy crossing), and which is not a history pseudo state</li>
+<li>Every compound state must have eactly one inconditional (unguarded) <code>INIT</code> transition, i.e. a transition whose triggering event is <code>INIT_EVENT</code>. That transition must have a target state which is a substate of the compound state (no hierarchy crossing), and which is not a history pseudo state</li>
 <li>Compound states must not have eventless transitions defined on them (would introduce ambiguity with the <code>INIT</code> transition)</li>
 <li>(the previous conditions ensure that there is always a way down the hierarchy for compound states, and that way is always taken when entering the compound state, and the descent process always terminate)</li>
 </ul>
@@ -535,6 +535,12 @@
   
   
   <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
   </div>
 </div>
 

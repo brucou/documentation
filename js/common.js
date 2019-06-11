@@ -180,7 +180,7 @@
           allHeaders.push(h)
           allHeaders.push.apply(allHeaders, h3s)
           if (h3s.length) {
-            sectionContainer.appendChild(makeSubLinks(h3s, isStyleGuide))
+            sectionContainer.appendChild(makeSubLinks(h3s))
           }
         })
       } else {
@@ -303,11 +303,8 @@
       return h3s
     }
 
-    function makeSubLinks (h3s, small) {
+    function makeSubLinks (h3s) {
       var container = document.createElement('ul')
-      if (small) {
-        container.className = 'menu-sub'
-      }
       h3s.forEach(function (h) {
         container.appendChild(makeLink(h))
       })

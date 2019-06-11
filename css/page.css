@@ -1014,6 +1014,22 @@ label.margin-toggle:not(.sidenote-number) {
 .gap {
   height: 0.7em;
 }
+img.twitter {
+  position: relative;
+  top: 2px;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  float: right;
+}
+img.github {
+  position: relative;
+  top: 4px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  float: right;
+}
 #header {
   box-shadow: 0 0 1px rgba(0,0,0,0.25);
   transition: background-color 0.3s ease-in-out;
@@ -1252,7 +1268,6 @@ label.margin-toggle:not(.sidenote-number) {
 .footer {
   color: #739598;
   margin-top: 2em;
-  padding-top: 2em;
   border-top: 1px solid #e5e5e5;
   font-size: 0.9em;
 }
