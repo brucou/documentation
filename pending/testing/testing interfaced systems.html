@@ -52,8 +52,9 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">    <div id="mobile-bar">
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+  <body class="docs">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
+      <a class="menu-button"></a>
       <a class="logo" href="/"></a>
     </div>
     
@@ -169,19 +170,19 @@
     
     
     <li>
-      <a href="/documentation/v1/testing/Unit-testing a Kingly machine.html" class="sidebar-link">Testing a Kingly machine</a>
+      <a href="/documentation/pending/testing/Unit-testing a Kingly machine.html" class="sidebar-link">Testing a Kingly machine</a>
     </li>
   
     
     
     <li>
-      <a href="/documentation/v1/testing/testing command handlers.html" class="sidebar-link">Testing command handlers</a>
+      <a href="/documentation/pending/testing/testing command handlers.html" class="sidebar-link">Testing command handlers</a>
     </li>
   
     
     
     <li>
-      <a href="/documentation/v1/testing/testing interfaced systems.html" class="sidebar-link current">Testing interfaced systems</a>
+      <a href="/documentation/pending/testing/testing interfaced systems.html" class="sidebar-link current">Testing interfaced systems</a>
     </li>
   
 </ul>
@@ -202,7 +203,7 @@
     <h1>Testing interfaced systems</h1>
   
   
-    <label for="mn-demo-3" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-3" class="margin-toggle"><span class="marginnote"><p><img src="../../graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly%20selected%20interfaced%20systems.png" alt="kingly-favoured ui architecture"></p>
+    <label for="mn-demo-7" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-7" class="margin-toggle"><span class="marginnote"><p><img src="../../graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly%20selected%20interfaced%20systems.png" alt="kingly-favoured ui architecture"></p>
 </span>
 <p>Testing the interfaced systems involves checking that on receiving API calls from the command handlers, the interfaced systems do perform correctly the expected effects, including the possible emission of API responses.</p>
 <p>Commonly the devices which we use are both input and output devices. For a laptop for instance, the screen would be an output device, programmable through the DOM interface, while the keyboard would be an input device, whose events can be subscribed through the DOM events interface. Displaying content on a screen is thus an API call to the DOM, and subscribing to receive events from the keyboard is also an API call to the DOM. This is to say that rendering is concretely an effect just like any other, even though it occupies logically a central space in a user interface implementation. For that reason, we did not in our architecture diagram give a special position to the DOM.</p>
@@ -230,21 +231,6 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

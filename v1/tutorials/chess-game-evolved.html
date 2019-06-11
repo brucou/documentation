@@ -52,8 +52,9 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">    <div id="mobile-bar">
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+  <body class="docs">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
+      <a class="menu-button"></a>
       <a class="logo" href="/"></a>
     </div>
     
@@ -444,7 +445,7 @@
 <p>Back to the subject matter of eliciting targets for modification to implement the new features, we have finished identifying the impact of the <em>undo</em> feature on the machine graph. We have a new event for the machine to process. The new transitions will come with new guards and action factories. The action factories should update the extended state of the machine so that it is reversed to its previous value, and produce a new <em>Undo</em> command to update the chess engine which implements the game logic. The extended state of the machine may have to be augmented to keep a history of previous moves — that would impact the <em>Move</em> action factories related. </p>
 <p>As a conclusion, as a result of the new features, we need to review all rendering commands, the action factories producing these commands, the extended state of the machine (adding properties to discriminate the player turn and the game status, and keeping a history of previous states), and add two new transitions.</p>
 <p> The updated machine is as follows:</p>
-<label for="mn-demo-15" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-15" class="margin-toggle"><span class="marginnote"><p>We reproduce here only the changes to the state machine. The full history of changes (rendering commands, action factories, etc.) can be observed by comparing with the <a href="https://glitch.com/~chess-game-basics" target="_blank" rel="noopener">code playground</a> from the previous implementation. At the machine level, the changes are the introduction of a new <code>Undo</code> event, two new properties to the extended state, and two new transitions.</p>
+<label for="mn-demo-16" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-16" class="margin-toggle"><span class="marginnote"><p>We reproduce here only the changes to the state machine. The full history of changes (rendering commands, action factories, etc.) can be observed by comparing with the <a href="https://glitch.com/~chess-game-basics" target="_blank" rel="noopener">code playground</a> from the previous implementation. At the machine level, the changes are the introduction of a new <code>Undo</code> event, two new properties to the extended state, and two new transitions.</p>
 </span>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> events = [UNDO, BOARD_CLICKED, START];</code></pre>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> initialExtendedState = &#123;
@@ -468,7 +469,7 @@
 <h3 id="Interfaced-systems"><a href="#Interfaced-systems" class="headerlink" title="Interfaced systems"></a>Interfaced systems</h3><p>The interfaced systems are two: the chess engine, and the output device (screen).</p>
 <p>The chess engine need not change, as it already has all the necessary API to perform the required tasks. Concretely, the chess engine exposes an <code>.undo</code> API which undoes the latest move. This is thanks to the great API design of the chess engine which has included features covering all the foreseen use cases for the chess engine.</p>
 <p>The screens produced by our application must however be updated so that an event listener is added to the <em>Undo</em> button and propagate its click event to the state machine. The component which renders the UI also need to change. Concretely, we now use a <code>ChessBoardWithInfo</code> React component:</p>
-<label for="mn-demo-19" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-19" class="margin-toggle"><span class="marginnote"><p>We add two new components <code>InfoArea</code> and <code>ActionArea</code> to handle the display of the player turn and game status and the undo button. Unlike previously where we did not have control of the <code>ChessBoard</code> component, we can use the <code>next</code> <em>props</em> which is injected by the <code>&lt;Machine&gt;</code> component from the <code>react-state-driven</code> library to pass events to the machine. </p>
+<label for="mn-demo-22" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-22" class="margin-toggle"><span class="marginnote"><p>We add two new components <code>InfoArea</code> and <code>ActionArea</code> to handle the display of the player turn and game status and the undo button. Unlike previously where we did not have control of the <code>ChessBoard</code> component, we can use the <code>next</code> <em>props</em> which is injected by the <code>&lt;Machine&gt;</code> component from the <code>react-state-driven</code> library to pass events to the machine. </p>
 </span>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">InfoArea</span>(<span class="hljs-params">props</span>) </span>&#123;
   <span class="hljs-keyword">const</span> &#123; status, turn &#125; = props;
@@ -618,21 +619,6 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

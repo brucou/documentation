@@ -52,8 +52,9 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">    <div id="mobile-bar">
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+  <body class="docs">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
+      <a class="menu-button"></a>
       <a class="logo" href="/"></a>
     </div>
     
@@ -359,7 +360,6 @@
 <h2 id="Release-Notes"><a href="#Release-Notes" class="headerlink" title="Release Notes"></a>Release Notes</h2><p>Latest stable version: 0.19</p>
 <p>See release notes on <a href="https://github.com/brucou/kingly/releases" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Global-lt-script-gt-Include"><a href="#Global-lt-script-gt-Include" class="headerlink" title="Global &lt;script&gt; Include"></a>Global <code>&lt;script&gt;</code> Include</h2><p>It is possible to directly include the library in a script tag in the browser. <code>Kingly</code> will be registered as a global variable.</p>
-<p><img src="https://data.jsdelivr.com/v1/package/npm/kingly/badge" alt="kingly badge"></p>
 <p>For prototyping or learning purposes, you can use the latest version with:</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/kingly"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <p>For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:</p>
@@ -404,21 +404,6 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
