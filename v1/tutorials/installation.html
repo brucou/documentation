@@ -363,7 +363,7 @@
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/kingly"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <p>For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/kingly@0.19.0/dist/kingly.umd.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<p>Note that the Kingly library will throw when it encounters unexpected situations. You should catch those exceptions is production till the version 1.0 is released (scheduled for August 2019).</p>
+<p>Note that the Kingly library will throw when it encounters unexpected situations. You should catch those exceptions is production till the version 1.0 is released (scheduled for August 2019). However, I consider the present core API pretty much final. Expected changes revolve around differentiated builds, logging, and other niceties. </p>
 <p>If you are using native ES Modules, there is also an ES Modules compatible build:</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="javascript">
   <span class="hljs-keyword">import</span> &#123;createStateMachine, makeWebComponentFromFsm, decorateWithEntryActions, traceFSM&#125; <span class="hljs-keyword">from</span> 
@@ -377,7 +377,7 @@
     <div class="next-links">
       
       
-        <span>← <a href="/documentation/v1/tutorials/index.html">Why Kingly</a></span>
+        <span>← <a href="/documentation/v1/tutorials/counter-application.html">Counter application</a></span>
       
       
       
