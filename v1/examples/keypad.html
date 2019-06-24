@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Two-players chess game — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Keypad — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Two-players chess game — Kingly.js">
+  <meta property="og:title" content="Keypad — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Two-players chess game — Kingly.js">
+  <meta name="twitter:title" content="Keypad — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -181,13 +181,13 @@
     
     
     <li>
-      <a href="/documentation/v1/examples/keypad.html" class="sidebar-link new">Keypad</a>
+      <a href="/documentation/v1/examples/keypad.html" class="sidebar-link current new">Keypad</a>
     </li>
   
     
     
     <li>
-      <a href="/documentation/v1/examples/two-players-chess-game.html" class="sidebar-link current">Two-players chess game</a>
+      <a href="/documentation/v1/examples/two-players-chess-game.html" class="sidebar-link">Two-players chess game</a>
     </li>
   
     
@@ -217,22 +217,14 @@
     
   
   
-    <h1>Two-players chess game</h1>
+    <h1>Keypad</h1>
   
   
-    <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This example is a simple user interface, which is used in the <a href="../tutorials">tutorials</a> section to introduce hierarchical machines. Aside from that, it showcases example of reuse of existing battle-tested components (<code>ChessBoard</code> component for displaying a chess game, <code>chess.js</code> library to handle the game itself) so the machine only focuses on the UI.</p>
-<p>Among the learnings from the example are:</p>
-<ul>
-<li>use of <code>settings</code> parameter for dependency injection (chess engine)</li>
-<li>use of history states</li>
-<li>you can do effects in the state machine if you immediately cancel them so that those effects are invisible from outside the machine</li>
-</ul>
-<h2 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h2><p><img src="../../graphs/chess%20game%20with%20hierarchy%20with%20undo%20and%20timer%20highlighted%20with%20init.jpg" alt="chess game with clock"></p>
-<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><!-- Copy and Paste Me -->
-<div class="glitch-embed-wrap" style="height: 500px; width: 1000px;">
-  <iframe src="https://glitch.com/embed/#!/embed/chess-game-ultimate?path=src/fsm.js&sidebarCollapsed=true&attributionHidden=true&previewSize=40" alt="chess-game-basics on Glitch" style="height: 100%; width: 100%; border: 0;">
-  </iframe>
-</div>
+    <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This example is a simple user interface, simulating a keypad similar to those used to enter PIN codes. </p>
+<h2 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h2><p><img src="../../graphs/keypad%20machine.png" alt="keypad state machine"></p>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><iframe src="https://svelte.dev/repl/baf4a28592ff4723bb0947163ee1f109?version=3.5.3" title="keypad app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<h2 id="Credit"><a href="#Credit" class="headerlink" title="Credit"></a>Credit</h2><p>This example is inspired from a Svelte tutorial on <a href="https://svelte.dev/tutorial/component-bindings" target="_blank" rel="noopener">component bindings</a>.</p>
 
   
   
