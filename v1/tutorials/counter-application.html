@@ -362,7 +362,7 @@
 <p>The machine computes the commands to execute. We only have to write the procedures which execute those commands to have the full counter application: </p>
 <iframe src="https://codesandbox.io/embed/w6x42521n7?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-<p>We can already emphasize now a key feature of Kingly’s state machines. <strong>They are normal, plain, standard JavaScript functions!</strong> In this trivial example, that means you can replace the <code>fsm</code> created by Kingly by your own function fulfilling the same specifications:</p>
+<p>We can already emphasize now a key feature of Kingly’s state machines. <strong>They are normal, plain, standard JavaScript functions!</strong> In this trivial example, that means you can replace the <code>fsm</code> created by Kingly in the previous code by your own function <code>controller</code> fulfilling the same specifications:</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> counter=<span class="hljs-number">0</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">controller</span>(<span class="hljs-params">event</span>)</span>&#123;
