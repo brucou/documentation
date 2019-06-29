@@ -362,7 +362,20 @@
 <p>The machine computes the commands to execute. We only have to write the procedures which execute those commands to have the full counter application: </p>
 <iframe src="https://codesandbox.io/embed/w6x42521n7?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-<p>This is it! This is the very short story about state machines used for modelling interface’s behaviour. The machine works as a controller that transforms inputs/events into commands. The application is implemented by sequential composition of three parts: listening to the inputs, computing the corresponding commands, and executing those commands.</p>
+<p>We can already emphasize now a key feature of Kingly’s state machines. <strong>They are normal, plain, standard JavaScript functions!</strong> In this trivial example, that means you can replace the <code>fsm</code> created by Kingly by your own function fulfilling the same specifications:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> counter=<span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">controller</span>(<span class="hljs-params">event</span>)</span>&#123;
+  <span class="hljs-keyword">const</span> eventName = <span class="hljs-built_in">Object</span>.keys(event)[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">if</span> (eventName === <span class="hljs-string">'clicked'</span>)&#123;
+    counter++;
+    <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">command</span>: COMMAND_RENDER, <span class="hljs-attr">params</span>: counter&#125;
+  &#125;
+  
+  <span class="hljs-keyword">return</span> NO_OUTPUT
+&#125;</code></pre>
+<p>This is it! There is nothing weird. We write stateful functions like <code>controller</code> all the time when implementing user interfaces. Using an explicit state machine to write those functions brings a lot of benefits that will be introduced in the remainder of the tutorials. </p>
+<p>This is the very short story about state machines used for modelling interface’s behaviour. The machine works as a controller that transforms inputs/events into commands. The application is implemented by sequential composition of three parts: listening to the inputs, computing the corresponding commands, and executing those commands.</p>
 
   
   
