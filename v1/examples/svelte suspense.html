@@ -230,16 +230,15 @@
 <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This is a proof of concept for offering functionality similar to that of React Suspense. It is inspired from <a href="https://reactgo.com/tutorial-reactlazy-react-suspense/" target="_blank" rel="noopener">previous work</a> by <a href="https://twitter.com/saigowthamr" target="_blank" rel="noopener">Sai gowtham</a> that I reimplemented here with Svelte in lieu of React.</p>
 <h2 id="What-it-is"><a href="#What-it-is" class="headerlink" title="What it is"></a>What it is</h2><p><img src="../../images/suspense/suspense%20demo.gif" alt="suspense demo"></p>
 <h2 id="Markup-and-semantics"><a href="#Markup-and-semantics" class="headerlink" title="Markup and semantics"></a>Markup and semantics</h2><p>The main screen which will hold the loaded image is handled with a suspense functionality:</p>
-<pre><code class="hljs html">let albums=[];
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> albums=[];
 
-function fetchAlbums(dispatch, &#123;commands, events, properties, settings&#125;)&#123;
-  const [TIMER_EXPIRED, SUCCEEDED, FAILED, START] = events;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchAlbums</span>(<span class="hljs-params">dispatch, &#123;commands, events, properties, settings&#125;</span>)</span>&#123;
+  <span class="hljs-keyword">const</span> [TIMER_EXPIRED, SUCCEEDED, FAILED, START] = events;
   axios.get(iTunesUrl)
-       .then(res =&gt; &#123;albums = res.data.feed.entry&#125;)
-       .then(() =&gt; dispatch(&#123;[events[SUCCEEDED]]: void 0&#125;))
-&#125;
-    
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"app"</span>&gt;</span>
+       .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;albums = res.data.feed.entry&#125;)
+       .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> dispatch(&#123;[events[SUCCEEDED]]: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>&#125;))
+&#125;</code></pre>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"app"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"albums"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">settings</span>=<span class="hljs-string">&#123;&#123;run:</span> <span class="hljs-attr">fetchAlbums</span>, <span class="hljs-attr">duration:</span> <span class="hljs-attr">10</span>&#125;&#125;&gt;</span>
