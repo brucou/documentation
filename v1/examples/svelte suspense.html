@@ -254,14 +254,16 @@
             <span class="hljs-tag">&lt;/<span class="hljs-name">LazyLoadContainer</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+`</code></pre>
 <p>The default slot content of the <code>Suspense</code> component will be immediately put in the DOM and hidden (<code>display: none</code>). Two things can happen:</p>
 <ul>
 <li>the default slot content signals completion before <code>settings.duration</code> milliseconds. In that case, the slot content is displayed as soon as it has indicated completion</li>
 <li>the default slot content does not signal completion before <code>settings.duration</code> milliseconds expires. In that case, the fallback content (e.g. the <code>fallback</code> slot content) will be displayed. When the default slot content signals completion, it will be displayed.</li>
 </ul>
 <p>The <code>Suspense</code> component behaviour is better summarized with the defining state machine:</p>
-<p><img src="assets/suspense%20machine.png" alt="suspense finite state machine"></p>
+<p><img src="../../graphs/suspense%20machine.png" alt="suspense finite state machine"></p>
 <p>The <code>Album</code> component also benefits from the suspense functionality:</p>
 <pre><code class="hljs javascript">&lt;ul <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"album"</span>&gt;
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-item"</span>&gt;</span>
