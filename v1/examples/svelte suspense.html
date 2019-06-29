@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Svelte Suspense — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Svelte Suspense — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Svelte Suspense — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link current">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link current">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link current">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link current">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          Examples
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/examples/index.html" class="sidebar-link">Introduction</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/examples/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/examples/keypad.html" class="sidebar-link new">Keypad</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/examples/two-players-chess-game.html" class="sidebar-link">Two-players chess game</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/examples/online-TMDB-interface.html" class="sidebar-link new">Online interface to TMDB movie database</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/examples/svelte suspense.html" class="sidebar-link current new">Svelte Suspense</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/documentation/v1/examples/wizard-form.html" class="sidebar-link new">Wizard form</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content examples with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>Svelte Suspense</h1>
+  
+  
+    <p>This is taken from the <a href="https://github.com/brucou/svelte-suspense-app" target="_blank" rel="noopener">demo GitHub directory</a>.<br>n</p>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This is a proof of concept for offering functionality similar to that of React Suspense. It is<br>inspired from <a href="https://reactgo.com/tutorial-reactlazy-react-suspense/" target="_blank" rel="noopener">previous work</a> by <a href="https://twitter.com/saigowthamr" target="_blank" rel="noopener">Sai<br>gowtham</a> that I reimplemented here with Svelte in lieu of React.</p>
+<h2 id="What-it-is"><a href="#What-it-is" class="headerlink" title="What it is"></a>What it is</h2><p><img src="assets/suspense%20demo.gif" alt="suspense demo"></p>
+<h2 id="Markup-and-semantics"><a href="#Markup-and-semantics" class="headerlink" title="Markup and semantics"></a>Markup and semantics</h2><p>The main screen which will hold the loaded image is handled with a suspense functionality:</p>
+<pre><code class="hljs html">let albums=[];
+
+function fetchAlbums(dispatch, &#123;commands, events, properties, settings&#125;)&#123;
+  const [TIMER_EXPIRED, SUCCEEDED, FAILED, START] = events;
+  axios.get(iTunesUrl)
+       .then(res =&gt; &#123;albums = res.data.feed.entry&#125;)
+       .then(() =&gt; dispatch(&#123;[events[SUCCEEDED]]: void 0&#125;))
+&#125;
+    
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"app"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"albums"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">settings</span>=<span class="hljs-string">&#123;&#123;run:</span> <span class="hljs-attr">fetchAlbums</span>, <span class="hljs-attr">duration:</span> <span class="hljs-attr">10</span>&#125;&#125;&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"fallback"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-img"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">LazyLoadContainer</span>&gt;</span>
+                &#123;#each albums as album, i&#125;
+                <span class="hljs-tag">&lt;<span class="hljs-name">LazyLoad</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"&#123;i&#125;"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Album</span> &#123;<span class="hljs-attr">album</span>&#125; /&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">LazyLoad</span> &gt;</span>
+                &#123;/each&#125;
+            <span class="hljs-tag">&lt;/<span class="hljs-name">LazyLoadContainer</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<p>The default slot content of the <code>Suspense</code> component will be immediately put in the DOM and<br>hidden (<code>display: none</code>). Two things can happen:</p>
+<ul>
+<li>the default slot content signals completion before <code>settings.duration</code> milliseconds. In that<br>case, the slot content is displayed as soon as it has indicated completion</li>
+<li>the default slot content does not signal completion before <code>settings.duration</code> milliseconds<br>expires. In that case, the fallback content (e.g. the <code>fallback</code> slot content) will be displayed<br>. When the default slot content signals completion, it will be displayed.</li>
+</ul>
+<p>The <code>Suspense</code> component behaviour is better summarized with the defining state machine:</p>
+<p><img src="assets/suspense%20machine.png" alt="suspense finite state machine"></p>
+<p>The <code>Album</code> component also benefits from the suspense functionality:</p>
+<pre><code class="hljs javascript">&lt;ul <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"album"</span>&gt;
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-item"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">let:dispatch</span>=<span class="hljs-string">&#123;dispatch&#125;</span> <span class="hljs-attr">let:events</span>=<span class="hljs-string">"&#123;events&#125;"</span> <span class="hljs-attr">settings</span>=<span class="hljs-string">"&#123;&#123;duration: 0&#125;&#125;"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"fallback"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-img"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif"</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#123;link&#125;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"link"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-img"</span>
+                     <span class="hljs-attr">on:load</span>=<span class="hljs-string">"&#123;() =&gt; &#123;dispatch(&#123;[events[DONE]]: void 0&#125;)&#125;&#125;"</span>
+                     <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;image&#125;</span>
+                     <span class="hljs-attr">alt</span>=<span class="hljs-string">&#123;</span>'<span class="hljs-attr">itunes</span>' + <span class="hljs-attr">Math.random</span>()&#125; /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"title album-item"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#123;link&#125;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"link"</span>&gt;</span>
+            &#123;title.slice(0, 20)&#125;..<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"price album-item"</span>&gt;</span>Price:&#123;price&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"date album-item"</span>&gt;</span>Released:&#123;formatDate(date, "MMM Do YY")&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span></code></pre>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>The <code>Suspense</code> component admits the following props:</p>
+<ul>
+<li><code>settings.duration</code>: the number of milliseconds to wait before displaying the fallback slot<br>content</li>
+<li><code>settings.run</code>: a function to run on starting the <code>Suspense</code> component. That function will<br>receive the <code>dispatch</code> event emitter, and other relevant parameters (See example).</li>
+</ul>
+<p>It also pass the <code>dispatch</code> event emitter, and the <code>events</code> array of admitted events to its<br>children slots. The event emitter serves to communicate with the <code>Suspense</code> component, to singal<br>completion, or error. The <code>events</code> array holds the events handled by the <code>Suspense</code> component<br>(<code>const events = [TIMER_EXPIRED, SUCCEEDED, FAILED, START];</code>). Events being passed with an array,<br> you can rename the events at will. Here we use <code>DONE</code> instead of <code>SUCCEEDED</code> for the completion<br> event.</p>
+<p>For instance, in the previous example, the <code>Album</code> component lazily loads an image. When the<br>image is loaded, completion is signaled and the wrapping <code>&lt;a&gt;</code> DOM element is displayed.</p>
+<p>In the previous example too, in the main <code>App</code> component, the list of albums is fetched, using<br>the <code>run</code> parameter of the <code>Suspense</code> component. When that is completed, the completion signal is<br> sent to the <code>Suspense</code> component and the album list is displayed. </p>
+<h2 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h2><p>I ran into some issues when developing the component, some of which are linked to Svelte, others<br>to the DOM.</p>
+<p>Concerning Svelte:</p>
+<ul>
+<li>Svelte being template-based, there is no functional composition available. The next best thing<br>is slot composition which is a very flexible mechanism, though the syntax of it can be confusing.<br>In particular the necessity to pass parameters and handle variable scoping (which comes for free<br>with functions) requires to understand well the syntax proposed by Svelte.</li>
+<li><a href="https://github.com/sveltejs/svelte/issues/2080" target="_blank" rel="noopener">Component do not admit slots (yet)!!</a>. That is<br>a strong limitation for this particular example, and leads to a component whose functionality is<br>not very robust (see below). </li>
+<li>I found what seems to be a bug in that imported variables are not </li>
+</ul>
+<p>DOM-wise:</p>
+<ul>
+<li>because of Svelte current limitations, we had to hide our default slot component by wrapping it<br>in an extra <code>div</code> and use <code>display:none</code> on that div. However, that extra <code>div</code> can conflict<br>with the surrounding css, which it does in our examples (the surrounding <code>div</code> for an album is a<br>flex container, which handles direct children — it would thus pass to handle a unique <code>div</code><br>children instead of a list of <code>Album</code> children).</li>
+<li>we opted for a work-around, which is to display conditionally (with template <code>#if</code> logic) the<br>default slot component. However this lead to some obscure errors such as <code>li0 is not defined</code>.<br>I assumed this is connected to Svelte’s internal and did not pursue the matter further. For this<br>demo, we ended up attached the <code>Suspense</code> component to the image loading, instea of the <code>ul</code> list<br>element, to avoid that error. This is however less user-friendly — which is the goal of<br>Suspense in the first place.</li>
+</ul>
+<p>On the bright side, the targetted API which uses slots looks good:<br> <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">let:dispatch</span>=<span class="hljs-string">"&#123;dispatch&#125;"</span> <span class="hljs-attr">let:events</span>=<span class="hljs-string">"&#123;events&#125;"</span>  &#123;<span class="hljs-attr">settings</span>&#125; /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">Fallback</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"fallback"</span> /&gt;</span>
+  ... #Suuspended content
+<span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span> &gt;</span></code></pre></p>
+<p>For inline suspended content, it implies minimal to no modification of the ‘suspended’ component.<br> In the <code>Album</code> case, we only added an <code>onload</code> handler. In the <code>App</code> case, we added the <code>run</code><br> function to fetch data, separately from the view displaying the data, effectively decoupling the<br>  view and the model within the template.</p>
+<p>However a usage which reuses existing components like:<br> <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">let:dispatch</span>=<span class="hljs-string">"&#123;dispatch&#125;"</span> <span class="hljs-attr">let:events</span>=<span class="hljs-string">"&#123;events&#125;"</span>  &#123;<span class="hljs-attr">settings</span>&#125; /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">Fallback</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"fallback"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">Suspended</span> &#123;<span class="hljs-attr">dispatch</span>&#125; &#123;<span class="hljs-attr">events</span>&#125; &#123;<span class="hljs-attr">settings</span>&#125;/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span> &gt;</span></code></pre></p>
+<p>involves wrapping those components in a <code>Suspended</code> component to put <code>dispatch</code>, <code>events</code>, and<br><code>settings</code> in scope.</p>
+<p>I am new to Svelte so I did get something wrong, I welcome your friendly and helpful comments<br>(open an issue). Always happy to hear feedback.</p>
+<h2 id="Using-state-machines"><a href="#Using-state-machines" class="headerlink" title="Using state machines"></a>Using state machines</h2><p>I implemented <code>Suspense</code> with the <a href="https://github.com/brucou/kingly" target="_blank" rel="noopener">Kingly</a> state machine library.<br>This is not strictly necessarily and the implementation can be replaced by a simple function with no<br>dependency (that is a fundamental objective of Kingly). That function may actually be the result<br>of compiling the Kingly machine, just like Svelte compiles its template. A state machine is but a<br> template for behaviour.</p>
+<p>While using a formalized state machine may feel like too much for a simple behaviour like<br>Suspense, the technique can however be generalized easily to more complex scenarios — only by<br>modifying the underlying machine. Such a complex scenario could be handling the<br>synchronization/scheduling of competing content, similar to but with less flexibility than React<br>Concurrent. This would be possible without any change in architecture, or impact in the Svelte compiler. All<br>  this is very preliminary but those are interesting tracks to follow.</p>
+<h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><pre><code class="hljs bash">npm install
+npm run start</code></pre>
+<p>Navigate to <a href="http://localhost:5000" target="_blank" rel="noopener">localhost:5000</a>. You should see your app running.</p>
+
+  
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
