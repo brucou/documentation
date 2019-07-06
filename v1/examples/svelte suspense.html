@@ -235,13 +235,13 @@ npm run start</code></pre>
 <h1 id="Markup-and-semantics"><a href="#Markup-and-semantics" class="headerlink" title="Markup and semantics"></a>Markup and semantics</h1><p>The main screen which will hold the loaded image is handled with a suspense functionality:</p>
 <pre><code class="hljs html">let albums=[];
 
-function fetchAlbums(dispatch, &#123;commands, events, properties, settings&#125;)&#123;
-  const [TIMER_EXPIRED, SUCCEEDED, FAILED, START] = events;
-  axios.get(iTunesUrl)
-       .then(res =&gt; &#123;albums = res.data.feed.entry&#125;)
-       .then(() =&gt; dispatch(&#123;[events[SUCCEEDED]]: void 0&#125;))
+function fetchAlbums(intents, &#123;settings&#125;)&#123;
+ const &#123;done, failed&#125; = intents;
+   axios.get(iTunesUrl)
+        .then(res =&gt; &#123;albums = res.data.feed.entry&#125;)
+        .then(() =&gt; done(void 0))
 &#125;
-    
+
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"app"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"albums"</span>&gt;</span>
