@@ -235,7 +235,7 @@ npm run start</code></pre>
 <h1 id="Markup-and-semantics"><a href="#Markup-and-semantics" class="headerlink" title="Markup and semantics"></a>Markup and semantics</h1><p>The main screen which will hold the loaded image is handled with a suspense functionality:</p>
 <pre><code class="hljs html">let albums=[];
 
-function fetchAlbums(intents, &#123;settings&#125;)&#123;
+function fetchAlbums(intents, &#123;task, timeout&#125;)&#123;
  const &#123;done, failed&#125; = intents;
    axios.get(iTunesUrl)
         .then(res =&gt; &#123;albums = res.data.feed.entry&#125;)
