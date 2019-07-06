@@ -230,21 +230,22 @@
 <pre><code class="hljs bash">npm install
 npm run start</code></pre>
 <p>Navigate to <a href="http://localhost:5000" target="_blank" rel="noopener">localhost:5000</a>. You should see your app running.</p>
-<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This is a proof of concept for offering functionality similar to that of React Suspense. It is inspired from <a href="https://reactgo.com/tutorial-reactlazy-react-suspense/" target="_blank" rel="noopener">previous work</a> by <a href="https://twitter.com/saigowthamr" target="_blank" rel="noopener">Sai gowtham</a> that I reimplemented here with Svelte in lieu of React.</p>
-<h2 id="What-it-is"><a href="#What-it-is" class="headerlink" title="What it is"></a>What it is</h2><p><img src="../../images/suspense/suspense%20demo.gif" alt="suspense demo"></p>
-<h2 id="Markup-and-semantics"><a href="#Markup-and-semantics" class="headerlink" title="Markup and semantics"></a>Markup and semantics</h2><p>The main screen which will hold the loaded image is handled with a suspense functionality:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> albums=[];
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This is a proof of concept for offering functionality similar to that of React Suspense, with the suspense behaviour implemented with a Kingly state machine. It is inspired from <a href="https://reactgo.com/tutorial-reactlazy-react-suspense/" target="_blank" rel="noopener">previous work</a> by <a href="https://twitter.com/saigowthamr" target="_blank" rel="noopener">Sai gowtham</a> that I reimplemented here with Svelte in lieu of React.</p>
+<h2 id="What-it-is"><a href="#What-it-is" class="headerlink" title="What it is"></a>What it is</h2><p><img src="assets/suspense%20demo.gif" alt="suspense demo"></p>
+<h1 id="Markup-and-semantics"><a href="#Markup-and-semantics" class="headerlink" title="Markup and semantics"></a>Markup and semantics</h1><p>The main screen which will hold the loaded image is handled with a suspense functionality:</p>
+<pre><code class="hljs html">let albums=[];
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchAlbums</span>(<span class="hljs-params">dispatch, &#123;commands, events, properties, settings&#125;</span>)</span>&#123;
-  <span class="hljs-keyword">const</span> [TIMER_EXPIRED, SUCCEEDED, FAILED, START] = events;
+function fetchAlbums(dispatch, &#123;commands, events, properties, settings&#125;)&#123;
+  const [TIMER_EXPIRED, SUCCEEDED, FAILED, START] = events;
   axios.get(iTunesUrl)
-       .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;albums = res.data.feed.entry&#125;)
-       .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> dispatch(&#123;[events[SUCCEEDED]]: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>&#125;))
-&#125;</code></pre>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"app"</span>&gt;</span>
+       .then(res =&gt; &#123;albums = res.data.feed.entry&#125;)
+       .then(() =&gt; dispatch(&#123;[events[SUCCEEDED]]: void 0&#125;))
+&#125;
+    
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"app"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"albums"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">settings</span>=<span class="hljs-string">&#123;&#123;run:</span> <span class="hljs-attr">fetchAlbums</span>, <span class="hljs-attr">duration:</span> <span class="hljs-attr">10</span>&#125;&#125;&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">task</span>=<span class="hljs-string">&#123;fetchAlbums&#125;</span> <span class="hljs-attr">timeout</span>=<span class="hljs-string">10</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"fallback"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-img"</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif"</span> /&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -257,26 +258,24 @@ npm run start</code></pre>
             <span class="hljs-tag">&lt;/<span class="hljs-name">LazyLoadContainer</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-`</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 <p>The default slot content of the <code>Suspense</code> component will be immediately put in the DOM and hidden (<code>display: none</code>). Two things can happen:</p>
 <ul>
 <li>the default slot content signals completion before <code>settings.duration</code> milliseconds. In that case, the slot content is displayed as soon as it has indicated completion</li>
 <li>the default slot content does not signal completion before <code>settings.duration</code> milliseconds expires. In that case, the fallback content (e.g. the <code>fallback</code> slot content) will be displayed. When the default slot content signals completion, it will be displayed.</li>
 </ul>
 <p>The <code>Suspense</code> component behaviour is better summarized with the defining state machine:</p>
-<p><img src="../../graphs/suspense%20machine.png" alt="suspense finite state machine"></p>
+<p><img src="assets/suspense%20machine.png" alt="suspense finite state machine"></p>
 <p>The <code>Album</code> component also benefits from the suspense functionality:</p>
 <pre><code class="hljs javascript">&lt;ul <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"album"</span>&gt;
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-item"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">let:dispatch</span>=<span class="hljs-string">&#123;dispatch&#125;</span> <span class="hljs-attr">let:events</span>=<span class="hljs-string">"&#123;events&#125;"</span> <span class="hljs-attr">settings</span>=<span class="hljs-string">"&#123;&#123;duration: 0&#125;&#125;"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">let:intents</span>=<span class="hljs-string">&#123;&#123;done,</span> <span class="hljs-attr">failed</span>&#125;&#125; <span class="hljs-attr">timeout</span>=<span class="hljs-string">0</span> &gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"fallback"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-img"</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif"</span> /&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#123;link&#125;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"link"</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-img"</span>
-                     <span class="hljs-attr">on:load</span>=<span class="hljs-string">"&#123;() =&gt; &#123;dispatch(&#123;[events[DONE]]: void 0&#125;)&#125;&#125;"</span>
+                     <span class="hljs-attr">on:load</span>=<span class="hljs-string">"&#123;() =&gt; done(void 0)&#125;"</span>
                      <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;image&#125;</span>
                      <span class="hljs-attr">alt</span>=<span class="hljs-string">&#123;</span>'<span class="hljs-attr">itunes</span>' + <span class="hljs-attr">Math.random</span>()&#125; /&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
@@ -290,12 +289,12 @@ npm run start</code></pre>
 <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span></code></pre>
 <h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>The <code>Suspense</code> component admits the following props:</p>
 <ul>
-<li><code>settings.duration</code>: the number of milliseconds to wait before displaying the fallback slot content</li>
-<li><code>settings.run</code>: a function to run on starting the <code>Suspense</code> component. That function will receive the <code>dispatch</code> event emitter, and other relevant parameters (See example).</li>
+<li><code>timeout</code>: the number of milliseconds to wait before displaying the fallback slot content</li>
+<li><code>task</code>: a function to run on starting the <code>Suspense</code> component. That function will receive an object parameter <code>{done, failed}</code> which can be used to indicate termination or failure to the underlying suspense state machine. </li>
 </ul>
-<p>It also pass the <code>dispatch</code> event emitter, and the <code>events</code> array of admitted events to its children slots. The event emitter serves to communicate with the <code>Suspense</code> component, to singal completion, or error. The <code>events</code> array holds the events handled by the <code>Suspense</code> component (<code>const events = [TIMER_EXPIRED, SUCCEEDED, FAILED, START];</code>). Events being passed with an array, you can rename the events at will. Here we use <code>DONE</code> instead of <code>SUCCEEDED</code> for the completion event.</p>
-<p>For instance, in the previous example, the <code>Album</code> component lazily loads an image. When the image is loaded, completion is signaled and the wrapping <code>&lt;a&gt;</code> DOM element is displayed.</p>
-<p>In the previous example too, in the main <code>App</code> component, the list of albums is fetched, using the <code>run</code> parameter of the <code>Suspense</code> component. When that is completed, the completion signal is sent to the <code>Suspense</code> component and the album list is displayed. </p>
+<p>The <code>Suspense</code> component also passes on the <code>intents</code> parameter to its children slots. The aforementioned parameter is an object with properties <code>{done, failed}</code> which can be used to indicate termination or failure to the underlying suspense state machine. Both properties are function which can also pass event data if necessary.  </p>
+<p>For instance, in the previous example, the <code>Album</code> component lazily loads an image. When the image is loaded, completion is signaled and the wrapping <code>&lt;a&gt;</code> DOM element is displayed. In this example, there is no need to pass data with the <code>done</code> or <code>failed</code> events. </p>
+<p>In the previous example too, in the main <code>App</code> component, the list of albums is fetched, using the <code>task</code> parameter of the <code>Suspense</code> component. When that is completed, the completion signal is sent to the <code>Suspense</code> component and the album list is displayed. </p>
 <h2 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h2><p>I ran into some issues when developing the component, some of which are linked to Svelte, others to the DOM.</p>
 <p>Concerning Svelte:</p>
 <ul>
@@ -305,22 +304,24 @@ npm run start</code></pre>
 </ul>
 <p>DOM-wise:</p>
 <ul>
-<li>because of Svelte current limitations, we had to hide our default slot component by wrapping it in an extra <code>div</code> and use <code>display:none</code> on that div. However, that extra <code>div</code> can conflict with the surrounding css, which it does in our examples (the surrounding <code>div</code> for an album is a flex container, which handles direct children — it would thus pass to handle a unique <code>div</code><br>children instead of a list of <code>Album</code> children).</li>
-<li>we opted for a work-around, which is to display conditionally (with template <code>#if</code> logic) the default slot component. However this lead to some obscure errors such as <code>li0 is not defined</code>. I assumed this is connected to Svelte’s internal and did not pursue the matter further. For this demo, we ended up attached the <code>Suspense</code> component to the image loading, instea of the <code>ul</code> list<br>element, to avoid that error. This is however less user-friendly — which is the goal of  Suspense in the first place.</li>
+<li>because of Svelte current limitations, we had to hide our default slot component by wrapping it in an extra <code>div</code> and use <code>display:none</code> on that div. However, that extra <code>div</code> can conflict  with the surrounding css, which it does in our examples (the surrounding <code>div</code> for an album is a flex container, which handles direct children — it would thus pass to handle a unique <code>div</code><br>children instead of a list of <code>Album</code> children).</li>
+<li>we opted for a work-around, which is to display conditionally (with template <code>#if</code> logic) the default slot component. However this lead to some obscure errors such as <code>li0 is not defined</code>. I assumed this is connected to Svelte’s internal and did not pursue the matter further. For this demo, we ended up attached the <code>Suspense</code> component to the image loading, instea of the <code>ul</code> list element, to avoid that error. This is however less user-friendly — which is the goal of  Suspense in the first place.</li>
 </ul>
-<p>On the bright side, the targetted API which uses slots looks good:<br> <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">let:dispatch</span>=<span class="hljs-string">"&#123;dispatch&#125;"</span> <span class="hljs-attr">let:events</span>=<span class="hljs-string">"&#123;events&#125;"</span>  &#123;<span class="hljs-attr">settings</span>&#125; /&gt;</span>
+<p>On the bright side, the targetted API which uses slots looks good:<br> <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">task</span>=<span class="hljs-string">&#123;fetchAlbums&#125;</span> <span class="hljs-attr">timeout</span>=<span class="hljs-string">10</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">Fallback</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"fallback"</span> /&gt;</span>
   ... #Suuspended content
 <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span> &gt;</span></code></pre></p>
 <p>For inline suspended content, it implies minimal to no modification of the ‘suspended’ component. In the <code>Album</code> case, we only added an <code>onload</code> handler. In the <code>App</code> case, we added the <code>run</code>  function to fetch data, separately from the view displaying the data, effectively decoupling the  view and the model within the template.</p>
-<p>However a usage which reuses existing components like:<br> <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">let:dispatch</span>=<span class="hljs-string">"&#123;dispatch&#125;"</span> <span class="hljs-attr">let:events</span>=<span class="hljs-string">"&#123;events&#125;"</span>  &#123;<span class="hljs-attr">settings</span>&#125; /&gt;</span>
+<p>However a usage which reuses existing components like:<br> <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">let:intents</span>=<span class="hljs-string">&#123;&#123;done,</span> <span class="hljs-attr">failed</span>&#125;&#125; <span class="hljs-attr">timeout</span>=<span class="hljs-string">0</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">Fallback</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"fallback"</span> /&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">Suspended</span> &#123;<span class="hljs-attr">dispatch</span>&#125; &#123;<span class="hljs-attr">events</span>&#125; &#123;<span class="hljs-attr">settings</span>&#125;/&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">Suspended</span> &#123;<span class="hljs-attr">intents</span>&#125; /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span> &gt;</span></code></pre></p>
-<p>involves wrapping those components in a <code>Suspended</code> component to put <code>dispatch</code>, <code>events</code>, and <code>settings</code> in scope.</p>
+<p>involves wrapping those components in a <code>Suspended</code> component to put <code>intents</code>  in scope.</p>
 <p>I am new to Svelte so I did get something wrong, I welcome your friendly and helpful comments (open an issue). Always happy to hear feedback.</p>
-<h2 id="Using-state-machines"><a href="#Using-state-machines" class="headerlink" title="Using state machines"></a>Using state machines</h2><p>I implemented <code>Suspense</code> with the <a href="https://github.com/brucou/kingly" target="_blank" rel="noopener">Kingly</a> state machine library. This is not strictly necessarily and the implementation can be replaced by a simple function with no dependency (that is a fundamental objective of Kingly).</p>
-<p>While using a formalized state machine may feel like too much for a simple behaviour like Suspense, the technique can however be generalized easily to more complex scenarios — only by modifying the underlying machine. Such a complex scenario could be handling the synchronization/scheduling of competing content, similar to but with less flexibility than React Concurrent. This would be possible without any change in architecture, or impact in the Svelte compiler. All  this is very preliminary but those are interesting tracks to follow.</p>
+<h2 id="Using-state-machines"><a href="#Using-state-machines" class="headerlink" title="Using state machines"></a>Using state machines</h2><p>I implemented <code>Suspense</code> with the <a href="https://github.com/brucou/kingly" target="_blank" rel="noopener">Kingly</a> state machine library. This is not strictly necessarily and the implementation can be replaced by a simple function with no dependency (that is a fundamental objective of Kingly). That function may actually be the result of compiling the Kingly machine, just like Svelte compiles its template. A state machine is but a template for behaviour.</p>
+<p>While using a formalized state machine may feel like too much for a simple behaviour like Suspense, the technique can however be generalized easily to more complex scenarios — only by modifying the underlying machine. </p>
+<p>A more complex scenario could be to implement a more sophisticated version of suspense which deals with a full range of lazy loading formula as described in this excellent <a href="https://css-tricks.com/the-complete-guide-to-lazy-loading-images/" target="_blank" rel="noopener">CSS tricks article</a>. </p>
+<p>Another complex scenario could be handling the synchronization/scheduling of competing content, similar to but with less flexibility than React Concurrent. This would be possible without any change in architecture, or impact in the Svelte compiler. All this is very preliminary but those are interesting tracks to follow.</p>
 
   
   
