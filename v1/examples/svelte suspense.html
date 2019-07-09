@@ -267,8 +267,8 @@ function fetchAlbums(intents)&#123;
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
 <p>The default slot content of the <code>Suspense</code> component will be immediately put in the DOM and<br>hidden (<code>display: none</code>). Two things can happen:</p>
 <ul>
-<li>the default slot content signals completion before <code>settings.duration</code> milliseconds. In that<br>case, the slot content is displayed as soon as it has indicated completion</li>
-<li>the default slot content does not signal completion before <code>settings.duration</code> milliseconds<br>expires. In that case, the fallback content (e.g. the <code>fallback</code> slot content) will be displayed. When the default slot content signals completion, it will be displayed.</li>
+<li>completion is signalled (<code>done</code> or <code>failed</code>) before <code>timeout</code> milliseconds. In that case, the corresponding slot content (default slot or <code>error</code> slot) is displayed as soon as the completion signal is processed</li>
+<li>completion is not signalled before <code>timeout</code> milliseconds expires. In that case, the fallback content (e.g. the <code>fallback</code> slot content) will be displayed. When the default slot content signals completion, it will be displayed. When completion is signalled (<code>done</code> or <code>failed</code>), the corresponding slot content (default slot or <code>error</code> slot) is displayed as soon as the completion signal is processed</li>
 </ul>
 <p>The <code>Suspense</code> component behaviour is better summarized with the defining state machine:</p>
 <p><img src="assets/suspense%20machine.png" alt="suspense finite state machine"></p>
