@@ -235,7 +235,7 @@ npm run start</code></pre>
 <h1 id="Markup-and-semantics"><a href="#Markup-and-semantics" class="headerlink" title="Markup and semantics"></a>Markup and semantics</h1><p>The main screen which will hold the loaded image is handled with a suspense functionality:</p>
 <pre><code class="hljs html">let albums=[];
 
-function fetchAlbums(intents, &#123;settings&#125;)&#123;
+function fetchAlbums(intents)&#123;
   const &#123;done, failed&#125; = intents;
   axios.get(iTunesUrl)
        .then(res =&gt; res.data.feed.entry)
@@ -281,7 +281,7 @@ function fetchAlbums(intents, &#123;settings&#125;)&#123;
             <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#123;link&#125;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"blank"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"link"</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-img"</span>
-                     <span class="hljs-attr">on:load</span>=<span class="hljs-string">"&#123;() =&gt; done(void 0)&#125;"</span>
+                     <span class="hljs-attr">on:load</span>=<span class="hljs-string">"&#123;done&#125;"</span>
                      <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;image&#125;</span>
                      <span class="hljs-attr">alt</span>=<span class="hljs-string">&#123;</span>'<span class="hljs-attr">itunes</span>' + <span class="hljs-attr">Math.random</span>()&#125; /&gt;</span>
             <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
