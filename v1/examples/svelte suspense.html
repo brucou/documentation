@@ -271,7 +271,7 @@ function fetchAlbums(intents)&#123;
 <li>completion is not signalled before <code>timeout</code> milliseconds expires. In that case, the fallback content (e.g. the <code>fallback</code> slot content) will be displayed. When the default slot content signals completion, it will be displayed. When completion is signalled (<code>done</code> or <code>failed</code>), the corresponding slot content (default slot or <code>error</code> slot) is displayed as soon as the completion signal is processed</li>
 </ul>
 <p>The <code>Suspense</code> component behaviour is better summarized with the defining state machine:</p>
-<p><img src="assets/suspense%20machine.png" alt="suspense finite state machine"></p>
+<p><img src="../../graphs/suspense%20machine.png" alt="suspense finite state machine"></p>
 <p>The <code>Album</code> component also benefits from the suspense functionality:</p>
 <pre><code class="hljs javascript">&lt;ul <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"album"</span>&gt;
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-item"</span>&gt;</span>
