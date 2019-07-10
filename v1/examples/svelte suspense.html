@@ -226,13 +226,14 @@
     <h1>Svelte Suspense</h1>
   
   
-    <h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><p>Clone the <a href="https://github.com/brucou/svelte-suspense-app" target="_blank" rel="noopener">GitHub repertory</a>. </p>
+    <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This example illustrates a simple hierarchical state machine implementing a behaviour similar to React Suspense. It also showcases how a state machine definition can be compiled into a standard standalone JavaScript function — this is a key motivation behind Kingly’s API design. Compiling the machine allows to mostly eliminate the footprint linked to the machine library.</p>
+<h2 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h2><p>The suspense functionality can be summarized by the following state machine:</p>
+<p><img src="../../graphs/suspense%20machine.png" alt="suspense finite state machine"></p>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p><img src="../../images/suspense/suspense%20demo.gif" alt="suspense demo"></p>
+<p>Clone the <a href="https://github.com/brucou/svelte-suspense-app" target="_blank" rel="noopener">GitHub repository</a>. </p>
 <pre><code class="hljs bash">npm install
 npm run start</code></pre>
-<p>Navigate to <a href="http://localhost:5000" target="_blank" rel="noopener">localhost:5000</a>. You should see your app running.</p>
-<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This is a proof of concept for offering functionality similar to that of React Suspense, with the suspense behaviour implemented with a Kingly state machine. It is inspired from <a href="https://reactgo.com/tutorial-reactlazy-react-suspense/" target="_blank" rel="noopener">previous work</a> by <a href="https://twitter.com/saigowthamr" target="_blank" rel="noopener">Sai gowtham</a> that I reimplemented here with Svelte in lieu of React.</p>
-<h2 id="What-it-is"><a href="#What-it-is" class="headerlink" title="What it is"></a>What it is</h2><p><img src="../../images/suspense/suspense%20demo.gif" alt="suspense demo"></p>
-<h1 id="Markup-and-semantics"><a href="#Markup-and-semantics" class="headerlink" title="Markup and semantics"></a>Markup and semantics</h1><p>The main screen which will hold the loaded image is handled with a suspense functionality:</p>
+<h3 id="Markup-and-semantics"><a href="#Markup-and-semantics" class="headerlink" title="Markup and semantics"></a>Markup and semantics</h3><p>The main screen which will hold the loaded image is handled with a suspense functionality:</p>
 <pre><code class="hljs html">let albums=[];
 
 function fetchAlbums(intents)&#123;
@@ -270,8 +271,6 @@ function fetchAlbums(intents)&#123;
 <li>completion is signalled (<code>done</code> or <code>failed</code>) before <code>timeout</code> milliseconds. In that case, the corresponding slot content (default slot or <code>error</code> slot) is displayed as soon as the completion signal is processed</li>
 <li>completion is not signalled before <code>timeout</code> milliseconds expires. In that case, the fallback content (e.g. the <code>fallback</code> slot content) will be displayed. When the default slot content signals completion, it will be displayed. When completion is signalled (<code>done</code> or <code>failed</code>), the corresponding slot content (default slot or <code>error</code> slot) is displayed as soon as the completion signal is processed</li>
 </ul>
-<p>The <code>Suspense</code> component behaviour is better summarized with the defining state machine:</p>
-<p><img src="../../graphs/suspense%20machine.png" alt="suspense finite state machine"></p>
 <p>The <code>Album</code> component also benefits from the suspense functionality:</p>
 <pre><code class="hljs javascript">&lt;ul <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"album"</span>&gt;
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"album-item"</span>&gt;</span>
@@ -293,7 +292,7 @@ function fetchAlbums(intents)&#123;
     <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"price album-item"</span>&gt;</span>Price:&#123;price&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"date album-item"</span>&gt;</span>Released:&#123;formatDate(date, "MMM Do YY")&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span></code></pre>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>The <code>Suspense</code> component admits the following props:</p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><p>The <code>Suspense</code> component admits the following props:</p>
 <ul>
 <li><code>timeout</code>: the number of milliseconds to wait before displaying the fallback slot content</li>
 <li><code>task</code>: a function to run on starting the <code>Suspense</code> component. That function will receive an object parameter <code>{done, failed}</code> which can be used to indicate termination or failure to the underlying suspense state machine. </li>
@@ -301,33 +300,9 @@ function fetchAlbums(intents)&#123;
 <p>The <code>Suspense</code> component also passes on the <code>intents</code> parameter to its children slots. The aforementioned parameter is an object with properties <code>{done, failed}</code> which can be used to indicate termination or failure to the underlying suspense state machine. Both properties are function which can also pass event data if necessary.  </p>
 <p>For instance, in the previous example, the <code>Album</code> component lazily loads an image. When the image is loaded, completion is signaled and the wrapping <code>&lt;a&gt;</code> DOM element is displayed. In this example, there is no need to pass data with the <code>done</code> or <code>failed</code> events. </p>
 <p>In the previous example too, in the main <code>App</code> component, the list of albums is fetched, using the <code>task</code> parameter of the <code>Suspense</code> component. When that is completed, the completion signal with the fetched albums as data is sent to the <code>Suspense</code> component and the album list is displayed. </p>
-<h2 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h2><p>I ran into some issues when developing the component, some of which are linked to Svelte, others to the DOM.</p>
-<p>Concerning Svelte:</p>
-<ul>
-<li>Svelte being template-based, there is no functional composition available. The next best thing is slot composition which is a very flexible mechanism, though the syntax of it can be confusing. In particular the necessity to pass parameters and handle variable scoping (which comes for free  with functions) requires to understand well the syntax proposed by Svelte.</li>
-<li><a href="https://github.com/sveltejs/svelte/issues/2080" target="_blank" rel="noopener">Component do not admit slots (yet)!!</a>. That is a strong limitation for this particular example, and leads to a component whose functionality is  not very robust (see below). </li>
-<li>I found what seems to be a bug in that imported variables are not </li>
-</ul>
-<p>DOM-wise:</p>
-<ul>
-<li>because of Svelte current limitations, we had to hide our default slot component by wrapping it in an extra <code>div</code> and use <code>display:none</code> on that div. However, that extra <code>div</code> can conflict  with the surrounding css, which it does in our examples (the surrounding <code>div</code> for an album is a flex container, which handles direct children — it would thus pass to handle a unique <code>div</code>  children instead of a list of <code>Album</code> children).</li>
-<li>we opted for a work-around, which is to display conditionally (with template <code>#if</code> logic) the default slot component. However this lead to some obscure errors such as <code>li0 is not defined</code>. I assumed this is connected to Svelte’s internal and did not pursue the matter further. For this demo, we ended up attached the <code>Suspense</code> component to the image loading, instea of the <code>ul</code> list element, to avoid that error. This is however less user-friendly — which is the goal of  Suspense in the first place.</li>
-</ul>
-<p>On the bright side, the targetted API which uses slots looks good:<br> <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">task</span>=<span class="hljs-string">&#123;fetchAlbums&#125;</span> <span class="hljs-attr">timeout</span>=<span class="hljs-string">10</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">Fallback</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"fallback"</span> /&gt;</span>
-  ... #Suuspended content
-<span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span> &gt;</span></code></pre></p>
-<p>For inline suspended content, it implies minimal to no modification of the ‘suspended’ component. In the <code>Album</code> case, we only added an <code>onload</code> handler. In the <code>App</code> case, we added the <code>run</code>  function to fetch data, separately from the view displaying the data, effectively decoupling the  view and the model within the template.</p>
-<p>However a usage which reuses existing components like:<br> <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">let:intents</span>=<span class="hljs-string">&#123;&#123;done,</span> <span class="hljs-attr">failed</span>&#125;&#125; <span class="hljs-attr">timeout</span>=<span class="hljs-string">0</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">Fallback</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"fallback"</span> /&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">Suspended</span> &#123;<span class="hljs-attr">intents</span>&#125; /&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span> &gt;</span></code></pre></p>
-<p>involves wrapping those components in a <code>Suspended</code> component to put <code>intents</code>  in scope.</p>
-<p>I am new to Svelte so I did get something wrong, I welcome your friendly and helpful comments (open an issue). Always happy to hear feedback.</p>
-<h2 id="Using-state-machines"><a href="#Using-state-machines" class="headerlink" title="Using state machines"></a>Using state machines</h2><p>I implemented <code>Suspense</code> with the <a href="https://github.com/brucou/kingly" target="_blank" rel="noopener">Kingly</a> state machine library. This is not strictly necessarily and the implementation can be replaced by a simple function with no dependency (that is a fundamental objective of Kingly). That function may actually be the result of compiling the Kingly machine, just like Svelte compiles its template. A state machine is but a template for behaviour.</p>
-<p>While using a formalized state machine may feel like too much for a simple behaviour like Suspense, the technique can however be generalized easily to more complex scenarios — only by modifying the underlying machine. </p>
-<p>A more complex scenario could be to implement a more sophisticated version of suspense which deals with a full range of lazy loading formula as described in this excellent <a href="https://css-tricks.com/the-complete-guide-to-lazy-loading-images/" target="_blank" rel="noopener">CSS tricks article</a>. </p>
-<p>Another complex scenario could be handling the synchronization/scheduling of competing content, similar to but with less flexibility than React Concurrent. This would be possible without any change in architecture, or impact in the Svelte compiler. All this is very preliminary but those are interesting tracks to follow.</p>
+<h2 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h2><p>Kingly machines can be compiled to standard standalone JavaScript functions. The size of the Kingly library is in this case become much less relevant. Kingly takes inspiration here from <a href="https://svelte.dev/" target="_blank" rel="noopener">Svelte</a>, the front-end framework which compiles itself away.</p>
+<p>While using a formalized state machine may feel like too much for a simple behaviour like Suspense, the technique can however be generalized easily to more complex scenarios — only by modifying the underlying machine. Using a Kingly state machine with Svelte is likely to improve Svelte’s testing history, which is mostly based on end-to-end tests. A Svelte component is a sum of behaviour, style and content. If the behaviour is implemented with a Kingly machine, input sequences for the machine can be generated automatically, and testing can be performed independently of the browser or Svelte. </p>
+<h2 id="Credit"><a href="#Credit" class="headerlink" title="Credit"></a>Credit</h2><p>The example is inspired from <a href="https://reactgo.com/tutorial-reactlazy-react-suspense/" target="_blank" rel="noopener">previous work</a> by <a href="https://twitter.com/saigowthamr" target="_blank" rel="noopener">Sai gowtham</a>.</p>
 
   
   
