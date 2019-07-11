@@ -425,7 +425,7 @@
 </li>
 </ul>
 <p>In short the history state allows to short-circuit the default fixed entry behaviour for a compound state, which is to follow the transition triggered by the <code>INIT</code> event. When transitioning to the history state, transition is towards the last seen state for the entered compound state.</p>
-<h3 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h3><h4 id="Format"><a href="#Format" class="headerlink" title="Format"></a>Format</h4><ul>
+<h3 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h3><h4 id="Format"><a href="#Format" class="headerlink" title="Format"></a><strong>Format</strong></h4><ul>
 <li>state names (from <code>fsmDef.states</code>) must be unique and be JavaScript strings</li>
 <li>event names (from <code>fsmDef.events</code>) must be unique and be JavaScript strings</li>
 <li>reserved states (like <code>INIT_STATE</code>) cannot be used when defining transitions</li>
@@ -443,7 +443,7 @@
 <li>all transitions for a given origin control state and triggering event must be defined in one row of <code>fsmDef.transitions</code></li>
 <li><code>fsmDef.settings</code> must include a <code>updateState</code> function covering the state machine’s extended state update concern.</li>
 </ul>
-<h4 id="Initial-event-and-initial-state"><a href="#Initial-event-and-initial-state" class="headerlink" title="Initial event and initial state"></a>Initial event and initial state</h4><p>By initial transition, we mean the transition with origin the machine’s default initial state.</p>
+<h4 id="Initial-event-and-initial-state"><a href="#Initial-event-and-initial-state" class="headerlink" title="Initial event and initial state"></a><strong>Initial event and initial state</strong></h4><p>By initial transition, we mean the transition with origin the machine’s default initial state.</p>
 <ul>
 <li>An initial transition must be configured:<ul>
 <li>by way of a starting control state defined at configuration time</li>
@@ -457,19 +457,19 @@
 <li><del>of all guards for such transitions, if any, at least one must be fulfilled to enable a<br>transition away from the initial control state</del></li>
 </ul>
 </li>
-<li>there is exactly one initial transition, whose only effect is to determine the starting<br>control state for the machine<ul>
+<li>there is exactly one initial transition, whose only effect is to determine the starting control state for the machine<ul>
 <li>the action on any such transitions is the <em>identity</em> action</li>
-<li>the control state resulting from the initial transition may be guarded by configuring<br><code>guards</code> for the initial transition</li>
+<li>the control state resulting from the initial transition may be guarded by configuring   <code>guards</code> for the initial transition</li>
 </ul>
 </li>
 <li>there are no incoming transitions to the reserved initial state</li>
 </ul>
 <p>Additionally the following applies:</p>
 <ul>
-<li>the initial event can only be sent internally (external initial events will be ignored, and the<br>machine will return <code>NO_OUTPUT</code>)</li>
+<li>the initial event can only be sent internally (external initial events will be ignored, and the machine will return <code>NO_OUTPUT</code>)</li>
 <li>the state machine starts in the reserved initial state</li>
 </ul>
-<h4 id="Coherence"><a href="#Coherence" class="headerlink" title="Coherence"></a>Coherence</h4><ul>
+<h4 id="Coherence"><a href="#Coherence" class="headerlink" title="Coherence"></a><strong>Coherence</strong></h4><ul>
 <li>the initial control state (<code>fsmDef.initialControlState</code>) must be a state declared in <code>fsmDef.states</code></li>
 <li>transitions featuring the initial event (<code>INIT_EVENT</code>) are only allowed for transitions involving compound states<ul>
 <li>e.g. <code>A -INIT_EVENT-&gt; B</code> iff A is a compound state or A is the initial state</li>
@@ -480,7 +480,7 @@
 <li>history pseudo states must be target states and refer to a given declared compound state</li>
 <li>there cannot be two transitions with the same <code>(from, event, predicate)</code> - sameness defined for predicate by referential equality</li>
 </ul>
-<h4 id="Semantical-contracts"><a href="#Semantical-contracts" class="headerlink" title="Semantical contracts"></a>Semantical contracts</h4><ul>
+<h4 id="Semantical-contracts"><a href="#Semantical-contracts" class="headerlink" title="Semantical contracts"></a><strong>Semantical contracts</strong></h4><ul>
 <li>The machine behaviour is as explicit as possible<ul>
 <li>if a transition is taken, and has guards configured, one of those guards must be fulfilled, i.e. guards must cover the entire state space when they exist</li>
 </ul>
