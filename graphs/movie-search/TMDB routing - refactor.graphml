@@ -99,8 +99,8 @@
               <y:Geometry height="40.0" width="80.0" x="85.75" y="408.18115234375"/>
               <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
               <y:BorderStyle color="#000000" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="52.69140625" x="13.654296875" y="3.298828125">Movie 
-Querying<y:LabelModel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="39.34375" x="20.328125" y="3.298828125">Movie 
+Query<y:LabelModel>
                   <y:SmartNodeLabelModel distance="4.0"/>
                 </y:LabelModel>
                 <y:ModelParameter>
@@ -129,7 +129,6 @@ Querying<y:LabelModel>
       </graph>
     </node>
     <edge id="e0" source="n0" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="20.0" tx="-9.75" ty="-246.291748046875"/>
@@ -155,7 +154,6 @@ Querying<y:LabelModel>
       </data>
     </edge>
     <edge id="n1::e1" source="n1::n1" target="n1::n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="19.96875" sy="-10.0" tx="40.0" ty="0.0">
@@ -172,7 +170,6 @@ Querying<y:LabelModel>
       </data>
     </edge>
     <edge id="n1::e2" source="n1::n1" target="n1::n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="20.0" tx="0.0" ty="-20.0"/>
@@ -187,7 +184,6 @@ Querying<y:LabelModel>
       </data>
     </edge>
     <edge id="n1::e3" source="n1::n1" target="n1::n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="19.96875" sy="10.0" tx="40.0" ty="0.0">
@@ -205,13 +201,12 @@ Querying<y:LabelModel>
       </data>
     </edge>
     <edge id="n1::e4" source="n1::n3" target="n1::n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="-20.0" tx="0.0" ty="20.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="right" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" horizontalTextPosition="center" iconTextGap="4" modelName="side_slider" preferredPlacement="right" ratio="0.0" textColor="#000000" verticalTextPosition="bottom" visible="true" width="186.056640625" x="2.0" y="-58.2021484375">MOVIE_DETAILS_DESELECTED
+          <y:EdgeLabel alignment="right" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" horizontalTextPosition="center" iconTextGap="4" modelName="side_slider" preferredPlacement="right" ratio="0.0" textColor="#000000" verticalTextPosition="bottom" visible="true" width="274.767578125" x="2.0" y="-58.2021484375">MOVIE_DETAILS_DESELECTED [shouldProcess]
 / display results screen, 
   update route<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="anywhere" side="right" sideReference="relative_to_edge_flow"/>
           </y:EdgeLabel>
@@ -220,7 +215,6 @@ Querying<y:LabelModel>
       </data>
     </edge>
     <edge id="n1::e5" source="n1::n2" target="n1::n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-40.0" sy="0.0" tx="-40.0" ty="0.0">
@@ -229,7 +223,7 @@ Querying<y:LabelModel>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="left" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" horizontalTextPosition="center" iconTextGap="4" modelName="side_slider" preferredPlacement="right" ratio="0.0" textColor="#000000" verticalTextPosition="bottom" visible="true" width="136.076171875" x="-102.5712890625" y="-64.8046875">MOVIE_SELECTED
+          <y:EdgeLabel alignment="left" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" horizontalTextPosition="center" iconTextGap="4" modelName="side_slider" preferredPlacement="right" ratio="0.0" textColor="#000000" verticalTextPosition="bottom" visible="true" width="201.408203125" x="-135.2373046875" y="-64.8046875">MOVIE_SELECTED [shouldProcess]
 / display loading screen, 
   query database, 
   update route<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="anywhere" side="right" sideReference="relative_to_edge_flow"/>
