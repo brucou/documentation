@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Introduction — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Movie details — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Introduction — Kingly.js">
+  <meta property="og:title" content="Movie details — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Introduction — Kingly.js">
+  <meta name="twitter:title" content="Movie details — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -158,15 +158,208 @@
       
         <h2>
           
-          Testing
+          Tutorials
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
           
         </h2>
         <ul class="menu-root">
   
     
     
+      
+        <li><h3>Introduction</h3></li>
+      
+      
+      
+      
+    
     <li>
-      <a href="/documentation/v1/testing/index.html" class="sidebar-link current">Introduction</a>
+      <a href="/documentation/v1/tutorials/index.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Password meter</h3></li>
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-implementation.html" class="sidebar-link">Machine implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Chess game</h3></li>
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>Movie database interface</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link">Top level breakdown</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie querying</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link current">Movie details</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
     </li>
   
 </ul>
@@ -178,24 +371,29 @@
 
 
 
-<div class="content testing with-sidebar ">
+<div class="content tutorials with-sidebar ">
   
     
     
   
   
-    <h1>Introduction</h1>
+    <h1>Movie details</h1>
   
   
-    <p>I am currently writing an article dedicated to this exciting subject. Follow the dedicated account on <a href="https://twitter.com/bricoi1" target="_blank" rel="noopener">twitter</a> to be informed when the article is published! </p>
-<p><img src="../../images/coming-soon/jet-plane-under-construction-royalty-free-vector-clip-art-39637.png" alt></p>
+    <p>Applying the same process of determining control states and extended states, we reach the following final modelization:</p>
+<p><img src="../../graphs/movie-search/TMDB%20routing%20and%20movie%20querying%20and%20movie%20detail.png" alt="TMDB with routing"></p>
+<p>At this level, the equivalent code becomes seriously hard to follow, due to branching hell (to make an analogy with callback hell).</p>
 
   
   
     <div class="next-links">
       
       
+        <span>← <a href="/documentation/v1/tutorials/TMDB-movie-query.html">Movie querying</a></span>
       
+      
+      
+        <span style="float: right;"><a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html">What we learnt</a> →</span>
       
     </div>
   
