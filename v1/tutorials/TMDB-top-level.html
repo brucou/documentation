@@ -328,6 +328,17 @@
       <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
     </li>
   
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie querying</a>
+    </li>
+  
 </ul>
 
       
@@ -467,12 +478,13 @@
   return...    
 &#125;</code></pre>
 <p>And that gives us the following modelization, if you add to the picture all the events handled by the machine, and the corresponding actions:</p>
+<label for="mn-demo-1" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-1" class="margin-toggle"><span class="marginnote"></span>
 <p><img src="../../graphs/movie-search/TMDB%20start.png" alt="top level state machine"></p>
-<p>You will recognize <code>fsmB</code> as ruling over the computation of commands in the control state <em>init</em>, and <code>fsmA</code> as the ruler when the machine is in the control state <em>TMDB app</em>. We went a bit fast here, but it should be easy for you by reviewing the specifications to check the validity of the modelization. For instance, the following arrow of the state machine graph:</p>
+<p>You will recognize <code>fsmB</code> as ruling over the computation of commands in the control state <em>init</em>, and <code>fsmA</code> as the ruler when the machine is in the control state <em>TMDB app</em>. As a reminder of our visual formalism, the following arrow of the state machine graph:</p>
 <pre><code class="hljs text">QUERY_CHANGED [shouldProcess]
 / ??</code></pre>
-<p>expresses the fact that, in the right machine state (determined by the <code>shouldProcess</code> predicate), when the value of the input field changes, e.g. when the user types in, the application must execute some commands, which we have not determined yet, hence the interrogation marks <code>??</code>. The guard <code>shouldProcess</code> prevents a <code>QUERY_CHANGED</code> event from being processed when for instance the interface displays a movie detail view in which the content of the query input field <strong>cannot</strong> be changed. In other words, the guard protects us against processing semantically invalid or unexpected events. This helps <strong>robustness</strong>, which is defined as the ability of a computer system to cope with errors during execution and cope with <strong>erroneous inputs</strong>.</p>
-<p>Note that we have completely explicited <code>fsmB</code> but only partially explicited <code>fsmA</code> and <code>shouldProcess</code> not at all. However, we obtained a partial implementation which already fulfills a small part of our specification:</p>
+<p>expresses the fact that, in some conditions (determined by the <code>shouldProcess</code> predicate), when the value of the input field changes, e.g. when the user types in, the application must execute some commands, which we have not determined yet, hence the interrogation marks <code>??</code>. The guard <code>shouldProcess</code> prevents a <code>QUERY_CHANGED</code> event from being processed when it should not. That is the case for instance when the interface displays a movie detail view in which the content of the query input field <strong>cannot</strong> be changed because it is not accessible. In other words, the guard protects us against processing semantically invalid or unexpected events. This helps <strong>robustness</strong>, which is defined as the ability of a computer system to cope with errors during execution and cope with <strong>erroneous inputs</strong>. </p>
+<p>Note that we have completely explicited <code>fsmB</code> but only partially explicited <code>fsmA</code>. We have not explicited at all the <code>shouldProcess</code> functions, and the commands to compute as a result of events processed by <code>fsmA</code>.<br>However, we obtained a partial implementation which already fulfills a small part of our specification:</p>
 <ul>
 <li>running <code>fsm</code> with a routing event whose embedded url is not a TMDB url should result in <code>NO_OUTPUT</code></li>
 </ul>

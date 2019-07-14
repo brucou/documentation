@@ -328,6 +328,17 @@
       <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link current">Routing</a>
     </li>
   
+    
+    
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie querying</a>
+    </li>
+  
 </ul>
 
       
@@ -372,7 +383,7 @@
 </table>
 </div>
 <p>This, in addition to the requirements about loading screens, gives us a more explicit <code>fsmA</code>:</p>
-<label for="mn-demo-6" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-6" class="margin-toggle"><span class="marginnote"><p>Yes, we could do away in <code>fsmA</code>‘s implementation with adding the <em>ROUTING</em> control state, without loosing semantics. We do need the eventless <em>ROUTING</em> state though to express <code>fsmA</code> semantics in the equivalent state machine, so we keep it here to allow for direct comparison.</p>
+<label for="mn-demo-9" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-9" class="margin-toggle"><span class="marginnote"><p>Yes, we could do away in <code>fsmA</code>‘s implementation with adding the <em>ROUTING</em> control state, without loosing semantics. We do need the eventless <em>ROUTING</em> state though to express <code>fsmA</code> semantics in the equivalent state machine, so we keep it here to allow for direct comparison.</p>
 </span>
 <pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsmA</span>(<span class="hljs-params">event</span>)</span>&#123;
   <span class="hljs-keyword">if</span> (controlState === TMDB_APP) &#123;
@@ -442,6 +453,8 @@
     (...) <span class="hljs-comment">// no changes</span>
 &#125;</code></pre>
 <p>Then we collapse the two aforementioned control states into a new one <code>MOVIE_QUERY</code> (and add an <code>extendedState</code> variable to the <code>controlState</code> variable in closure of the top level <code>fsm</code> — not visible here):</p>
+<label for="mn-demo-16" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-16" class="margin-toggle"><span class="marginnote"><p>Yes, we could refactor further and join together the <code>matches(route...)</code> branches and conserve semantics. We won’t. It is beneficial when we read a machine to be able to match it quickly to the specifications. Because our specifications mention three routes with differentiated behaviour, we keep those three routes visible in three separate branches. </p>
+</span>
 <pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsmA</span>(<span class="hljs-params">event</span>)</span>&#123;
   <span class="hljs-keyword">if</span> (controlState === TMDB_APP) &#123;
     controlState = ROUTING;
@@ -460,6 +473,14 @@
       controlState = MOVIE_QUERY
       extendedState = updateState(extendedState, &#123;query&#125;)
       <span class="hljs-keyword">return</span> fsmA(event)
+    &#125;
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (matches(route, <span class="hljs-string">'/:query/:id'</span>) &#123;
+      controlState = MOVIE_DETAIL
+      <span class="hljs-keyword">return</span> [
+        displayLoadingScreen(query, id),
+        queryTMDB(query),
+        queryDetailTMDB(id)
+      ]
     &#125;
     <span class="hljs-keyword">else</span> &#123;
       <span class="hljs-comment">// Unexpected or invalid route</span>
@@ -494,8 +515,15 @@
 &#125;</code></pre>
 <p>The newly introduced <code>extendedState</code> allows us to collapse several control states into one, provided that the variability in the computation performed in those control states in entirely captured by <code>extendedState</code>. In other words, instead of expressing the difference in the computations through the <code>controlState</code> variable as we first did, we parameterize that difference with the <code>extendedState</code> variable. For this to work, we need to have computations that are sufficiently similar to be equal, up to a parameter (here <code>query</code> is that parameter).</p>
 <p>Reducing the number of control states gives us graphs which are shorter, more readable, and easier to check against specifications.</p>
-<p>It is important also to understand the origin, and intended meaning of those two kinds of state. So let’s start one more time from the basics. Our specifications lead to a <strong>procedure</strong> between commands to execute and an event occurring in the interface: <code>commands = fsm(event)</code>. Depending on past events, the same event newly occurring may lead to executing different commands. We define the state of <code>fsm</code> as the variable <code>state</code> that captures the variability in the computation of commands. That means exactly that <code>state</code> allows us to define a <strong>pure function</strong> $h$ such that $commands = h(state, event)$ and <code>commands = fsm(event)</code> are simultaneously true all the time. Reread that as many times as necessary till it sinks in. State is a thing which <strong>gives us a pure function when we don’t have one</strong>.</p>
-<p>Writing <code>f</code> as a Kingly state machine means that we are able to extract from <code>state</code>, a <code>controlState</code> whose value uniquely determines the computation to perform. So $commands = h’(controlState, extendedState, event)$, where for each control state, $h’$ is replaced by a $h_{[controlState]}$ to perform the equivalent computation $h_{[controlState]}(extendedState, event)$. This is exactly what we have strived to exemplify so far with all the <code>if/then/else</code> branching and the <code>fsmX</code>. So control states allow to pick the computation to perform, extended state parameterizes the chosen computation. This may sound very theoretical but it sinks in through abundance of examples and practice.</p>
+<p>It is important also to understand the origin, and intended meaning of those two kinds of state. So let’s start one more time from the basics. Our specifications lead to a <strong>procedure</strong> between commands to execute and an event occurring in the interface: <code>commands = fsm(event)</code>. Depending on past events, the same event newly occurring may lead to executing different commands. We define the state of <code>fsm</code> as the variable <code>state</code> that captures the variability in the computation of commands. That means exactly that <code>state</code> allows us to define a <strong>pure function</strong> $g$ such that $commands = g(state, event)$ and <code>commands = fsm(event)</code> are simultaneously true all the time. Reread that as many times as necessary till it sinks in. State is a thing which <strong>gives us a pure function when we don’t have one</strong>.</p>
+<p>Writing <code>f</code> as a Kingly state machine means that we are able to extract from <code>state</code>, a <code>controlState</code> whose value uniquely determines the computation to perform. So $commands = g’(controlState, extendedState, event)$, where for each control state, $g’$ is replaced by a $g_{[controlState]}$ to perform the equivalent computation $g_{[controlState]}(extendedState, event)$. This is exactly what we have strived to exemplify so far with all the <code>if/then/else</code> branching and the <code>fsmX</code>. Control states allow to pick the computation to perform, extended state parameterizes the chosen computation. This may sound very theoretical but it sinks in through abundance of examples and practice. The idea is to reach a point where you model the behaviour of your interface directly with the state machine formalism, without passing by the code. This leads to robust code because:</p>
+<ul>
+<li>it is easy to introduce mistakes in our hand-written code with the abundance of branching to handle</li>
+<li>it may be hard to navigate that hand-written code to track which part of our code participates in implementing a given part of our specifications </li>
+<li>it is relatively easy to navigate a state machine modelization and check the described behaviour against specifications</li>
+<li>with experience, it is easier and faster to write the state machine corresponding to the sought behaviour vs. hand-writing it </li>
+<li>as importantly, it is easier to correctly update the state machine modelization than it is to modify a code with a lot of logical branches</li>
+</ul>
 <p>By the way, the updated machine visualization after our refactoring is as follows:</p>
 <p><img src="../../graphs/movie-search/TMDB%20routing%20-%20refactor.png" alt="TMDB with routing refactored"></p>
 <p>Additionally we also fulfill a little bit more of our specifications. Previously, we fulfilled:</p>
@@ -507,7 +535,7 @@
 <li>running <code>fsm</code> with a TMDB routing event of the shape ‘/‘ should result in displaying a loading screen, and querying the database for popular movies</li>
 <li>running <code>fsm</code> with a TMDB routing event of the shape ‘/:query’ should result in displaying a loading screen, and querying the database for movies related to <code>query</code> </li>
 </ul>
-<p><strong>TO BE CONINUED</strong></p>
+<p>Let’s refine further.</p>
 
   
   
@@ -517,6 +545,8 @@
         <span>← <a href="/documentation/v1/tutorials/TMDB-top-level.html">Top level breakdown</a></span>
       
       
+      
+        <span style="float: right;"><a href="/documentation/v1/tutorials/TMDB-movie-query.html">Movie querying</a> →</span>
       
     </div>
   
