@@ -52,9 +52,8 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
-      <a class="menu-button"></a>
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -263,7 +262,7 @@
   <span class="hljs-attr">command</span>: <span class="hljs-string">"render"</span>,
   <span class="hljs-attr">params</span>: n
 &#125;</code></pre>
-<label for="mn-demo-4" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-4" class="margin-toggle"><span class="marginnote"><p><img src="../../graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly%20selected%20kingly.png" alt="kingly-favoured ui architecture"></p>
+<label for="mn-demo-1" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-1" class="margin-toggle"><span class="marginnote"><p><img src="../../graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly%20selected%20kingly.png" alt="kingly-favoured ui architecture"></p>
 </span>
 <p>We just describe one testing strategy for the Kingly’s machine: produce input sequences, run them through the machine, compare the resulting output sequences to the expected output sequences. In this simple case, we have a formula for the output sequences. We call that an <strong>oracle</strong>, not in honour of a famous database company, but alluding to a “priest or priestess acting as a medium through whom advice or prophecy was sought from the gods in classical antiquity”. An oracle is a function which applied to an input sequence gives us the expected output sequences.</p>
 <p>Our test space for the <code>e+</code> is infinite. We need only pick a number $n$ of repetitions to describe our test sequence so the test space is equivalent to ($~[1, \infty[$), and we won’t be going through an infinite test space in finite time, so we will naturally only generate a limited amount of tests. Ideally we pick those tests so that they maximize our confidence in the good behaviour of our application, or identify bugs in our implementation. One way to do this here would be to pick a random number $n$, generate the sequence and compare the results with the oracle. This technique is called <strong>random testing</strong> and belongs to the statistical testing techniques. Random testing may be used to eliminate the bias from the tester when manually picking input sequences from a large test space.</p>
@@ -291,6 +290,21 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

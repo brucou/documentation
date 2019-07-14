@@ -52,9 +52,8 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
-      <a class="menu-button"></a>
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -428,10 +427,7 @@
 <p>The first two events do not require anything special to handle. </p>
 <p>For <code>SEARCH_RESULTS_RECEIVED</code> and <code>SEARCH_ERROR_RECEIVED</code>, we need to know which is the latest in-flight query. For the same event, we have two different possible set of commands: we have a piece of state! As we said before, that piece of state can be either in the form of control states or part of the extended state. If we created new control states to handle those events, the posterior computation would be quite similar. Extended state is a better choice here. A guard, appropriately called <code>isLatest</code>, will help handle the differentiated treatment.</p>
 <p>On the other hand, the <code>MOVIE_SELECTED</code> event leads to two possible set of commands: we have a piece of state! Control state or extended state? If results are not displayed, there is no commands to execute and the subsequent behaviour of the interface on subsequent events do not change vs. before receiving the event. Conversely, if results are displayed, and the user triggers the event, the behaviour is significantly different: we must query anew the database, display a loading screen, and so on. Using control states is a better choice.</p>
-<p>Cutting corners, and long story short, we eventually reach the following modelization:</p>
-<label for="mn-demo-6" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-6" class="margin-toggle"><span class="marginnote"><p>Note that we no longer have <code>shouldProcess</code> guards as the new control states contains the information we need to decide on the control flow.</p>
-</span>
-<p><img src="../../graphs/movie-search/TMDB%20routing%20and%20movie%20querying.png" alt="TMDB with routing"></p>
+<p>Cutting corners, and long story short, we eventually reach the following modelization:<br><img src="../../graphs/movie-search/TMDB%20routing%20and%20movie%20querying.png" alt="TMDB with routing"></p>
 <p><strong>TODO</strong> show a part of the change of the code with lots of ellipsis </p>
 <p>Review the modelization and check we are indeed fulfilling additional portions of our specifications related to reaching the screen displaying the details of a specific movie. </p>
 <p>Let’s finalize our refinement process.</p>
@@ -467,6 +463,21 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

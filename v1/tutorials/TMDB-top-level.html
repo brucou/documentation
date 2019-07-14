@@ -52,9 +52,8 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
-      <a class="menu-button"></a>
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -501,7 +500,7 @@
   return...    
 &#125;</code></pre>
 <p>And that gives us the following modelization, if you add to the picture all the events handled by the machine, and the corresponding actions:</p>
-<label for="mn-demo-3" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-3" class="margin-toggle"><span class="marginnote"></span>
+<label for="mn-demo-5" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-5" class="margin-toggle"><span class="marginnote"></span>
 <p><img src="../../graphs/movie-search/TMDB%20start.png" alt="top level state machine"></p>
 <p>You will recognize <code>fsmB</code> as ruling over the computation of commands in the control state <em>init</em>, and <code>fsmA</code> as the ruler when the machine is in the control state <em>TMDB app</em>. As a reminder of our visual formalism, the following arrow of the state machine graph:</p>
 <pre><code class="hljs text">QUERY_CHANGED [shouldProcess]
@@ -545,6 +544,21 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
