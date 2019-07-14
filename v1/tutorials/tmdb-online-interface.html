@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Installation — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Specifications — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Installation — Kingly.js">
+  <meta property="og:title" content="Specifications — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Installation — Kingly.js">
+  <meta name="twitter:title" content="Specifications — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -198,7 +198,7 @@
       
     
     <li>
-      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link current">Installation</a>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
     </li>
   
     
@@ -303,7 +303,7 @@
       
     
     <li>
-      <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
+      <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link current">Specifications</a>
     </li>
   
     
@@ -343,36 +343,87 @@
     
   
   
-    <h1>Installation</h1>
+    <h1>Specifications</h1>
   
   
-    <h2 id="Browser-compatibility"><a href="#Browser-compatibility" class="headerlink" title="Browser compatibility"></a>Browser compatibility</h2><p>Kingly API exposes a <code>makeWebComponentFromFSM</code> function requiring <a href="https://developers.google.com/web/fundamentals/web-components/customelements" target="_blank" rel="noopener">custom-elements V1</a> support, which is supported by <a href="https://caniuse.com/#feat=custom-elementsv1" target="_blank" rel="noopener">most browsers</a> .</p>
-<h2 id="Release-Notes"><a href="#Release-Notes" class="headerlink" title="Release Notes"></a>Release Notes</h2><p>Latest stable version: 0.19</p>
-<p>See release notes on <a href="https://github.com/brucou/kingly/releases" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Global-lt-script-gt-Include"><a href="#Global-lt-script-gt-Include" class="headerlink" title="Global &lt;script&gt; Include"></a>Global <code>&lt;script&gt;</code> Include</h2><p>It is possible to directly include the library in a script tag in the browser. <code>Kingly</code> will be registered as a global variable.</p>
-<p>For prototyping or learning purposes, you can use the latest version with:</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/kingly"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<p>For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/kingly@0.19.0/dist/kingly.umd.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<p>Note that the Kingly library will throw when it encounters unexpected situations. You should catch those exceptions is production till the version 1.0 is released (scheduled for August 2019). However, I consider the present core API pretty much final. Expected changes revolve around differentiated builds, logging, and other niceties. </p>
-<p>If you are using native ES Modules, there is also an ES Modules compatible build:</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="javascript">
-  <span class="hljs-keyword">import</span> &#123;createStateMachine, makeWebComponentFromFsm, decorateWithEntryActions, traceFSM&#125; <span class="hljs-keyword">from</span> 
-  <span class="hljs-string">'https://cdn.jsdelivr.net/npm/kingly@0.19.0/dist/kingly.es.min.js'</span>
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><pre><code class="hljs bash">$ npm install kingly</code></pre>
-<h2 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h2><p>All UMD builds can be used directly as an AMD module.</p>
+    <p>In this tutorial, we will implement an online interface to <a href="https://www.themoviedb.org/?language=en-US" target="_blank" rel="noopener">The Movie Database (TMDB)</a>. In doing so, we will illustrate an analysis technique called <a href="http://people.cs.pitt.edu/~chang/153/c06design/c04.htm" target="_blank" rel="noopener">step-wise refinement</a>. This top-down approach fits well state machine modelling and naturally leads to a breakdown on the application logic in a hierarchy of states. We will also use this tutorial to show how routing can be easily implemented with state machines. With respect to the state machine formalism, we will make use of compound states, and eventless states.</p>
+<h2 id="Interface-behaviour"><a href="#Interface-behaviour" class="headerlink" title="Interface behaviour"></a>Interface behaviour</h2><p>The online interface to the TMDB mainly consists of an input field through which the user enters the name of a movie. The behaviour is as follows:</p>
+<ul>
+<li>As the user types in, requests are issued to the TMDB database through its defined REST API, and the received responses are displayed with a maximum of 20 movies per request. </li>
+<li>Users can additionally pick one of the displayed movie, which leads to issueing another request to TMDB, this time to get additional details about the movie, such as the synopsis of the movie. </li>
+<li>On receiving that request, the extra movie details are displayed. The user can then click to discard the detailed movie view and return to the previous screen.</li>
+<li>Request may fail in which case an error screen is displayed</li>
+</ul>
+<h2 id="Routes"><a href="#Routes" class="headerlink" title="Routes"></a>Routes</h2><p>Additionally the following routes will be defined, allowing to bookrmark a search:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Route</th>
+<th style="text-align:left">Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>TMDB_APP_SLUG/</code></td>
+<td style="text-align:left">Screen with most popular movies</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TMDB_APP_SLUG/:query</code></td>
+<td style="text-align:left">Screen with movies related to <code>query</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TMDB_APP_SLUG/:query:/:id</code></td>
+<td style="text-align:left">Screen with detail of the movie identified by <code>id</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><p>Follows some screen samples of the application in different states:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Route</th>
+<th style="text-align:center">Fetching</th>
+<th style="text-align:center">Failure</th>
+<th style="text-align:center">Success</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">‘/‘</td>
+<td style="text-align:center"><img src="../../images/TMDB/1app-screenshot-init-pending-1555417082792.jpg" alt="default fetching"></td>
+<td style="text-align:center"><img src="../../images/TMDB/1app-screenshot-init-error-1555421997658.jpg" alt="default fetch fails"></td>
+<td style="text-align:center"><img src="../../images/TMDB/1app screenshot init - success-1555421998300.png" alt="default fetch success"></td>
+</tr>
+<tr>
+<td style="text-align:left">‘/:query’</td>
+<td style="text-align:center"><img src="../../images/TMDB/app%20screenshot%20query%20-%20pending.png" alt="query fetching"></td>
+<td style="text-align:center"><img src="../../images/TMDB/app%20screenshot%20query%20-%20error.png" alt="query fetching fails"></td>
+<td style="text-align:center"><img src="../../images/TMDB/app%20screenshot%20query%20-%20success.png" alt="query fetching success"></td>
+</tr>
+<tr>
+<td style="text-align:left">‘/:query/:id’</td>
+<td style="text-align:center"><img src="../../images/TMDB/1app-screenshot-query-detail-pending-1555445339416.jpg" alt="movie detail fetching"></td>
+<td style="text-align:center"><img src="../../images/TMDB/1app-screenshot-query-detail-error-1555445338489.jpg" alt="movie detail fetch fails"></td>
+<td style="text-align:center"><img src="../../images/TMDB/1app-screenshot-query-detail-success-1555445338774.jpg" alt="movie detail fetch fails"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
   
   
     <div class="next-links">
       
       
-        <span>← <a href="/documentation/v1/tutorials/counter-application.html">Counter application</a></span>
+        <span>← <a href="/documentation/v1/tutorials/chess-game-ultimate.html">Chess game - more features</a></span>
       
       
       
-        <span style="float: right;"><a href="/documentation/v1/tutorials/model-with-machines.html">Implementing UIs with state machines</a> →</span>
+        <span style="float: right;"><a href="/documentation/v1/tutorials/TMDB-top-level.html">Top level breakdown</a> →</span>
       
     </div>
   
