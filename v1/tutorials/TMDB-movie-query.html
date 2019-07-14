@@ -357,7 +357,55 @@
     <h1>Movie querying</h1>
   
   
-    
+    <p>We have by now handled the initial routing event and the displaying of a loading screen and querying of the TMDB database. Let’s continue our mapping efforts as per specifications:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Event</th>
+<th style="text-align:left">Commands</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>ROUTE_CHANGED</code></td>
+<td style="text-align:left">none. We already handled routing.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>QUERY_CHANGED</code></td>
+<td style="text-align:left">We should display again a loading screen, query anew the database, and update the browser’s url</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SEARCH_RESULTS_RECEIVED</code></td>
+<td style="text-align:left">We should display those results. The small trap to avoid is not to display the wrong results. Because we may have several queries in-flight, we have to check that the results we received correspond to the latest query performed.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SEARCH_ERROR_RECEIVED</code></td>
+<td style="text-align:left">We should display the error screen. As before, we may have several queries in-flight, we have to check that the error we received correspond to the latest query performed.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>MOVIE_SELECTED</code></td>
+<td style="text-align:left">We should query the database for the movie details but only if the event corresponds to an action the user can perform in the first place, i.e when movies have already been displayed.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>MOVIE_DETAILS_DESELECTED</code></td>
+<td style="text-align:left">We should display the results screen for the previous TMDB movies querying, but again only if the corresponding user action is possible. The user action is not possible when the movie details have not been displayed yet.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SEARCH_RESULTS_MOVIE_RECEIVED</code></td>
+<td style="text-align:left">You should get the gist by now</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SEARCH_ERROR_MOVIE_RECEIVED</code></td>
+<td style="text-align:left">You should get the gist by now</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The first two events do not require anything special to handle. </p>
+<p>For <code>SEARCH_RESULTS_RECEIVED</code> and <code>SEARCH_ERROR_RECEIVED</code>, we need to know which is the latest in-flight query. For the same event, we have two different possible set of commands: we have a piece of state! As we said before, that piece of state can be either in the form of control states or part of the extended state. If we created new control states to handle those events, the posterior computation would be quite similar. Extended state is a better choice here. A guard, appropriately called <code>isLatest</code>, will help handle the differentiated treatment.</p>
+<p>The <code>MOVIE_SELECTED</code> event also displays two different</p>
+
   
   
     <div class="next-links">

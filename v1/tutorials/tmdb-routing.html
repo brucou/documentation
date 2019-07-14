@@ -429,7 +429,9 @@
   &#125;
 &#125;</code></pre>
 <p>Note that we now have <code>fsmC</code>, <code>fsmD</code> and <code>fsmE</code> appearing to deal with particular states of the <code>fsmA</code> computation, and that we left that undefined for now. As before, we do not know yet the explicit form they take, though we do know which events they handle and the commands resulting from processing those events.</p>
-<p>This can be summarized by the following state machine which has similar semantics (we did not represent here any control state’s self-loops for readability purposes):</p>
+<p>This can be summarized by the following state machine which has similar semantics:</p>
+<label for="mn-demo-16" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-16" class="margin-toggle"><span class="marginnote"><p>For readability purposes, going further we are not going to represent control state’s self-loops till we are done with our modelization. For instance, the flow related to the processing of the <code>SEARCH_RESULTS_RECEIVED</code> event in the <em>Movie Custom Query</em> control state will not be represented.</p>
+</span>
 <p><img src="../../graphs/movie-search/TMDB%20routing.png" alt="TMDB with routing"></p>
 <p>You should be able to see confirmed a pattern now in our implementation. According to our control state, we delegate the processing of events to dedicated functions <code>fsmX</code>. This is generally referred to as <a href="https://en.wikipedia.org/wiki/State_pattern" target="_blank" rel="noopener">the state pattern</a>.</p>
 <p>One more thing. Have a look at the computed commands for the <code>MOVIE_DEFAULT_QUERY</code> and <code>MOVIE_CUSTOM_QUERY</code> control states. We can factor the two computations into one by adding an extra parameter. First, we refactor <code>queryPopularTMDB</code> and <code>queryTMDB</code> into <code>queryMovies</code>:</p>
@@ -453,7 +455,7 @@
     (...) <span class="hljs-comment">// no changes</span>
 &#125;</code></pre>
 <p>Then we collapse the two aforementioned control states into a new one <code>MOVIE_QUERY</code> (and add an <code>extendedState</code> variable to the <code>controlState</code> variable in closure of the top level <code>fsm</code> — not visible here):</p>
-<label for="mn-demo-16" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-16" class="margin-toggle"><span class="marginnote"><p>Yes, we could refactor further and join together the <code>matches(route...)</code> branches and conserve semantics. We won’t. It is beneficial when we read a machine to be able to match it quickly to the specifications. Because our specifications mention three routes with differentiated behaviour, we keep those three routes visible in three separate branches. </p>
+<label for="mn-demo-21" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-21" class="margin-toggle"><span class="marginnote"><p>Yes, we could refactor further and join together the <code>matches(route...)</code> branches and conserve semantics. We won’t. It is beneficial when we read a machine to be able to match it quickly to the specifications. Because our specifications mention three routes with differentiated behaviour, we keep those three routes visible in three separate branches. </p>
 </span>
 <pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsmA</span>(<span class="hljs-params">event</span>)</span>&#123;
   <span class="hljs-keyword">if</span> (controlState === TMDB_APP) &#123;
