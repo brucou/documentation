@@ -336,7 +336,7 @@
       
     
     <li>
-      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie querying</a>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie query</a>
     </li>
   
     
@@ -451,7 +451,7 @@
 </tbody>
 </table>
 </div>
-<p>Now let’s see how we can express the relationship between events and commands. Remember that we want to arrive to a procedure <code>fsm</code> such <code>commands = fsm(event)</code>, with <code>fsm</code> having encapsulated state. </p>
+<p>Now let’s see how we can express the relationship between events and commands. Remember that we want to arrive to a procedure <code>fsm</code> such that <code>commands = fsm(event)</code>, with <code>fsm</code> having encapsulated state. </p>
 <p>To start with, our specifications dictate that routing to the appropriate url should trigger the display of the user interface. In the absence of that event, it does not matter which other events are sent to the machine, there will be no commands to execute (indicated in Kingly by <code>NO_OUTPUT</code>). In other words, using pseudo code, <code>fsm</code> is such that:</p>
 <pre><code class="hljs haskell"><span class="hljs-title">fsm</span> :: <span class="hljs-type">Event</span> -&gt; <span class="hljs-type">Commands</span>
 | <span class="hljs-keyword">if</span> there was a past routing event with the <span class="hljs-type">TMDB</span> slug     (&lt;- state reflecting past events)
@@ -506,7 +506,8 @@
 <pre><code class="hljs text">QUERY_CHANGED [shouldProcess]
 / ??</code></pre>
 <p>expresses the fact that, in some conditions (determined by the <code>shouldProcess</code> predicate), when the value of the input field changes, e.g. when the user types in, the application must execute some commands, which we have not determined yet, hence the interrogation marks <code>??</code>. The guard <code>shouldProcess</code> prevents a <code>QUERY_CHANGED</code> event from being processed when it should not. That is the case for instance when the interface displays a movie detail view in which the content of the query input field <strong>cannot</strong> be changed because it is not accessible. In other words, the guard protects us against processing semantically invalid or unexpected events. This helps <strong>robustness</strong>, which is defined as the ability of a computer system to cope with errors during execution and cope with <strong>erroneous inputs</strong>. </p>
-<p>Note that we have completely explicited <code>fsmB</code> but only partially explicited <code>fsmA</code>. We have not explicited at all the <code>shouldProcess</code> functions, and the commands to compute as a result of events processed by <code>fsmA</code>.<br>However, we obtained a partial implementation which already fulfills a small part of our specification:</p>
+<p>Note that we have completely explicited <code>fsmB</code> but only partially explicited <code>fsmA</code>. We have not explicited at all the <code>shouldProcess</code> functions, and the commands to compute as a result of events processed by <code>fsmA</code>.</p>
+<p>However, we obtained a partial implementation which already fulfills a small part of our specification:</p>
 <ul>
 <li>running <code>fsm</code> with a routing event whose embedded url is not a TMDB url should result in <code>NO_OUTPUT</code></li>
 </ul>

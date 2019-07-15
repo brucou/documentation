@@ -220,7 +220,7 @@ selection<y:LabelModel>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="side_slider" preferredPlacement="right" ratio="0.7213029989658739" textColor="#000000" verticalTextPosition="bottom" visible="true" width="229.3984375" x="-349.8984375" y="48.298828125">SEARCH_RESULTS_MOVIE_RECEIVED
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="side_slider" preferredPlacement="right" ratio="0.0" textColor="#000000" verticalTextPosition="bottom" visible="true" width="229.3984375" x="-231.3984375" y="-2.138671875">SEARCH_RESULTS_MOVIE_RECEIVED
 / display results screen<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="anywhere" side="right" sideReference="relative_to_edge_flow"/>
           </y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
@@ -257,7 +257,7 @@ selection<y:LabelModel>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" horizontalTextPosition="center" iconTextGap="4" modelName="side_slider" preferredPlacement="right" ratio="0.3779241731648293" textColor="#000000" verticalTextPosition="bottom" visible="true" width="186.056640625" x="-228.5" y="-162.373046875">MOVIE_DETAILS_DESELECTED
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" horizontalTextPosition="center" iconTextGap="4" modelName="side_slider" preferredPlacement="right" ratio="0.14641032535627857" textColor="#000000" verticalTextPosition="bottom" visible="true" width="186.056640625" x="-208.2783203125" y="-27.970703125">MOVIE_DETAILS_DESELECTED
 / display results screen, 
   update route<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="anywhere" side="right" sideReference="relative_to_edge_flow"/>
           </y:EdgeLabel>
@@ -409,11 +409,10 @@ selection<y:LabelModel>
             <y:Point x="759.5" y="210.0"/>
             <y:Point x="1150.0" y="210.0"/>
             <y:Point x="1150.0" y="830.0"/>
-            <y:Point x="821.5" y="830.0"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" horizontalTextPosition="center" iconTextGap="4" modelName="side_slider" preferredPlacement="right" ratio="0.14611022505759347" textColor="#000000" verticalTextPosition="bottom" visible="true" width="304.65625" x="42.921875" y="-20.351348876953125">ROUTE_CHANGED [TMDB slug] &amp;&amp; ['/:query/:movieId' ]
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" horizontalTextPosition="center" iconTextGap="4" modelName="side_slider" preferredPlacement="right" ratio="0.15509721997343864" textColor="#000000" verticalTextPosition="bottom" visible="true" width="304.65625" x="42.921875" y="-20.351348876953125">ROUTE_CHANGED [TMDB slug] &amp;&amp; ['/:query/:movieId' ]
 / display loading screen, 
   query database<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="anywhere" side="right" sideReference="relative_to_edge_flow"/>
           </y:EdgeLabel>
