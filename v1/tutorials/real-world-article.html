@@ -169,18 +169,6 @@
     
     
       
-      
-      
-      
-      
-    
-    <li>
-      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
-    </li>
-  
-    
-    
-      
         <li><h3>Introduction</h3></li>
       
       
@@ -190,6 +178,18 @@
     
     <li>
       <a href="/documentation/v1/tutorials/index.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
     </li>
   
     
@@ -800,11 +800,11 @@
 </thead>
 <tbody>
 <tr>
-<td>not authenticated, like/unlike article</td>
+<td>not authenticated, like article</td>
 <td>fetched article, like article, is redirected to sign up</td>
 </tr>
 <tr>
-<td>not authenticated, follow/unfollow profile</td>
+<td>not authenticated, follow profile</td>
 <td>fetched article, follow profile, is redirected to sign up</td>
 </tr>
 </tbody>
@@ -821,12 +821,20 @@
 </thead>
 <tbody>
 <tr>
-<td>authenticated, like/unlike article</td>
+<td>authenticated, like article</td>
 <td>fetched article, like article, like successful</td>
 </tr>
 <tr>
-<td>authenticated, follow/unfollow profile</td>
+<td>authenticated, unlike article</td>
+<td>fetched article, unlike article, unlike successful</td>
+</tr>
+<tr>
+<td>authenticated, follow profile</td>
 <td>fetched article, follow profile, follow successful</td>
+</tr>
+<tr>
+<td>authenticated, unfollow profile</td>
+<td>fetched article, unfollow profile, unfollow successful</td>
 </tr>
 <tr>
 <td>authenticated, post comment</td>
@@ -843,7 +851,7 @@
 </tbody>
 </table>
 </div>
-<p>Our edge cases are as follows:</p>
+<p>Additionally, our edge cases are as follows:</p>
 <div class="table-container">
 <table>
 <thead>
@@ -858,14 +866,6 @@
 <td>article fetch fails</td>
 </tr>
 <tr>
-<td>authenticated, like/unlike article</td>
-<td>fetched article, like article, like unsuccessful</td>
-</tr>
-<tr>
-<td>authenticated, follow/unfollow profile</td>
-<td>fetched article, follow profile, follow unsuccessful</td>
-</tr>
-<tr>
 <td>authenticated, post comment</td>
 <td>fetched article, post comment, post unsuccessful</td>
 </tr>
@@ -877,10 +877,150 @@
 <td>authenticated, delete article</td>
 <td>fetched article, delete article, delete unsuccessful</td>
 </tr>
+<tr>
+<td>authenticated, like/unlike article</td>
+<td>fetched article, like article, like unsuccessful</td>
+</tr>
+<tr>
+<td>authenticated, follow/unfollow profile</td>
+<td>fetched article, follow profile, follow unsuccessful</td>
+</tr>
 </tbody>
 </table>
 </div>
-<p><strong>TO BE CONTINUED</strong></p>
+<h2 id="Behaviour-implementation"><a href="#Behaviour-implementation" class="headerlink" title="Behaviour implementation"></a>Behaviour implementation</h2><p>The implementation (<code>src/behaviour/article.js</code>) derives directly from the modelization. We reproduce here the main part which are the transitions:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> articleTransitions = [
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article"</span>,
+    <span class="hljs-attr">event</span>: INIT_EVENT,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-auth-for-article"</span>,
+    <span class="hljs-attr">action</span>: fetchAuthentication
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetching-auth-for-article"</span>,
+    <span class="hljs-attr">event</span>: AUTH_CHECKED,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: fetchArticleCommentsAndInitialRender
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: UPDATED_COMMENT,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderUpdatedComment
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: FETCHED_ARTICLE,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFetchedArticle
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: FAILED_FETCH_ARTICLE,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFailedFetchArticle
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: FETCH_COMMENTS_OK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFetchedComments
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: TOGGLE_FOLLOW_OK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderToggledFollow
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: TOGGLE_FOLLOW_NOK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFailedToggledFollow
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: FAVORITE_OK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFavoritedArticle
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: FAVORITE_NOK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFailedFavoriteArticle
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: UNFAVORITE_OK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderUnfavoritedArticle
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: UNFAVORITE_NOK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFailedUnfavoriteArticle
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: POST_COMMENT_OK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderPostedComment
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: DELETE_COMMENT_OK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderDeletedComment
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">event</span>: API_REQUEST_FAILED,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFailedApiRequest
+  &#125;,
+  getAuthedApiPartialMachine(&#123;
+    <span class="hljs-attr">states</span>: &#123; <span class="hljs-attr">fetching</span>: <span class="hljs-string">"fetching-auth-for-like"</span>, <span class="hljs-attr">next</span>: <span class="hljs-string">"can-like"</span> &#125;,
+    <span class="hljs-attr">events</span>: &#123; <span class="hljs-attr">trigger</span>: TOGGLED_FAVORITE &#125;,
+    <span class="hljs-attr">actions</span>: &#123; <span class="hljs-attr">call</span>: updateAuth &#125;
+  &#125;),
+  getAuthedApiPartialMachine(&#123;
+    <span class="hljs-attr">states</span>: &#123; <span class="hljs-attr">fetching</span>: <span class="hljs-string">"fetching-auth-for-follow"</span>, <span class="hljs-attr">next</span>: <span class="hljs-string">"can-follow"</span> &#125;,
+    <span class="hljs-attr">events</span>: &#123; <span class="hljs-attr">trigger</span>: TOGGLED_FOLLOW &#125;,
+    <span class="hljs-attr">actions</span>: &#123; <span class="hljs-attr">call</span>: updateAuth &#125;
+  &#125;),
+  getAuthedApiPartialMachine(&#123;
+    <span class="hljs-attr">states</span>: &#123; <span class="hljs-attr">fetching</span>: <span class="hljs-string">"fetching-auth-for-post-comment"</span>, <span class="hljs-attr">next</span>: <span class="hljs-string">"article-rendering"</span> &#125;,
+    <span class="hljs-attr">events</span>: &#123; <span class="hljs-attr">trigger</span>: CLICKED_CREATE_COMMENT &#125;,
+    <span class="hljs-attr">actions</span>: &#123; <span class="hljs-attr">call</span>: postCommentUpdateAuthAndRender &#125;
+  &#125;),
+  getAuthedApiPartialMachine(&#123;
+    <span class="hljs-attr">states</span>: &#123; <span class="hljs-attr">fetching</span>: <span class="hljs-string">"fetching-auth-for-delete-comment"</span>, <span class="hljs-attr">next</span>: <span class="hljs-string">"article-rendering"</span> &#125;,
+    <span class="hljs-attr">events</span>: &#123; <span class="hljs-attr">trigger</span>: CLICKED_DELETE_COMMENT &#125;,
+    <span class="hljs-attr">actions</span>: &#123; <span class="hljs-attr">call</span>: deleteCommentUpdateAuthAndRender &#125;
+  &#125;),
+  getAuthedApiPartialMachine(&#123;
+    <span class="hljs-attr">states</span>: &#123; <span class="hljs-attr">fetching</span>: <span class="hljs-string">"fetching-auth-for-delete-article"</span>, <span class="hljs-attr">next</span>: <span class="hljs-string">"article-rendering"</span> &#125;,
+    <span class="hljs-attr">events</span>: &#123; <span class="hljs-attr">trigger</span>: CLICKED_DELETE_ARTICLE &#125;,
+    <span class="hljs-attr">actions</span>: &#123; <span class="hljs-attr">call</span>: deleteArticleUpdateAuthAndRender &#125;
+  &#125;),
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"can-like"</span>, <span class="hljs-attr">event</span>: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>, <span class="hljs-attr">guards</span>: [
+      &#123; <span class="hljs-attr">predicate</span>: isArticleLiked, <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>, <span class="hljs-attr">action</span>: unlikeArticleAndRender &#125;,
+      &#123; <span class="hljs-attr">predicate</span>: not(isArticleLiked), <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>, <span class="hljs-attr">action</span>: likeArticleAndRender &#125;,
+    ]
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"can-follow"</span>, <span class="hljs-attr">event</span>: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>, <span class="hljs-attr">guards</span>: [
+      &#123; <span class="hljs-attr">predicate</span>: isProfileFollowed, <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>, <span class="hljs-attr">action</span>: unfollowProfileAndRender &#125;,
+      &#123; <span class="hljs-attr">predicate</span>: not(isProfileFollowed), <span class="hljs-attr">to</span>: <span class="hljs-string">"article-rendering"</span>, <span class="hljs-attr">action</span>: followProfileAndRender &#125;,
+    ]
+  &#125;,
+  &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>, <span class="hljs-attr">event</span>: DELETE_ARTICLE_OK, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">action</span>: redirectToHome &#125;,
+  &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"article"</span>, <span class="hljs-attr">event</span>: ROUTE_CHANGED, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">action</span>: updateURL &#125;
+].flat();</code></pre>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>Article</em> route of our Conduit clone demo application. We recognized recurring behaviour patterns and abstracted them to compose the machine modelizing the route’s behaviour.</p>
 
   
   
