@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Top level breakdown — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Lessons learnt — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Top level breakdown — Kingly.js">
+  <meta property="og:title" content="Lessons learnt — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Top level breakdown — Kingly.js">
+  <meta name="twitter:title" content="Lessons learnt — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -313,7 +313,7 @@
       
     
     <li>
-      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link current">Top level breakdown</a>
+      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link">Top level breakdown</a>
     </li>
   
     
@@ -471,7 +471,7 @@
       
     
     <li>
-      <a href="/documentation/v1/tutorials/real-world-lessons-learnt.html" class="sidebar-link">Lessons learnt</a>
+      <a href="/documentation/v1/tutorials/real-world-lessons-learnt.html" class="sidebar-link current">Lessons learnt</a>
     </li>
   
 </ul>
@@ -489,153 +489,19 @@
     
   
   
-    <h1>Top level breakdown</h1>
+    <h1>Lessons learnt</h1>
   
   
-    <p>The key to reaching a modelization of a behaviour with state machines is to remember that said behaviour is the relation between incoming events and the commands to perform on the interfaced systems. Equivalently, it is a pure function between a sequence of incoming events and the corresponding sequence of commands to perform on the interfaced systems. You are going to read that as many times as necessary all over the tutorials because it is just that important.</p>
-<p>Let’s consider our TMDB online interface with this in mind. In the relation, we have first the events, and then the actions. Those two we know. Then we have to express the functional mapping between the two. </p>
-<p>Let’s start with events. What events do we have incoming to our interface? </p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Event</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>ROUTE_CHANGED</code></td>
-<td style="text-align:left">the first event to consider is the one that leads to the user to the online interface in the first place. In our case, that is a routing event: the url changes to whatever route that means the online interface should be operative.</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>SEARCH_RESULTS_RECEIVED</code></td>
-<td style="text-align:left">The TMDB database querying may succeed</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>SEARCH_ERROR_RECEIVED</code></td>
-<td style="text-align:left">The TMDB database querying may fail</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>QUERY_CHANGED</code></td>
-<td style="text-align:left">The user may change the movie to query TMDB against by updating the input field</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>MOVIE_SELECTED</code></td>
-<td style="text-align:left">The user may select a displayed movie</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>MOVIE_DETAILS_DESELECTED</code></td>
-<td style="text-align:left">The user may click to remove the view of the selected movie’s details</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>SEARCH_RESULTS_MOVIE_RECEIVED</code></td>
-<td style="text-align:left">The TMDB database movie detail querying may succeed</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>SEARCH_ERROR_MOVIE_RECEIVED</code></td>
-<td style="text-align:left">The TMDB database movie detail querying may fail</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>What actions do we have?</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Event</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>COMMAND_RENDER</code></td>
-<td style="text-align:left">We have to display screens</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>COMMAND_MOVIE_SEARCH</code></td>
-<td style="text-align:left">We need to query the TMDB database for movies</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>COMMAND_MOVIE_DETAILS_SEARCH</code></td>
-<td style="text-align:left">We need to query the TMDB database for movie details</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Now let’s see how we can express the relationship between events and commands. Remember that we want to arrive to a procedure <code>fsm</code> such that <code>commands = fsm(event)</code>, with <code>fsm</code> having encapsulated state. </p>
-<p>To start with, our specifications dictate that routing to the appropriate url should trigger the display of the user interface. In the absence of that event, it does not matter which other events are sent to the machine, there will be no commands to execute (indicated in Kingly by <code>NO_OUTPUT</code>). In other words, using pseudo code, <code>fsm</code> is such that:</p>
-<pre><code class="hljs haskell"><span class="hljs-title">fsm</span> :: <span class="hljs-type">Event</span> -&gt; <span class="hljs-type">Commands</span>
-| <span class="hljs-keyword">if</span> there was a past routing event with the <span class="hljs-type">TMDB</span> slug     (&lt;- state reflecting past events)
-|    fsmA
-| <span class="hljs-keyword">else</span> 
-|    fsmB
-
-<span class="hljs-title">fsmB</span> :: <span class="hljs-type">Event</span> -&gt; <span class="hljs-type">Commands</span>
-| <span class="hljs-keyword">if</span> event is routing event and has <span class="hljs-type">TMDB</span> slug <span class="hljs-keyword">then</span>
-|   there was a past routing event with the <span class="hljs-type">TMDB</span> slug &lt;- true
-|   fsmA
-| <span class="hljs-keyword">else</span> 
-|   event =&gt; <span class="hljs-type">NO_OUTPUT</span>
-
-<span class="hljs-title">fsmA</span> :: <span class="hljs-type">Event</span> -&gt; <span class="hljs-type">Commands</span>
-| (how to precisely deal with the rest <span class="hljs-keyword">of</span> events we'll figure out later)</code></pre>
-<p>Looking at the <code>fsm</code> pseudo code, we associate <code>fsm</code> to two entirely different computations depending on a condition. In short, the condition affects the <strong>control flow</strong> of the computation of commands. The piece of state which we have identified, we appropriately called it a <strong>control state</strong>. So we have two control states now. The one the machine starts in (call that <code>init</code> for now), and then the one corresponding to <em>there was a routing event in the past with the TMDB slug</em> (call that <code>TMDB app</code>).</p>
-<p>With this, we can write the equivalent JavaScript code as follows:</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// Starting with there was a past routing event with the TMDB slug &lt;- false</span>
-<span class="hljs-keyword">let</span> controlState = INIT;  
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsm</span>(<span class="hljs-params">event</span>)</span>&#123;
-  <span class="hljs-keyword">if</span> (controlState !== INIT) &#123;
-    <span class="hljs-keyword">return</span> fsmA(event)
-  &#125;
-  <span class="hljs-keyword">else</span> &#123;
-    <span class="hljs-keyword">return</span> fsmB(event)
-  &#125;
-&#125;
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsmB</span>(<span class="hljs-params">event</span>) </span>&#123;
-  <span class="hljs-keyword">if</span> (isRoutingEvent(event) &amp;&amp; isTMDBSlub(event)) &#123;
-    controlState = TMDB_APP;
-
-    <span class="hljs-keyword">return</span> fsmA(event)
-  &#125;
-  <span class="hljs-keyword">else</span> &#123;
-    <span class="hljs-keyword">return</span> NO_OUTPUT
-  &#125;
-&#125;
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsmA</span>(<span class="hljs-params">event</span>) </span>&#123;
-  <span class="hljs-comment">// Don't know yet exactly how to write it</span>
-  <span class="hljs-comment">// but we know the mapping, that's our specs</span>
-  ...
-  return...    
-&#125;</code></pre>
-<p>The equivalent state machine modelization, adding to the picture all the events handled by the machine, and the corresponding actions, is as follows:</p>
-<p><img src="../../graphs/movie-search/TMDB%20start.png" alt="top level state machine"></p>
-<p>You will recognize <code>fsmB</code> as ruling over the computation of commands in the control state <em>init</em>, and <code>fsmA</code> as the ruler when the machine is in the control state <em>TMDB app</em>. As a reminder of our visual formalism, the following arrow of the state machine graph:</p>
-<pre><code class="hljs text">QUERY_CHANGED [shouldProcess]
-/ ??</code></pre>
-<p>expresses the fact that, in some conditions (determined by the <code>shouldProcess</code> predicate), when the value of the input field changes, e.g. when the user types in, the application must execute some commands, which we have not determined yet, hence the interrogation marks <code>??</code>. The guard <code>shouldProcess</code> prevents a <code>QUERY_CHANGED</code> event from being processed when it should not. That is the case for instance when the interface displays a movie detail view in which the content of the query input field <strong>cannot</strong> be changed because it is not accessible. In other words, the guard protects us against processing semantically invalid or unexpected events. This helps <strong>robustness</strong>, which is defined as the ability of a computer system to cope with errors during execution and cope with <strong>erroneous inputs</strong>. </p>
-<p>Note that we have completely explicited <code>fsmB</code> but only partially explicited <code>fsmA</code>. We have not explicited at all the <code>shouldProcess</code> functions, and the commands to compute as a result of events processed by <code>fsmA</code>.</p>
-<p>However, we obtained a partial implementation which already fulfills a small part of our specification:</p>
-<ul>
-<li>running <code>fsm</code> with a routing event whose embedded url is not a TMDB url should result in <code>NO_OUTPUT</code></li>
-</ul>
-<p>If you look at <code>fsmA</code>, you will observe that it has the same shape as <code>fsm</code>: it is a function which takes events and returns commands. This means we can apply the same process we did for <code>fsm</code> to fulfill a larger part of our specifications, till we eventually fulfill the whole specification set. This is the essence of the top-down method. We break down a computation into computations with a smaller scope, and then we go figure out how to implement the smaller computations. The process by which we progressively detail the implementation of a <code>fsmX</code> function is called <strong>refinement</strong>. </p>
-<p>With that established, let’s refine.</p>
+    <p><a href="http://localhost:4000/documentation/v1/tutorials/tmdb-online-interface.html" target="_blank" rel="noopener">http://localhost:4000/documentation/v1/tutorials/tmdb-online-interface.html</a></p>
 
   
   
     <div class="next-links">
       
       
-        <span>← <a href="/documentation/v1/tutorials/chess-game-ultimate.html">Chess game - more features</a></span>
+        <span>← <a href="/documentation/v1/tutorials/real-world-article.html">Article route</a></span>
       
       
-      
-        <span style="float: right;"><a href="/documentation/v1/tutorials/tmdb-routing.html">Routing</a> →</span>
       
     </div>
   
