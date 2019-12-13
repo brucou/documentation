@@ -1,0 +1,933 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Article route — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Article route — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Article route — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          Tutorials
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+        <li><h3>Introduction</h3></li>
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/index.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Password meter</h3></li>
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-implementation.html" class="sidebar-link">Machine implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Chess game</h3></li>
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>Movie database interface</h3></li>
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link">Top level breakdown</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie query</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3 class="new">RealWorld clone</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world.html" class="sidebar-link">RealWorld app</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-home.html" class="sidebar-link">Home route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign up route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link">Sign in route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-editor.html" class="sidebar-link">Editor route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-settings.html" class="sidebar-link">Settings route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-profile.html" class="sidebar-link">User profile route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-article.html" class="sidebar-link current">Article route</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content tutorials with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>Article route</h1>
+  
+  
+    <p>In this section, we will modelize and implement the user flows related to the <em>Article</em> route. In that route, the navigating user can view an article’s content. If the navigating user is also the article’s author, he can edit or delete the article. Otherwise, he can follow the article’s author and like/unlike the article. In all cases, the navigating user can additionally post comments about the article, and can delete the comments he posted.</p>
+<p>An example of article route is as follows: <code>/#/article/real-worl-editor-9zlwb7</code>.</p>
+<p>The user needs not be authenticated to access the <em>Article</em> route. However, if the user tries to follow or like/unlike an article’s author, he will be redirected to the <em>Sign up</em> route. Additionally, if the user is not authenticated, he cannot post comments.</p>
+<h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><p>We already have identified the screens in the <em>Specifications</em> section. Ler’s remind them here:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Route</th>
+<th style="text-align:left">State</th>
+<th style="text-align:center">Main screen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>#/article/real-world-is-cool-dtp7j9</code></td>
+<td style="text-align:left">Not authenticated, article chosen</td>
+<td style="text-align:center"><img src="https://imgur.com/sA8KY8u.png" alt="Not authenticated, viewing article"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/article/real-world-is-cool-dtp7j9</code></td>
+<td style="text-align:left">Authenticated, article chosen, not my article</td>
+<td style="text-align:center"><img src="https://imgur.com/Fa7cCjj.png" alt="Authenticated, article chosen"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/article/desktop-game-editor-...-soioli</code></td>
+<td style="text-align:left">Authenticated, article chosen, my article, comment posted</td>
+<td style="text-align:center"><img src="https://imgur.com/HFK92k3.png" alt="Authenticated, article chosen, my article"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The UI for the <em>Article</em> route will be implemented with a <em>Article</em> Svelte component. The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-article-route/src/UI/Article.svelte" target="_blank" rel="noopener">full source code</a> for the <code>Article</code> component can be accessed in the repository.</p>
+<h2 id="UI-testing"><a href="#UI-testing" class="headerlink" title="UI testing"></a>UI testing</h2><p>As before, we test the UI with <a href="https://storybook.js.org/" target="_blank" rel="noopener">Storybook</a>. The <a href="https://github.com/brucou/realworld-kingly-svelte/tree/with-article-route/stories" target="_blank" rel="noopener">corresponding stories</a> are available in the source repository.</p>
+<h2 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h2><p>We have the following commands for the <em>Article</em> route (some of which also being used for the <em>User Profile</em> route):</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Command</th>
+<th style="text-align:left">Command parameters</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>REDIRECT</code></td>
+<td style="text-align:left">hash to redirect to</td>
+<td style="text-align:left">redirects the user to a new/same hash location</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCH_AUTHENTICATION</code></td>
+<td style="text-align:left">—</td>
+<td style="text-align:left">fetches user session data if any</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCH_ARTICLE</code></td>
+<td style="text-align:left">slug</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#get-article" target="_blank" rel="noopener"><em>Get Article</em> end point</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCH_COMMENTS</code></td>
+<td style="text-align:left">slug</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#get-comments-from-an-article" target="_blank" rel="noopener"><em>Get Comments from an Article</em> end point</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DELETE_COMMENT</code></td>
+<td style="text-align:left">slug, comment id</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#delete-comment" target="_blank" rel="noopener"><em>Delete Comment</em> end point</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>POST_COMMENT</code></td>
+<td style="text-align:left">slug, comment to post</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#add-comments-to-an-article" target="_blank" rel="noopener"><em>Add Comments to an Article</em> end point</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DELETE_ARTICLE</code></td>
+<td style="text-align:left">slug</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#delete-article" target="_blank" rel="noopener"><em>Delete Article</em> end point</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAVORITE_ARTICLE</code></td>
+<td style="text-align:left">article slug</td>
+<td style="text-align:left">sends an <a href="https://github.com/gothinkster/realworld/tree/master/api#favorite-article" target="_blank" rel="noopener">API request</a> to like an article</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UNFAVORITE_ARTICLE</code></td>
+<td style="text-align:left">article slug</td>
+<td style="text-align:left">sends an <a href="https://github.com/gothinkster/realworld/tree/master/api#unfavorite-article" target="_blank" rel="noopener">API request</a> to unlike an article</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FOLLOW_PROFILE</code></td>
+<td style="text-align:left">username</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#follow-user" target="_blank" rel="noopener"><em>Follow user</em> end point</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UNFOLLOW_PROFILE</code></td>
+<td style="text-align:left">username</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#unfollow-user" target="_blank" rel="noopener"><em>Unfollow user</em> end point</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Commands-implementation"><a href="#Commands-implementation" class="headerlink" title="Commands implementation"></a>Commands implementation</h2><p>The <code>REDIRECT</code>, <code>FETCH_AUTHENTICATION</code>, <code>FETCH_ARTICLE</code>, <code>FAVORITE_ARTICLE</code>, <code>UNFAVORITE_ARTICLE</code>, <code>FOLLOW_PROFILE</code>, <code>UNFOLLOW_PROFILE</code>, have already been written when implementing the <em>User profile</em> route. For the rest of commands, we defer to the <a href="https://github.com/gothinkster/realworld/tree/master/api" target="_blank" rel="noopener">API</a> passed on through effect handlers:</p>
+<pre><code class="hljs javascript">[FETCH_COMMENTS]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; fetchComments &#125; = effectHandlers;
+  <span class="hljs-keyword">const</span> slug = params;
+
+  fetchComments(&#123; slug &#125;)
+    .then(<span class="hljs-function">(<span class="hljs-params">&#123; comments &#125;</span>) =&gt;</span> dispatch(&#123; [FETCH_COMMENTS_OK]: comments &#125;))
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> dispatch(&#123; [FETCH_COMMENTS_NOK]: err &#125;));
+&#125;,
+[DELETE_COMMENT]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; deleteComment &#125; = effectHandlers;
+  <span class="hljs-keyword">const</span> &#123;slug, id&#125; = params;
+
+  deleteComment(&#123; slug, id &#125;)
+    .then(<span class="hljs-function">(<span class="hljs-params">&#123; profile &#125;</span>) =&gt;</span> dispatch(&#123; [DELETE_COMMENTS_OK]: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> &#125;))
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> dispatch(&#123; [DELETE_COMMENTS_NOK]: err &#125;));
+&#125;,
+[POST_COMMENT]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; createComment &#125; = effectHandlers;
+  <span class="hljs-keyword">const</span> &#123;slug, comment&#125; = params;
+
+  createComment(&#123; slug, comment&#125;)
+    .then(<span class="hljs-function">(<span class="hljs-params">&#123; comment &#125;</span>) =&gt;</span> dispatch(&#123; [POST_COMMENTS_OK]: comment &#125;))
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> dispatch(&#123; [POST_COMMENTS_NOK]: err &#125;));
+&#125;,
+[DELETE_ARTICLE]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; deleteArticle &#125; = effectHandlers;
+  <span class="hljs-keyword">const</span> slug = params;
+
+  deleteArticle(&#123; slug &#125;)
+    .then(<span class="hljs-function">(<span class="hljs-params">&#123; profile &#125;</span>) =&gt;</span> dispatch(&#123; [DELETE_ARTICLE_OK]: profile &#125;))
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> dispatch(&#123; [DELETE_ARTICLE_NOK]: err &#125;));
+&#125;,</code></pre>
+<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>We have the following events for the <em>Article</em> route:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Event</th>
+<th style="text-align:left">Event data</th>
+<th style="text-align:left">Occurs when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>ROUTE_CHANGED</code></td>
+<td style="text-align:left">hash</td>
+<td style="text-align:left">direct href linking or redirection for authentication</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>AUTH_CHECKED</code></td>
+<td style="text-align:left">user</td>
+<td style="text-align:left">user session data is retrieved</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCHED_ARTICLE</code></td>
+<td style="text-align:left">article data</td>
+<td style="text-align:left">api response to a <em>Get profile</em> request</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAILED_FETCH_ARTICLE</code></td>
+<td style="text-align:left">—</td>
+<td style="text-align:left">api response to a <em>Get profile</em> request</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCH_COMMENTS_OK</code></td>
+<td style="text-align:left">comments</td>
+<td style="text-align:left">api error response to a <em>Get profile</em> request</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCH_COMMENTS_NOK</code></td>
+<td style="text-align:left">—</td>
+<td style="text-align:left">api error response to a <em>Get profile</em> request</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DELETE_COMMENTS_OK</code></td>
+<td style="text-align:left">—</td>
+<td style="text-align:left">comment is successfully deleted</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DELETE_COMMENTS_NOK</code></td>
+<td style="text-align:left">—</td>
+<td style="text-align:left">comment is not successfully deleted</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>POST_COMMENTS_OK</code></td>
+<td style="text-align:left">created comment (with id)</td>
+<td style="text-align:left">comment is successfully posted</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>POST_COMMENTS_NOK</code></td>
+<td style="text-align:left">—</td>
+<td style="text-align:left">comment is not successfully posted</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DELETE_ARTICLE_OK</code></td>
+<td style="text-align:left">—</td>
+<td style="text-align:left">article is successfully deleted</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DELETE_ARTICLE_NOK</code></td>
+<td style="text-align:left">—</td>
+<td style="text-align:left">article is not successfully deleted</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAVORITE_OK</code></td>
+<td style="text-align:left">article and slug data</td>
+<td style="text-align:left">article was successfully liked by the user</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAVORITE_NOK</code></td>
+<td style="text-align:left">error and slug data</td>
+<td style="text-align:left">user failed to like the article</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UNFAVORITE_OK</code></td>
+<td style="text-align:left">article and slug data</td>
+<td style="text-align:left">article was successfully unliked by the user</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UNFAVORITE_NOK</code></td>
+<td style="text-align:left">error and slug data</td>
+<td style="text-align:left">user failed to unlike the article</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TOGGLE_FOLLOW_OK</code></td>
+<td style="text-align:left">profile data</td>
+<td style="text-align:left">user successfully followed/unfollowed a profile</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TOGGLE_FOLLOW_NOK</code></td>
+<td style="text-align:left">err and profile data</td>
+<td style="text-align:left">user failed to follow/unfollow a profile</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>CLICKED_DELETE_ARTICLE</code></td>
+<td style="text-align:left">article’s slug</td>
+<td style="text-align:left">user clicks the delete article button</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>CLICKED_CREATE_COMMENT</code></td>
+<td style="text-align:left">article’s slug and comment</td>
+<td style="text-align:left">user clicks on the <em>Post comment</em> button</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>CLICKED_DELETE_COMMENT</code></td>
+<td style="text-align:left">article’s slug and unique id of the comment</td>
+<td style="text-align:left">user clicks on the <em>Trash</em> icon in the lower right corner of a comment</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UPDATED_COMMENT</code></td>
+<td style="text-align:left">comment</td>
+<td style="text-align:left">user modifies the content of the comment text area</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TOGGLED_FAVORITE</code></td>
+<td style="text-align:left">article’s slug and whether the article is favorited at the moment of the toggling</td>
+<td style="text-align:left">user clicks to like or unlike an article</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TOGGLED_FOLLOW</code></td>
+<td style="text-align:left">username to follow</td>
+<td style="text-align:left">user clicks to follow or unfollow a user</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The modelization we reach is the following:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-article.png" alt="article route behaviour modelization high level"></p>
+</figure>
+<p>Zooming in on the <em>Article route</em> compound control state:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-article-level-1.png" alt="article route behaviour modelization zoomed in"></p>
+</figure>
+<h2 id="Refactor"><a href="#Refactor" class="headerlink" title="Refactor"></a>Refactor</h2><p>We used a <code>API_REQUEST_FAILED</code> event gathering failure for some API requests for which we have the same failure processing: <em>post comment</em>, <em>delete article</em>, <em>delete comments</em>, <em>fetch comments</em>. As a matter of fact, if any of these three API calls fail, we just ignore that failure. We do not include however in that list the <em>fetch article</em> API call, as we think it is important to show some message to the user in that case to indicate that something went wrong fetching the article. Similarly, the follow/unfollow and like/unlike feature are also excluded from the list, as the corresponding button is re-enabled in case of request failure. The <code>API_REQUEST_FAILED</code> event thus replaces the following events: <code>POST_COMMENTS_NOK</code>, <code>DELETE_ARTICLE_NOK</code>, <code>DELETE_ARTICLE_NOK</code>, <code>FETCH_COMMENTS_NOK</code>.</p>
+<p>Second refactor we did, is isolate the common path structure describing the execution of an API which requires user authentication. Here, the following features require authentication: <em>post comment</em>, <em>delete article</em>, <em>delete comments</em>, <em>like/unlike article</em>, <em>follow/unfollow user</em>. The common structure then goes as follows:</p>
+<p><img src="../../graphs/real-world/API%20call%20with%20auth%20required.png" alt="API call with authentication required"></p>
+<p>The parameters (<em>trigger</em>, <em>cond</em>, <em>API call</em>, <em>Start</em>, <em>Next</em>, <em>Fallback</em>, <em>fallback</em>) allow to fully specify the sought-out behaviour.</p>
+<h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>As before, we pick our user scenarios to fulfill the <em>all-transitions</em> coverage criteria. </p>
+<p>In our main cases, we distinguish between unauthenticated users:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Subset</th>
+<th>Event sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>not authenticated, like/unlike article</td>
+<td>fetched article, like article, is redirected to sign up</td>
+</tr>
+<tr>
+<td>not authenticated, follow/unfollow profile</td>
+<td>fetched article, follow profile, is redirected to sign up</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>and authenticated users:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Subset</th>
+<th>Event sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>authenticated, like/unlike article</td>
+<td>fetched article, like article, like successful</td>
+</tr>
+<tr>
+<td>authenticated, follow/unfollow profile</td>
+<td>fetched article, follow profile, follow successful</td>
+</tr>
+<tr>
+<td>authenticated, post comment</td>
+<td>fetched article, post comment, post successful</td>
+</tr>
+<tr>
+<td>authenticated, delete comment</td>
+<td>fetched article, delete comment, delete successful</td>
+</tr>
+<tr>
+<td>authenticated, delete article</td>
+<td>fetched article, delete article, delete successful, is redirected to <em>Home</em> route</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Our edge cases are as follows:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Subset</th>
+<th>Event sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>not authenticated, article does not exist</td>
+<td>article fetch fails</td>
+</tr>
+<tr>
+<td>authenticated, like/unlike article</td>
+<td>fetched article, like article, like unsuccessful</td>
+</tr>
+<tr>
+<td>authenticated, follow/unfollow profile</td>
+<td>fetched article, follow profile, follow unsuccessful</td>
+</tr>
+<tr>
+<td>authenticated, post comment</td>
+<td>fetched article, post comment, post unsuccessful</td>
+</tr>
+<tr>
+<td>authenticated, delete comment</td>
+<td>fetched article, delete comment, delete unsuccessful</td>
+</tr>
+<tr>
+<td>authenticated, delete article</td>
+<td>fetched article, delete article, delete unsuccessful</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>TO BE CONTINUED</strong></p>
+
+  
+  
+    <div class="next-links">
+      
+      
+        <span>← <a href="/documentation/v1/tutorials/real-world-profile.html">User profile route</a></span>
+      
+      
+      
+    </div>
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

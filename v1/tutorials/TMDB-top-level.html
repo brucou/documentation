@@ -169,7 +169,20 @@
     
     
       
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
         <li><h3>Introduction</h3></li>
+      
       
       
       
@@ -185,6 +198,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
@@ -196,6 +210,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
@@ -203,6 +218,7 @@
   
     
     
+      
       
       
       
@@ -220,6 +236,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
@@ -227,6 +244,7 @@
   
     
     
+      
       
       
       
@@ -242,6 +260,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
@@ -249,6 +268,7 @@
   
     
     
+      
       
       
       
@@ -266,6 +286,7 @@
         <li><h3>Chess game</h3></li>
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
@@ -277,6 +298,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
@@ -284,6 +306,7 @@
   
     
     
+      
       
       
       
@@ -301,6 +324,7 @@
       
         <li><h3>Movie database interface</h3></li>
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
@@ -308,6 +332,7 @@
   
     
     
+      
       
       
       
@@ -323,6 +348,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
@@ -330,6 +356,7 @@
   
     
     
+      
       
       
       
@@ -345,6 +372,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
@@ -356,9 +384,108 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3 class="new">RealWorld clone</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world.html" class="sidebar-link">RealWorld app</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-home.html" class="sidebar-link">Home route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign up route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link">Sign in route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-editor.html" class="sidebar-link">Editor route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-settings.html" class="sidebar-link">Settings route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-profile.html" class="sidebar-link">User profile route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-article.html" class="sidebar-link">Article route</a>
     </li>
   
 </ul>
@@ -468,8 +595,8 @@
 
 <span class="hljs-title">fsmA</span> :: <span class="hljs-type">Event</span> -&gt; <span class="hljs-type">Commands</span>
 | (how to precisely deal with the rest <span class="hljs-keyword">of</span> events we'll figure out later)</code></pre>
-<p>Looking at the <code>fsm</code> pseudo code, we associate <code>fsm</code> to two entirely different computations depending on a condition. In short, the condition affects the <strong>control flow</strong> of the computation of commands. The piece of state which we have identified we will thus call a <strong>control state</strong>. So we have two control states now. The one the machine starts in (call that <code>init</code> for now), and then the one corresponding to <em>there was a routing event in the past with the TMDB slug</em> (call that <code>TMDB app</code>).</p>
-<p>With this we can write the equivalent JavaScript code as follows:</p>
+<p>Looking at the <code>fsm</code> pseudo code, we associate <code>fsm</code> to two entirely different computations depending on a condition. In short, the condition affects the <strong>control flow</strong> of the computation of commands. The piece of state which we have identified, we appropriately called it a <strong>control state</strong>. So we have two control states now. The one the machine starts in (call that <code>init</code> for now), and then the one corresponding to <em>there was a routing event in the past with the TMDB slug</em> (call that <code>TMDB app</code>).</p>
+<p>With this, we can write the equivalent JavaScript code as follows:</p>
 <pre><code class="hljs javascript"><span class="hljs-comment">// Starting with there was a past routing event with the TMDB slug &lt;- false</span>
 <span class="hljs-keyword">let</span> controlState = INIT;  
 
@@ -499,8 +626,7 @@
   ...
   return...    
 &#125;</code></pre>
-<p>And that gives us the following modelization, if you add to the picture all the events handled by the machine, and the corresponding actions:</p>
-<label for="mn-demo-5" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-5" class="margin-toggle"><span class="marginnote"></span>
+<p>The equivalent state machine modelization, adding to the picture all the events handled by the machine, and the corresponding actions, is as follows:</p>
 <p><img src="../../graphs/movie-search/TMDB%20start.png" alt="top level state machine"></p>
 <p>You will recognize <code>fsmB</code> as ruling over the computation of commands in the control state <em>init</em>, and <code>fsmA</code> as the ruler when the machine is in the control state <em>TMDB app</em>. As a reminder of our visual formalism, the following arrow of the state machine graph:</p>
 <pre><code class="hljs text">QUERY_CHANGED [shouldProcess]
@@ -560,6 +686,8 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </body>
 </html>

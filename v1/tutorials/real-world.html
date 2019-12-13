@@ -1,0 +1,795 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>RealWorld app — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="RealWorld app — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RealWorld app — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          Tutorials
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+        <li><h3>Introduction</h3></li>
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/index.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Password meter</h3></li>
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-implementation.html" class="sidebar-link">Machine implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Chess game</h3></li>
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>Movie database interface</h3></li>
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link">Top level breakdown</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie query</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3 class="new">RealWorld clone</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world.html" class="sidebar-link current">RealWorld app</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-home.html" class="sidebar-link">Home route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign up route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link">Sign in route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-editor.html" class="sidebar-link">Editor route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-settings.html" class="sidebar-link">Settings route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-profile.html" class="sidebar-link">User profile route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-article.html" class="sidebar-link">Article route</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content tutorials with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>RealWorld app</h1>
+  
+  
+    <p>In the previous tutorials, we saw how to implement relatively simple applications with Kingly state machines. In this tutorial, we are going to implement Conduit, which describes itself as <a href="https://github.com/gothinkster/realworld" target="_blank" rel="noopener"><strong>the mother of all demo apps</strong></a>. That application aims at replacing the  app commonly used to compare front-end frameworks. The <a href="https://medium.com/@ericsimons/introducing-realworld-6016654d36b5" target="_blank" rel="noopener">rationale for the RealWorld app</a> is similar to that of <a href="http://todomvc.com/" target="_blank" rel="noopener">TodoMVC</a>: implementing the same application with different frameworks allows to make an informed comparison between frameworks. RealWorld takes it up a notch by specifying a <strong>full-stack</strong>, <em>realistic</em> web application. Eric Simons, cofounder of StackBlitz, and at the origin of the idea, explains:</p>
+<blockquote>
+<p>Reusing the best ideas from TodoMVC […], we took a stab at solving this problem by creating the design &amp; API spec for a real world social blogging site similar to Medium.com. We named it <strong>Conduit</strong>.</p>
+</blockquote>
+<p>The Conduit app, as of today (August 2019), has 18 front-end implementations, ranging from popular frameworks (Elm, Vue, React, Angular, Aurelia) to minimalistic frameworks (AppRun, Hyperapp, Crizmas MVC), and including compile-to-JavaScript frameworks (Svelte, Stencil, Purescript, ClojureScript). The Conduit app is additionally used as a base for <a href="https://www.infoq.com/news/2019/04/real-world-framework-benchmark/" target="_blank" rel="noopener">benchmarking front-end frameworks</a>.</p>
+<p>The Kingly architecture allows us to pick our UI framework as we please. In this tutorial, we will do a step-by-step implementation of Conduit with Svelte. We will also provide implementations in other frameworks (React and Vue), this time without detailing much the steps taken. Because we will be using only the basic syntax of Svelte, which is akin to HTML, you should not need know much about Svelte to understand the UI implementation.</p>
+<h2 id="Svelte-primer"><a href="#Svelte-primer" class="headerlink" title="Svelte primer"></a>Svelte primer</h2><p>We thus quickly give the reader some Svelte basics to better understand the code. Svelte is a compiler which takes <code>.svelte</code> files and turn them into standard JavaScript. A <code>.svelte</code> file consists of three optional parts: </p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-comment">// imports, props, local variables definitions, and code to execute </span>
+<span class="hljs-comment">// once, every time the component is mounted</span>
+<span class="hljs-comment">// For instance</span>
+<span class="hljs-keyword">import</span> Nested <span class="hljs-keyword">from</span> <span class="hljs-string">'./Nested.svelte'</span>;
+
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="undefined">
+	p &#123;
+		color: purple;
+		font-family: 'Comic Sans MS';
+		font-size: 2em;
+	&#125;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+
+// html-like Svelte code describing markup logic
+// For instance
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a paragraph.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Nested</span>/&gt;</span></code></pre>
+<p>If you know <a href="https://vuejs.org/v2/guide/index.html" target="_blank" rel="noopener">Vue.js</a>, this is very similar to Vue’s <a href="https://vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">single-file components</a>.</p>
+<p>The Svelte-compiled component(s) can thus be used in an application. For instance, the following code:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">"./App.svelte"</span>;
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> App(&#123;
+  <span class="hljs-attr">target</span>: <span class="hljs-built_in">document</span>.body,
+  <span class="hljs-attr">props</span>: &#123;
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"world"</span>
+  &#125;
+&#125;);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> app;</code></pre>
+<p>compiles <code>App.svelte</code> to a standard JavaScript class which is then instantiated with a set of properties and a DOM anchor element (here <code>document.body</code>). Instantiating the class leads to the display of the component at the configured location in the DOM.</p>
+<p>For more details about Svelte syntax, the <a href="https://svelte.dev/tutorial/basics" target="_blank" rel="noopener">Svelte tutorials</a> are remarkably well done. As mentioned, we will only us Svelte basic syntax, so only 5/18 sections are relevant to fully understand the code for our Conduit clone!</p>
+<h2 id="Specifications"><a href="#Specifications" class="headerlink" title="Specifications"></a>Specifications</h2><p>Conduit’s <a href="https://github.com/gothinkster/realworld/tree/master/api" target="_blank" rel="noopener">API specs</a> are organized around end points prefixed by <code>https://conduit.productionready.io/api</code>. For instance <code>https://conduit.productionready.io/api/articles</code> corresponds to <code>GET /api/articles</code> and will return the most recent articles globally by default.</p>
+<p>There is no written UI specs for Conduit. However, a <a href="https://demo.realworld.io/#/" target="_blank" rel="noopener">reference implementation</a> is provided, from which we can derive the following routes:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Route</th>
+<th style="text-align:left">State</th>
+<th style="text-align:center">Main screen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>#/</code></td>
+<td style="text-align:left">Not authenticated, page 1</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.home.realworld.io-2019.08.06-22_24_28.png" alt="articles"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/</code></td>
+<td style="text-align:left">Not authenticated, page 47</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.home-47.realworld.io-2019.08.06-22_43_59.png" alt="articles"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/</code></td>
+<td style="text-align:left">Not authenticated, filtered by tag</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.tag.realworld.io-2019.08.06-22_39_50.png" alt="tag-filter"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/</code></td>
+<td style="text-align:left">Authenticated, home, page 1</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.logged-user-home.realworld.io-2019.08.06-23_02_45.png" alt="post-sign-up"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/</code></td>
+<td style="text-align:left">Authenticated, global feed, page 1</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.authenticated-global-feed.realworld.io-2019.08.06-23_06_39.png" alt="authenticated-global-feed"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/</code></td>
+<td style="text-align:left">Authenticated, filtered, page 1</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.authenticated.filtered.realworld.io-2019.08.06-23_45_34.png" alt="authenticated-filtered"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/settings</code></td>
+<td style="text-align:left">Authenticated, settings</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.settings.realworld.io-2019.08.06-23_10_17.png" alt="authenticated-settings"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/settings</code></td>
+<td style="text-align:left">Authenticated, settings</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.settings-error.realworld.io-2019.08.06-23_12_11.png" alt="authenticated-settings-error"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/@me</code></td>
+<td style="text-align:left">Authenticated, own profile settings, My article tab</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.profile-settings.realworld.io-2019.08.06-23_13_56.png" alt="profile-settings"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/@me</code></td>
+<td style="text-align:left">Authenticated, own profile settings, Favorites tab</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.profile-settings-favorites.realworld.io-2019.08.06-23_16_59.png" alt="profile-settings-favorites"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/article/hi-there-fosy10</code></td>
+<td style="text-align:left">Not authenticated, article chosen</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.article.realworld.io-2019.08.06-22_27_21.png" alt="article"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/article/my-article-lzrbg0</code></td>
+<td style="text-align:left">Authenticated, article chosen</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.authenticated-article.realworld.io-2019.08.06-23_19_50.png" alt="authenticated-article"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/article/my-article-lzrbg0</code></td>
+<td style="text-align:left">Authenticated, comment posted</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.authenticated-comment-posted.realworld.io-2019.08.06-23_22_52.png" alt="authenticated-comment-posted"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/editor</code></td>
+<td style="text-align:left">Authenticated, new article</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.new-article.realworld.io-2019.08.06-23_24_20.png" alt="authenticated-new-article"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/article/&lt;title&gt;-x4fafc</code></td>
+<td style="text-align:left">Authenticated, published article</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.published-article.realworld.io-2019.08.06-23_30_59.png" alt="authenticated-published-article"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/editor/&lt;title&gt;-x4fafc</code></td>
+<td style="text-align:left">Authenticated, edit article</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.edit-article.realworld.io-2019.08.06-23_35_56.png" alt="authenticated-edit-article"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/@deneme22</code></td>
+<td style="text-align:left">another user profile settings, My article tab</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.user.realworld.io-2019.08.06-22_28_43.png" alt="user"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/@deneme22/favorites</code></td>
+<td style="text-align:left">another user profile settings, Favorites tab</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.profile-settings-different-user.realworld.io-2019.11.11-17_36_08.png" alt="profile-settings"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/register</code></td>
+<td style="text-align:left">Authentication required</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.signup.realworld.io-2019.08.06-22_36_55.png" alt="sign-up"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/register</code></td>
+<td style="text-align:left">Sign up clicked</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.signup.realworld.io-2019.08.06-22_36_55.png" alt="sign-up"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/register</code></td>
+<td style="text-align:left">Sign up failed</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.realworld.fail-signup.io-2019.08.06-23_00_11.png" alt="failed-sign-up"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/login</code></td>
+<td style="text-align:left">Sign in clicked</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.signin.realworld.io-2019.08.06-22_38_10.png" alt="sign-in"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<label for="mn-demo-15" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-15" class="margin-toggle"><span class="marginnote"><p>Note that it is unclear if the reference implementation is exempt of bugs. It is however the reference implementation, and we will seek to replicate its behaviour unless we have a good reason not to.</p>
+</span>
+<p>Authentication is required to:</p>
+<ul>
+<li>follow a user</li>
+<li>like an article</li>
+<li>post a comment</li>
+<li>publish an article</li>
+<li>and obviously to modify one’s settings and profile</li>
+</ul>
+<p>The <em>Sign in</em> and <em>Sign up</em> screens will display validation information in case of errors while attempting login or signing up. Markwdown can be used in published articles, but not in posted comments. </p>
+<p>Other general front-end specs can be found <a href="https://github.com/gothinkster/realworld/tree/master/spec#frontend-specs" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="Specifications-analysis"><a href="#Specifications-analysis" class="headerlink" title="Specifications analysis"></a>Specifications analysis</h2><p>While not an overly complex application, Conduit has enough features and a complex enough control flow to be challenging to implement. As the former section exemplifies, the same route can correspond to different states of the application and may result in different screens being displayed and different control flow being applied. </p>
+<p>Good, that is exactly what state machines are good at modelizing.</p>
+<p>The application is complex enough to warrant thinking ahead about architecture before entering the implementation phase.</p>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>We have two obvious interfaced systems: the browser DOM and the API server with a series of endpoints. We have to handle authentication, so we will add a third interfaced systems (local storage) to keep track of a user session. Authentication state does not belong to application state as its life span is greater than the application’s.</p>
+<p>The whole application will be handled with a single state machine. The Kingly architecture will be used, separating commands from command execution. API commands will be gather in a domain module with all the allowed domain operations (typically CRUD operations on domain objects — articles, comments, etc.). </p>
+<p>This leads us to the following architecture:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-high-level-architecture.png" alt="articles"></p>
+</figure>
+<h2 id="Cross-cutting-concerns"><a href="#Cross-cutting-concerns" class="headerlink" title="Cross-cutting concerns"></a>Cross-cutting concerns</h2><p>Routing and authentication will be omnipresent parts of the application. It is thus convenient to think ahead how to integrate those. </p>
+<p>Routing in Conduit is driven by the hash tag. As such there is no reload when updating the route. Instead the browser emits a <code>hashchange</code> event. If the user loads or reloads a page, the route is available in the <code>location</code> property of the global <code>window</code> object. Lastly, we also have to deal with the <em>Back</em> and <em>Forward</em> buttons. To that effect, we can use the <code>popstate</code> event. In summary:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">User action</th>
+<th style="text-align:left">Event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">load/reload</td>
+<td style="text-align:left">none, route available in <code>window.location</code></td>
+</tr>
+<tr>
+<td style="text-align:left">link clicked leading to route change</td>
+<td style="text-align:left"><code>hashchange</code></td>
+</tr>
+<tr>
+<td style="text-align:left">browser’s back button clicked</td>
+<td style="text-align:left"><code>popstate</code></td>
+</tr>
+<tr>
+<td style="text-align:left">browser’s forward button clicked</td>
+<td style="text-align:left"><code>popstate</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>By subscribing to the aforementioned events, and forwarding them to the Kingly machine, we can handle hash-routing without need of an external library.</p>
+<p>Authentication consists of login and registration (sign up). The Conduit API specs provide a <a href="https://github.com/gothinkster/realworld/tree/master/api#authentication" target="_blank" rel="noopener">login endpoint</a> and a <a href="https://github.com/gothinkster/realworld/tree/master/api#registration" target="_blank" rel="noopener">registration endpoint</a> which we will use to that purpose. The returned user data will be stored locally on the user browser (using the <code>LocalStorage</code> browser API). This means a successful log-in API call must result in an update of local storage. Similarly a successful log out must update accordingly <code>LocalStorage</code>. With this set, identifying whether a user is authenticated becomes a matter of reading the user log-in data in the local storage. </p>
+<h2 id="Implementation-strategy"><a href="#Implementation-strategy" class="headerlink" title="Implementation strategy"></a>Implementation strategy</h2><p>This being a reasonably complex application, we are going to follow an iterative implementation process. At each implementation step, we will seek to implement a larger portion of the specification.</p>
+<p>In each step, we will follow the same process:</p>
+<ul>
+<li>select the user flows we want to implement (generally will be those associated to a given route)</li>
+<li>get a refined understanding of the interface behaviour associated to the selected user flows</li>
+<li>define the user interface’s interface (i.e. <em>props</em> interface, and dispatched events)</li>
+<li>implement and test the user interface</li>
+<li>define the command module interface (i.e. which commands are triggered by the user, the shape of those commands, and which events they produce as a result of their execution)</li>
+<li>implement and test the command module</li>
+<li>modelize the interface behaviour with a graph editor (I recommend <a href="https://www.yworks.com/downloads#yEd" target="_blank" rel="noopener">yed</a>)</li>
+<li>write some tests (with at least all-transitions coverage of the modelized machine)</li>
+<li>write the definition of the machine (i.e. initial state, events, transitions, guards, action factories) and pass the previous tests</li>
+<li>pass a few end-to-end tests (all-states coverage may suffice if high confidence derived from unit tests)</li>
+</ul>
+<p>For the sake of this demo app, the command module will not be tested separately but indirectly as part of the end-to-end tests. End-to-end tests will be performed manually.</p>
+<p>In each step, we will seek to implement a route. We start with the <em>Home</em> route.</p>
+
+  
+  
+    <div class="next-links">
+      
+      
+        <span>← <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html">What we learnt</a></span>
+      
+      
+      
+        <span style="float: right;"><a href="/documentation/v1/tutorials/real-world-home.html">Home route</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

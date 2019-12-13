@@ -1,0 +1,649 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Why Kingly — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Why Kingly — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Why Kingly — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          Tutorials
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link current">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+        <li><h3>Introduction</h3></li>
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/index.html" class="sidebar-link current">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Password meter</h3></li>
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-implementation.html" class="sidebar-link">Machine implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Chess game</h3></li>
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>Movie database interface</h3></li>
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link">Top level breakdown</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie query</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3 class="new">RealWorld clone</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world.html" class="sidebar-link">RealWorld app</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-home.html" class="sidebar-link">Home route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign up route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link">Sign in route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-editor.html" class="sidebar-link">Editor route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-settings.html" class="sidebar-link">Settings route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-profile.html" class="sidebar-link">User profile route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-article.html" class="sidebar-link">Article route</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content tutorials with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>Why Kingly</h1>
+  
+  
+    <p>Kingly is a state machine library that allows you to declaratively define user interface behaviour separately from the parts of your application which implements that behaviour. In other words, a Kingly machine is a standard JavaScript <strong>function</strong> which tells the application <strong>what to do</strong> (we call that <strong>commands</strong>) in response to events, and lets the rest of the application figure out <strong>how to execute</strong> the computed commands. To understand why such a separation is beneficial, let’s give some context. </p>
+<h2 id="The-problem"><a href="#The-problem" class="headerlink" title="The problem"></a>The problem</h2><p><a href="https://medium.com/javascript-scene/unit-testing-react-components-aeda9a44aae2" target="_blank" rel="noopener">Quoting</a> Eric Eliott, author of the book <em>Composing Software</em>:</p>
+<blockquote>
+<p>In my experience, if you keep the display/UI concerns separate from program logic and side-effects, it makes your life a lot easier. This rule of thumb has always held true for me, in every language and every framework I’ve ever used.</p>
+</blockquote>
+<p><strong>TODO: rethink the framework part. Focus on the organized by feature part, extreme of that being microfront-ends.</strong><br><strong>TODO: use the vue example: <a href="https://vue-composition-api-rfc.netlify.com/#code-organization" target="_blank" rel="noopener">https://vue-composition-api-rfc.netlify.com/#code-organization</a> - with components it is hard to decipher what a component does from its code, unless the component is documented (extra work if doc not automatically generated). In angular part is in the class, part in the template, part in the framework. The component code tell us how it does sth (properties, class, options etc.), not what it does - it has to be reconstructed</strong><br><strong>TOOD: explain that problem is more acute the larger the application. The same argmentation for vue to move to a declarative API is valid here</strong><br>**TODO: vu example<br>However, the issue becomes much more prominent in advanced use cases. Take the Vue CLI UI file explorer as an example. The component has to deal with many different logical concerns:</p>
+<ul>
+<li>Tracking current folder state and displaying its content</li>
+<li>Handling folder navigation (opening, closing, refreshing…)</li>
+<li>Handling new folder creation</li>
+<li>Toggling show favorite folders only</li>
+<li>Toggling show hidden folders</li>
+<li>Handling current working directory changes<strong>
+</strong>TODO: stuff like vue composition API  or react hooks allows to answer much better the question, what does this component do. But it does not answer the question of what happens WHEN scenario - still have to look in the code, even though it is faster now with the hooks and the like. And still documenation not updated with the code. And then you still have to document (and test) the hooks - which you cannot do separateely they are tid to the framework<strong> 
+</strong>TODO: also take the idea from gatsby that “monolithic CMS powering everything -&gt; Gatsby ties together specialized services”, and that means that front-end application -&gt; manage workflows connecting specialized services<strong>
+</strong>TODO: organize the intro like here: <a href="https://www.gatsbyjs.org/docs/" target="_blank" rel="noopener">https://www.gatsbyjs.org/docs/</a> explain the different parts of the doc. Maybe not put the g-&gt; gasby part to avoid copying from others. Has conceptual guide, tutorial, quick start, recipes, reference guides, API reference, Using Gatsby Professionally, Gatsby Internals<strong>
+</strong>TODO: include Over the last few years, teams have begun moving from monolithic, integrated CMS setups to a modular “content mesh” pulling content and functionality from multiple sources and APIs. Their key challenge: pragmatically integrating all these pieces together.<strong>
+</strong>TODO: in the end, these are frameworks. You may or may not be comfortable with trusting frameworks with your business. Use cases may occur that the framework is not covering and not interested in covering. etc. Your business comes to depend on the framework. No framework, use standard -&gt; built for the future.**</li>
+</ul>
+<p><strong>Use cases: complex workflows, apps where feature correctness and safety is important, embedded systems (low memory, this is just JS)</strong></p>
+<p>The front-end has seen in the last five years a rise of component-based application frameworks such as Vue, React or Svelte. Breaking down an application in components has obvious advantages when it comes to reusability. The drive to reuse code and increase productivity, as a matter of fact, led to the rise of design systems which provide a set of pre-made components which can be separately configured and later assembled into an application’s user interface.</p>
+<p>A front-end application being more than what it looks and feels like (i.e. its user interface), what started as UI-only components have naturally evolved to multi-concern components. Such components handle not only the display of the user interface on screen, but also disparate concerns such as fetching remote data, managing session data. They also handle application logic, such as for instance the different user flows according to whether a user is authenticated. </p>
+<p>With components acquiring additional responsibilities, what was originally mainly UI libraries turned into UI frameworks. This limited the reusability of components outside of the originating framework and led to duplication. You thus have a React grid component, then a Vue grid component, and so on for each framework.</p>
+<p>Front-end frameworks have thus limited the scope of reusability to within the framework. But there is another important issue linked to multi-concern, component-based frameworks. </p>
+<p>An application can be understood and is often specified as a set of features, a feature itself being a single or a set of user flows. In a component-based framework, a component may participate in the realization of several features, and a feature may be realized by coordinating several components. When a component participates in several features, updating that component to reflect the modification or suppression of one feature may inadvertently break other features. When a feature is implemented by many components, verifying the correct behaviour, or modifying a feature may involve going through a large surface of impacted code, code which may feature complex coordination mechanisms (lifecycle, reactivity, error management, etc.). This impacts correctness and maintainability of the application as it inevitably grows in complexity.</p>
+<h2 id="The-solution"><a href="#The-solution" class="headerlink" title="The solution"></a>The solution</h2><p>Kingly allows developers to separate the feature definition from the environment that contributed to the feature realization. It puts features, i.e. user flows, at the center of the application specification and implementation, thus optimizing for feature verification, modification and removal. The full application is implemented by glueing separate modules with single concerns, and which are easy to test and implement separately. </p>
+<p>An important and omnipresent concern in front-end applications is rendering. With Kingly, you can use <strong>any UI library (or none)</strong> as rendering module, and switch it out for another one at any point of time, without modifying your user flows if the user flows have not changed. This removes the hard dependency on UI frameworks, effectively turning the UI framework into a simple UI library. You can still apply componentization techniques and enjoy the associated reusability benefits, but your components will be focused on handling rendering concerns (those components are often called <em>presentational components</em>).</p>
+<p>You can use Kingly for the whole application, for a single feature, or for a single user flow of the application. How does this work?</p>
+<h2 id="Quick-example"><a href="#Quick-example" class="headerlink" title="Quick example"></a>Quick example</h2><p>As we mentioned in the beginning, Kingly allows you to specify a function which computes what the application should do, i.e. a command to execute, in response to incoming events. Precisely, we define behaviour as the relation between events which have occurred and that must be processed, and the processing to perform — the command to execute. To illustrate this with a trivial case, in the typical counter application, clicking on the <em>increment</em> button (that is the event) should result in the application displaying an incremented value for the counter (that is the command). So we say that a Kingly implements an application behaviour by means of a standard JavaScript function, with the application behaviour being <strong>modelized</strong> by means of a <strong>state machine</strong>. So we have a state machine model on one side, and a functional implementation of that model on the other side. </p>
+<p>For the trivial counter application, an implementation using no UI library looks like this:</p>
+<iframe src="https://codesandbox.io/embed/w6x42521n7?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<p>The associated model can be represented as follows:</p>
+<p><img src="../../graphs/trivial counter machine.png" alt="counter machine"></p>
+<p>While simple, this example helps us illustrate how we can architect an application with Kingly:</p>
+<ul>
+<li>We have a model of the counter behaviour (represented in the graph above). That model says that the application will only react to a click event, and on receiving that click event, the corresponding behaviour will be to increment a counter, and render a screen (displaying the incremented counter). </li>
+<li>The model is specified as a state machine (<code>fsmDef</code> data structure) and is turned by Kingly into a JavaScript function — we will sometimes call that function the <strong>executable version</strong> of the machine. The JavaScript function computes a command for every event passed as input.  </li>
+<li>The produced command is executed by a dedicated module. For such a simple example, we have inlined the full code in one file, and used plain JavaScript to render the counter.</li>
+</ul>
+<p>The executable machine is a function! It is easy to integrate anywhere. If you wanted to use React or Svelte instead of vanilla-JS, you can do that and reuse the exact same function. We will see in the rest of the tutorial more complex examples featuring different UI libraries.</p>
+<p>Another consequence of the executable machine being a simple function: you could replace the <code>fsm</code> created by Kingly in the previous code by your own function <code>controller</code> fulfilling the same specifications:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> counter=<span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">controller</span>(<span class="hljs-params">event</span>)</span>&#123;
+  <span class="hljs-keyword">const</span> eventName = <span class="hljs-built_in">Object</span>.keys(event)[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">if</span> (eventName === <span class="hljs-string">'clicked'</span>)&#123;
+    counter++;
+    <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">command</span>: COMMAND_RENDER, <span class="hljs-attr">params</span>: counter&#125;
+  &#125;
+  
+  <span class="hljs-keyword">return</span> NO_OUTPUT
+&#125;</code></pre>
+<p>Now, you probably won’t, but the Kingly library may. In the future, Kingly will generate at <strong>build-time</strong> the code for the function from the machine definition. Currently, Kingly computes the executable machine at run time.</p>
+<p>So that is how it works: user or external systems generate events, those events are turned into commands, the commands are executed. The relation between the commands to execute and the events occurring is modelized with a state machine.</p>
+<h2 id="State-machine"><a href="#State-machine" class="headerlink" title="State machine?"></a>State machine?</h2><p>Yes, state machine. It is a very simple thing. In Kingly’s context, a Kingly machine computes outputs from an input. That computation may depend on a series of modes (e.g. user authenticated/not authenticated). To make room for that variability, a machine defines control states (the modes), and associates for aech control state a computation. When the machine processes an input, it will run the computation that corresponds to the mode it is in. </p>
+<p>For instance, a simple toggle system behaviour could be described as:</p>
+<pre><code class="lang-shell">&gt; fsm(toggle)
+&quot;open&quot;
+&gt; fsm(toggle)
+&quot;close&quot;
+&gt; fsm(toggle)
+&quot;open&quot;
+</code></pre>
+<p>This state machine has two modes. In one mode, a toggle input or event will lead to the machine computing the <em>open</em> command. In the other mode, the machine will compute the <em>close</em> command.</p>
+<p>The machine can be represented as follows:</p>
+<p><strong>TODO</strong>: include the toggle machine </p>
+<p>The machine can also change modes, after receiving an input. In the case of the toggle system, this is obvious, else we would be issuing only <em>open</em> commands or only <em>close</em> commands. Changing mode is achieved by what is called <strong>transitions</strong>. These are represented in the graph above as edges between nodes. In the general case, when processing an input, the machine may or may not change its mode.</p>
+<p>That is fundamentally what a state machine is and how it computes. It is, at core, a set of computations mapped to a set of modes, together with a set of transitions.</p>
+<p>Remember that we have defined previously the behaviour for a user interface as the relation between occurring events and commands to perform as a result of those events. Thus, modelizing an application behaviour with a state machine means defining the modes that rule the behaviour of the application, and how that mode is updated over time. </p>
+<h2 id="Benefits"><a href="#Benefits" class="headerlink" title="Benefits"></a>Benefits</h2><p>put a word abou correctnes and maintainability, tha is the solution part o he prroblem part right?</p>
+<p><strong>TODO</strong> include drawing, single truth, documentation etc.</p>
+<p>This tutorial aims at training you in using Kingly to modelize and implement an application/piece of application behaviour with state machines.</p>
+<h2 id="Tutorial-plan"><a href="#Tutorial-plan" class="headerlink" title="Tutorial plan"></a>Tutorial plan</h2><p>This tutorial will:</p>
+<ul>
+<li><strong>TODO</strong></li>
+<li>Teach you the fundamentals of programming in Elm.</li>
+<li>Show you how to make interactive apps with The Elm Architecture.</li>
+<li>Emphasize principles and patterns that generalize to programming in any language.</li>
+</ul>
+<h2 id="The-link-with-state-machines"><a href="#The-link-with-state-machines" class="headerlink" title="The link with state machines"></a>The link with state machines</h2><p>Kingly is a state machine library to specify user interface <strong>behaviour</strong>. It is designed to be used in conjunction with <strong>any user interface library or framework</strong> (such as React, Vue, Svelte, or Vanilla JavaScript); and for parts (components or custom elements) or the whole of your user interface. You <strong>declaratively</strong> specify the behaviour of your user interface as a set of actions to perform in response to events processed by the user interface. The actions to perform in response to events are computed by a state machine. The state machine acts as a <strong>model</strong> of the interface’s behaviour, which can be instrumented in several ways of interest to speed up the development of your application:</p>
+<ul>
+<li>the model is a <strong>single source of truth</strong>, and <strong>living documentation</strong> for the behaviour of your interface</li>
+<li>the model can be visualized to communicate and discuss features both within and outside your development team (designers, testers, developers)</li>
+<li>test sequences can be <strong>automatically generated</strong> from the model, and used for both unit testing and integration testing</li>
+<li>you can iterate quickly and with confidence on the model, knowing what part of the behaviour your modifications will impact and <strong>what part will not be impacted</strong></li>
+<li>the model can be shared and reuse in other projects by simply publishing it on <code>npm</code> or any package manager of your choice</li>
+</ul>
+<p>The net result is a productive development process resulting in <strong>robust, maintainable, self-documented user interfaces or components</strong>.</p>
+<p>If you want to understand the benefits of state-machine-based modelization of interface behaviour, I published a <a href="http://www.infoq.com/articles/robust-user-interfaces-with-state-machines" target="_blank" rel="noopener">detailed article</a> which provides a 10,000 feet view, easy-to-follow review of the subject.</p>
+<p>The next sections of the tutorial build progressively the concepts, demonstrating the library’s API, and providing meaningful examples.</p>
+
+  
+  
+    <div class="next-links">
+      
+      
+      
+      
+        <span style="float: right;"><a href="/documentation/v1/tutorials/counter-application.html">Counter application</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

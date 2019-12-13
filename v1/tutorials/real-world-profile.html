@@ -1,0 +1,1038 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>User profile route — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="User profile route — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="User profile route — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          Tutorials
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+        <li><h3>Introduction</h3></li>
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/index.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Password meter</h3></li>
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-implementation.html" class="sidebar-link">Machine implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Chess game</h3></li>
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>Movie database interface</h3></li>
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link">Top level breakdown</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie query</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3 class="new">RealWorld clone</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world.html" class="sidebar-link">RealWorld app</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-home.html" class="sidebar-link">Home route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign up route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link">Sign in route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-editor.html" class="sidebar-link">Editor route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-settings.html" class="sidebar-link">Settings route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-profile.html" class="sidebar-link current">User profile route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-article.html" class="sidebar-link">Article route</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content tutorials with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>User profile route</h1>
+  
+  
+    <p>In this section, we will modelize and implement the user flows related to the <em>User profile</em> route. In that route, articles favorited by a given user (i.e. liked by that user) and articles written by that given user will be displayed. The user in question is identified by the route with the shape <code>#/@username</code>. Articles liked by a given user have a specific route of the shape <code>#/@username/favorites</code>, allowing for direct linking. </p>
+<p>If the (authenticated) user navigating to the route is the same as the user whose profile must be displayed, that user may edit his profile settings. Otherwise, the navigating user may follow the user whose profile page is displayed. In both cases, the navigating user may view and like/unlike any displayed articles, just like in the <em>Home</em> route.</p>
+<p>The user needs not be authenticated to access the <em>User profile</em> route and its functionalities. The user however needs to authenticate himself to like/unlike an article, or follow a user profile. When attempting to do so, the user will be redirected to the <em>Sign up</em> page.</p>
+<h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><p>We already have identified the screens in the <em>Specifications</em> section. Ler’s remind them here:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Route</th>
+<th style="text-align:left">State</th>
+<th style="text-align:center">Main screen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>#/@bcouriol</code></td>
+<td style="text-align:left">profile settings, authenticated user is viewing his profile, My articles tab</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.profile-settings.realworld.io-2019.08.06-23_13_56.png" alt="profile-settings"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/@deneme22</code></td>
+<td style="text-align:left">profile settings, profile is not that of visiting user, My articles tab</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.user.realworld.io-2019.08.06-22_28_43.png" alt="user"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/@bcouriol/favorites</code></td>
+<td style="text-align:left">profile settings, authenticated user is viewing his profile, Favorited tab</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.profile-settings-same-user.realworld.io-2019.11.11-17_36_08.png" alt="profile-settings"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/@deneme22/favorites</code></td>
+<td style="text-align:left">profile settings, profile is not that of visiting user, Favorited tab</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.profile-settings-different-user.realworld.io-2019.11.11-17_36_08.png" alt="profile-settings"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The UI for the <em>editor</em> route will be implemented with a <em>UserProfile</em> Svelte component. The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-profile-route/src/UI/UserProfile.svelte" target="_blank" rel="noopener">full source code</a> for the <code>UserProfile</code> component can be accessed in the repository.</p>
+<h2 id="UI-testing"><a href="#UI-testing" class="headerlink" title="UI testing"></a>UI testing</h2><p>As before, we test the UI with <a href="https://storybook.js.org/" target="_blank" rel="noopener">Storybook</a>. The <a href="https://github.com/brucou/realworld-kingly-svelte/tree/with-profile-route/stories" target="_blank" rel="noopener">corresponding stories</a> are available in the source repository.</p>
+<h2 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h2><p>We have the following commands for the <em>User profile</em> route (some of which also being used for the <em>Home</em> route):</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Command</th>
+<th style="text-align:left">Command parameters</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>REDIRECT</code></td>
+<td style="text-align:left">hash to redirect to</td>
+<td style="text-align:left">redirects the user to a new/same hash location</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCH_AUTHENTICATION</code></td>
+<td style="text-align:left">—</td>
+<td style="text-align:left">fetches user session data if any</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAVORITE_ARTICLE</code></td>
+<td style="text-align:left">article slug</td>
+<td style="text-align:left">sends an <a href="https://github.com/gothinkster/realworld/tree/master/api#favorite-article" target="_blank" rel="noopener">API request</a> to like an article</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UNFAVORITE_ARTICLE</code></td>
+<td style="text-align:left">article slug</td>
+<td style="text-align:left">sends an <a href="https://github.com/gothinkster/realworld/tree/master/api#unfavorite-article" target="_blank" rel="noopener">API request</a> to unlike an article</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCH_PROFILE</code></td>
+<td style="text-align:left">username</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#get-profile" target="_blank" rel="noopener"><em>Get profile</em> end point</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FOLLOW_PROFILE</code></td>
+<td style="text-align:left">username</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#follow-user" target="_blank" rel="noopener"><em>Follow user</em> end point</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UNFOLLOW_PROFILE</code></td>
+<td style="text-align:left">username</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#unfollow-user" target="_blank" rel="noopener"><em>Unfollow user</em> end point</a></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCH_AUTHOR_FEED</code></td>
+<td style="text-align:left">articles’ author’s username and page index</td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#list-articles" target="_blank" rel="noopener"><em>List Articles</em> end point</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>We have the following events for the <em>User profile</em> route (some of which also being used for the <em>Home</em> route):</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Event</th>
+<th style="text-align:left">Event data</th>
+<th style="text-align:left">Occurs when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>ROUTE_CHANGED</code></td>
+<td style="text-align:left">hash</td>
+<td style="text-align:left">user clicks on a link (direct linking or redirection for authentication)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ARTICLES_FETCHED_OK</code></td>
+<td style="text-align:left">articles data as <a href="https://github.com/gothinkster/realworld/tree/master/api#multiple-articles" target="_blank" rel="noopener">returned by the API</a></td>
+<td style="text-align:left">articles fetch API call executed successfully</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ARTICLES_FETCHED_NOK</code></td>
+<td style="text-align:left">error</td>
+<td style="text-align:left">articles fetch API call failed</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>CLICKED_PAGE</code></td>
+<td style="text-align:left">page index</td>
+<td style="text-align:left">user clicks on a page number in the pagination section</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TOGGLED_FAVORITE</code></td>
+<td style="text-align:left">article’s slug and whether the article is favorited at the moment of the toggling</td>
+<td style="text-align:left">user clicks to like or unlike an article</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAVORITE_OK</code></td>
+<td style="text-align:left">article and slug data</td>
+<td style="text-align:left">article was successfully liked by the user</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAVORITE_NOK</code></td>
+<td style="text-align:left">error and slug data</td>
+<td style="text-align:left">user failed to like the article</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UNFAVORITE_OK</code></td>
+<td style="text-align:left">article and slug data</td>
+<td style="text-align:left">article was successfully unliked by the user</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UNFAVORITE_NOK</code></td>
+<td style="text-align:left">error and slug data</td>
+<td style="text-align:left">user failed to unlike the article</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TOGGLED_FOLLOW</code></td>
+<td style="text-align:left">username to follow, and whether that username is followed at the time of the toggling</td>
+<td style="text-align:left">user clicks to follow or unfollow a user</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TOGGLE_FOLLOW_OK</code></td>
+<td style="text-align:left">profile data</td>
+<td style="text-align:left">user successfully followed/unfollowed a profile</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TOGGLE_FOLLOW_NOK</code></td>
+<td style="text-align:left">err and profile data</td>
+<td style="text-align:left">user failed to follow/unfollow a profile</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCHED_PROFILE</code></td>
+<td style="text-align:left">profile data</td>
+<td style="text-align:left">api response to a <em>Get profile</em> request</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCH_PROFILE_NOK</code></td>
+<td style="text-align:left">error</td>
+<td style="text-align:left">api error response to a <em>Get profile</em> request</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 id="Commands-implementation"><a href="#Commands-implementation" class="headerlink" title="Commands implementation"></a>Commands implementation</h2><p>The <code>REDIRECT</code>, <code>FETCH_AUTHENTICATION</code>, <code>FAVORITE_ARTICLE</code>, <code>UNFAVORITE_ARTICLE</code> have already been written when implementing the <em>Home</em> route. For <code>FETCH_PROFILE</code>, <code>FOLLOW_PROFILE</code>, <code>UNFOLLOW_PROFILE</code>, <code>FETCH_AUTHOR_FEED</code>, we defer to the <a href="https://github.com/gothinkster/realworld/tree/master/api" target="_blank" rel="noopener">API</a> passed on through effect handlers:</p>
+<pre><code class="hljs javascript">[FETCH_PROFILE]:<span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; fetchProfile &#125; = effectHandlers;
+  <span class="hljs-keyword">const</span> username = params;
+
+  fetchProfile(&#123;username&#125;)
+    .then(<span class="hljs-function">(<span class="hljs-params">&#123;profile&#125;</span>) =&gt;</span> dispatch(&#123;[FETCHED_PROFILE]: profile&#125;))
+    .catch(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> dispatch(&#123;[FETCH_PROFILE_NOK]: err&#125;))
+  &#125;,
+[FETCH_AUTHOR_FEED]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; fetchAuthorFeed, fetchFavoritedFeed &#125; = effectHandlers;
+  <span class="hljs-keyword">const</span> &#123;username, page, feedType&#125; = params;
+  <span class="hljs-keyword">const</span> fetchFn = &#123;[USER_PROFILE_PAGE]: fetchAuthorFeed, [FAVORITE_PROFILE_PAGE]: fetchFavoritedFeed&#125;[feedType];
+
+  fetchFn(&#123;username, page&#125;)
+    .then (<span class="hljs-function">(<span class="hljs-params">&#123;articles, articlesCount&#125;</span>) =&gt;</span> dispatch(&#123;[ARTICLES_FETCHED_OK]: &#123;articles, articlesCount&#125;&#125;))
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> dispatch(&#123;[ARTICLES_FETCHED_NOK]: err&#125;))
+&#125;,
+[FOLLOW_PROFILE]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; follow &#125; = effectHandlers;
+  <span class="hljs-keyword">const</span> username = params;
+
+  follow(&#123;username&#125;)
+    .then (<span class="hljs-function">(<span class="hljs-params">&#123;profile&#125;</span>) =&gt;</span> dispatch(&#123;[FOLLOW_OK]: profile&#125;))
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> dispatch(&#123;[FOLLOW_NOK]: err&#125;))
+&#125;,
+[UNFOLLOW_PROFILE]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; unfollow &#125; = effectHandlers;
+  <span class="hljs-keyword">const</span> username = params;
+
+  unfollow(&#123;username&#125;)
+    .then (<span class="hljs-function">(<span class="hljs-params">&#123;profile&#125;</span>) =&gt;</span> dispatch(&#123;[UNFOLLOW_OK]: profile&#125;))
+    .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> dispatch(&#123;[UNFOLLOW_NOK]: err&#125;))
+&#125;,</code></pre>
+<h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The modelization we reach is the following:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-profile.png" alt="profile route behaviour modelization high level"></p>
+</figure>
+<p>Zooming in on the <em>Profile route</em> compound control state:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-profile-level-1.png" alt="profile route behaviour modelization zoomed in"></p>
+</figure>
+<h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>We pick a set of scenarios which covers the transitions of our modelized graph, so that every transition in our graph is exercised at least one during our tests. We can conceptually separate those scenarios into main cases and edge cases (API request failure, unexpected inputs etc.).</p>
+<p>In the main cases group, we will select the following tests: </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Subset</th>
+<th>Event sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(own profile, my articles)</td>
+<td>like article, unlike article, change page</td>
+</tr>
+<tr>
+<td>(own profile, favorite articles)</td>
+<td>like article, unlike article, change page</td>
+</tr>
+<tr>
+<td>(≠ profile, my articles)</td>
+<td>follow user, unfollow user</td>
+</tr>
+<tr>
+<td>(≠ profile, favorite articles)</td>
+<td>follow user, unfollow user</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the edge cases group, we will select the following tests: </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Subset</th>
+<th>Event sequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(own profile, my articles)</td>
+<td>profile fetch fails, article fetch fails</td>
+</tr>
+<tr>
+<td>(own profile, my articles)</td>
+<td>follow user fails, like article fails, unlike article fails</td>
+</tr>
+<tr>
+<td>(own profile, my articles)</td>
+<td>unfollow user fails, like article fails, unlike article fails</td>
+</tr>
+<tr>
+<td>(unauth user, my articles)</td>
+<td>like article fails and user is redirected to the signup page</td>
+</tr>
+<tr>
+<td>(unauth user, my articles)</td>
+<td>follow profile fails and user is redirected to the signup page</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The resulting 9 user scenarios are then gathered as follows:</p>
+ <pre><code class="hljs javascript"><span class="hljs-keyword">const</span> userStories = [
+  [
+    USER_SEES_OWN_PROFILE_AND_ARTICLES_LIKES_UNLIKES_CHANGES_PAGE,
+    USER_SEES_OWN_PROFILE_AND_ARTICLES_LIKES_UNLIKES_CHANGES_PAGE_INPUTS,
+    USER_SEES_OWN_PROFILE_AND_ARTICLES_LIKES_UNLIKES_CHANGES_PAGE_COMMANDS
+  ],
+  [
+    USER_SEES_OWN_PROFILE_AND_FAVORITE_ARTICLES_LIKES_UNLIKES_CHANGES_PAGE,
+    USER_SEES_OWN_PROFILE_AND_FAVORITE_ARTICLES_LIKES_UNLIKES_CHANGES_PAGE_INPUTS,
+    USER_SEES_OWN_PROFILE_AND_FAVORITE_ARTICLES_LIKES_UNLIKES_CHANGES_PAGE_COMMANDS
+  ],
+  [
+    USER_SEES_PROFILE_ARTICLES_FOLLOWS_UNFOLLOWS,
+    USER_SEES_PROFILE_ARTICLES_FOLLOWS_UNFOLLOWS_INPUTS,
+    USER_SEES_PROFILE_ARTICLES_FOLLOWS_UNFOLLOWS_COMMANDS
+  ],
+  [
+    USER_SEES_PROFILE_FAVORITE_ARTICLES_FOLLOWS_UNFOLLOWS,
+    USER_SEES_PROFILE_FAVORITE_ARTICLES_FOLLOWS_UNFOLLOWS_INPUTS,
+    USER_SEES_PROFILE_FAVORITE_ARTICLES_FOLLOWS_UNFOLLOWS_COMMANDS
+  ],
+  [
+    USER_NAVIGATES_TO_OWN_PROFILE_SEES_NONE,
+    USER_NAVIGATES_TO_OWN_PROFILE_SEES_NONE_INPUTS,
+    USER_NAVIGATES_TO_OWN_PROFILE_SEES_NONE_COMMANDS
+  ],
+  [
+    USER_NAVIGATES_TO_PROFILE_FAILS_FOLLOW_LIKE_UNLIKE,
+    USER_NAVIGATES_TO_PROFILE_FAILS_FOLLOW_LIKE_UNLIKE_INPUTS,
+    USER_NAVIGATES_TO_PROFILE_FAILS_FOLLOW_LIKE_UNLIKE_COMMANDS
+  ],
+  [
+    USER_NAVIGATES_TO_PROFILE_FAILS_UNFOLLOW_LIKE_UNLIKE,
+    USER_NAVIGATES_TO_PROFILE_FAILS_UNFOLLOW_LIKE_UNLIKE_INPUTS,
+    USER_NAVIGATES_TO_PROFILE_FAILS_UNFOLLOW_LIKE_UNLIKE_COMMANDS
+  ],
+  [
+    USER_NAVIGATES_TO_PROFILE_LIKES_AND_IS_REDIRECTED,
+    USER_NAVIGATES_TO_PROFILE_LIKES_AND_IS_REDIRECTED_INPUTS,
+    USER_NAVIGATES_TO_PROFILE_LIKES_AND_IS_REDIRECTED_COMMANDS
+  ],
+  [
+    USER_NAVIGATES_TO_PROFILE_FOLLOWS_AND_IS_REDIRECTED,
+    USER_NAVIGATES_TO_PROFILE_FOLLOWS_AND_IS_REDIRECTED_INPUTS,
+    USER_NAVIGATES_TO_PROFILE_FOLLOWS_AND_IS_REDIRECTED_COMMANDS
+  ]
+];</code></pre>
+<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>We take advantage of our TDD refactoring stage to do a little bit of cleanup in our application shell. We also initially started with events such as <code>FOLLOW_OK</code>, <code>UNFOLLOW_OK</code>, <code>FOLLOW_NOK</code>, <code>UNFOLLOW_NOK</code>, i.e. 4 events to cover the API responses linked to the follow/unfollow functionality. We brought that down to 2: <code>TOGGLE_FOLLOW_OK</code> and <code>TOGGLE_FOLLOW_NOK</code>. We also identified some possible target for refactoring (some actions are duplicated) but do not act on them just yet. When we will stop and have a look at our application performance and size, we may DRY things up further.</p>
+<h2 id="Behaviour-implementation"><a href="#Behaviour-implementation" class="headerlink" title="Behaviour implementation"></a>Behaviour implementation</h2><p>The implementation (<code>src/behaviour/profile.js</code>) derives directly from the modelization. We reproduce here the main part which are the transitions:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> profileTransitions = [
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"profile"</span>,
+    <span class="hljs-attr">event</span>: INIT_EVENT,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-auth-for-profile"</span>,
+    <span class="hljs-attr">action</span>: fetchAuthenticationAndProfileUsername
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetching-auth-for-profile"</span>,
+    <span class="hljs-attr">event</span>: AUTH_CHECKED,
+    <span class="hljs-attr">guards</span>: [
+      &#123;
+        <span class="hljs-attr">predicate</span>: isUserProfileMyArticlesRoute,
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+        <span class="hljs-attr">action</span>: fetchMyArticlesAndProfileAndRender
+      &#125;,
+      &#123;
+        <span class="hljs-attr">predicate</span>: isUserProfileFavoritesRoute,
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+        <span class="hljs-attr">action</span>: fetchFavoriteArticlesAndProfileAndRender
+      &#125;
+    ]
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: ARTICLES_FETCHED_OK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFetchedArticles
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: ARTICLES_FETCHED_NOK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFetchArticlesFailed
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: FETCHED_PROFILE,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFetchedProfile
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: FETCH_PROFILE_NOK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderFetchedProfileFailed
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: TOGGLED_FOLLOW,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetch-auth-for-profile-follow"</span>,
+    <span class="hljs-attr">action</span>: fetchAuthentication,
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetch-auth-for-profile-follow"</span>,
+    <span class="hljs-attr">event</span>: AUTH_CHECKED,
+    <span class="hljs-attr">guards</span>: [
+      &#123;
+        <span class="hljs-attr">predicate</span>: isUserNotAuthenticated,
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>,
+        <span class="hljs-attr">action</span>: redirectToSignUp
+      &#125;,
+      &#123;
+        <span class="hljs-attr">predicate</span>: isUserAuthenticatedAndFollowedProfile,
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+        <span class="hljs-attr">action</span>: unfollowProfileAndRender
+      &#125;,
+      &#123;
+        <span class="hljs-attr">predicate</span>: isUserAuthenticatedAndUnfollowedProfile,
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+        <span class="hljs-attr">action</span>: followProfileAndRender
+      &#125;,
+    ]
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: TOGGLE_FOLLOW_OK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderToggleFollowedProfile
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: TOGGLE_FOLLOW_NOK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderToggleFollowProfileFailed
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: FAVORITE_OK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderLiked
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: FAVORITE_NOK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderLikeFailed
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: UNFAVORITE_OK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderUnliked
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: UNFAVORITE_NOK,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">action</span>: renderUnlikeFailed
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: TOGGLED_FAVORITE,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetch-auth-for-profile-favorite"</span>,
+    <span class="hljs-attr">action</span>: fetchAuthenticationAndUpdateFavoriteStatusForProfile
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetch-auth-for-profile-favorite"</span>,
+    <span class="hljs-attr">event</span>: AUTH_CHECKED,
+    <span class="hljs-attr">guards</span>: [
+      &#123;
+        <span class="hljs-attr">predicate</span>: isNotAuthenticated,
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>,
+        <span class="hljs-attr">action</span>: redirectToSignUp
+      &#125;,
+      &#123;
+        <span class="hljs-attr">predicate</span>: and(isAuthenticated, isArticleLiked),
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+        <span class="hljs-attr">action</span>: unlikeAuthorArticleAndRender
+      &#125;,
+      &#123;
+        <span class="hljs-attr">predicate</span>: and(isAuthenticated, not(isArticleLiked)),
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+        <span class="hljs-attr">action</span>: likeAuthorArticleAndRender
+      &#125;
+    ]
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"user-profile-rendering"</span>,
+    <span class="hljs-attr">event</span>: CLICKED_PAGE,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-auth-for-profile"</span>,
+    <span class="hljs-attr">action</span>: fetchArticlesPage
+  &#125;,
+  &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"profile"</span>, <span class="hljs-attr">event</span>: ROUTE_CHANGED, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">action</span>: updateURL &#125;,
+];</code></pre>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>Profile</em> route of our Conduit clone application. As the user interface for the <em>Profile</em> route had commonalities both at the interface and behaviour level with the <em>Home</em> route, we were able to reuse part of the <em>Home</em> route implementation. We also identified further opportunities for code size reduction.</p>
+
+  
+  
+    <div class="next-links">
+      
+      
+        <span>← <a href="/documentation/v1/tutorials/real-world-settings.html">Settings route</a></span>
+      
+      
+      
+        <span style="float: right;"><a href="/documentation/v1/tutorials/real-world-article.html">Article route</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

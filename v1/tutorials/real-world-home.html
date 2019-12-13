@@ -1,0 +1,1549 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Home route — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Home route — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Home route — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          Tutorials
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+        <li><h3>Introduction</h3></li>
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/index.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Password meter</h3></li>
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-implementation.html" class="sidebar-link">Machine implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Chess game</h3></li>
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>Movie database interface</h3></li>
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link">Top level breakdown</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie query</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3 class="new">RealWorld clone</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world.html" class="sidebar-link">RealWorld app</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-home.html" class="sidebar-link current">Home route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign up route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link">Sign in route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-editor.html" class="sidebar-link">Editor route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-settings.html" class="sidebar-link">Settings route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-profile.html" class="sidebar-link">User profile route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-article.html" class="sidebar-link">Article route</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content tutorials with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>Home route</h1>
+  
+  
+    <h2 id="Set-up"><a href="#Set-up" class="headerlink" title="Set-up"></a>Set-up</h2><p>Let’s do our application and tests setup. </p>
+<p>Following the <a href="https://svelte.dev/blog/the-easiest-way-to-get-started" target="_blank" rel="noopener">instructions</a> in Svelte repo:</p>
+<pre><code class="hljs bash">npx degit sveltejs/rw-kingly-svelte
+<span class="hljs-built_in">cd</span> rw-kingly-svelte
+npm install
+npm run dev</code></pre>
+<p>and check in a browser that everything is working in <code>localhost:5000</code> (you should see <em>Hello world</em>).</p>
+<p>That done, we add:</p>
+<pre><code class="hljs bash">npm install --save kingly</code></pre>
+<p>We may need <code>marked</code> for the markdown commenting at some point but that is all we should need for the home page, so we’ll add marked later.</p>
+<p>Last, we initialize git:</p>
+<pre><code class="hljs bash">git init</code></pre>
+<p>The <a href="https://github.com/sveltejs/template" target="_blank" rel="noopener">template we are using</a> builds the Svelte app with <code>rollup</code> (cf. <code>rollup.config.js</code> file). </p>
+<p>To build (with a watcher):</p>
+<pre><code class="hljs bash">npm run autobuild</code></pre>
+<p>To run:</p>
+<pre><code class="hljs bash">npm run start</code></pre>
+<p>To run in dev:</p>
+<pre><code class="hljs bash">npm run dev</code></pre>
+<p>Following with tests setup, we will use good old <em>QUnit</em> as a test runner and <em>parcel</em> as a test bundler. This allows us to test in a real browser, and not to bother with configuration, given <em>parcel</em>‘s sane defaults.</p>
+<p>We run in the home directory of the repository:</p>
+<pre><code class="hljs bash">npm install --save-dev qunitjs
+npm install --save-dev parcel</code></pre>
+<p>We update the package json to include our test script:</p>
+<pre><code class="hljs diff">&#123;
+  (...)
+  "scripts": &#123;
+    "build": "rollup -c",
+    "autobuild": "rollup -c -w",
+    "dev": "run-p start:dev autobuild",
+    "start": "sirv public --single",
+    "start:dev": "sirv public --single --dev",
+<span class="hljs-addition">+    "test": "parcel tests/index.html"</span>
+  &#125;
+&#125;</code></pre>
+<p>We create an html file (<code>tests/index.html</code>) to run QUnit with:</p>
+<pre><code class="hljs html"><span class="hljs-meta">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"no-js"</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">""</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Qunit testing stylesheets --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://cdnjs.cloudflare.com/ajax/libs/qunit/2.9.2/qunit.css"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Add your site or application content here --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"app"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- Qunit old--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"qunit"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"qunit-fixture"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- Qunit new--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"qunit-header"</span>&gt;</span>QUnit Test Suite<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"qunit-banner"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"qunit-testrunner-toolbar"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"qunit-userAgent"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ol</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"qunit-tests"</span>&gt;</span>test markup, hidden.<span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<p>We create two new JavaScript files to hold our tests:</p>
+<ul>
+<li><code>tests/index.js</code> </li>
+</ul>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> QUnit <span class="hljs-keyword">from</span> <span class="hljs-string">"qunit"</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./home-route-fsm.specs'</span>
+
+QUnit.dump.maxDepth = <span class="hljs-number">50</span>;
+
+QUnit.test(<span class="hljs-string">"QUnit works"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exec_test</span>(<span class="hljs-params">assert</span>) </span>&#123;
+  assert.ok(<span class="hljs-literal">true</span>)
+&#125;);</code></pre>
+<ul>
+<li><code>tests/home-route-fsm.specs.js</code></li>
+</ul>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> QUnit <span class="hljs-keyword">from</span> <span class="hljs-string">"qunit"</span>
+
+QUnit.module(<span class="hljs-string">"Testing home route fsm"</span>, &#123;&#125;);</code></pre>
+<p>Running the tests (<code>npm run test</code>) should display our first passing test:</p>
+<p><img src="../../images/real-world/QUnit%20dummy%20test.png" alt="QUnit first passing test"> </p>
+<p>That was for the QUnit setup. </p>
+<h2 id="Application-shell"><a href="#Application-shell" class="headerlink" title="Application shell"></a>Application shell</h2><p>We are going to have an architecture where the Kingly machine receives events from event sources, and outputs commands to command handlers. </p>
+<label for="mn-demo-9" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-9" class="margin-toggle"><span class="marginnote"><p>Following the terminology used in the <a href="https://en.wikipedia.org/wiki/Observer_pattern" target="_blank" rel="noopener"><em>Observer pattern</em></a>, and in <a href="https://rxjs-dev.firebaseapp.com/guide/subject" target="_blank" rel="noopener">Rxjs</a>, we will sometimes say that the event bus is a <em>Subject</em>, defined as an object which implements both the <a href="http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html" target="_blank" rel="noopener">Observer</a> (listener) and <a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html" target="_blank" rel="noopener">Observable</a> (emitter) interface.</p>
+</span>
+<p>Events will come from user inputs (clicks on links or other parts of the app) and external inputs (mostly responses to API calls). Clicking on links will trigger a (hash) route change, so we will need to listen for the browser window’s location changes. Other events will be emitted by the application and we will need to proxy those events to the Kingly machine. To that purpose we are going to use an event bus. The event bus must be both an event listener which can subscribe to event sources, and an event emitter which the machine can subscribe to.</p>
+<p>Our interfaced systems include the screen (browser DOM), the browser window’s location, the API endpoint (<code>https://conduit.productionready.io/api</code>), and the user session (for authentication purposes). As detailed in our <a href="/documentation/v1/tutorials/real-world.html#Architecture">preliminary architecture</a>, we will define command handlers for each command issued by the machine. In line with the <a href="https://dzone.com/articles/hexagonal-architecture-is-powerful" target="_blank" rel="noopener">Hexagonal Architecture</a> guidelines, we refine our preliminary architecture and limit our command handlers responsibilities to orchestrating requests to and responses from the interfaced systems. Concretely, we will introduce an <em>effect handlers</em> module which isolate domain methods (fetch articles, like article, etc.), so that effect handlers have a single concern which is to handle a specific domain operation. </p>
+<p>Separating effect handlers from command handlers is not strictly necessary but it is good practice for a separation of concern point of view, but also for testing purposes as it allows to test the command handlers by mocking the effect handlers. We take the pain to define an architecture with an increased level of decoupling in order to be able to test easily, debug faster, and to reduce the impact of a change in specifications on any of our modules. As a matter of fact, with our architecture, we can:</p>
+<ul>
+<li>test the machine independently of the other modules, simply by passing input sequences</li>
+<li>test the command handlers by mocking the effect handlers</li>
+<li>test easily the effect handlers, as they usually have a single concern</li>
+</ul>
+<p>The refined architecture can be represented as follows:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-hexgaonal-architecture%20v2.png" alt="refined Conduit clone architecture"></p>
+</figure>
+<p>We group the API calls in a <a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern#what-is-the-api-gateway-pattern" target="_blank" rel="noopener"><em>API gateway</em></a> which further decouple the effect handlers from the endpoint. This is also not strictly necessary but also fits the hexagonal architecture.</p>
+<p>We additionally create a session repository interface to hold our authentication data. The session repository allows us to abstract storage (here local storage, but it could be any other persistent storage method) and surface a custom authentication API (typically CRUD operations such as retrieving or updating user authentication data). </p>
+<p>To render to the DOM, we will need a render command handler. The render command handler is specific to the UI library used (here Svelte) and your mileage may vary. Our render command will issue updated <em>props</em> for the component which renders the application (called <code>App</code> through sheer lack of imagination). Here we are going to use the <code>$set</code> API of Svelte to update <code>App</code>‘s <em>props</em>. Our <code>&lt;App /&gt;</code> component:</p>
+<label for="mn-demo-23" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-23" class="margin-toggle"><span class="marginnote"><p>The <code>src/App</code> component renders the <code>SvelteFsm</code> component with a slot content conditionally set to the <code>RealWorld</code> component if the latter should be rendered (at initialization time, we have nothing yet to render).</p>
+</span>  
+ <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> Fsm <span class="hljs-keyword">from</span> <span class="hljs-string">"./SvelteFsm.svelte"</span>;
+  <span class="hljs-keyword">import</span> RealWorld <span class="hljs-keyword">from</span> <span class="hljs-string">"./UI/RealWorld.svelte"</span>;
+
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> _fsm;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> _shouldRender = <span class="hljs-literal">false</span>;
+  <span class="hljs-comment">// Other props</span>
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> ...
+
+  const &#123;
+    fsmFactory,
+    env,
+    eventBus,
+    commandHandlers,
+    effectHandlers,
+    initEvent
+  &#125; = _fsm;
+
+  <span class="hljs-keyword">const</span> next = eventBus.next.bind(eventBus);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">Fsm</span>
+  &#123;<span class="hljs-attr">fsmFactory</span>&#125;
+  &#123;<span class="hljs-attr">env</span>&#125;
+  &#123;<span class="hljs-attr">eventBus</span>&#125;
+  &#123;<span class="hljs-attr">commandHandlers</span>&#125;
+  &#123;<span class="hljs-attr">effectHandlers</span>&#125;
+  &#123;<span class="hljs-attr">initEvent</span>&#125;&gt;</span>
+  &#123;#if _shouldRender&#125;
+    <span class="hljs-tag">&lt;<span class="hljs-name">RealWorld</span>
+      [<span class="hljs-attr">other</span> <span class="hljs-attr">props</span>]
+      <span class="hljs-attr">dispatch</span>=<span class="hljs-string">&#123;next&#125;</span> /&gt;</span>
+  &#123;/if&#125;
+<span class="hljs-tag">&lt;/<span class="hljs-name">Fsm</span>&gt;</span></code></pre>
+<label for="mn-demo-26" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-26" class="margin-toggle"><span class="marginnote"><p>The <code>src/SvelteFsm</code> component simply creates a state machine with the <code>fsmFactory</code>, injecting <code>env</code> into it. It then subscribes to the <code>eventHandler</code> to receive incoming events, computes commands from the machine (<code>actions = fsm(event)</code>), and execute them, filtering out empty commands.</p>
+<p>The <code>&lt;slot /&gt;</code> instruction at the end of the <code>src/SvelteFsm</code> component tell Svelte to render whatever content is included within the <code>src/SvelteFsm</code> tag (here the <code>RealWorld</code> component which displays the application’s user interface). If you are familiar with <a href="https://vuejs.org/v2/guide/components-slots.html" target="_blank" rel="noopener"><code>Vue</code></a>, or the <a href="https://www.webcomponents.org/specs#composition-and-slots" target="_blank" rel="noopener">Web Component standard</a>, Svelte slots offer a similar functionality.</p>
+</span>  
+<p> will use a  custom-made <code>SvelteFsm</code> component (<code>src/SvelteFsm.svelte</code>) which receives events, passes them through the machines and runs the commands:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> &#123; NO_OUTPUT &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"kingly"</span>;
+
+  <span class="hljs-comment">// Svelte defines props for a component with the `export let` proprietary syntax</span>
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> eventHandler;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> fsmFactory;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> commandHandlers;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> effectHandlers;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> env;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> initEvent;
+
+  <span class="hljs-comment">// Create the machine</span>
+  <span class="hljs-keyword">const</span> fsm = fsmFactory(<span class="hljs-built_in">Object</span>.assign(&#123;&#125;, env));
+  <span class="hljs-keyword">const</span> next = eventHandler.next.bind(eventHandler);
+
+  <span class="hljs-comment">// Subscribing to machine events</span>
+  eventHandler.subscribe(&#123;
+    <span class="hljs-attr">next</span>: <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> &#123;
+      <span class="hljs-comment">// 1. Run the input on the machine to obtain the actions to perform</span>
+      <span class="hljs-keyword">const</span> actions = fsm(event);
+
+      <span class="hljs-comment">// 2. Execute the actions, if any</span>
+      <span class="hljs-keyword">if</span> (actions === NO_OUTPUT) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>;
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        actions
+          .filter(<span class="hljs-function"><span class="hljs-params">action</span> =&gt;</span> action !== NO_OUTPUT)
+          .forEach(<span class="hljs-function"><span class="hljs-params">action</span> =&gt;</span> &#123;
+            <span class="hljs-keyword">const</span> &#123; command, params &#125; = action;
+
+            <span class="hljs-keyword">const</span> commandHandler = commandHandlers[command];
+            <span class="hljs-keyword">if</span> (!commandHandler || <span class="hljs-keyword">typeof</span> commandHandler !== <span class="hljs-string">"function"</span>) &#123;
+              <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+                <span class="hljs-string">`Machine: Could not find command handler for command <span class="hljs-subst">$&#123;command&#125;</span>!`</span>
+              );
+            &#125;
+
+            commandHandler(next, params, effectHandlers);
+          &#125;);
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>;
+      &#125;
+    &#125;,
+    <span class="hljs-attr">error</span>: <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;
+      <span class="hljs-comment">// We may get there for instance if there was a preprocessor throwing an exception</span>
+      <span class="hljs-built_in">console</span>.error(
+        <span class="hljs-string">`&lt;SvelteFsm /&gt;: an error occurred in the event sources the event bus is subscribed to!`</span>,
+        error
+      );
+    &#125;,
+    <span class="hljs-attr">complete</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;&#125;
+  &#125;);
+
+  initEvent &amp;&amp; next(initEvent);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> /&gt;</span></code></pre>
+<p>The <code>fsmFactory</code> <em>prop</em> will create the Kingly machine controlling the application. The <code>eventBus</code> is the event bus we mentioned previously. We already discussed the <code>commandHandlers</code> and <code>effectHandlers</code> <em>props</em>. The <code>env</code> variable is used to inject dependencies or parameters into the machine (here we pass parameters to ensure the machine’s execution is traced and its contracts checked). <code>initEvent</code> when present run an initial event through the machine immediately after creation.</p>
+<p>Note that we won’t pass an <code>initEvent</code> <em>prop</em> to the <code>SvelteFsm</code> component but manually send it from the app shell. The app shell (<code>src/main.js</code>) thus goes like this:</p>
+<label for="mn-demo-28" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-28" class="margin-toggle"><span class="marginnote"><p>The <code>src/main</code> app shell:</p>
+<ul>
+<li>creates an event bus</li>
+<li>subscribes the event bus to the  <em>Window</em>‘s <code>hashchange</code> event</li>
+<li>creates the command handlers, effect handlers, and initial event <em>props</em> to pass to the <code>src/SvelteFsm</code> component</li>
+<li>renders the <code>src/SvelteFsm</code> component with the <code>src/UI/RealWorld</code> component as a child slot</li>
+</ul>
+</span>  
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">"./App.svelte"</span>;
+<span class="hljs-keyword">import</span> emitonoff <span class="hljs-keyword">from</span> <span class="hljs-string">"emitonoff"</span>;
+<span class="hljs-keyword">import</span> &#123; fsmContracts &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"kingly"</span>;
+<span class="hljs-keyword">import</span> sessionRepositoryFactory <span class="hljs-keyword">from</span> <span class="hljs-string">"./sessionRepository"</span>;
+<span class="hljs-keyword">import</span> apiGatewayFactory <span class="hljs-keyword">from</span> <span class="hljs-string">"./apiGateway"</span>;
+<span class="hljs-keyword">import</span> apiRouterFactory <span class="hljs-keyword">from</span> <span class="hljs-string">"./apiRouter"</span>;
+<span class="hljs-keyword">import</span> eventEmitterFactory <span class="hljs-keyword">from</span> <span class="hljs-string">"./eventEmitter"</span>;
+<span class="hljs-keyword">import</span> &#123; commands, fsmFactory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"./fsm"</span>;
+<span class="hljs-keyword">import</span> &#123; events &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"./constants"</span>
+
+<span class="hljs-comment">// Commands</span>
+<span class="hljs-keyword">const</span> [
+  RENDER,
+  ...
+] = commands;
+<span class="hljs-keyword">const</span> [
+  ROUTE_CHANGED,
+  ...
+] = events;
+<span class="hljs-comment">// We want to log trace messages in the console and check the machine contracts before using it</span>
+<span class="hljs-keyword">const</span> env = &#123; <span class="hljs-attr">debug</span>: &#123; <span class="hljs-built_in">console</span>, <span class="hljs-attr">checkContracts</span>: fsmContracts &#125; &#125;;
+
+<span class="hljs-comment">// Event emitter</span>
+<span class="hljs-keyword">const</span> eventBus = eventEmitterFactory(emitonoff);
+<span class="hljs-keyword">const</span> next = eventBus.next.bind(eventBus);
+
+<span class="hljs-comment">// We set in place the API for storing authentication data</span>
+<span class="hljs-keyword">const</span> sessionRepository = sessionRepositoryFactory(
+  <span class="hljs-built_in">window</span>.localStorage,
+  <span class="hljs-built_in">window</span>.addEventListener
+);
+
+<span class="hljs-comment">// We set in place the APIs for executing domain methods</span>
+<span class="hljs-keyword">const</span> &#123; ... &#125; = apiGatewayFactory(
+  fetch,
+  sessionRepository
+);
+
+<span class="hljs-comment">// We set in place route handling</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hashChangeHandler</span>(<span class="hljs-params">&#123; newURL, oldURL, hash &#125;</span>) </span>&#123;
+  next(&#123; [ROUTE_CHANGED]: &#123; newURL, oldURL, hash &#125; &#125;);
+&#125;
+
+<span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">subscribe</span>: hashChangeSubscribe, getCurrentHash &#125; = apiRouterFactory(
+  <span class="hljs-built_in">window</span>.location,
+  <span class="hljs-built_in">window</span>.addEventListener
+);
+hashChangeSubscribe(hashChangeHandler);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params">props</span>) </span>&#123;
+  <span class="hljs-comment">// This allows to toggle rendering when an actual render command has to be executed</span>
+  app.$<span class="hljs-keyword">set</span>(Object.assign(&#123;&#125;, props, &#123; <span class="hljs-attr">_shouldRender</span>: <span class="hljs-literal">true</span> &#125;));
+&#125;
+
+<span class="hljs-comment">// Command and effect handlers</span>
+<span class="hljs-keyword">const</span> commandHandlers = &#123;
+  [RENDER]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> &#123; render &#125; = effectHandlers;
+    render(params);
+  &#125;,
+  [other command handlers]
+&#125;;
+
+<span class="hljs-keyword">const</span> effectHandlers = &#123;
+  render,
+  [other effect handlers]
+&#125;;
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> App(&#123;
+  <span class="hljs-attr">target</span>: <span class="hljs-built_in">document</span>.body,
+  <span class="hljs-attr">props</span>: &#123;
+    <span class="hljs-attr">_shouldRender</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">_fsm</span>: &#123;
+      fsmFactory,
+      env,
+      eventBus,
+      commandHandlers,
+      effectHandlers,
+    &#125;,
+    [other props]
+  &#125;
+&#125;);
+
+<span class="hljs-comment">// kick start the app with the routing event corresponding to the current route</span>
+<span class="hljs-keyword">const</span> initEvent = &#123; [ROUTE_CHANGED]: &#123; <span class="hljs-attr">hash</span>: getCurrentHash() &#125; &#125;;
+next(initEvent);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> app;</code></pre>
+<h2 id="Testing-strategy"><a href="#Testing-strategy" class="headerlink" title="Testing strategy"></a>Testing strategy</h2><p>Let’s quickly note that TDD is less about testing than it is about development. Writing the tests first forces us to <strong>think ahead</strong> about the features we want to implement, how we organize the implementation’s modules, how we define their interfaces, how, and in which order we test the implementation. None of these actually implies writing tests but thinking tests first is how we arrived in the first place to the chosen architecture made of decoupled modules and the <a href="/documentation/v1/tutorials/real-world.html#Implementation-strategy">implementation strategy</a> mentioned in a previous section.</p>
+<p>The UI will be tested with Storybook. The machine will be tested by matching its outputs to the expected outputs originating from its specifications. The command handlers won’t be tested, being fairly trivial. The effect handlers come already tested out of the box (we took them from another Conduit clone).</p>
+<p>Regarding our machine tests, we will need to:</p>
+<ul>
+<li>explicit the shape of machine inputs (events), and machine outputs (commands)</li>
+<li>have at hand a set of fixtures to serve as event data</li>
+<li>import the state machine and any other test relevant data</li>
+</ul>
+<p>Structure-wise, we will make the following choices:</p>
+<ul>
+<li>we will have a separate file for the state machine: <code>src/fsm.js</code></li>
+<li>that file will export the events and commands issued by the state machine</li>
+<li>we will have a separate file to hold all constants relevant to the applications and which fit nowhere else</li>
+<li>we will have fixtures files in a fixture directory (<code>tests/fixtures</code>). Fixtures file will be organized per domain object (tags, articles, etc.)</li>
+</ul>
+<p>We thus create the following files/directory:</p>
+<ul>
+<li><code>tests/home-route-fsm-specs</code> to hold tests related to the home route</li>
+<li><code>tests/fixtures</code></li>
+</ul>
+<p>In what follows, we are going to implement our application by implementing a series of user scenarios, the sum of which covers the whole set of specifications for the home route. Let’s start small, considering unauthenticated user scenarios, to later incorporate authenticated users scenarios, and the rest of the specifications. We follow the <a href="/documentation/v1/tutorials/real-world.html#Implementation-strategy">implementation strategy</a> mentioned in the previous section.</p>
+<h2 id="Unauthenticated-user-sees-global-feed"><a href="#Unauthenticated-user-sees-global-feed" class="headerlink" title="Unauthenticated user sees global feed"></a>Unauthenticated user sees global feed</h2><p>We are first going to implement the following scenarios:</p>
+<pre><code class="hljs gherkin"><span class="hljs-keyword">Background</span>:
+  <span class="hljs-keyword">Given</span> the user is not authenticated
+  <span class="hljs-keyword">And</span> the user navigated to the home page
+
+<span class="hljs-keyword">Scenario</span>: Unauthenticated user navigates to <span class="hljs-symbol">*</span>Home<span class="hljs-symbol">*</span> page and sees a loading message
+  <span class="hljs-keyword">Then</span> the application attempts to fetch the global feed
+  <span class="hljs-keyword">And</span> the interface notifies that the fetch is in progress 
+
+<span class="hljs-keyword">Scenario</span>: Unauthenticated user navigates to <span class="hljs-symbol">*</span>Home<span class="hljs-symbol">*</span> page and sees the global feed
+  <span class="hljs-keyword">Given</span> the application attempted to fetch the global feed
+  <span class="hljs-keyword">When</span> the fetch is successful
+  <span class="hljs-keyword">Then</span> the interface displays the global feed
+
+<span class="hljs-keyword">Scenario</span>: Unauthenticated user navigates to <span class="hljs-symbol">*</span>Home<span class="hljs-symbol">*</span> page and sees an error message
+  <span class="hljs-keyword">Given</span> the application attempted to fetch the global feed
+  <span class="hljs-keyword">When</span> the fetch fails
+  <span class="hljs-keyword">Then</span> the interface displays the results it obtained and indicates missing data</code></pre>
+<h3 id="User-interface"><a href="#User-interface" class="headerlink" title="User interface"></a>User interface</h3><p>The <code>src/UI/RealWorld</code> component will display all the screens of our Conduit clone, using only its <em>props</em>. This means that the <code>RealWorld</code> component will need no local state, or any other functionality that is not purely related to UI rendering. Any relevant information to rendering a screen will be encoded in the component’s <em>props</em>.</p>
+<p>Per the Conduit demo app screenshot, we need, in the home route, a screen which displays:</p>
+<ul>
+<li>a header</li>
+<li>a banner</li>
+<li>a loading status when tags or articles are being fetched</li>
+<li>the tags or articles when they are successfully fetched</li>
+<li>pagination for the articles (10 articles are displayed at a time)</li>
+<li>the current page highlighted</li>
+<li>a global feed tab</li>
+</ul>
+<p>We thus will use the following properties for the <code>&lt;RealWorld /&gt;</code> Svelte component:</p>
+<ul>
+<li><code>tags</code>: a string with the loading message, or an error (tags fetch not successful), or an array of tags (tags fetch successful)</li>
+<li><code>articles</code>: a string with the loading message, or an error (articles fetch not successful), or an array of tags (articles fetch successful)</li>
+<li><code>page</code>: the current page</li>
+</ul>
+<p>The <code>&lt;RealWorld /&gt;</code> component can be broken down into smaller components as usual. Here we use smaller components such as <code>GlobalFeedTab</code>, <code>Header</code>, <code>Banner</code>, <code>ArticleList</code> or <code>Tags</code>. Those components must be imported before usage.</p>
+<p>This gives us the following code for <code>src/UI/RealWord.svelte</code>:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> Banner <span class="hljs-keyword">from</span> <span class="hljs-string">"./Banner.svelte"</span>;
+  <span class="hljs-keyword">import</span> Header <span class="hljs-keyword">from</span> <span class="hljs-string">"./Header.svelte"</span>;
+  <span class="hljs-keyword">import</span> ArticleList <span class="hljs-keyword">from</span> <span class="hljs-string">"./ArticleList.svelte"</span>;
+  <span class="hljs-keyword">import</span> Tags <span class="hljs-keyword">from</span> <span class="hljs-string">"./Tags.svelte"</span>;
+  <span class="hljs-keyword">import</span> GlobalFeedTab <span class="hljs-keyword">from</span> <span class="hljs-string">"./GlobalFeedTab.svelte"</span>;
+  <span class="hljs-keyword">import</span> &#123; viewModel &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"../constants"</span>;
+  <span class="hljs-keyword">import</span> &#123; events &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"../constants"</span>;
+
+  <span class="hljs-comment">// Props</span>
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> tags;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> articles;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> page;
+  <span class="hljs-comment">// Unused for now</span>
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> dispatch;
+
+  <span class="hljs-keyword">const</span> &#123;
+    <span class="hljs-attr">tabs</span>: [USER_FEED, GLOBAL_FEED, TAG_FILTER_FEED],
+    <span class="hljs-attr">fetchStatus</span>: [LOADING, NOK, OK]
+  &#125; = viewModel;
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">computeFetchStatus</span>(<span class="hljs-params">obj</span>) </span>&#123;
+    <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span>) &#123;
+      <span class="hljs-keyword">return</span> NOK;
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> obj === <span class="hljs-string">"string"</span>) &#123;
+      <span class="hljs-keyword">return</span> LOADING;
+    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> obj === <span class="hljs-string">"object"</span>) &#123;
+      <span class="hljs-keyword">return</span> OK;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-keyword">throw</span> <span class="hljs-string">`computeFetchStatus: invalid parameter!`</span>;
+    &#125;
+  &#125;
+  <span class="hljs-comment">// - It seems like Svelte does not currently allows destructuring in reactive statements!</span>
+  <span class="hljs-comment">// - It seems you can't reuse a reactive assignment's left side on the right side, hence the dup typeof tags</span>
+  $: articleList =
+    <span class="hljs-keyword">typeof</span> articles === <span class="hljs-string">"object"</span> ? articles &amp;&amp; articles.articles : <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>;
+  $: articlesCount =
+    <span class="hljs-keyword">typeof</span> articles === <span class="hljs-string">"object"</span> ? articles &amp;&amp; articles.articlesCount : <span class="hljs-number">0</span>;
+  $: tagList = <span class="hljs-keyword">typeof</span> tags === <span class="hljs-string">"object"</span> ? tags &amp;&amp; tags.tags : <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>;
+  $: tagsFetchStatus = computeFetchStatus(tags);
+  $: articlesFetchStatus = computeFetchStatus(articles);
+  $: currentPage = page || <span class="hljs-number">0</span>;
+
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"home-page"</span> <span class="hljs-attr">data-testId</span>=<span class="hljs-string">"home-page"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Banner</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container page"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-md-9"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"feed-toggle"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav nav-pills outline-active"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">GlobalFeedTab</span> /&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">ArticleList</span>
+            <span class="hljs-attr">articles</span>=<span class="hljs-string">&#123;articleList&#125;</span>
+            &#123;<span class="hljs-attr">articlesCount</span>&#125;
+            &#123;<span class="hljs-attr">currentPage</span>&#125;
+            <span class="hljs-attr">fetchStatus</span>=<span class="hljs-string">&#123;articlesFetchStatus&#125;</span> /&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-md-3"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"sidebar"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Popular Tags<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Tags</span> <span class="hljs-attr">tags</span>=<span class="hljs-string">&#123;tagList&#125;</span> <span class="hljs-attr">fetchStatus</span>=<span class="hljs-string">&#123;tagsFetchStatus&#125;</span> /&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<h3 id="User-interface-tests"><a href="#User-interface-tests" class="headerlink" title="User interface tests"></a>User interface tests</h3><p>We use <a href="https://storybook.js.org/" target="_blank" rel="noopener">Storybook</a> to test our user interface. Storybook is a component explorer, which provides a sandbox to design, build, test and organize UI components in isolation. Developers document use cases as stories and can navigate through the stories to check the correct behaviour of components. Storybook works with several UI libraries, including Svelte. To install Storybook for Svelte, follow the <a href="https://storybook.js.org/docs/guides/guide-svelte/" target="_blank" rel="noopener">instructions</a> published by Storybook.</p>
+<p>Thanks to Storybook, we can define stories corresponding to diverse points of the <code>&lt;RealWorld /&gt;</code> component parameter space and check that the correct view is displayed. Additionally we use Storybook addons to check the behaviour of event handlers, or test the UI with <a href="https://storybook.js.org/docs/testing/structural-testing/" target="_blank" rel="noopener">snapshots</a>. Storybook also allows <a href="https://storybook.js.org/docs/testing/interaction-testing/" target="_blank" rel="noopener">interaction testing</a> and <a href="https://storybook.js.org/docs/testing/automated-visual-testing/" target="_blank" rel="noopener">automated visual testing</a>. </p>
+<p>The following stories allows us to check manually that the screens generated by our UI component is correct:  </p>
+<figure class="fullwidth"><p><img src="../../images/real-world/storybook/home-route-unauthenticated-basic.png" alt="stories for the home route unauthenticated user scenarios"></p>
+</figure>
+<h3 id="Events-and-actions"><a href="#Events-and-actions" class="headerlink" title="Events and actions"></a>Events and actions</h3><p>The global feed involves fetching separately the tags and the articles. We thus have the following events for the <em>Home</em> route (<em>#/</em>):</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Event</th>
+<th style="text-align:left">Fired when</th>
+<th style="text-align:left">Mandatory data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ROUTE_CHANGED</td>
+<td style="text-align:left">user clicks on a link (direct linking or redirection for authentication)</td>
+<td style="text-align:left">hash</td>
+</tr>
+<tr>
+<td style="text-align:left">TAGS_FETCHED_OK</td>
+<td style="text-align:left">tag fetch API call executed successfully</td>
+<td style="text-align:left">tags</td>
+</tr>
+<tr>
+<td style="text-align:left">TAGS_FETCHED_NOK</td>
+<td style="text-align:left">tag fetch API call failed</td>
+<td style="text-align:left">error</td>
+</tr>
+<tr>
+<td style="text-align:left">ARTICLES_FETCHED_OK</td>
+<td style="text-align:left">articles fetch API call executed successfully</td>
+<td style="text-align:left">articles</td>
+</tr>
+<tr>
+<td style="text-align:left">ARTICLES_FETCHED_NOK</td>
+<td style="text-align:left">articles fetch API call failed</td>
+<td style="text-align:left">error</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note that we only included, for each event, the data that necessarily must be passed with the event. We may however decide, as we implement more and more features, to include extra data, according to other needs appearing.</p>
+<p>We also have two commands to implement:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Command</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Mandatory data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">RENDER</td>
+<td style="text-align:left">renders a given state of the application</td>
+<td style="text-align:left">Any relevant data participating in the display logic</td>
+</tr>
+<tr>
+<td style="text-align:left">FETCH_GLOBAL_FEED</td>
+<td style="text-align:left">fetches a paged list of articles and tags or issues an error</td>
+<td style="text-align:left">page (limited to 10 items)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Command-handling"><a href="#Command-handling" class="headerlink" title="Command handling"></a>Command handling</h3><p>The command <code>FETCH_GLOBAL_FEED</code> fetches a list of articles and tags from the API end point and reports possible errors. The command needs a page parameter to run, as it will fetch only a limited portion of the articles and tags available at the end point. Commands receive three parameters:</p>
+<ul>
+<li><code>dispatch</code>: this is the event bus converted to an event emitter connected to the Kingly machine </li>
+<li><code>params</code>: this is the parameters necessary to execute the command</li>
+<li><code>effectHandlers</code>: object which gathers all effects which are to be performed as part of executing a command </li>
+</ul>
+<p>The implementation is as follows (<code>src/main.js</code>):</p>
+<label for="mn-demo-30" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-30" class="margin-toggle"><span class="marginnote"><p>Note how the <code>apiGatewayFactory</code> abstracts out the implementation details (fetching method, storage, end point) of the domain methods. Also, as mentioned, the command handler only does orchestration of effects which are delegated to the effect handlers. I have not structured the code for command handlers and effect handlers to be tested separately, as the command handlers are pretty simple, and the effect handlers are taken verbatim from another Conduit clone implementation, and come already tested out of the box.</p>
+</span>
+<pre><code class="hljs javascript">
+<span class="hljs-keyword">const</span> &#123; fetchGlobalFeed, fetchTags &#125; = apiGatewayFactory(
+  fetch,
+  sessionRepository
+);
+
+<span class="hljs-keyword">const</span> effectHandlers = &#123;
+  [...],
+  fetchTags,
+  fetchGlobalFeed
+&#125;;
+
+<span class="hljs-keyword">const</span> commandHandlers = &#123;
+  [...],
+  [FETCH_GLOBAL_FEED]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> &#123; page &#125; = params;
+    <span class="hljs-keyword">const</span> &#123; fetchGlobalFeed, fetchTags &#125; = effectHandlers;
+
+    fetchGlobalFeed(&#123; page &#125;)
+      .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> dispatch(&#123; [ARTICLES_FETCHED_OK]: res &#125;))
+      .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> dispatch(&#123; [ARTICLES_FETCHED_NOK]: err &#125;));
+
+    fetchTags()
+      .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> dispatch(&#123; [TAGS_FETCHED_OK]: res &#125;))
+      .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> dispatch(&#123; [TAGS_FETCHED_NOK]: err &#125;));
+  &#125;
+&#125;;</code></pre>
+<h3 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h3><p>A machine passing the previously defined tests can be modelized as follows:</p>
+<p><img src="../../graphs/real-world/realworld-routing-home.png" alt="machine fetching global feed"></p>
+<p>To be able to understand the machine behaviour from the previous graph, it is useful to remember the formalism for the visual representation of state machines:</p>
+<ul>
+<li>a node is a control state</li>
+<li>the <em>Init</em> node is the initial control state for the state machine</li>
+<li>an edge between nodes is called a transition and is labelled with an (optional) event, a (optional) guard, and (optional) actions.</li>
+<li>Typically we write a transition in the form <code>event [ guard ] / actions</code></li>
+</ul>
+<p>Let’s also recall here some necessary terminology:</p>
+<ul>
+<li>a control state which contains other control states is called a <em>compound control state</em></li>
+<li>a control state which does not contain other control states is called an <em>atomic control state</em></li>
+<li>a control state which does not have any outgoing transitions is called a <em>terminal control state</em></li>
+<li>a control state which does not have any incoming transitions is called an <em>initial control state</em></li>
+<li>a transition whose label does not include an event is called an <em>eventless transition</em></li>
+<li>a control state which has an eventless transition is called an <em>eventless control states</em> or <em>transient control state</em></li>
+</ul>
+<p>As a final reminder, the visual representation maps to the semantics for the corresponding machine as follows:</p>
+<ul>
+<li>the machine is always in one of the represented control states</li>
+<li>a transition with label <code>event [ guard ] / actions</code> evaluates to <code>true</code> against an incoming event if and only if the incoming event matches the <code>event</code> in the transition label, and the guard is fulfilled </li>
+<li>when an event occurs, the transitions originating from the current control state of the machine are evaluated<ul>
+<li>the first evaluated transition that is fulfilled will be taken, leading to a new control state for the machine, the update of the machine extended state, and the machine computing an output (here outputs are commands for the interfaced systems). These computations relate to the <code>actions</code> part of the transition label (<code>event [ guard ] / actions</code>)</li>
+</ul>
+</li>
+<li>when an event occurs, if no transitions evaluates to <code>true</code>, the machine remains in its current control state, with identical extended state, and outputs a zero action (represented by the constant <code>NO_OUTPUT</code> in Kingly). This is akin to a no-op.</li>
+<li>if the machine is in a transient control state, the outgoing transitions for that control states are eveluated <strong>immediately</strong> when the machine enters the transient control state</li>
+<li>note that Kingly does not accept a machine whose initial control state is a transient control state</li>
+</ul>
+<p>With this in mind, you should be able to check that the previous machine visualization indeed implements the behaviour referred to in our 9 test sequences:</p>
+<ul>
+<li>the machine starts in the <em>Init</em> control state</li>
+<li>when receiving the routing event it transitions to the <em>routing</em> control state, which is a transient control state</li>
+<li>the machine then immediately transitions to the <em>Fetching global feed</em> control state if that the route data contained in the <code>ROUTE_CHANGED</code> event corresponds to the home route. The machine outputs commands instructing the application to fetch tags and articles for the global feed, and display loading information to the end user</li>
+<li>once in the <em>Fetching global feed</em> control state, it will receive either success or failure information from the tags and articles being fetched and react accordingly, staying always in the <em>Fetching global feed</em> control state</li>
+</ul>
+<p>Alright, let’s move up to implementing that machine.</p>
+<h3 id="Machine-tests"><a href="#Machine-tests" class="headerlink" title="Machine tests"></a>Machine tests</h3><p>The first scenario corresponds to a Kingly machine with the following mapping:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Input</th>
+<th style="text-align:left">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ROUTE_CHANGED (<em>home</em>)</td>
+<td style="text-align:left">RENDER loading screen, FETCH_GLOBAL_FEED (tags and articles)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The second scenario goes as follows:</p>
+<label for="mn-demo-31" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-31" class="margin-toggle"><span class="marginnote"><p>Note that in what follows, we chose to immediately display the results of fetch operations (tags and articles) when they arrive, instead of waiting for both fetches to be completed before updating the UI. We thereby replicate the behaviour of the Conduit official implementation. This may or may not be better in terms of UX.</p>
+</span>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Input</th>
+<th style="text-align:left">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ROUTE_CHANGED (<em>home</em>)</td>
+<td style="text-align:left">RENDER loading screen, FETCH_GLOBAL_FEED (tags and articles)</td>
+</tr>
+<tr>
+<td style="text-align:left">TAGS_FETCHED_OK</td>
+<td style="text-align:left">RENDER tags</td>
+</tr>
+<tr>
+<td style="text-align:left">ARTICLES_FETCHED_OK</td>
+<td style="text-align:left">RENDER articles</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The sequence of events could also be:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Input</th>
+<th style="text-align:left">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ROUTE_CHANGED (<em>home</em>)</td>
+<td style="text-align:left">RENDER loading screen, FETCH_GLOBAL_FEED (tags and articles)</td>
+</tr>
+<tr>
+<td style="text-align:left">ARTICLES_FETCHED_OK</td>
+<td style="text-align:left">RENDER articles</td>
+</tr>
+<tr>
+<td style="text-align:left">TAGS_FETCHED_OK</td>
+<td style="text-align:left">RENDER tags</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The third scenario goes as follows:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Input</th>
+<th style="text-align:left">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ROUTE_CHANGED (<em>home</em>)</td>
+<td style="text-align:left">RENDER loading screen, FETCH_GLOBAL_FEED (tags and articles)</td>
+</tr>
+<tr>
+<td style="text-align:left">ARTICLES_FETCHED_NOK</td>
+<td style="text-align:left">RENDER errors</td>
+</tr>
+<tr>
+<td style="text-align:left">TAGS_FETCHED_OK</td>
+<td style="text-align:left">RENDER tags</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>or:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Input</th>
+<th style="text-align:left">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ROUTE_CHANGED (<em>home</em>)</td>
+<td style="text-align:left">RENDER loading screen, FETCH_GLOBAL_FEED (tags and articles)</td>
+</tr>
+<tr>
+<td style="text-align:left">ARTICLES_FETCHED_OK</td>
+<td style="text-align:left">RENDER articles</td>
+</tr>
+<tr>
+<td style="text-align:left">TAGS_FETCHED_NOK</td>
+<td style="text-align:left">RENDER errors</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>or:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Input</th>
+<th style="text-align:left">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ROUTE_CHANGED (<em>home</em>)</td>
+<td style="text-align:left">RENDER loading screen, FETCH_GLOBAL_FEED (tags and articles)</td>
+</tr>
+<tr>
+<td style="text-align:left">ARTICLES_FETCHED_NOK</td>
+<td style="text-align:left">RENDER errors</td>
+</tr>
+<tr>
+<td style="text-align:left">TAGS_FETCHED_NOK</td>
+<td style="text-align:left">RENDER errors</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>or the 3 other mappings obtained by switching in the previous mappings the order of <code>ARTICLES_FETCHED_...</code> and <code>TAGS_FETCHED_...</code>. </p>
+<p>We thus have 9 tests that our Kingly machine must pass. </p>
+<p>Our tests thus goes like this (<code>tests/home-route-fsm-specs</code>): </p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> QUnit <span class="hljs-keyword">from</span> <span class="hljs-string">"qunit"</span>
+<span class="hljs-keyword">import</span> &#123; NO_OUTPUT &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"kingly"</span>
+<span class="hljs-keyword">import</span> &#123; commands, events, fsmFactory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"../src/fsm"</span>
+<span class="hljs-keyword">import</span> &#123; loadingStates, routes &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"../src/constants"</span>
+<span class="hljs-keyword">import</span> &#123; articlesErrorFixture, articlesFixture &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"./fixtures/articles"</span>
+<span class="hljs-keyword">import</span> &#123; tagsErrorFixture, tagsFixture &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"./fixtures/tags"</span>
+
+...testing helper functions...
+
+QUnit.module(<span class="hljs-string">"Testing home route fsm"</span>, &#123;&#125;);
+
+<span class="hljs-keyword">const</span> [ROUTE_CHANGED, TAGS_FETCHED_OK, TAGS_FETCHED_NOK, ARTICLES_FETCHED_OK, ARTICLES_FETCHED_NOK] = events;
+<span class="hljs-keyword">const</span> [RENDER, FETCH_GLOBAL_FEED] = commands;
+<span class="hljs-keyword">const</span> &#123; home &#125; = routes;
+<span class="hljs-keyword">const</span> [TAGS_ARE_LOADING, ARTICLES_ARE_LOADING] = loadingStates;
+
+<span class="hljs-keyword">const</span> HOME_ROUTE_LOADING_SEQ = [
+  &#123; [ROUTE_CHANGED]: &#123;<span class="hljs-attr">hash</span>:home&#125; &#125;
+];
+
+<span class="hljs-keyword">const</span> HOME_ROUTE_LOADED_OK_TA_SEQ = HOME_ROUTE_LOADING_SEQ.concat([
+  &#123; [TAGS_FETCHED_OK]: tagsFixture &#125;,
+  &#123; [ARTICLES_FETCHED_OK]: articlesFixture &#125;,
+]);
+
+<span class="hljs-keyword">const</span> HOME_ROUTE_LOADED_OK_AT_SEQ = HOME_ROUTE_LOADING_SEQ.concat([...]);
+
+<span class="hljs-keyword">const</span> HOME_ROUTE_LOADING_NOK_TA_SEQ = HOME_ROUTE_LOADING_SEQ.concat([
+  &#123; [TAGS_FETCHED_NOK]: tagsErrorFixture &#125;,
+  &#123; [ARTICLES_FETCHED_NOK]: articlesErrorFixture &#125;,
+]);
+
+...other <span class="hljs-number">5</span> scenarios...
+
+const HOME_ROUTE_LOADING_SEQ_COMMANDS = [
+  [
+    &#123; <span class="hljs-attr">command</span>: FETCH_GLOBAL_FEED, <span class="hljs-attr">params</span>: &#123;<span class="hljs-attr">page</span>: <span class="hljs-number">0</span>&#125; &#125;,
+    &#123; <span class="hljs-attr">command</span>: RENDER, <span class="hljs-attr">params</span>: &#123; <span class="hljs-attr">tags</span>: TAGS_ARE_LOADING, <span class="hljs-attr">articles</span>: ARTICLES_ARE_LOADING &#125; &#125;
+  ]
+];
+
+...
+
+const HOME_ROUTE_LOADED_OK_AT_SEQ_COMMANDS = HOME_ROUTE_LOADING_SEQ_COMMANDS.concat([
+  [&#123; <span class="hljs-attr">command</span>: RENDER, <span class="hljs-attr">params</span>: &#123; <span class="hljs-attr">articles</span>: articlesFixture &#125; &#125;],
+  [&#123; <span class="hljs-attr">command</span>: RENDER, <span class="hljs-attr">params</span>: &#123; <span class="hljs-attr">tags</span>: tagsFixture &#125; &#125;],
+]);
+
+...
+
+const userStories = [
+  [<span class="hljs-string">`Loading `</span>, HOME_ROUTE_LOADING_SEQ, HOME_ROUTE_LOADING_SEQ_COMMANDS],
+  [<span class="hljs-string">`Successfully loaded`</span>, HOME_ROUTE_LOADED_OK_TA_SEQ, HOME_ROUTE_LOADED_OK_TA_SEQ_COMMANDS],
+  [<span class="hljs-string">`Successfully loaded`</span>, HOME_ROUTE_LOADED_OK_AT_SEQ, HOME_ROUTE_LOADED_OK_AT_SEQ_COMMANDS],
+  [<span class="hljs-string">`Failed loading - tags and articles`</span>, HOME_ROUTE_LOADING_NOK_TA_SEQ, HOME_ROUTE_LOADING_NOK_TA_SEQ_COMMANDS],
+  [<span class="hljs-string">`Failed loading - tags and articles`</span>, HOME_ROUTE_LOADING_NOK_AT_SEQ, HOME_ROUTE_LOADING_NOK_AT_SEQ_COMMANDS],
+  [<span class="hljs-string">`Failed loading - tags`</span>, HOME_ROUTE_LOADING_NOK_T$_SEQ, HOME_ROUTE_LOADING_NOK_T$_SEQ_COMMANDS],
+  [<span class="hljs-string">`Failed loading - tags`</span>, HOME_ROUTE_LOADING_NOK_$T_SEQ, HOME_ROUTE_LOADING_NOK_$T_SEQ_COMMANDS],
+  [<span class="hljs-string">`Failed loading - articles`</span>, HOME_ROUTE_LOADING_NOK_A$_SEQ, HOME_ROUTE_LOADING_NOK_A$_SEQ_COMMANDS],
+  [<span class="hljs-string">`Failed loading - articles`</span>, HOME_ROUTE_LOADING_NOK_$A_SEQ, HOME_ROUTE_LOADING_NOK_$A_SEQ_COMMANDS],
+];
+
+<span class="hljs-comment">// const fsmSettings = &#123; debug: &#123; console, checkContracts: fsmContracts &#125; &#125;;</span>
+<span class="hljs-keyword">const</span> fsmSettings = &#123; <span class="hljs-attr">debug</span>: &#123; <span class="hljs-built_in">console</span> &#125; &#125;;
+
+userStories.forEach(<span class="hljs-function">(<span class="hljs-params">[scenario, inputSeq, outputsSeq]</span>) =&gt;</span> &#123;
+  QUnit.test(<span class="hljs-string">`Home route: <span class="hljs-subst">$&#123;scenario&#125;</span>`</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">exec_test</span>(<span class="hljs-params">assert</span>) </span>&#123;
+    <span class="hljs-keyword">const</span> fsm = fsmFactory(fsmSettings);
+
+    <span class="hljs-keyword">const</span> actualOutputsSeq = computeCleanedActualOutputs(fsm, inputSeq);
+
+    <span class="hljs-keyword">let</span> indexWhenFailed = <span class="hljs-number">-1</span>;
+    <span class="hljs-keyword">const</span> isTestPassed = inputSeq.every(<span class="hljs-function">(<span class="hljs-params">input, index</span>) =&gt;</span> &#123;
+      <span class="hljs-keyword">const</span> outputs = actualOutputsSeq[index];
+      <span class="hljs-keyword">const</span> expected = outputsSeq[index];
+      <span class="hljs-keyword">const</span> isTestPassed = deepEqual(outputs, expected);
+      <span class="hljs-keyword">if</span> (!isTestPassed) &#123;indexWhenFailed = index&#125;
+
+      <span class="hljs-keyword">return</span> isTestPassed
+    &#125;);
+
+    <span class="hljs-keyword">const</span> errorMessage = <span class="hljs-string">`Actual outputs sequence differ from expected outputs sequence at index <span class="hljs-subst">$&#123;indexWhenFailed&#125;</span>`</span>;
+    <span class="hljs-keyword">const</span> okMessage = <span class="hljs-string">`Alles gut!`</span>;
+    <span class="hljs-keyword">const</span> message = isTestPassed ? okMessage : errorMessage;
+
+    assert.deepEqual(actualOutputsSeq, outputsSeq, message);
+  &#125;);
+&#125;);</code></pre>
+<p>Let’s start with the minimal information necessary in <code>src/fsm.js</code> to run our tests:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> commands = [<span class="hljs-string">"RENDER"</span>, <span class="hljs-string">"FETCH_GLOBAL_FEED"</span>];
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fsmFactory = <span class="hljs-function">(<span class="hljs-params">settings</span>) =&gt;</span> () =&gt; &#123;<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>&#125;</code></pre>
+<p>Our tests runner now gives us a list of failing tests:</p>
+<figure class="fullwidth"><p><img src="../../images/real-world/home%20route%20test%20setup%20test.png" alt="home route tests setup test"></p>
+</figure>
+<p>Nice! We have our tests running but failing. We can now implement the machine which passes the tests.</p>
+<h3 id="Machine-implementation"><a href="#Machine-implementation" class="headerlink" title="Machine implementation"></a>Machine implementation</h3><p>In the previous visualization, we focused on the control flow of the application and skipped key information which matter for implementation purposes:</p>
+<ul>
+<li>we entirely skipped discussing the extended state of the state machine</li>
+<li>we obviously did not include any code for the guards and actions</li>
+</ul>
+<p>We have to precise all that now. </p>
+<label for="mn-demo-32" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-32" class="margin-toggle"><span class="marginnote"><p>It is also possible to <strong>compile</strong> at build time the data structure into a standard JavaScript function. This avoids having to import the Kingly library and may result in smaller payloads. The compiler functionality is not yet fully tested hence not published.</p>
+</span>
+<p>With Kingly, a state machine is defined through a data structure <code>FsmDef</code>, which is then used by a factory to construct an executable version of the machine. That executable version is a mere JavaScript function, which is generated by the factory <code>createStateMachine</code>. The factory also admits <code>settings</code> by which dependencies can be injected and debugging/tracing behaviour can be configured. You should always start by using the debugging options when implementing a machine, till you have enough confidence that the machine syntax is correct. A value of <code>{debug: {console}}</code> will output to the console tracing information about the execution of the machine. A value of <code>{debug: {checkContracts: fsmContracts}}</code> will check that the machine definition <code>fsmDef</code> fulfills all contracts enforcing the machine syntax and semantics.</p>
+<p>Let’s fill the fields for the <code>FsmDef</code> machine data structure one by one:</p>
+<ol>
+<li><code>initialControlState</code>: per the modelization we start with <code>INIT</code></li>
+<li><code>initialExtendedState</code>: per the tests we already wrote, most of the information we needed was in the event data. We will however need to keep track of the current page for the pagination feature to render correctly the home route. So for now we pick  <code>{currentPage: 0}</code>.</li>
+<li><code>updateState</code>: as a reducer, we use a variant of <code>Object.assign</code> to incorporate the state updates into the old state </li>
+<li><code>events</code>: that is an array of the 5 events (1 user event, 4 system events), we already identified in our tests.</li>
+<li><code>states</code>: we have a flat structure for now. We will have very simply:</li>
+</ol>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> states = &#123;
+  [INIT]: <span class="hljs-string">""</span>,
+  <span class="hljs-string">'routing'</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-string">'fetching-global-feed'</span>: <span class="hljs-string">""</span>
+&#125;;</code></pre>
+<p>I left the more interesting (6. <code>transitions</code>) for the end.</p>
+<label for="mn-demo-33" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-33" class="margin-toggle"><span class="marginnote"><p>For more detail on Kingly syntax, please refer to the <a href="/documentation/v1/api/index.html">API section</a>.</p>
+</span>
+<p>The <code>transitions</code> property is an array whose elements are the edges of the graph used to visually represent the machine modelization. The <code>actions</code> in <code>event [ guard ] / actions</code> are generated by an action factory. The <code>guard</code> becomes a guard function which takes the extended state of the machine, the incoming event data, and the injected settings, and produces a boolean. </p>
+<label for="mn-demo-34" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-34" class="margin-toggle"><span class="marginnote"><p>If you are familiar with <a href="https://elm-lang.org/" target="_blank" rel="noopener">Elm</a> and its <code>update:: Msg -&gt; Model</code> <code>-&gt; (Model, Cmd Msg)</code> function, you should feel in familiar waters. The action factory is akin to the <code>update</code> function: it turns an incoming event (<code>Msg</code>) into updates on the machine’s extended state (<code>Model</code>) and commands (<code>Cmd Msg</code>). The only difference is that the Elm’s update function directly produces a new state from the old state, while action factories produce updates to the old state which, combined with the <code>updateState</code> property of a Kingly machine, produce the new state.</p>
+</span>
+<p>The action factory takes the same parameters than the guards but return an object with two properties:</p>
+<ul>
+<li><code>updates</code>: the list of updates to perform on the machine’s extended state</li>
+<li><code>outputs</code>: values to aggregate to the outputs of the machine as a result of receiving the incoming event</li>
+</ul>
+<p>The final code is as follows:<br><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> initialControlState = INIT;
+<span class="hljs-keyword">const</span> initialExtendedState = &#123;
+  <span class="hljs-attr">currentPage</span>: <span class="hljs-number">0</span>
+&#125;;
+<span class="hljs-keyword">const</span> states = &#123;
+  [INIT]: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">routing</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-string">"fetching-global-feed"</span>: <span class="hljs-string">""</span>
+&#125;;
+<span class="hljs-keyword">const</span> transitions = [
+  &#123; <span class="hljs-attr">from</span>: INIT, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">event</span>: ROUTE_CHANGED, <span class="hljs-attr">action</span>: ACTION_IDENTITY &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"routing"</span>,
+    <span class="hljs-attr">event</span>: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>,
+    <span class="hljs-attr">guards</span>: [
+      &#123;
+        <span class="hljs-attr">predicate</span>: isHomeRoute,
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-global-feed"</span>,
+        <span class="hljs-attr">action</span>: fetchGlobalFeedAndRenderLoading
+      &#125;
+    ]
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetching-global-feed"</span>,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-global-feed"</span>,
+    <span class="hljs-attr">event</span>: TAGS_FETCHED_OK,
+    <span class="hljs-attr">action</span>: renderGlobalFeedTags
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetching-global-feed"</span>,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-global-feed"</span>,
+    <span class="hljs-attr">event</span>: ARTICLES_FETCHED_OK,
+    <span class="hljs-attr">action</span>: renderGlobalFeedArticles
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetching-global-feed"</span>,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-global-feed"</span>,
+    <span class="hljs-attr">event</span>: TAGS_FETCHED_NOK,
+    <span class="hljs-attr">action</span>: renderGlobalFeedTagsFetchError
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetching-global-feed"</span>,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-global-feed"</span>,
+    <span class="hljs-attr">event</span>: ARTICLES_FETCHED_NOK,
+    <span class="hljs-attr">action</span>: renderGlobalFeedArticlesFetchError
+  &#125;
+];
+
+<span class="hljs-comment">// Guards</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isHomeRoute</span>(<span class="hljs-params">extendedState, eventData, settings</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> eventData.hash === home;
+&#125;
+
+<span class="hljs-comment">// Action factories</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchGlobalFeedAndRenderLoading</span>(<span class="hljs-params">extendedState, eventData, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; currentPage &#125; = extendedState;
+  
+  <span class="hljs-keyword">return</span> &#123;
+    <span class="hljs-attr">updates</span>: [],
+    <span class="hljs-attr">outputs</span>: [
+      &#123; <span class="hljs-attr">command</span>: FETCH_GLOBAL_FEED, <span class="hljs-attr">params</span>: &#123; <span class="hljs-attr">page</span>: currentPage &#125; &#125;,
+      &#123;
+        <span class="hljs-attr">command</span>: RENDER,
+        <span class="hljs-attr">params</span>: &#123; <span class="hljs-attr">tags</span>: TAGS_ARE_LOADING, <span class="hljs-attr">articles</span>: ARTICLES_ARE_LOADING &#125;
+      &#125;
+    ]
+  &#125;;
+&#125;
+
+...</code></pre></p>
+<p>You can review the full code and run the tests in the <a href="https://github.com/brucou/realworld-kingly-svelte/tree/home-route-unauthenticated-with-interfaced-systems" target="_blank" rel="noopener">dedicated branch</a>.</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>This is it for the unauthenticated user scenario of the <em>home</em> route! </p>
+<p>Let’s summarize what we have done here. In a preliminary phase, we, once and for all:</p>
+<ul>
+<li>set up an architecture which separates concerns and layers and  facilitates testing in isolation</li>
+<li>set up our application shell and tests shell so we can iteratively add features and tests as we implement larger parts of our specifications</li>
+</ul>
+<p>In a second phase, we proceeded to implement portions of our specifications:</p>
+<ul>
+<li>we isolated some scenarios from the specifications</li>
+<li>we identified the events and commands related to those scenarios</li>
+<li>we implemented the UI and tested it with Storybook</li>
+<li>we wrote the command handlers for the new commands appearing in the scenarios</li>
+<li>we wrote basic tests for the machine which implements the behaviour related to the scenarios</li>
+<li>we modelized the machine passing the tests, without getting too deep into implementation details (internal state updates, etc.)</li>
+<li>we implemented that machine and passed the tests</li>
+</ul>
+<p>In the next steps and till we complete the home route scenarios, we are going to focus on the machine modelization, and skip the parts about UI and machine testing.</p>
+<h2 id="Unauthenticated-user-clicks-on-a-page"><a href="#Unauthenticated-user-clicks-on-a-page" class="headerlink" title="Unauthenticated user clicks on a page"></a>Unauthenticated user clicks on a page</h2><label for="mn-demo-35" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-35" class="margin-toggle"><span class="marginnote"><p>One could argue that the tags may have changed and it could be a good idea to fetch them anew, but we stay true here to the behaviour of the demo app.</p>
+</span>
+<p>In this new scenario, we have to handle a page click user event <code>CLICKED_PAGE</code>), and fetching the global feed for the clicked page. The main changes vs. the previous scenarios is that we should not fetch twice the tags, as the <a href="https://demo.realworld.io/#/" target="_blank" rel="noopener">demo Conduit app</a> does not. This means that we need to keep track of whether the tags have already been successfully fetched, and if that is the case, we should only fetch the articles for the given page.</p>
+<p>This leads us to update the modelization of our machine as follows:</p>
+<p><img src="../../graphs/real-world/realworld-routing-home-unauthenticated-with-page-click.png" alt="modelization scenario unauthenticated user clicks page"></p>
+<p>This modelization showcases specific aspects of the visualization semantics (namely linked to compound states, history pseudo-states) which we recall thereafter:</p>
+<ul>
+<li>when a machine transitions to a compound state, it immediately evaluates the transitions leaving the initial state for that compound state<ul>
+<li>this happens for instance when the machine receives a <code>ROUTE_CHANGED</code> event with the home route as event data. The machine will transition to the compound state <em>Fetching global feed</em>, and thus immediately evaluates the two transitions going respectively to the <em>Pending global feed articles</em> and <em>Pending global feed</em> compound state.</li>
+<li>the machine thus transitions as usual to the first transition whose guard is fulfilled</li>
+</ul>
+</li>
+<li>every compound state has defined two special states called history pseudo states: shallow history state, deep history state.<ul>
+<li>a deep history state is a placeholder for the last atomic control state belonging to the associated compound state that the machine was in before exiting that compound state</li>
+<li>here, assuming that the tags were already fetched, the machine would transition to the <em>Pending global feed articles</em> atomic state. On receiving the fetched articles, the machine would transition back to the <em>Pending global feed articles</em> state</li>
+<li>assuming that the tags were not already fetched, the machine would transition to the <em>Pending global feed </em> atomic state. On receiving the fetched articles, the machine would transition back to the <em>Pending global feed</em> state, state in which it may receive the fetched tags</li>
+</ul>
+</li>
+</ul>
+<p>History states are important ‘rewind’ mechanism. It can be used to interrupt a behaviour temporarily (leaving a compound state), replace it by another behaviour, and resume the previous behaviour at a later point (transition to the history state for the compound state). Here we intercalated the article fetch response processing within the global feed request and response behaviour.</p>
+<p>Alright, let’s move on to the authenticated user scenarios.</p>
+<h2 id="Authenticated-user-sees-user-feed"><a href="#Authenticated-user-sees-user-feed" class="headerlink" title="Authenticated user sees user feed"></a>Authenticated user sees user feed</h2><p>The main novelty here with respect to our modelization is that now we need to add a branch depending on whether the user is authenticated. If he is, then he will see by default its user feed, next to a global feed tab. Other than that, the fetching logic is pretty similar to that of the global feed, and that can be seen in the resulting modelization:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-home-auth-and-unauth-see-feed-and-click-page.png" alt="modelization scenario unauthenticated or authenticated user see feed and clicks page"></p>
+</figure>
+<p>We can see the similarity (feed fetching) but also the differences between an authenticated and not authenticated user. Clicking on a user feed page leads to checking anew the authentication status for the user. </p>
+<p>There is also an important point which we haven’t introduced previously, in order not to overload the reader with too much information at the same time. Remember that we display loading indicators, and we fetch separately the tags and the articles. These are two UX-oriented patterns:</p>
+<ul>
+<li><a href="https://reactjs.org/docs/concurrent-mode-suspense.html#approach-1-fetch-on-render-not-using-suspense" target="_blank" rel="noopener">fetch on render</a>, in which the user is notified visually that some content is being loaded</li>
+<li><a href="https://reactjs.org/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html#load-data-incrementally" target="_blank" rel="noopener">incremental data loading</a>, which aims at improving perceived performance by presenting important parts of the view as soon as we have the relevant data.</li>
+</ul>
+<p>Those patterns are chosen to replicate the Conduit demo app. However, we could have just easily adopted a <a href="https://reactjs.org/docs/concurrent-mode-suspense.html" target="_blank" rel="noopener">suspended data fetching</a> pattern by adding a timeout event, and the corresponding extra arrows in the modelization (cf. <a href="https://brucou.github.io/documentation/v1/examples/svelte%20suspense.html">Svelte Suspense example</a>). This is to prove that, having a behaviour entirely decoupled from the UI, we have no limits as per the behaviours which we can express.</p>
+<p>Let’s move on to the tag filtering scenarios.</p>
+<h2 id="User-can-filter-feeds-per-tags"><a href="#User-can-filter-feeds-per-tags" class="headerlink" title="User can filter feeds per tags"></a>User can filter feeds per tags</h2><p>In this new scenario, the user can click on one of the displayed tags, after which a new tab will appear with the global feed filtered by the clicked tag. As usual the user can also change the page to see other results in the feed.</p>
+<p>The machine implementing those scenarios goes like this:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-home-user-sees-global-feed-user-feed-can-filter-feed-with-page-click.png" alt="realworld-home-tag-filter"></p>
+</figure>
+<h2 id="User-can-also-change-feeds"><a href="#User-can-also-change-feeds" class="headerlink" title="User can also change feeds"></a>User can also change feeds</h2><p>Users, being on a tab, can change tab or click on the same tab and have the corresponding feed be fetched anew.</p>
+<p>The machine implementing those scenarios goes like this:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-home-user-can-change-feeds.png" alt="realworld-home-tag-filter"></p>
+</figure>
+<h2 id="User-can-favorite-unfavorite-an-article"><a href="#User-can-favorite-unfavorite-an-article" class="headerlink" title="User can favorite/unfavorite an article"></a>User can favorite/unfavorite an article</h2><p>Here, an user can click on an article. If the article had been previously liked by him, then the article is unliked. Otherwise the article is liked. The counter of likes for the articles is incremented or decremented as appropriate. In order to be able to favorite an article, the user must be authenticated. If he is not, then he is redirected to a sign up page.  </p>
+<p>The favoriting specifications apply to all article-displaying tabs, so we use a single arrow on the common super state of <em>Fetching user feed</em>, <em>Fetching global feed</em>, and <em>Fetching filtered articles</em>. This is the kind of factorization that hierarchy gives us: instead of having three similar arrows, we can have only one. However, when the article is liked or unliked, we want the machine to return where it was: the behaviour of the machine returns to be the same than it was. Once again, we implement this ‘rewind’ behaviour with a deep history pseudo state on the common super state <em>Home</em>.</p>
+<p>The machine implementing those scenarios goes like this:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-home-user-can-favorite.png" alt="realworld-home-tag-filter"></p>
+</figure>
+<p>Note how we collapsed the <em>Fetching user feed</em>, <em>Fetching global feed</em>, and <em>Fetching filtered articles</em> states in order to have a bettr visibility of the feature we just added. This is yet another advantage of modeling using a hierarchy of states. It is possible to zoom in and out to take a high-level view, or, on the opposite a fairly detailed view of a part of the machine behaviour. </p>
+<h2 id="User-can-also-navigate-out-of-the-home-route"><a href="#User-can-also-navigate-out-of-the-home-route" class="headerlink" title="User can also navigate out of the home route"></a>User can also navigate out of the home route</h2><p>Last scenario, the user can click on links (sign in, sign up, etc.) which leads to a change of url. We capture that with the following modelization:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-home-user-can-navigate.png" alt="realworld-home-tag-filter"></p>
+</figure>
+<h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>We refactor the previous machine to include all user flows corresponding to the home route in a compound control state:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-home-complete%20v5.png" alt="realworld-home-tag-filter"></p>
+</figure>
+<p>The full implementation can be accessed in the <a href="https://github.com/brucou/realworld-kingly-svelte/tree/home-route-complete" target="_blank" rel="noopener">corresponding branch</a> of the <a href="https://github.com/brucou/realworld-kingly-svelte" target="_blank" rel="noopener">GitHub repository</a>.</p>
+<h2 id="Summary-1"><a href="#Summary-1" class="headerlink" title="Summary"></a>Summary</h2><p>We set up the architecture for our application, we decided to implement the application route by route, starting with the home route. The home route itself being complex enough, we broke it down in multiple user scenarios which we implemented one by one. In the process we iteratively built our state machine. Having the behaviour of our application entirely separated from the rest of the application allows us to design for any UX pattern (fetch-on-render, render-as-you-fetch, etc.) without being limited by an UI library.</p>
+
+  
+  
+    <div class="next-links">
+      
+      
+        <span>← <a href="/documentation/v1/tutorials/real-world.html">RealWorld app</a></span>
+      
+      
+      
+        <span style="float: right;"><a href="/documentation/v1/tutorials/real-world-sign-up.html">Sign up route</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

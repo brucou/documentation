@@ -147,6 +147,21 @@ h4 {
   font-weight: 500;
   color: #2c3e50;
 }
+h3.new:after {
+  content: "NEW";
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #9f2112;
+  line-height: 14px;
+  padding: 0 4px;
+  border-radius: 3px;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
 strong {
   font-weight: 600;
   color: #354a5f;

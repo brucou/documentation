@@ -501,16 +501,16 @@
 <li>the machine is deterministic and unambiguous<ul>
 <li>to a (from, event) couple, there can only correspond one row in the <code>transitions</code> array of the state machine (but there can be several guards in that row)<ul>
 <li>(particular case) eventless transitions must not be contradicted by event-ful transitions</li>
-<li>e.g. if there is an eventless transition <code>A -eventless-&gt; B</code>, there cannot be a competing <code>A -ev-&gt; X</code><label for="mn-demo-20" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-20" class="margin-toggle"><span class="marginnote"><p><em>*</em> There exists however semantics which allow such transitions, thus possibilitating event bubbling.</p>
+<li>e.g. if there is an eventless transition <code>A -eventless-&gt; B</code>, there cannot be a competing <code>A -ev-&gt; X</code><label for="mn-demo-21" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-21" class="margin-toggle"><span class="marginnote"><p><em>*</em> There exists however semantics which allow such transitions, thus possibilitating event bubbling.</p>
 </span></li>
 </ul>
 </li>
-<li><code>A -ev&gt; B</code> and <code>A &lt; OUTER_A</code> with <code>OUTER_A -ev&gt; C</code> !!: there are two valid transitions triggered by <code>ev</code>. Such transitions would unduely complicate the input testing generation, and decrease the readability of the machine so we forbid such transitions<sup><a href="#fn_*" id="reffn_*">*</a></sup></li>
+<li><code>A -ev&gt; B</code> and <code>A &lt; OUTER_A</code> with <code>OUTER_A -ev&gt; C</code> !!: there are two valid transitions triggered by <code>ev</code>. Such transitions would unduely complicate the input testing generation, and decrease the readability of the machine so we forbid such transitions<sup><a href="#fn_*" id="reffn_*">*</a></sup>. Note that this does not apply for reserved event like <code>INIT_EVENT</code> or the empty event (corresponding to eventless transitions)</li>
 </ul>
 </li>
 <li>no transitions from the history state (history state is only a target state)</li>
 <li>A transition evaluation must always end (!), and end in an atomic state<ul>
-<li>Every compound state must have eactly one inconditional (unguarded) <code>INIT</code> transition, i.e. a transition whose triggering event is <code>INIT_EVENT</code>. That transition must have a target state which is a substate of the compound state (no hierarchy crossing), and which is not a history pseudo state</li>
+<li>Every compound state must have exactly one inconditional (unguarded) <code>INIT</code> transition, i.e. a transition whose triggering event is <code>INIT_EVENT</code>. That transition must have a target state which is a substate of the compound state (no hierarchy crossing), and which is not a history pseudo state</li>
 <li>Compound states must not have eventless transitions defined on them (would introduce ambiguity with the <code>INIT</code> transition)</li>
 <li>(the previous conditions ensure that there is always a way down the hierarchy for compound states, and that way is always taken when entering the compound state, and the descent process always terminate)</li>
 </ul>
@@ -566,6 +566,8 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </body>
 </html>

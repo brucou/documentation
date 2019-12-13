@@ -169,7 +169,20 @@
     
     
       
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
         <li><h3>Introduction</h3></li>
+      
       
       
       
@@ -185,6 +198,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
@@ -196,6 +210,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
@@ -203,6 +218,7 @@
   
     
     
+      
       
       
       
@@ -220,6 +236,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
@@ -227,6 +244,7 @@
   
     
     
+      
       
       
       
@@ -242,6 +260,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
@@ -249,6 +268,7 @@
   
     
     
+      
       
       
       
@@ -266,6 +286,7 @@
         <li><h3>Chess game</h3></li>
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
@@ -277,6 +298,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link current">Chess game - adding features</a>
@@ -284,6 +306,7 @@
   
     
     
+      
       
       
       
@@ -301,6 +324,7 @@
       
         <li><h3>Movie database interface</h3></li>
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
@@ -308,6 +332,7 @@
   
     
     
+      
       
       
       
@@ -323,6 +348,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
@@ -330,6 +356,7 @@
   
     
     
+      
       
       
       
@@ -345,6 +372,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
@@ -356,9 +384,108 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3 class="new">RealWorld clone</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world.html" class="sidebar-link">RealWorld app</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-home.html" class="sidebar-link">Home route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign up route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link">Sign in route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-editor.html" class="sidebar-link">Editor route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-settings.html" class="sidebar-link">Settings route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-profile.html" class="sidebar-link">User profile route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-article.html" class="sidebar-link">Article route</a>
     </li>
   
 </ul>
@@ -455,7 +582,7 @@
 </li>
 </ul>
 <p>This gives us the following modelization:</p>
-<label for="mn-demo-9" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-9" class="margin-toggle"><span class="marginnote"><p>The machine modification are emphasized in red. Rendering commands are not represented for the sake of readability.</p>
+<label for="mn-demo-8" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-8" class="margin-toggle"><span class="marginnote"><p>The machine modification are emphasized in red. Rendering commands are not represented for the sake of readability.</p>
 </span>
 <p><img src="../../graphs/chess%20game%20with%20hierarchy%20with%20undo%20with%20emphasis%20no%20grouping.jpg" alt>  </p>
 <p>It turns out that we can simplify our graph. The <em>Black plays</em> and <em>Black piece selected</em> are the totality of the control states of the compound state <em>Black turn</em>. We are going to factor the arrows leaving the two black atomic states into a unique one, linking the <em>Black turn</em> control state, and the common target control state <em>White plays</em>. We naturally do the same for whites, and the modelization becomes:</p>
@@ -468,7 +595,7 @@
 <p>Back to the subject matter of eliciting targets for modification to implement the new features, we have finished identifying the impact of the <em>undo</em> feature on the machine graph. We have a new event for the machine to process. The new transitions will come with new guards and action factories. The action factories should update the extended state of the machine so that it is reversed to its previous value, and produce a new <em>Undo</em> command to update the chess engine which implements the game logic. The extended state of the machine may have to be augmented to keep a history of previous moves — that would impact the <em>Move</em> action factories related. </p>
 <p>As a conclusion, as a result of the new features, we need to review all rendering commands, the action factories producing these commands, the extended state of the machine (adding properties to discriminate the player turn and the game status, and keeping a history of previous states), and add two new transitions.</p>
 <p> The updated machine is as follows:</p>
-<label for="mn-demo-16" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-16" class="margin-toggle"><span class="marginnote"><p>We reproduce here only the changes to the state machine. The full history of changes (rendering commands, action factories, etc.) can be observed by comparing with the <a href="https://glitch.com/~chess-game-basics" target="_blank" rel="noopener">code playground</a> from the previous implementation. At the machine level, the changes are the introduction of a new <code>Undo</code> event, two new properties to the extended state, and two new transitions.</p>
+<label for="mn-demo-17" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-17" class="margin-toggle"><span class="marginnote"><p>We reproduce here only the changes to the state machine. The full history of changes (rendering commands, action factories, etc.) can be observed by comparing with the <a href="https://glitch.com/~chess-game-basics" target="_blank" rel="noopener">code playground</a> from the previous implementation. At the machine level, the changes are the introduction of a new <code>Undo</code> event, two new properties to the extended state, and two new transitions.</p>
 </span>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> events = [UNDO, BOARD_CLICKED, START];</code></pre>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> initialExtendedState = &#123;
@@ -492,7 +619,7 @@
 <h3 id="Interfaced-systems"><a href="#Interfaced-systems" class="headerlink" title="Interfaced systems"></a>Interfaced systems</h3><p>The interfaced systems are two: the chess engine, and the output device (screen).</p>
 <p>The chess engine need not change, as it already has all the necessary API to perform the required tasks. Concretely, the chess engine exposes an <code>.undo</code> API which undoes the latest move. This is thanks to the great API design of the chess engine which has included features covering all the foreseen use cases for the chess engine.</p>
 <p>The screens produced by our application must however be updated so that an event listener is added to the <em>Undo</em> button and propagate its click event to the state machine. The component which renders the UI also need to change. Concretely, we now use a <code>ChessBoardWithInfo</code> React component:</p>
-<label for="mn-demo-21" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-21" class="margin-toggle"><span class="marginnote"><p>We add two new components <code>InfoArea</code> and <code>ActionArea</code> to handle the display of the player turn and game status and the undo button. Unlike previously where we did not have control of the <code>ChessBoard</code> component, we can use the <code>next</code> <em>props</em> which is injected by the <code>&lt;Machine&gt;</code> component from the <code>react-state-driven</code> library to pass events to the machine. </p>
+<label for="mn-demo-22" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-22" class="margin-toggle"><span class="marginnote"><p>We add two new components <code>InfoArea</code> and <code>ActionArea</code> to handle the display of the player turn and game status and the undo button. Unlike previously where we did not have control of the <code>ChessBoard</code> component, we can use the <code>next</code> <em>props</em> which is injected by the <code>&lt;Machine&gt;</code> component from the <code>react-state-driven</code> library to pass events to the machine. </p>
 </span>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">InfoArea</span>(<span class="hljs-params">props</span>) </span>&#123;
   <span class="hljs-keyword">const</span> &#123; status, turn &#125; = props;
@@ -657,6 +784,8 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </body>
 </html>

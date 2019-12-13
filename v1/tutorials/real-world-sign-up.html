@@ -1,0 +1,1031 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Sign up route — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sign up route — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sign up route — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          Tutorials
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+        <li><h3>Introduction</h3></li>
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/index.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Password meter</h3></li>
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-implementation.html" class="sidebar-link">Machine implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Chess game</h3></li>
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>Movie database interface</h3></li>
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link">Top level breakdown</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie query</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3 class="new">RealWorld clone</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world.html" class="sidebar-link">RealWorld app</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-home.html" class="sidebar-link">Home route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link current">Sign up route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link">Sign in route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-editor.html" class="sidebar-link">Editor route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-settings.html" class="sidebar-link">Settings route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-profile.html" class="sidebar-link">User profile route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-article.html" class="sidebar-link">Article route</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content tutorials with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>Sign up route</h1>
+  
+  
+    <p>In this section, we will modelize and implement the user flows related to the sign up route. There are two main entries to that route:</p>
+<ul>
+<li>a user may directly load the route in the browser</li>
+<li>a user may be redirected to that route, for instance if the user is not authenticated and likes/unlikes an article from the global feed</li>
+</ul>
+<p>In the <em>sign up</em> route, the user may register with a username, an email and a password. The following rules apply:</p>
+<ul>
+<li>authenticated users navigating to the <em>sign up</em> page should be redirected to the <em>home</em> route</li>
+<li>authenticated users cannot sign up while being logged in. Any attempt to do so will trigger a redirection to the <em>home</em> route </li>
+<li>sign up form fields must be validated for the sign up to go through (validation is handled partly by the browser (email field) and partly server side, the client does no validation).</li>
+</ul>
+<h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><p>We already have identified the screens in the <em>Specifications</em> section. Ler’s remind them here:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Route</th>
+<th style="text-align:left">State</th>
+<th style="text-align:center">Main screen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>#/register</code></td>
+<td style="text-align:left">Authentication required by the app or requested by the user</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.signup.realworld.io-2019.08.06-22_36_55.png" alt="sign-up"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/register</code></td>
+<td style="text-align:left">Sign up clicked</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.signup.realworld.io-2019.08.06-22_36_55.png" alt="sign-up"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/register</code></td>
+<td style="text-align:left">Sign up failed</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.realworld.fail-signup.io-2019.08.06-23_00_11.png" alt="failed-sign-up"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The UI for the <em>sign up</em> route will be implemented with a <em>SignUp</em> Svelte component which will take two parameters:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Prop</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>inProgress</code></td>
+<td style="text-align:left">boolean which indicates that the sign up API is pending returning a response. This will be used to give a visual feedback to the user about the in-flight request</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>errors</code></td>
+<td style="text-align:left">errors object returned by the sign up API in case of sign up request failure</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>There is no mystery to that component, it depending as usual exclusively on its <em>props</em>. It may be worth mentioning that we use the <code>FormData</code> browser API to get the value of the form inputs. Some implementations are listening on form input changes and maintaining a copy of the form input values. This is however not necessary and we prefer using the standard browser API, and using the DOM as single source of truth.</p>
+<p>The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-sign-up-route/src/UI/SignUp.svelte" target="_blank" rel="noopener">full source code</a> for the <code>SignUp</code> component can be accessed in the repository.</p>
+<h2 id="UI-testing"><a href="#UI-testing" class="headerlink" title="UI testing"></a>UI testing</h2><p>As before, we test the UI with <a href="https://storybook.js.org/" target="_blank" rel="noopener">Storybook</a>. The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-sign-up-route/stories/RealWorld.SignUp.stories.js" target="_blank" rel="noopener">corresponding stories</a> are available in the source repository.</p>
+<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>We have the following events for the <em>sign up</em> route:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Event</th>
+<th style="text-align:left">Event data</th>
+<th style="text-align:left">Occurs when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>CLICKED_SIGNUP</code></td>
+<td style="text-align:left">form data (<code>{username, email, password}</code>)</td>
+<td style="text-align:left">user submits the <em>sign up</em> form</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAILED_SIGN_UP</code></td>
+<td style="text-align:left">errors (as returned from sign up API)</td>
+<td style="text-align:left">user submitted the <em>sign up</em> form but the request failed</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SUCCEEDED_SIGN_UP</code></td>
+<td style="text-align:left">signed up user (as returned from sign up API)</td>
+<td style="text-align:left">user submitted the <em>sign up</em> form and the request succeeded</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Additionally, the user may click on links (like <em>have an account</em>). However, this is not handled directly by the machine. Instead, this is handled by the browser as any other links, triggering a change of url, which then triggers a <em>ROUTE_CHANGED</em> event to the machine.</p>
+<h2 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h2><p>We have the following commands for the <em>sign up</em> route:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Command</th>
+<th style="text-align:left">Command parameters</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>REDIRECT</code></td>
+<td style="text-align:left">hash to redirect to</td>
+<td style="text-align:left">redirects the user to a new/same hash location</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SIGN_UP</code></td>
+<td style="text-align:left">sign up form data (<code>{username, email, password}</code>)</td>
+<td style="text-align:left">sends an API request to sign the user up</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Commands-implementation"><a href="#Commands-implementation" class="headerlink" title="Commands implementation"></a>Commands implementation</h2><p>To implement the redirect command (without having a reload of the page), we have to update directly the browser location. We do so with <em>pushState</em> in order to have the browser history updated without the <code>onhashchange</code> event being triggered. The latter is important as we listen on <code>onhashchange</code> to send a <code>ROUTE_CHANGED</code> to the machine, and we do not want that event to be triggered for a redirection. Just like for the previous rouet, the function realizing the redirection is passed to the corresponding command handler as effect handler: </p>
+<pre><code class="hljs javascript">[REDIRECT]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> hash = params;
+  <span class="hljs-keyword">const</span> &#123; redirect &#125; = effectHandlers;
+
+  redirect(hash);
+&#125;,</code></pre>
+<p>To implement the sign up command, we defer to the API and update the session repository with the new user data. The logic, as before is enclosed into functions passed as effect handlers (<code>saveUser</code>, and <code>register</code>):</p>
+<pre><code class="hljs javascript">[SIGN_UP]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; email, username, password &#125; = params;
+  <span class="hljs-keyword">const</span> &#123; register, saveUser &#125; = effectHandlers;
+
+  register(&#123; email, password, username &#125;)
+    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+      <span class="hljs-keyword">const</span> &#123; user &#125; = res;
+      saveUser(user);
+      dispatch(&#123; [SUCCEEDED_SIGN_UP]: user &#125;);
+    &#125;)
+    .catch(<span class="hljs-function">(<span class="hljs-params">&#123; errors &#125;</span>) =&gt;</span> &#123;
+      dispatch(&#123; [FAILED_SIGN_UP]: errors &#125;);
+    &#125;);
+&#125;</code></pre>
+<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>Writing the tests for the user scenarios, we came to realize the need to refactor our implementation to accomodate the new route, and the future routes in a way that will minimize maintainability and testing issues.</p>
+<p>What are those issues which did not appear before?</p>
+<p>On the one hand, we now have a lot of <em>props</em> for our <code>RealWorld</code> component. Some of these props are only relevant for one specific route. Testing the <code>RealWorld</code> component with all these <em>props</em> will quickly become cumbersome, so we create one component for each route. We will arrange our rendering code to be able to test each route component separately. This concretely means having the <code>RealWorld</code> pick the component to display as a function of the route, and pass the appropriate selection of the <code>RealWorld</code> <em>props</em> to the corresponding route component.</p>
+<p>Svelte allows us to implement this logic relatively straightforwardly with <a href="https://svelte.dev/tutorial/svelte-component" target="_blank" rel="noopener"><em>dynamic components</em></a>. The <code>scr/App.svelte</code> thus goes like this:</p>
+<pre><code class="hljs diff">&lt;script&gt;
+  ...
+
+&lt;Fsm
+  &#123;fsmFactory&#125;
+  &#123;env&#125;
+  &#123;eventBus&#125;
+  &#123;commandHandlers&#125;
+  &#123;effectHandlers&#125;
+  &#123;initEvent&#125;&gt;
+  &#123;#if _shouldRender&#125;
+    &lt;RealWorld
+      dispatch=&#123;next&#125;
+      &#123;route&#125;
+      &#123;tags&#125;
+      &#123;articles&#125;
+      &#123;page&#125;
+      &#123;activeFeed&#125;
+      &#123;user&#125;
+      &#123;selectedTag&#125;
+      &#123;favoriteStatus&#125;
+<span class="hljs-addition">+     &#123;inProgress&#125;</span>
+<span class="hljs-addition">+    &#123;errors&#125; /&gt;</span>
+  &#123;/if&#125;
+&lt;/Fsm&gt;</code></pre>
+<p>Then the <code>src/UI/RealWorld.svelte</code> component, which uses a dynamic component resolved at runtime, becomes:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> Banner <span class="hljs-keyword">from</span> <span class="hljs-string">"./Banner.svelte"</span>;
+  <span class="hljs-keyword">import</span> Header <span class="hljs-keyword">from</span> <span class="hljs-string">"./Header.svelte"</span>;
+  <span class="hljs-keyword">import</span> Home <span class="hljs-keyword">from</span> <span class="hljs-string">"./Home.svelte"</span>;
+  <span class="hljs-keyword">import</span> SignUp <span class="hljs-keyword">from</span> <span class="hljs-string">"./SignUp.svelte"</span>;
+  <span class="hljs-keyword">import</span> &#123; routes &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"../constants"</span>;
+
+  <span class="hljs-comment">// Props</span>
+  <span class="hljs-comment">// Common props</span>
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> dispatch;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> user;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> route;
+  <span class="hljs-comment">// Home route props</span>
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> tags;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> articles;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> page;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> activeFeed;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> selectedTag;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> favoriteStatus;
+  <span class="hljs-comment">// Sign up props</span>
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> inProgress;
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> errors;
+
+  <span class="hljs-keyword">const</span> &#123; home, signUp &#125; = routes;
+
+  <span class="hljs-comment">// Component which will be displayed depending on the route</span>
+  <span class="hljs-keyword">const</span> componentRoutes= &#123;
+    [home]: Home,
+    [signUp]: SignUp,
+  &#125;;
+  <span class="hljs-comment">// Props for the component which will be displayed</span>
+  $: componentRoutesProps=&#123;
+    [home]: &#123;user, tags, articles, page, activeFeed, selectedTag, favoriteStatus&#125;,
+    [signUp]: &#123;inProgress, errors&#125;,
+  &#125;;
+  $: component = componentRoutes[route]
+  $: componentProps = componentRoutesProps[route]
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> &#123;<span class="hljs-attr">user</span>&#125; /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">svelte:component</span> <span class="hljs-attr">this</span>=<span class="hljs-string">"&#123;component&#125;"</span> &#123;<span class="hljs-attr">...componentProps</span>&#125;  &#123;<span class="hljs-attr">dispatch</span>&#125; /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<p>The second maintainability issue we are confronted with is that our state machine becomes quite large to be conveniently contained in a single file. As a result, we create a <code>behaviour</code> directory and we put there the parts of the state machine concerned exclusively with a specific route in separate files, and aggregate those parts into the state machine (<code>src/behaviour/fsm.js</code>):</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; ACTION_IDENTITY, createStateMachine &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"kingly"</span>;
+<span class="hljs-keyword">import</span> &#123; events, routes &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"../constants"</span>;
+<span class="hljs-keyword">import</span> &#123; allRoutesViewLens, initialAllRoutesState, updateURL &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"./common"</span>;
+<span class="hljs-keyword">import</span> &#123; homeStates, homeTransitions, initialHomeRouteState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"./home"</span>;
+<span class="hljs-keyword">import</span> &#123;
+  initialSignUpRouteState,
+  signUpStates,
+  signUpTransitions
+&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"./signUp"</span>;
+<span class="hljs-keyword">import</span> &#123; cleanHash &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"../shared/helpers"</span>;
+
+<span class="hljs-comment">/** @type Array&lt;HOME_ROUTE_EVENTS&gt; */</span>
+<span class="hljs-keyword">const</span> [
+  ROUTE_CHANGED,
+  TAGS_FETCHED_OK,
+  TAGS_FETCHED_NOK,
+  ARTICLES_FETCHED_OK,
+  ARTICLES_FETCHED_NOK,
+  AUTH_CHECKED,
+  CLICKED_TAG,
+  CLICKED_PAGE,
+  CLICKED_USER_FEED,
+  CLICKED_GLOBAL_FEED,
+  TOGGLED_FAVORITE,
+  FAVORITE_OK,
+  FAVORITE_NOK,
+  UNFAVORITE_OK,
+  UNFAVORITE_NOK
+] = events;
+
+<span class="hljs-keyword">const</span> &#123; home, allRoutes, signUp &#125; = routes;
+
+<span class="hljs-keyword">const</span> INIT = <span class="hljs-string">"start"</span>;
+<span class="hljs-keyword">const</span> initialControlState = INIT;
+
+<span class="hljs-keyword">const</span> initialExtendedState = &#123;
+  [home]: initialHomeRouteState,
+  [allRoutes]: initialAllRoutesState,
+  [signUp]: initialSignUpRouteState
+&#125;;
+
+<span class="hljs-keyword">const</span> states = &#123;
+  [INIT]: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">routing</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">home</span>: homeStates,
+  <span class="hljs-attr">signUp</span>: signUpStates
+&#125;;
+
+<span class="hljs-comment">/** @type &#123;Array&lt;Transition&gt;&#125; */</span>
+<span class="hljs-keyword">const</span> transitions = [
+  &#123; <span class="hljs-attr">from</span>: INIT, <span class="hljs-attr">event</span>: ROUTE_CHANGED, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">action</span>: updateURL &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"routing"</span>,
+    <span class="hljs-attr">event</span>: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>,
+    <span class="hljs-attr">guards</span>: [
+      &#123; <span class="hljs-attr">predicate</span>: isHomeRoute, <span class="hljs-attr">to</span>: <span class="hljs-string">"home"</span>, <span class="hljs-attr">action</span>: ACTION_IDENTITY &#125;,
+      &#123; <span class="hljs-attr">predicate</span>: isSignUpRoute, <span class="hljs-attr">to</span>: <span class="hljs-string">"signUp"</span>, <span class="hljs-attr">action</span>: ACTION_IDENTITY &#125;
+    ]
+  &#125;,
+  homeTransitions,
+  signUpTransitions
+].flat();
+
+<span class="hljs-comment">/**
+ * @typedef &#123;Object&#125; Update
+ *
+ * This function updates a state object, spliced per a property called `route`
+ * The route update basically works like this: &#123;a, b: &#123;c, d&#125;&#125;, [&#123;b:&#123;e&#125;]&#125; -&gt; &#123;a, b:&#123;e&#125;&#125;
+ * All Object.assign caveats apply
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+ * @param &#123;Object&#125; extendedState
+ * @param &#123;Array.&lt;[route, Array&lt;Update&gt;]&gt;&#125; extendedStateUpdates
+ * @returns &#123;Object&#125;
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateState</span>(<span class="hljs-params">extendedState, extendedStateUpdates</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> extendedStateCopy = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, extendedState);
+
+  <span class="hljs-keyword">if</span> (extendedStateUpdates.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> extendedStateCopy;
+
+  <span class="hljs-keyword">return</span> extendedStateUpdates.reduce(<span class="hljs-function">(<span class="hljs-params">acc, extendedStateUpdate</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> [route, updates] = extendedStateUpdate;
+    <span class="hljs-keyword">if</span> (route === <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> || updates === <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>) &#123;
+      <span class="hljs-built_in">console</span>.warn(
+        <span class="hljs-string">`updateState: incorrect extended state update argument! [route, updates] with either route or updates undefined!`</span>,
+        extendedStateUpdate
+      );
+      <span class="hljs-keyword">return</span> extendedState;
+    &#125;
+    <span class="hljs-keyword">const</span> routeState = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, acc[route]);
+    acc[route] = updates.reduce(
+      <span class="hljs-function">(<span class="hljs-params">acc, update</span>) =&gt;</span> <span class="hljs-built_in">Object</span>.assign(routeState, update),
+      routeState
+    );
+
+    <span class="hljs-keyword">return</span> acc;
+  &#125;, extendedStateCopy);
+&#125;
+
+<span class="hljs-comment">// Guards</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isHomeRoute</span>(<span class="hljs-params">extendedState, eventData, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; url &#125; = allRoutesViewLens(extendedState);
+  <span class="hljs-keyword">return</span> url === home;
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isSignUpRoute</span>(<span class="hljs-params">extendedState, eventData, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; url &#125; = allRoutesViewLens(extendedState);
+  <span class="hljs-keyword">return</span> url === cleanHash(signUp);
+&#125;
+
+<span class="hljs-comment">// Action factories</span>
+
+<span class="hljs-comment">// Machine definition</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fsmDef = &#123;
+  initialControlState,
+  initialExtendedState,
+  states,
+  events,
+  transitions,
+  updateState
+&#125;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> fsmFactory = <span class="hljs-function"><span class="hljs-params">settings</span> =&gt;</span> createStateMachine(fsmDef, settings);</code></pre>
+<p>As can be seen in the previous code, we also decided to compartimentalize the machine’s extended state per route:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> states = &#123;
+  [INIT]: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">routing</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-attr">home</span>: homeStates,
+  <span class="hljs-attr">signUp</span>: signUpStates
+&#125;;
+
+<span class="hljs-keyword">const</span> initialExtendedState = &#123;
+  [home]: initialHomeRouteState,
+  [allRoutes]: initialAllRoutesState,
+  [signUp]: initialSignUpRouteState
+&#125;;</code></pre>
+<p>This in turn means that we have to change the extended state updates performed by the action factories so they now address the new location of the extended state to modify. To do this in a maintainable way, we take inspiration from <a href="https://medium.com/@dtipson/functional-lenses-d1aba9e52254" target="_blank" rel="noopener">functional lenses</a>. We do not use exactly that due to the shape of our <code>updateState</code> function, but we do create view and update helpers functions for each of our route which will update the relevant parts of the extended state. We correspondingly update our <code>updateState</code> to reflect these changes. For instance:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeViewLens</span>(<span class="hljs-params">route</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">extendedState</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> extendedState[route];
+  &#125;;
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">homeUpdates</span>(<span class="hljs-params">updates</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> [[routes.home, updates]];
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">allRoutesUpdate</span>(<span class="hljs-params">updates</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> [[routes.allRoutes, updates]];
+&#125;</code></pre>
+<p>The <code>updateState</code> function is now:</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateState</span>(<span class="hljs-params">extendedState, extendedStateUpdates</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> extendedStateCopy = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, extendedState);
+
+  <span class="hljs-keyword">if</span> (extendedStateUpdates.length === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> extendedStateCopy;
+
+  <span class="hljs-keyword">return</span> extendedStateUpdates.reduce(<span class="hljs-function">(<span class="hljs-params">acc, extendedStateUpdate</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> [route, updates] = extendedStateUpdate;
+    <span class="hljs-keyword">if</span> (route === <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> || updates === <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>) &#123;
+      <span class="hljs-built_in">console</span>.warn(
+        <span class="hljs-string">`updateState: incorrect extended state update argument! [route, updates] with either route or updates undefined!`</span>,
+        extendedStateUpdate
+      );
+      <span class="hljs-keyword">return</span> extendedState;
+    &#125;
+    <span class="hljs-keyword">const</span> routeState = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, acc[route]);
+    acc[route] = updates.reduce(
+      <span class="hljs-function">(<span class="hljs-params">acc, update</span>) =&gt;</span> <span class="hljs-built_in">Object</span>.assign(routeState, update),
+      routeState
+    );
+
+    <span class="hljs-keyword">return</span> acc;
+  &#125;, extendedStateCopy);
+&#125;</code></pre>
+<p>In short, all our modifications are oriented towards adding new routes without modifying the previous routes and common parts.</p>
+<p>We are now ready for writing tests for our user scenarios.</p>
+<h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>We test four key user scenarios, the content of which should be clear from their identifiers in the code:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> userStories = [
+  [
+    UNAUTH_USER_ON_SIGNUP_SEES_FORM,
+    UNAUTH_USER_ON_SIGNUP_SEES_FORM_INPUTS,
+    UNAUTH_USER_ON_SIGNUP_SEES_FORM_COMMANDS
+  ],
+  [
+    AUTH_USER_ON_SIGNUP_IS_REDIRECTED,
+    AUTH_USER_ON_SIGNUP_IS_REDIRECTED_INPUTS,
+    AUTH_USER_ON_SIGNUP_IS_REDIRECTED_COMMANDS
+  ],
+  [
+    UNAUTH_USER_ON_SIGNUP_SEES_FORM_SIGNS_UP_AND_SEES_HOME_FEED,
+    UNAUTH_USER_ON_SIGNUP_SEES_FORM_SIGNS_UP_AND_SEES_HOME_FEED_INPUTS,
+    UNAUTH_USER_ON_SIGNUP_SEES_FORM_SIGNS_UP_AND_SEES_HOME_FEED_COMMANDS
+  ],
+  [
+    UNAUTH_USER_ON_SIGNUP_SEES_FORM_FAILS_SIGN_UP_AND_SEES_FORM_WITH_ERRORS,
+    UNAUTH_USER_ON_SIGNUP_SEES_FORM_FAILS_SIGN_UP_AND_SEES_FORM_WITH_ERRORS_INPUTS,
+    UNAUTH_USER_ON_SIGNUP_SEES_FORM_FAILS_SIGN_UP_AND_SEES_FORM_WITH_ERRORS_COMMANDS
+  ]
+];</code></pre>
+<h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The behaviour to modelize is relatively simple with the small complication to make sure that the user is not authenticated before signing up a possibly new user. We maintain the current modelization for the <em>home</em> route while adding the <em>sign up</em> behaviour to the existing machine. The final modelization is as follows:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-signup.png" alt="realworld-home-tag-filter"></p>
+</figure>
+<p>Note how we check twice that our user is authenticated before either displaying the sign up form, or executing the sign up API request. Note also, how the nested structure of our state machine allows us to focus on the part that we are interested in visualizing, while folding the part we are not interested in.</p>
+<h2 id="Behaviour-implementation"><a href="#Behaviour-implementation" class="headerlink" title="Behaviour implementation"></a>Behaviour implementation</h2><p>The implementation (<code>src/behaviour/signUp.js</code>) derives directly from the modelization. We reproduce here the main part which are the transitions:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> signUpTransitions = [
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"signUp"</span>,
+    <span class="hljs-attr">event</span>: INIT_EVENT,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-authentication-form-entry"</span>,
+    <span class="hljs-attr">action</span>: resetSignUpRouteStateAndFetchAuth
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetching-authentication-form-entry"</span>,
+    <span class="hljs-attr">event</span>: AUTH_CHECKED,
+    <span class="hljs-attr">guards</span>: [
+      &#123;
+        <span class="hljs-attr">predicate</span>: isNotAuthenticated,
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"form-entry-sign-up"</span>,
+        <span class="hljs-attr">action</span>: renderSignUpForm
+      &#125;,
+      &#123; <span class="hljs-attr">predicate</span>: isAuthenticated, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">action</span>: redirectToHome &#125;
+    ]
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"form-entry-sign-up"</span>,
+    <span class="hljs-attr">event</span>: CLICKED_SIGNUP,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-authentication-sign-up"</span>,
+    <span class="hljs-attr">action</span>: fetchAuthenticationAndRenderInProgress
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetching-authentication-sign-up"</span>,
+    <span class="hljs-attr">event</span>: AUTH_CHECKED,
+    <span class="hljs-attr">guards</span>: [
+      &#123; <span class="hljs-attr">predicate</span>: isNotAuthenticated, <span class="hljs-attr">to</span>: <span class="hljs-string">"signing-up"</span>, <span class="hljs-attr">action</span>: signUserUp &#125;,
+      &#123; <span class="hljs-attr">predicate</span>: isAuthenticated, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">action</span>: redirectToHome &#125;
+    ]
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"signing-up"</span>,
+    <span class="hljs-attr">event</span>: FAILED_SIGN_UP,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-authentication-form-entry"</span>,
+    <span class="hljs-attr">action</span>: renderFormWithErrorsAndFetchAuth
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"signing-up"</span>,
+    <span class="hljs-attr">event</span>: SUCCEEDED_SIGN_UP,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>,
+    <span class="hljs-attr">action</span>: redirectToHome
+  &#125;
+];</code></pre>
+<p>The transitions are very simply the edges of the previously represented graph.</p>
+<h2 id="What-we-learnt"><a href="#What-we-learnt" class="headerlink" title="What we learnt"></a>What we learnt</h2><p>Changing the shape of the extended state of the machine potentially requires reviewing <em>all</em> the state updates made by the action factories. As the machine grows, this can be cumbersome, which is why it is important to think in advance about how to structure the machine to minimize this. Here, we know that there are route-specific piece of states which will only be modified by specific section of the machine, which we have grouped in dedicated compound states (one compound state per route). As such, in the future, we will not have to review the whole machine when reviewing a piece of state, but only the part which read or update that piece of state, which we have conveniently identified beforehand. </p>
+<p>By separating the behaviour specification from the implementation, and by modelizing the behaviour as a state machine, we can deduce from the modelization graph that a user will not be able to sign up if he is already authenticated. Such assurance is hard to derive in a simple manner in other implementations. To do so in those alternative implementation involving components may require delving into the code, and manually tracing the user flows across the component tree. This illustrates on an admittedly small scale why state machines are so often used in safety-critical software where safety guarantees are paramount.</p>
+<p>As a matter of fact, the <a href="https://github.com/jorgebucaran/hyperapp" target="_blank" rel="noopener"><code>hyperapp</code></a> <a href="https://hyperapp.netlify.com/register" target="_blank" rel="noopener">implementation</a> the <a href="https://demo.realworld.io/#/" target="_blank" rel="noopener">Conduit demo app</a> does not implement those safety requirements. This could be simply an oversight (there are after all no written specifications for the Conduit app), or this could result from a view-first approach which favors such behavioural oversight. </p>
+<p>In any case, it is by specifying our behaviour with state machines that we realized, <strong>before reaching to the implementation phase</strong> the necessity to add an authentication check before signing up the user, while there was no specifications telling us to do so. This is another crucial advantage of state machine modelization. They make it easier to review a modelized behaviour vs. the expected behaviour, and find design bugs before they get buried deep into the code. </p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>sign up</em> route for our application. We followed the <a href="/real-world.html#Implementation-strategy">implementation strategy</a> we previously detailed. In the process of doing so, we came to refactor our application, keeping our architecture, but structuring the application per route to minimize the amount of code we have to modify to add future routes. We have around 10 routes to implement so it was important to do so early. We were also able with our modelization to ensure at the design level that our requirements will be indeed implemented by our implementation. For instance, our design ensures that a user clicking twice on the <em>sign up</em> button will not lead to attempting to sign in twice.</p>
+
+  
+  
+    <div class="next-links">
+      
+      
+        <span>← <a href="/documentation/v1/tutorials/real-world-home.html">Home route</a></span>
+      
+      
+      
+        <span style="float: right;"><a href="/documentation/v1/tutorials/real-world-sign-in.html">Sign in route</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

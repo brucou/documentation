@@ -169,7 +169,20 @@
     
     
       
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
         <li><h3>Introduction</h3></li>
+      
       
       
       
@@ -185,6 +198,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
@@ -196,6 +210,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
@@ -203,6 +218,7 @@
   
     
     
+      
       
       
       
@@ -220,6 +236,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
@@ -227,6 +244,7 @@
   
     
     
+      
       
       
       
@@ -242,6 +260,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
@@ -249,6 +268,7 @@
   
     
     
+      
       
       
       
@@ -266,6 +286,7 @@
         <li><h3>Chess game</h3></li>
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
@@ -277,6 +298,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
@@ -284,6 +306,7 @@
   
     
     
+      
       
       
       
@@ -301,6 +324,7 @@
       
         <li><h3>Movie database interface</h3></li>
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
@@ -308,6 +332,7 @@
   
     
     
+      
       
       
       
@@ -323,6 +348,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
@@ -330,6 +356,7 @@
   
     
     
+      
       
       
       
@@ -345,6 +372,7 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
@@ -356,9 +384,108 @@
       
       
       
+      
     
     <li>
       <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3 class="new">RealWorld clone</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world.html" class="sidebar-link">RealWorld app</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-home.html" class="sidebar-link">Home route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign up route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link">Sign in route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-editor.html" class="sidebar-link">Editor route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-settings.html" class="sidebar-link">Settings route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-profile.html" class="sidebar-link">User profile route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-article.html" class="sidebar-link">Article route</a>
     </li>
   
 </ul>
@@ -383,12 +510,12 @@
 <h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>Kingly is thus designed to encourage an UI implementation consisting of three separate modules with separate concerns:</p>
 <p><img src="../../graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly.jpg" alt="kingly-favoured ui architecture"></p>
 <p>The interfaced systems — that includes the input device (e.g. your laptop or mobile phone), send events to the Kingly machine. The machine computes commands which are executed by command handlers. Those commands may result in API calls on the interfaced systems, whose responses may be processed by the command handler module, which in turn decides whether to send an event back to the machine for processing. Note that the output device — typically a screen, is but one of the interfaced systems, and the operation of rendering is but a command to the interfaced output device.</p>
-<h2 id="Modelling-behaviour"><a href="#Modelling-behaviour" class="headerlink" title="Modelling behaviour"></a>Modelling behaviour</h2><p>A user interface can be specified by a relation between events received by the user interfaces and actions to be performed as a result on the interfaced system. With Kingly, you are expressing this relation with a procedure <code>fsm</code> with takes event received by the interface into commands to perform on the interfaced systems: <code>commands = fsm(event)</code>. </p>
-<p>In most of the cases, the same event must result in different commands to be executed. This means that the <code>fsm</code> procedure is a stateful one. A Kingly state machine is such a function, which <strong>encapsulates</strong> the necessary state so that it is only accessible and visible to thee <code>fsm</code> function itself. If we make the encapsulated state visible, we can define a pure function $g$ such that  $(actions_n, state_{n+1}) = g (state_n, event_n)$, where $n$ is tne $n^{th}$ invocation of the <code>fsm</code>  function for the $n^{th}$ input it processes.</p>
-<p>Additionally, a Kingly state machine divides its encapsulated state in two kinds of state: control states, and extended state. The machine starts in an initial control state. For each control state, the state machine must define a sub-procedure <code>fsm[control state]</code> which will:</p>
+<h2 id="Modelling-behaviour"><a href="#Modelling-behaviour" class="headerlink" title="Modelling behaviour"></a>Modelling behaviour</h2><p>A user interface can be specified by a relation between events received by the user interfaces and actions to be performed as a result on the interfaced system. With Kingly, you are expressing this relation with a procedure <code>fsm</code> which takes an event received by the interface into commands to perform on the interfaced systems: <code>commands = fsm(event)</code>. </p>
+<p>In most of the cases, the same event may result in different commands to be executed. This means that the <code>fsm</code> procedure is a stateful one. A Kingly state machine is such a function, which <strong>encapsulates</strong> the necessary state so that it is only accessible and visible to thee <code>fsm</code> function itself. If we make the encapsulated state visible, we can define a pure function $g$ such that  $(actions_n, state_{n+1}) = g (state_n, event_n)$, where $n$ is tne $n^{th}$ invocation of the <code>fsm</code>  function for the $n^{th}$ input it processes.</p>
+<p>Additionally, a Kingly state machine divides its encapsulated state in two kinds of state: control states, and extended state. The machine starts in an initial control state. For each control state, the state machine must define a sub-procedure <code>fsm&#39;</code> which will:</p>
 <ul>
-<li>perform the computation of commands when the machine is in that control state</li>
-<li>update its control state (we say that the machine <em>transitions</em> to its the new control state) if some conditions are fulfilled (we call such conditions <em>guards</em>)</li>
+<li>perform the computation of commands when the machine is in that control state (i.e. <code>fsm(event) = fsm&#39;(event)</code>)</li>
+<li>update its control state (we say that the machine <em>transitions</em> to its new control state) if some conditions are fulfilled (we call such conditions <em>guards</em>)</li>
 <li>update its extended state</li>
 </ul>
 <p>Control states thus define a ‘formula’ computing the commands, while the extended state gathers the data necessary to perform the computation. As the machine changes control state, the computation to perform changes accordingly. Control states may for instance serve to modelize interfaces going through different screens, associating a different relation between events and commands (i.e. behaviour) to each screen.</p>
@@ -401,23 +528,25 @@
 </ul>
 <p>Using Kingly as a state machine library has the following advantage:</p>
 <ul>
-<li>the behaviour of the machine, i.e. the computation of commands to perform, is completely separated from the execution of those commands. This means that any rendering library can be used to display the user interface.</li>
+<li>the behaviour of the machine, i.e. the computation of commands to perform, is completely separated from the execution of those commands. This means that any rendering library can be used to display the user interface, <strong>without any modification of the machine implementation</strong></li>
 <li>a Kingly machine is a standard JavaScript function which performs no effects. This means it is easy to test, without resorting to mocking, with any testing library of your choice.</li>
-<li>input sequences for the machine can additionally be automatically computed</li>
+<li>test input sequences for the machine can additionally be automatically computed</li>
 <li>the interface behaviour being separated from other concerns, it can be reused and shared among projects (for example on <code>npm</code>). </li>
 </ul>
 <h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p>The typical process I follow consists in:</p>
 <ul>
-<li>get an understanding of the interface behaviour from its informal specifications</li>
-<li>identify the events and commands that the machine receives and produces</li>
-<li>draw the machine with a graph editor (I recommend <a href="https://www.yworks.com/downloads#yEd" target="_blank" rel="noopener">yed</a>)</li>
-<li>write some tests for the basic scenarios</li>
-<li>write the definition of the machine (i.e. initial state, events, transitions, guards, action factories)</li>
-<li>write the other parts of the UI (like UI rendering, UI effects)</li>
-<li>fully test the machine with automatically generated tests (see the section on testing)</li>
-<li>write a few integration tests for the basic scenarios</li>
+<li>get a refined understanding of the interface behaviour from its informal specifications</li>
+<li>define the user interface’s interface (i.e. <em>props</em> interface, and dispatched events)</li>
+<li>implement and test the user interface</li>
+<li>define the command module interface (i.e. which commands are triggered by the user, the shape of those commands, and which events they produce as a result of their execution)</li>
+<li>implement and test the command module</li>
+<li>modelize the interface behaviour with a graph editor (I recommend <a href="https://www.yworks.com/downloads#yEd" target="_blank" rel="noopener">yed</a>)</li>
+<li>write some tests (with at least all-transitions coverage of the modelized machine)</li>
+<li>write the definition of the machine (i.e. initial state, events, transitions, guards, action factories) and pass the previous tests</li>
+<li>write and pass a few integration tests (all-states coverage may suffice if high confidence derived from unit tests)</li>
+<li>fully test the machine with automatically generated tests</li>
 </ul>
-<p>We will address testing in a dedicated section. We are now going to see in the following tutorials some examples of UI modelization with Kingly state machines.</p>
+<p>We will address automated test generation in a future dedicated section. We are now going to see in the following tutorials some examples of UI modelization with Kingly state machines.</p>
 
   
   
@@ -465,6 +594,8 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </body>
 </html>

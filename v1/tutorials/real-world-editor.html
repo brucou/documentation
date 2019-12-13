@@ -1,0 +1,973 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Editor route — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Editor route — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Editor route — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+  <div class="sidebar-inner">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link current">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+    <div class="list">
+      
+        <h2>
+          
+          Tutorials
+          
+            <select class="version-select">
+              <option value="SELF" selected>1.0</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/introduction.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+        <li><h3>Introduction</h3></li>
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/index.html" class="sidebar-link">Why Kingly</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>Password meter</h3></li>
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter.html" class="sidebar-link">Modelization</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-implementation.html" class="sidebar-link">Machine implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>Chess game</h3></li>
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game.html" class="sidebar-link">Two-player chess game</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-evolved.html" class="sidebar-link">Chess game - adding features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>Movie database interface</h3></li>
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-online-interface.html" class="sidebar-link">Specifications</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link">Top level breakdown</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie query</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3 class="new">RealWorld clone</h3></li>
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world.html" class="sidebar-link">RealWorld app</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-home.html" class="sidebar-link">Home route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign up route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link">Sign in route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-editor.html" class="sidebar-link current">Editor route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-settings.html" class="sidebar-link">Settings route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-profile.html" class="sidebar-link">User profile route</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tutorials/real-world-article.html" class="sidebar-link">Article route</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content tutorials with-sidebar ">
+  
+    
+    
+  
+  
+    <h1>Editor route</h1>
+  
+  
+    <p>In this section, we will modelize and implement the user flows related to the <em>editor</em> route. In that route, the user may:</p>
+<ul>
+<li>edit an existing article (<code>#/editor/:slug</code>)</li>
+<li>create a new article (<code>#/editor/</code>)</li>
+<li>publish a new or edited article</li>
+</ul>
+<p>Articles may have a title, a subject, <a href="https://www.markdownguide.org/" target="_blank" rel="noopener"><em>Markdown</em></a> content, and a list of tags. Tags are entered in a dedicated field, and added to the tag list by pressing the <em>Enter</em> key.</p>
+<p>The following rules apply:</p>
+<ul>
+<li>unauthenticated users navigating to the <em>editor</em> page should be redirected to the <em>home</em> route</li>
+<li>unauthenticated users cannot publish articles. Any attempt to do so will trigger a redirection to the <em>home</em> route </li>
+<li>the editor form fields must be validated for the article to be added to the articles database. Validation happens server-side with the API returns validation errors in the form of an object.</li>
+<li>users cannot add a tag that is already present in the tag list</li>
+<li>if there is no corresponding article (assuming user navigated to a <code>#/editor/:slug</code> route), the user is redirected to the <em>home</em> route</li>
+</ul>
+<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>We have the following events for the <em>editor</em> route:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Event</th>
+<th style="text-align:left">Event data</th>
+<th style="text-align:left">Occurs when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>CLICKED_PUBLISH</code></td>
+<td style="text-align:left">form data (<code>{title, description, body, currentTag, tagList}</code>)</td>
+<td style="text-align:left">user submits the form</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAILED_PUBLISHING</code></td>
+<td style="text-align:left">errors (as returned from the publishing API)</td>
+<td style="text-align:left">user submitted the form but the request failed</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SUCCEEDED_PUBLISHING</code></td>
+<td style="text-align:left">article data as <a href="https://github.com/gothinkster/realworld/tree/master/api#single-article" target="_blank" rel="noopener">returned by the API</a></td>
+<td style="text-align:left">user submitted the form and the request succeeded</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PRESSED_ENTER</code></td>
+<td style="text-align:left"><em>keyup</em> event data</td>
+<td style="text-align:left">user clicks enter when form focus is on the tag field</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAILED_FETCH_ARTICLE</code></td>
+<td style="text-align:left">??</td>
+<td style="text-align:left">API call fails</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FETCHED_ARTICLE</code></td>
+<td style="text-align:left">article data as <a href="https://github.com/gothinkster/realworld/tree/master/api#single-article" target="_blank" rel="noopener">returned by the API</a></td>
+<td style="text-align:left">API call succeeds</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>REMOVED_TAG</code></td>
+<td style="text-align:left">clicked tag</td>
+<td style="text-align:left">user clicks on a tag from the tag list</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Additionally, the user may click on links (like <em>settings</em>). However, this is not handled directly by the machine. Instead, this is handled by the browser as any other links, triggering a change of url, which then triggers a <em>ROUTE_CHANGED</em> event to the machine.</p>
+<p>And….. there is one more thing that a lot of people may trip up on the first time (I did), so we talk about it here separately. This has to do with the concept of <a href="https://stackoverflow.com/questions/42522515/what-are-controlled-components-and-uncontrolled-components" target="_blank" rel="noopener">controlled vs. uncontrolled</a> fields. </p>
+<p>We render the <code>title</code>, <code>description</code>, <code>body</code> fields with their initial value, and we never need to update these fields after that. So our <em>prop</em> <code>title</code> would actually better read as <code>initialTitle</code>, to indicate that this title value is not an evolving value, but the value of the field when the form is first created. The field values on the screen, i.e. in the DOM may change freely without necessity of the application to be notified. Such free-evolving fields are called <em>uncontrolled</em> fields.</p>
+<p>The situation changes for the <code>tag</code> DOM field. As the name indicates, the <code>currentTag</code> <em>prop</em> indicates the value of the tag at the time of rendering. This means than the <em>Render</em> command means to update the <code>tag</code> field on the form. In other words, the <code>currentTag</code> <em>prop</em> represents the evolving value of the <code>tag</code> field in the DOM. In yet other words, <code>currentTag</code> is <strong>bound</strong> to the value of the <code>tag</code> field. Some UI libraries implement this logic with <a href="https://medium.com/front-end-weekly/what-is-2-way-data-binding-44dd8082e48e" target="_blank" rel="noopener">two-way binding</a> (Svelte is one of those). Other UI libraries implement the binding by tracking the events triggered by the field modification (typically <em>keyup</em>) and synchronize the internal field value with the field value as stored in the OM. The <code>currentTag</code> is said to be a <em>controlled field</em>.</p>
+<p>In our case, because we want the <em>Render</em> <code>currentTag</code> to mean to display the form with the corresponding <code>tag</code> field set to the <code>currentTag</code> value, it means we have to track i.e. control the <code>tag</code> DOM form field. That then means we need to add an event <code>EDITED_TAG</code> to do that tracking. </p>
+<p>As a result, our events are now as follows:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Event</th>
+<th style="text-align:left">Event data</th>
+<th style="text-align:left">Occurs when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>CLICKED_PUBLISH</code></td>
+<td style="text-align:left">form data (<code>{title, description, body, currentTag, tagList}</code>)</td>
+<td style="text-align:left">user submits the form</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FAILED_PUBLISHING</code></td>
+<td style="text-align:left">errors (as returned from the publishing API)</td>
+<td style="text-align:left">user submitted the form but the request failed</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SUCCEEDED_PUBLISHING</code></td>
+<td style="text-align:left">article data as <a href="https://github.com/gothinkster/realworld/tree/master/api#single-article" target="_blank" rel="noopener">returned by the API</a></td>
+<td style="text-align:left">user submitted the form and the request succeeded</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PRESSED_ENTER</code></td>
+<td style="text-align:left"><em>keyup</em> event data</td>
+<td style="text-align:left">user clicks enter when form focus is on the tag field</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>REMOVED_TAG</code></td>
+<td style="text-align:left">clicked tag</td>
+<td style="text-align:left">user clicks on a tag from the tag list</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>EDITED_TAG</code></td>
+<td style="text-align:left">value of the <code>tag</code> field</td>
+<td style="text-align:left">user modifies the <code>tag</code> field</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h2><p>We have the following commands for the <em>editor</em> route:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Command</th>
+<th style="text-align:left">Command parameters</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>REDIRECT</code></td>
+<td style="text-align:left">hash to redirect to</td>
+<td style="text-align:left">redirects the user to a new/same hash location</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PUBLISH_ARTICLE</code></td>
+<td style="text-align:left">article data (<code>{title, description, body, tagList}</code>)</td>
+<td style="text-align:left">sends an API request to the publishing end point</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>UPDATE_ARTICLE</code></td>
+<td style="text-align:left">article data including slug (<code>{slug, title, description, body, tagList}</code>)</td>
+<td style="text-align:left">sends an API request to the publishing end point</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><p>We already have identified the screens in the <em>Specifications</em> section. Ler’s remind them here:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Route</th>
+<th style="text-align:left">State</th>
+<th style="text-align:center">Main screen</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>#/editor</code></td>
+<td style="text-align:left">Authenticated, new article</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.new-article.realworld.io-2019.08.06-23_24_20.png" alt="authenticated-new-article"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>#/editor/&lt;title&gt;-x4fafc</code></td>
+<td style="text-align:left">Authenticated, edit article</td>
+<td style="text-align:center"><img src="../../images/real-world/screenshot-demo.edit-article.realworld.io-2019.08.06-23_35_56.png" alt="authenticated-edit-article"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The UI for the <em>editor</em> route will be implemented with a <em>Editor</em> Svelte component. The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-editor-route/src/UI/Editor.svelte" target="_blank" rel="noopener">full source code</a> for the <code>Editor</code> component can be accessed in the repository.</p>
+<h2 id="UI-testing"><a href="#UI-testing" class="headerlink" title="UI testing"></a>UI testing</h2><p>As before, we test the UI with <a href="https://storybook.js.org/" target="_blank" rel="noopener">Storybook</a>. The <a href="https://github.com/brucou/realworld-kingly-svelte/tree/with-settings-route/stories" target="_blank" rel="noopener">corresponding stories</a> are available in the source repository.</p>
+<h2 id="Commands-implementation"><a href="#Commands-implementation" class="headerlink" title="Commands implementation"></a>Commands implementation</h2><p>To implement the <code>PUBLISH_ARTICLE</code> and <code>UPDATE_ARTICLE</code> command, we defer to the API. The logic, as before is enclosed into functions passed as effect handlers (<code>saveArticle</code>, and <code>updateArticle</code>):</p>
+<pre><code class="hljs javascript">[PUBLISH_ARTICLE]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; title, description, body, tagList &#125; = params;
+  <span class="hljs-keyword">const</span> &#123; saveArticle &#125; = effectHandlers;
+
+  saveArticle(&#123; title, description, body, tagList &#125;)
+    .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;
+      dispatch(&#123; [SUCCEEDED_PUBLISHING]: data.article &#125;);
+    &#125;)
+    .catch(<span class="hljs-function">(<span class="hljs-params">&#123; errors &#125;</span>) =&gt;</span> &#123;
+      dispatch(&#123; [FAILED_PUBLISHING]: errors &#125;);
+    &#125;);
+&#125;,
+[UPDATE_ARTICLE]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> &#123; slug, title, description, body, tagList &#125; = params;
+  <span class="hljs-keyword">const</span> &#123; updateArticle &#125; = effectHandlers;
+
+  updateArticle(&#123; slug, title, description, body, tagList &#125;)
+    .then(<span class="hljs-function">(<span class="hljs-params">&#123; article &#125;</span>) =&gt;</span> &#123;
+      dispatch(&#123; [SUCCEEDED_PUBLISHING]: article &#125;);
+    &#125;)
+    .catch(<span class="hljs-function">(<span class="hljs-params">&#123; errors &#125;</span>) =&gt;</span> &#123;
+      dispatch(&#123; [FAILED_PUBLISHING]: errors &#125;);
+    &#125;);
+&#125;</code></pre>
+<h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>We test five key user scenarios, checking the aforementioned behaviour rules, the content of which should be clear from their identifiers in the code:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> userStories = [
+  [
+    UNAUTH_USER_ON_EDITOR_NEW_ARTICLE_IS_REDIRECTED,
+    UNAUTH_USER_ON_EDITOR_NEW_ARTICLE_IS_REDIRECTED_INPUTS,
+    UNAUTH_USER_ON_EDITOR_NEW_ARTICLE_IS_REDIRECTED_COMMANDS
+  ],
+  [
+    UNAUTH_USER_ON_EDITOR_EDIT_ARTICLE_IS_REDIRECTED,
+    UNAUTH_USER_ON_EDITOR_EDIT_ARTICLE_IS_REDIRECTED_INPUTS,
+    UNAUTH_USER_ON_EDITOR_EDIT_ARTICLE_IS_REDIRECTED_COMMANDS
+  ],
+  [
+    AUTH_USER_ON_EDITOR_NEW_ARTICLE_SEES_FORM_ADDS_TWICE_SAME_TAGS_AND_PUBLISHES,
+    AUTH_USER_ON_EDITOR_NEW_ARTICLE_SEES_FORM_ADDS_TWICE_SAME_TAGS_AND_PUBLISHES_INPUTS,
+    AUTH_USER_ON_EDITOR_NEW_ARTICLE_SEES_FORM_ADDS_TWICE_SAME_TAGS_AND_PUBLISHES_COMMANDS
+  ],
+  [
+    AUTH_USER_ON_EDITOR_EDIT_ARTICLE_SEES_FORM_ADDS_TWO_TAGS_REMOVES_ONE_PUBLISHES_EMPTY_SEES_ERRORS,
+    AUTH_USER_ON_EDITOR_EDIT_ARTICLE_SEES_FORM_ADDS_TWO_TAGS_REMOVES_ONE_PUBLISHES_EMPTY_SEES_ERRORS_INPUTS,
+    AUTH_USER_ON_EDITOR_EDIT_ARTICLE_SEES_FORM_ADDS_TWO_TAGS_REMOVES_ONE_PUBLISHES_EMPTY_SEES_ERRORS_COMMANDS
+  ],
+  [
+    AUTH_USER_ON_EDITOR_EDIT_ARTICLE_FAILED_FETCH_AND_IS_REDIRECTED,
+    AUTH_USER_ON_EDITOR_EDIT_ARTICLE_FAILED_FETCH_AND_IS_REDIRECTED_INPUTS,
+    AUTH_USER_ON_EDITOR_EDIT_ARTICLE_FAILED_FETCH_AND_IS_REDIRECTED_COMMANDS
+  ]
+];</code></pre>
+<h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The modelization we reach is the following:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-editor-unfactored.png" alt="editor route behaviour modelization high level"></p>
+</figure>
+<p>Zooming in on the <em>Editor route</em> compound control state:</p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-editor-level-1.png" alt="editor route behaviour modelization zoomed in"></p>
+</figure>
+<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>We have two reasons for refactoring appearing. On the one hand, all compound states have a transition towards the <code>routing</code> control state. That transitions relates to the user clicking links, which cause a change of route and possibly a redirection to another part of the application. We have those transitions for the four routes we have modelized so far, and we can expect that to remain true for any new route that we are going to modelize. This means we can <strong>factor</strong> those transitions out into a single transition from a compound control state comprising all the route control states: </p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-editor.png" alt="factoring routes inside single compound state"></p>
+</figure>
+<p>We created here a compound control state called <em>Application core</em> with a transition triggered by the <code>ROUTE_CHANGED</code> event. We thus replaced four transitions by a single one, simplifying the graph, while keeping the exact same semantics. To remind semantics of the visual formalism, an event triggering a transition from a compound state to a target control state (<code>ROUTE_CHANGED</code> is such an event) is equivalent to an event on each sub-states of that compound state triggering a transition to the same target control state. </p>
+<p>If you are familiar with algebra, we simply <strong>factorized</strong> $(a \underset{event}{\rightarrow}b , a \underset{event}{\rightarrow} c , a \underset{event}{\rightarrow} d  , a \underset{event}{\rightarrow} e)$ into $a \underset{event}{\rightarrow}(b,c,d,e)$ where the $a \underset{event}{\rightarrow}b $ indicates a transition from $a$ to $b$ triggered by $event$ and $(a,b)$ indicates two control states which are part of the same compound control state. To make it more obvious, this is the same as expressing $ab+ac+ad+ae$ as $a(b+c+d+e)$, where $ab$ is the same as $a \underset{event}{\rightarrow}b$, and $a+b$ is the same as $(a,b)$.</p>
+<p>That refactoring is useful as, not only we removed here three edges from our visualization, making it more readable, but also, as we keep on adding route, the same transition triggered by <code>ROUTE_CHANGED</code> will still be valid. Thus for $n$ similar transitions, we will have saved $n-1$ edges from the visualization.</p>
+<p>The second reason for refactoring is directed by reuse purposes. The forms from the <em>sign in</em> route, the <em>sign up</em> route and the <em>editor</em> route behave in similar ways. In all three routes, the user can only see the form if he is authenticated, then the submitting operation can only go through if the user is authenticated, and if the submitting operation is not successful, errors are displayed on the form, otherwise, the user is redirected.</p>
+<p>To make this obvious, let’s compare the <em>sign up</em> route and the <em>editor</em> routes’ modelization:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">sign up route</th>
+<th style="text-align:center">sign in route</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="../../graphs/real-world/realworld-routing-signup-form-machine-highlighted.png" alt="signup-form-machine"></td>
+<td style="text-align:center"><img src="../../graphs/real-world/realworld-routing-signin-form-machine-highlighted.png" alt="signin-form-machine"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Let’s now look at the <em>editor</em> visualization with the same emphasis:</p>
+<div class="fullwidth"><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">sign up route</th>
+<th style="text-align:center">editor route</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="../../graphs/real-world/realworld-routing-signup-form-machine-highlighted.png" alt="signup-form-machine"></td>
+<td style="text-align:center"><img src="../../graphs/real-world/realworld-routing-editor-unfactored-form-machine-highlighted.png" alt="editor-unfactored-form-machine"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We have highlighted the common graph structure shared by those three visualizations, i.e. the common behaviour shared by these three parts of the application. By the <em>rule of three</em>, we have found a candidate target for <a href="https://apiumhub.com/tech-blog-barcelona/dry-dont-repeat-yourself/" target="_blank" rel="noopener">DRY refactoring</a>.</p>
+<p>How would we proceed and factor this common behaviour so it can be reused in the implementation of all three routes? We already isolated the common behaviour, next we abstract or lift as parameters the parts constituting the common behaviour, i.e. the events, action factories, commands involved in that behaviour. Concretely, our common behaviour can be represented by the following machine part:</p>
+<p><img src="../../graphs/real-world/two-step-auth-process-factoring-highlighted.png" alt="two-step-auth-process-factoring-highlighted"> </p>
+<p>Now that is not a valid machine, as there is no initial control state. However, this machine part has all the transitions that figure in all previous three routes implementation. We thus define a function which compute the transitions to add to a given machine to implement the authenticated form submitting behaviour (<a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-editor-route/src/behaviour/abstracted.js" target="_blank" rel="noopener"><code>src/behaviour/abstracted.js</code></a>):</p>
+<pre><code class="hljs javascript"><span class="hljs-comment">/**
+ * @param &#123;&#123;events: AuthFormEvents, actionFactories: AuthFormActionFactories, states: AuthFormStates,
+ *   isAuthenticatedGuard: Guard&#125;&#125; def
+ * @return &#123;*[]&#125;
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getAuthenticatedFormPageTransitions</span>(<span class="hljs-params">def</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; events, states, actionFactories, isAuthenticatedGuard &#125; = def;
+  <span class="hljs-keyword">const</span> &#123; AUTH_CHECKED, SUBMIT_TRIGGERED, FAILED_SUBMISSION, SUCCEEDED_SUBMISSION &#125; = events;
+  <span class="hljs-keyword">const</span> &#123;
+    fetchingAuthenticationPreForm,
+    fetchingAuthenticationPreSubmit,
+    enteringData,
+    <span class="hljs-attr">fallback</span>: fallbackState,
+    submitting,
+    done
+  &#125; = states;
+  <span class="hljs-keyword">const</span> &#123;
+    showInitializedForm,
+    showSubmittingForm,
+    submit,
+    <span class="hljs-attr">fallback</span>: fallbackActionF,
+    retry,
+    finalize
+  &#125; = actionFactories;
+  <span class="hljs-keyword">const</span> isNotAuthenticatedGuard = isNot(isAuthenticatedGuard);
+
+  <span class="hljs-keyword">return</span> [
+    &#123;
+      <span class="hljs-attr">from</span>: fetchingAuthenticationPreForm,
+      <span class="hljs-attr">event</span>: AUTH_CHECKED,
+      <span class="hljs-attr">guards</span>: [
+        &#123; <span class="hljs-attr">predicate</span>: isAuthenticatedGuard, <span class="hljs-attr">to</span>: enteringData, <span class="hljs-attr">action</span>: showInitializedForm &#125;,
+        &#123; <span class="hljs-attr">predicate</span>: isNotAuthenticatedGuard, <span class="hljs-attr">to</span>: fallbackState, <span class="hljs-attr">action</span>: fallbackActionF &#125;
+      ]
+    &#125;,
+    &#123;
+      <span class="hljs-attr">from</span>: enteringData,
+      <span class="hljs-attr">event</span>: SUBMIT_TRIGGERED,
+      <span class="hljs-attr">to</span>: fetchingAuthenticationPreSubmit,
+      <span class="hljs-attr">action</span>: showSubmittingForm
+    &#125;,
+    &#123;
+      <span class="hljs-attr">from</span>: fetchingAuthenticationPreSubmit,
+      <span class="hljs-attr">event</span>: AUTH_CHECKED,
+      <span class="hljs-attr">guards</span>: [
+        &#123; <span class="hljs-attr">predicate</span>: isAuthenticatedGuard, <span class="hljs-attr">to</span>: submitting, <span class="hljs-attr">action</span>: submit &#125;,
+        &#123; <span class="hljs-attr">predicate</span>: isNotAuthenticatedGuard, <span class="hljs-attr">to</span>: fallbackState, <span class="hljs-attr">action</span>: fallbackActionF &#125;
+      ]
+    &#125;,
+    &#123; <span class="hljs-attr">from</span>: submitting, <span class="hljs-attr">event</span>: SUCCEEDED_SUBMISSION, <span class="hljs-attr">to</span>: done, <span class="hljs-attr">action</span>: finalize &#125;,
+    &#123; <span class="hljs-attr">from</span>: submitting, <span class="hljs-attr">event</span>: FAILED_SUBMISSION, <span class="hljs-attr">to</span>: fetchingAuthenticationPreForm, <span class="hljs-attr">action</span>: retry &#125;
+  ];
+&#125;</code></pre>
+<p>We use that function to write the transitions for the implementation of the <em>editor</em> route modelization, as will be shown in the upcoming implementation section.</p>
+<h2 id="Behaviour-implementation"><a href="#Behaviour-implementation" class="headerlink" title="Behaviour implementation"></a>Behaviour implementation</h2><p>The implementation (<code>src/behaviour/editor.js</code>) derives directly from the modelization. We reproduce here the main part which are the transitions:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> editorTransitions = [
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"editor"</span>,
+    <span class="hljs-attr">event</span>: INIT_EVENT,
+    <span class="hljs-attr">guards</span>: [
+      &#123;
+        <span class="hljs-attr">predicate</span>: isEditorEditArticleRoute,
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-article-editor"</span>,
+        <span class="hljs-attr">action</span>: fetchArticle
+      &#125;,
+      &#123;
+        <span class="hljs-attr">predicate</span>: isNot(isEditorEditArticleRoute),
+        <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-authentication-editor-pre-form"</span>,
+        <span class="hljs-attr">action</span>: resetEditorRouteStateAndFetchAuth
+      &#125;
+    ]
+  &#125;,
+  &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"editor"</span>, <span class="hljs-attr">event</span>: ROUTE_CHANGED, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">action</span>: updateURL &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetching-article-editor"</span>,
+    <span class="hljs-attr">event</span>: FETCHED_ARTICLE,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"fetching-authentication-editor-pre-form"</span>,
+    <span class="hljs-attr">action</span>: updateEditorRouteStateAndFetchAuth
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"fetching-article-editor"</span>,
+    <span class="hljs-attr">event</span>: FAILED_FETCH_ARTICLE,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>,
+    <span class="hljs-attr">action</span>: redirectToHome
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"editing-new-article"</span>,
+    <span class="hljs-attr">event</span>: EDITED_TAG,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"editing-new-article"</span>,
+    <span class="hljs-attr">action</span>: renderTagField
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"editing-new-article"</span>,
+    <span class="hljs-attr">event</span>: ADDED_TAG,
+    <span class="hljs-attr">guards</span>: [&#123; <span class="hljs-attr">predicate</span>: isNewTag, <span class="hljs-attr">to</span>: <span class="hljs-string">"editing-new-article"</span>, <span class="hljs-attr">action</span>: addTagAndRender &#125;]
+  &#125;,
+  &#123;
+    <span class="hljs-attr">from</span>: <span class="hljs-string">"editing-new-article"</span>,
+    <span class="hljs-attr">event</span>: REMOVED_TAG,
+    <span class="hljs-attr">to</span>: <span class="hljs-string">"editing-new-article"</span>,
+    <span class="hljs-attr">action</span>: removeTagAndRenderTagList
+  &#125;,
+  getAuthenticatedFormPageTransitions(&#123;
+    <span class="hljs-attr">events</span>: &#123;
+      AUTH_CHECKED,
+      <span class="hljs-attr">SUBMIT_TRIGGERED</span>: CLICKED_PUBLISH,
+      <span class="hljs-attr">FAILED_SUBMISSION</span>: FAILED_PUBLISHING,
+      <span class="hljs-attr">SUCCEEDED_SUBMISSION</span>: SUCCEEDED_PUBLISHING
+    &#125;,
+    <span class="hljs-attr">states</span>: &#123;
+      <span class="hljs-attr">fetchingAuthenticationPreForm</span>: <span class="hljs-string">"fetching-authentication-editor-pre-form"</span>,
+      <span class="hljs-attr">fetchingAuthenticationPreSubmit</span>: <span class="hljs-string">"fetching-authentication-editor-pre-publish"</span>,
+      <span class="hljs-attr">enteringData</span>: <span class="hljs-string">"editing-new-article"</span>,
+      <span class="hljs-attr">fallback</span>: <span class="hljs-string">"routing"</span>,
+      <span class="hljs-attr">submitting</span>: <span class="hljs-string">"publishing-article"</span>,
+      <span class="hljs-attr">done</span>: <span class="hljs-string">"routing"</span>
+    &#125;,
+    <span class="hljs-attr">isAuthenticatedGuard</span>: isAuthenticated,
+    <span class="hljs-attr">actionFactories</span>: &#123;
+      <span class="hljs-attr">showInitializedForm</span>: renderEditorForm,
+      <span class="hljs-attr">showSubmittingForm</span>: fetchAuthenticationAndRenderInProgressAndUpdateFormData,
+      <span class="hljs-attr">submit</span>: publishArticle,
+      <span class="hljs-attr">fallback</span>: redirectToHome,
+      <span class="hljs-attr">retry</span>: renderEditorFormWithErrorsAndFetchAuth,
+      <span class="hljs-attr">finalize</span>: updateUrlAndRedirectToArticle
+    &#125;
+  &#125;)
+].flat();</code></pre>
+<p>Note how we use the transitions computed by the <code>getAuthenticatedFormPageTransitions</code> function and how we integrate them in the <em>editor</em> route machine. As a final note, we have decided (for now) against refactoring the other two routes which exhibits the behaviour we just abstracted. Those routes are already written and tested, so we don’t have a productivity advantage here. If the behaviour abstracted in the <code>getAuthenticatedFormPageTransitions</code> should require tweaking in the future (because of bugs or else), we will then consider moving the other two routes to using it, so they also benefit from that tweaking. But as of now, we don’t have much to win by doing rewriting the existing implementation of those two routes exhibiting a common behaviour.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We modelized and implemented the <em>Editor</em> route portion of our Conduit clone app. Our modelization allowed us to handle nested routing very naturally. We handled some specific aspects of forms (controlled fields vs. uncontrolled fields), and decided to control the <code>tag</code> field of the editor form. We refactored our visual modelization by factoring the <code>ROUTE_CHANGED</code> event into an <em>Application core</em> compound state containing all the route substates. We also refactored the implementation of the machine for the <em>editor</em> route by extracting the common parts of three of the previously implemented routes and abstracting the varying parts into parameters for a factory function. </p>
+<p>The first refactoring enhances readability of the visualization, and the capacity to communicate the application hehaviour to stakeholders in a more concise way. It is important to note that this refactoring is merely visual: the semantics addressed by the visualization are exactly the same. We have not reduced or increased the complexity of our application, we instead reduced the complexity of the visualization, and slightly that of the implementation. This refactoring additionally has slightly increased maintainability, as, when new routes will be added to the <em>Application core</em> compound state, they will automatically be subject to the transition triggered by the <code>ROUTE_CHANGED</code> event.</p>
+<p>The second refactoring does not pursue a reduction in lines of code. Actually it may often be that lines of code increase as a result of the indirection caused by the <code>getAuthenticatedFormPageTransitions</code> function. Rather, the idea is to reuse a logic that have already been implemented several times, speeding up the implementation of new occurrences of that logic, and removing possible mistakes occurring when duplicating that logic. The more complex a shared behaviour is, the more beneficial it is to capture it in a reusable form. It is up to the programmer to determine when the benefits compensate the indirection cost of the reusable abstraction.</p>
+<p>We decided for instance against abstracting the following behaviour of an API call:</p>
+<p><img src="../../graphs/real-world/API%20call%20machine.png" alt="API call absracted machine"></p>
+<p>We believe this behaviour is simple enough to not be worth being abstracted.</p>
+<p>Lastly, we do not recommend to abstract too early. It is important to evaluate the generality of the abstraction (the rule of three is a good rule of thumb), its current benefits and its future applicability.</p>
+
+  
+  
+    <div class="next-links">
+      
+      
+        <span>← <a href="/documentation/v1/tutorials/real-world-sign-in.html">Sign in route</a></span>
+      
+      
+      
+        <span style="float: right;"><a href="/documentation/v1/tutorials/real-world-settings.html">Settings route</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

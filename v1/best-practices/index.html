@@ -188,6 +188,12 @@
   
     <p>This section gathers the best-practices which percolated after using state machines extensively in actual cases. A particular emphasis will be given to modelling techniques and testing. </p>
 <p><img src="../../images/coming-soon/under-construction-png-images-label-free-download-660778.png" alt></p>
+<h1 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h1><p>// TODO: best practice.<br>// Factorize thr latest possible. pagination is good example<br>// and then only factorize when great certainty that requirements will not change<br>// as is the case when it is intrinsic property of the specs</p>
+<p>// When having events on compound states, think about preconditions which must be fulfilled and set a guard on it<br>// for isntance, in conduit home route, like an article is on home route.<br>// without a guard theoretically, it is possible to like an article before the articles are fetched<br>// in fact it is not possible because the UI does not allow it (nothing is displayed).<br>// It is thus good to add a guard that checks that there are articles to be liked in the first place!<br>// this is good for robustness (and also for test generation as confusing tests which cannot actually<br>// happen in reality won’t be generated) </p>
+<h1 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h1><p>// TODO: best practice. test slowly but surely. Small and minimal scenario first which test specific use cases.<br>// Leave the long and imbricated scenario for the generative testing.<br>// Have UI with props<br>// Test the machine outputs by postprocessing the render commands to get the UI props<br>// Write expected outputs as UI props, so the tests are not linked to the machine anymore but to the specs<br>// That means simulate the render effect handler in the test!!<br>// Ex: Conduit Svelte</p>
+<h1 id="IMplementimg"><a href="#IMplementimg" class="headerlink" title="IMplementimg"></a>IMplementimg</h1><p>// If merging props, the first render command on the graph should pass all props<br>// If showing component before machine started, have no initial value for props but handle instead undefined values smoothly<br>// when implementation machines, go in order of graph (i.. scenarios order), instead of first guards, then transitions etc.</p>
+<p>lots of issues with arrays of arrays… specially when making tests that slows down a bit. Maybe use jsdoc or typescript!</p>
+<p>// Issues with controlled components: if using additive props, pass the controlled props as in React<br>// Issues with stale props: pick up a source of truth (value returned from the database stored in state) rather than prop.<br>// - this happened to me because ?? I am not sure really, but the props passed was stale. Probably because we did a deep update in an object,<br>//   that object is scattered through components, and probably one reference was the same and did not trigger redraw.<br>//   so to avoid dependency between view and machine, just use always the source of truth not linked to the view if I have one</p>
 
   
   
@@ -224,6 +230,8 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </body>
 </html>
