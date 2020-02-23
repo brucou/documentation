@@ -313,42 +313,6 @@
       
     
     <li>
-      <a href="/documentation/v1/tutorials/TMDB-top-level.html" class="sidebar-link">Top level breakdown</a>
-    </li>
-  
-    
-    
-      
-      
-      
-      
-      
-    
-    <li>
-      <a href="/documentation/v1/tutorials/tmdb-routing.html" class="sidebar-link">Routing</a>
-    </li>
-  
-    
-    
-      
-      
-      
-      
-      
-    
-    <li>
-      <a href="/documentation/v1/tutorials/TMDB-movie-query.html" class="sidebar-link">Movie query</a>
-    </li>
-  
-    
-    
-      
-      
-      
-      
-      
-    
-    <li>
       <a href="/documentation/graphs/movie-search/TMDB-movie-query-and-detail.html" class="sidebar-link">Movie details</a>
     </li>
   
@@ -493,6 +457,52 @@
   
   
     <p><strong>TO BE CONTINUED</strong></p>
+<p>Architectural benefits:</p>
+<ul>
+<li>can use any UI</li>
+<li>testing was a breeze<ul>
+<li>FAST UI testing which is akin to integration testing</li>
+<li>UI tests can be reused for integration tests</li>
+<li>automatic test generation</li>
+</ul>
+</li>
+<li>easy to check scenarios (resilient to design bugs)</li>
+<li>as long the interface between modules do not change, module can change their implementation details (extended state shape)</li>
+</ul>
+<p>Cost of abstraction:</p>
+<ul>
+<li>bundle size cost <ul>
+<li>computing action globally &amp; executing action globally vs. directly performing actions locally</li>
+<li>cf. difference vs. hyperapp implementation (estimated to 5-7KB / 28)</li>
+</ul>
+</li>
+<li>extra interface (action + executor) means extra glue code<ul>
+<li>as we did to separate routes</li>
+<li>or integrate Svelte</li>
+<li>or integrate API gateway</li>
+</ul>
+</li>
+<li>learning curve</li>
+<li>large machines can be hard to navigate in code<ul>
+<li>look up for actions, or state</li>
+<li>querying for what do events trigger etc</li>
+<li>the data structure answers some questions easier that others </li>
+</ul>
+</li>
+<li>refactoring state may imply updating the whole machine in the worse case (that is normal but there is no automatic refactoring tool) </li>
+</ul>
+<p>But:</p>
+<ul>
+<li>a lot of the issue can be remediated with proper tooling (which does not exist as of yet for UI. but exists for safety-critical software)<ul>
+<li>refactoring tool</li>
+<li>typing (don’t allow some properties in some state update)</li>
+<li>validation (state name collision, machine contracts, etc.)</li>
+<li>abstraction and machine reuse (akin to macro)</li>
+<li>data structure querying (navigation, etc.)</li>
+<li>sync. drawing / code</li>
+</ul>
+</li>
+</ul>
 
   
   
