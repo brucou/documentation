@@ -242,21 +242,21 @@
     <h1>Graph editors</h1>
   
   
-    <h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>The <code>yed2Kingly</code> package aims at supporting the creation of state machines with the <a href="https://brucou.github.io/documentation/">Kingly state machine library</a>. While by design the Kingly configuration for state machines follows a simple and minimal syntax, crafting and maintaining a large state machine by hand can involve repetitive tasks. Such tasks include for instance looking up a transition and remove it, or checking that a new transition to add does not conflict with an existing one.</p>
+    <h2 id="yEd"><a href="#yEd" class="headerlink" title="yEd"></a>yEd</h2><h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>The <code>yed2Kingly</code> package aims at supporting the creation of state machines with the <a href="https://brucou.github.io/documentation/">Kingly state machine library</a>. While by design the Kingly configuration for state machines follows a simple and minimal syntax, crafting and maintaining a large state machine by hand can involve repetitive tasks. Such tasks include for instance looking up a transition and remove it, or checking that a new transition to add does not conflict with an existing one.</p>
 <p> Furthermore, a large machine is rarely written directly in a written format but is rather supported by some kind of visualization whether hand-written graphs, or professional graph editors. When switching to text editing, the visual information is lost, the text-based version becomes desynchronized with the visual support. </p>
 <p>This is a case in hand where visual tooling can strengthen part of an error-prone manual process, and automate the repetitive tasks.</p>
 <p><a href="https://www.yworks.com/products/yed" target="_blank" rel="noopener">yEd</a> is a versatile professional graph editor that produce high-quality diagrams for a large set of use cases. yEd is not open source, however there is no fee linked to its usage as an end-user. I have been using it for the past four years to generate all kind of diagrams including state machine graphs. The key features that I found extremely valuable in this time are the accessibility to non-professional users (this is no photoshop), its large set of sophisticated automatic highly-customizable layouts, and its text-based versionable graphml format.</p>
 <p>This makes yEd a valuable tool to use for state machine creation, edition and maintenance. yEd exists in desktop and online versions. I recommend the desktop version anytime of the day on the grounds that it is more productive for serious tasks, but your mileage may vary. For educational or demonstration purposes, there may be educational value in the online version.</p>
-<h1 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h1><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.grpahml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>yEd2Kingly</code> node script on the newly saved file and generates a JavaScript file which exports the events, state hierarchy and transitions contained in the graph — you can of course also run the script manually instead of using a watcher. The provided exports can then be used as parameters to create a Kingly state machine.</p>
-<h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><p><code>npm install yEd2Kingly</code></p>
-<h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><pre><code class="hljs bash">yEd2Kingly file.graphml</code></pre>
+<h3 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h3><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.grpahml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>yEd2Kingly</code> node script on the newly saved file and generates a JavaScript file which exports the events, state hierarchy and transitions contained in the graph — you can of course also run the script manually instead of using a watcher. The provided exports can then be used as parameters to create a Kingly state machine.</p>
+<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p><code>npm install yEd2Kingly</code></p>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre><code class="hljs bash">yEd2Kingly file.graphml</code></pre>
 <p>Running the converter produces two files, targeted at consumption in a browser and node.js environment:</p>
 <p>Before:<br><pre><code class="hljs bash">src/graphs/file.graphml</code></pre></p>
 <p>After:<br><pre><code class="hljs bash">src/graphs/file.graphml.fsm.js
 src/graphs/file.graphml.fsm.cjs</code></pre></p>
 <p>The converter must emit an error or exit with an error code if the converted graph will not give rise to a valid Kingly machine (in particular cf. rules). The idea is to fail as early as possible.</p>
 <p>The produced file export three objects: the events, state hierarchy and a transition factory. The first two objects can be used directly as parameters to create a Kingly machine, i.e. they follow the Kingly format. The transition factory requires the developer to associate a JavaScript function to any action and guard labels that is in the graph. The developer thus passed an object containing this information and is returned a Kingly transitions object. I provide an example which should clarify the expected syntax and usage.  </p>
-<h2 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h2><p>Some definitions:</p>
+<h3 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h3><p>Some definitions:</p>
 <ul>
 <li>An initial transition is that which originates from a node whose label is <code>init</code></li>
 <li>A top-level initial transition is that initial transition which does not have any parent node</li>
@@ -276,14 +276,14 @@ src/graphs/file.graphml.fsm.cjs</code></pre></p>
 </ul>
 </li>
 </ul>
-<h2 id="Conventions"><a href="#Conventions" class="headerlink" title="Conventions"></a>Conventions</h2><p>The following conventions are not rules and are not enforced in any way. They exists for practicality or readability purposes.</p>
+<h3 id="Conventions"><a href="#Conventions" class="headerlink" title="Conventions"></a>Conventions</h3><p>The following conventions are not rules and are not enforced in any way. They exists for practicality or readability purposes.</p>
 <ul>
 <li>Nodes for machine states have a rectangular shape</li>
 <li>Init pseudo-states are represented by a small circle with a different color than regular nodes</li>
 <li>Compound states (group nodes in yEd terminology) should also be displayed in a third color </li>
 </ul>
-<h1 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h1><p>There are plenty of graph examples in the <a href="https://github.com/brucou/yed2Kingly/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. An example, extracted from the tests directory and involving compound states and history pseudo-states is as follows:</p>
-<p><img src="https://github.com/brucou/yed2Kingly/blob/master/tests/graphs/deep-hierarchy-history-H.png" alt="example of yed graph with history pseudo-state and compound state"></p>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>There are plenty of graph examples in the <a href="https://github.com/brucou/yed2Kingly/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. An example, extracted from the tests directory and involving compound states and history pseudo-states is as follows:</p>
+<p><img src="https://imgur.com/VjKaIkL.png" alt="example of yed graph with history pseudo-state and compound state"></p>
 <p>Running the <code>yed2Kingly</code> script produces the following JavaScript file:</p>
 <pre><code class="hljs js"><span class="hljs-comment">// Copy-paste help</span>
 <span class="hljs-comment">// For debugging purposes, functions should all have a name</span>
@@ -382,10 +382,7 @@ src/graphs/file.graphml.fsm.cjs</code></pre></p>
     };
     const fsm = createStateMachine(fsmDef, settings);
 </code></pre>
-<h1 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h1><p>Tests are run with <a href="https://mochajs.org/" target="_blank" rel="noopener">mocha</a>. Go to the <a href="https://github.com/brucou/yed2Kingly/tree/master/tests" target="_blank" rel="noopener"><code>tests</code> directory</a> and run:</p>
-<pre><code class="lang-bash">mcocha *specs*
-</code></pre>
-<h1 id="Final-note"><a href="#Final-note" class="headerlink" title="Final note"></a>Final note</h1><p>I chose this process after plenty of reflection of pondering over what was the best approach for this functionality. A babel plugin or macro was a possibility but the level of complexity was much higher — both from a macro creator and a macro user perspective,and the predictable requirements in term of maintenance were also appreciable. The retained solution is to produce the outputs of the file conversion in a separate, independent JavaScript file. There is thus no necessity to write proprietary JavaScript, it is programming as usual.</p>
+<h3 id="Final-note"><a href="#Final-note" class="headerlink" title="Final note"></a>Final note</h3><p>I chose this process after plenty of reflection of pondering over what was the best approach for this functionality. A babel plugin or macro was a possibility but the level of complexity was much higher — both from a macro creator and a macro user perspective,and the predictable requirements in term of maintenance were also appreciable. The retained solution is to produce the outputs of the file conversion in a separate, independent JavaScript file. There is thus no necessity to write proprietary JavaScript, it is programming as usual.</p>
 <p>This is a first version based on my personal usage. I am interested in hearing your comments and recommendations if you have them about a better way to handle the integration of a graph editor with Kingly JavaScript library. Feel free to open an issue.</p>
 
   
