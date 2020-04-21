@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>makeWebComponentFromFsm — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Compiler — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="makeWebComponentFromFsm — Kingly.js">
+  <meta property="og:title" content="Compiler — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="makeWebComponentFromFsm — Kingly.js">
+  <meta name="twitter:title" content="Compiler — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -80,15 +80,15 @@
 </li>
 
 <li>
-  <a href="/documentation/v1/api/index.html" class="nav-link team current">API</a>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
 </li>
 <li class="nav-dropdown-container tooling">
-  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <a class="nav-link current">Tooling</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li>
       <ul>
         <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
-        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link current">Compiling</a></li>
         <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
       </ul>
     </li>
@@ -141,15 +141,15 @@
 </li>
 
 <li>
-  <a href="/documentation/v1/api/index.html" class="nav-link team current">API</a>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
 </li>
 <li class="nav-dropdown-container tooling">
-  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <a class="nav-link current">Tooling</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li>
       <ul>
         <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
-        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link current">Compiling</a></li>
         <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
       </ul>
     </li>
@@ -183,7 +183,7 @@
       
         <h2>
           
-          API
+          
           
             <select class="version-select">
               <option value="SELF" selected>1.0</option>
@@ -195,36 +195,33 @@
     
     
     
+      
+      
+      
+    
     <li>
-      <a href="/documentation/v1/api/index.html" class="sidebar-link">Overview</a>
+      <a href="/documentation/v1/tooling/graph_editing.html" class="sidebar-link new">Graph editors</a>
     </li>
   
     
     
     
+      
+      
+      
+    
     <li>
-      <a href="/documentation/v1/api/createStateMachine.html" class="sidebar-link">createStateMachine</a>
+      <a href="/documentation/v1/tooling/compiling.html" class="sidebar-link current">Compiler</a>
     </li>
   
     
     
     
-    <li>
-      <a href="/documentation/v1/api/makeWebComponent.html" class="sidebar-link current">makeWebComponentFromFsm</a>
-    </li>
-  
-    
-    
+      
+      
     
     <li>
-      <a href="/documentation/v1/api/API extensions.html" class="sidebar-link">Possible API extensions</a>
-    </li>
-  
-    
-    
-    
-    <li>
-      <a href="/documentation/v1/api/terminology.html" class="sidebar-link">Terminology</a>
+      <a href="/documentation/v1/tooling/devtool.html" class="sidebar-link">Dev tool</a>
     </li>
   
 </ul>
@@ -236,67 +233,16 @@
 
 
 
-<div class="content api with-sidebar ">
+<div class="content tooling with-sidebar ">
   
     
     
   
   
-    <h1>makeWebComponentFromFsm</h1>
+    <h1>Compiler</h1>
   
   
-    <p><code>makeWebComponentFromFsm :: ComponentDef -&gt; FSM</code></p>
-<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>This factory function creates a web component which takes no observed attributes or properties. The behaviour or logic of the component is parameterized by the machine passed as parameter. The communication capability of the component is parameterized by subjects generated from a subject factory passed as parameter. The command handling capability are provided by command handlers  and effect handlers passed as parameters. An initial event, terminal event (unused for now), and a moniker indicating absence of actions to perform can be passed as options. </p>
-<p>The web component receives input through its input subject, passes to the encapsulated machine which computes outputs and the component subsequently process those outputs via the command handlers. The web component may or may not use the output subject to emit events. At the moment, we do not have any example or test covering this use case.</p>
-<p>Component whose behaviour is defined by a machine can be seamlessly integrated into any framework by converting to web component. Note however that the portion of the web component specification used, custom elements v1, is only supported in modern browsers. In the web component scenario, communication betwween the web component and other framework’s component occurs through the input and output subject or DOM events. It is not possible to use any facility provided by the framework. </p>
-<h2 id="Contract"><a href="#Contract" class="headerlink" title="Contract"></a>Contract</h2><ul>
-<li>Type contracts</li>
-<li>web component name must fulfill web component’s specifications i.e. include an hyphen in its name</li>
-</ul>
-<h2 id="Implementation-example"><a href="#Implementation-example" class="headerlink" title="Implementation example"></a>Implementation example</h2><p>We have implemented a <a href="https://github.com/brucou/movie-search-app-nerv" target="_blank" rel="noopener">movie search app</a> with <a href="https://github.com/NervJS/nerv" target="_blank" rel="noopener">Nerv</a>, a lightweight React clone which works with browsers down to IE8. The entry file can be found <a href="https://github.com/brucou/movie-search-app-nerv/blob/master/src/index.js" target="_blank" rel="noopener">here</a>.</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> fsm = createStateMachine(movieSearchFsmDef, &#123;
-  <span class="hljs-attr">updateState</span>: applyJSONpatch,
-  <span class="hljs-attr">debug</span>: &#123; <span class="hljs-built_in">console</span> &#125;
-&#125;);
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subjectFromEventEmitterFactory</span>(<span class="hljs-params"></span>) </span>&#123;
-  <span class="hljs-keyword">const</span> eventEmitter = emitonoff();
-  <span class="hljs-keyword">const</span> DUMMY_NAME_SPACE = <span class="hljs-string">"_"</span>;
-  <span class="hljs-keyword">const</span> _ = DUMMY_NAME_SPACE;
-  <span class="hljs-keyword">const</span> subscribers = [];
-
-  <span class="hljs-keyword">return</span> &#123;
-    <span class="hljs-attr">next</span>: <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> eventEmitter.emit(_, x),
-    <span class="hljs-attr">complete</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> subscribers.forEach(<span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> eventEmitter.off(_, f)),
-    <span class="hljs-attr">subscribe</span>: <span class="hljs-function"><span class="hljs-params">f</span> =&gt;</span> (subscribers.push(f), eventEmitter.on(_, f))
-  &#125;;
-&#125;
-
-<span class="hljs-keyword">const</span> nervRenderCommandHandler = &#123;
-  [COMMAND_RENDER]: <span class="hljs-function">(<span class="hljs-params">next, params, effectHandlers, el</span>) =&gt;</span> &#123;
-    <span class="hljs-keyword">const</span> &#123; screen, query, results, title, details, cast &#125; = params;
-    <span class="hljs-keyword">const</span> props = params;
-    render(screens(next)[screen](props), el);
-  &#125;
-&#125;;
-<span class="hljs-keyword">const</span> commandHandlersWithRender = <span class="hljs-built_in">Object</span>.assign(
-  &#123;&#125;,
-  commandHandlers,
-  nervRenderCommandHandler
-);
-
-<span class="hljs-keyword">const</span> options = &#123; <span class="hljs-attr">initialEvent</span>: &#123; [events.USER_NAVIGATED_TO_APP]: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> &#125; &#125;;
-
-makeWebComponentFromFsm(&#123;
-  <span class="hljs-attr">name</span>: <span class="hljs-string">"movie-search"</span>,
-  <span class="hljs-attr">eventSubjectFactory</span>: subjectFromEventEmitterFactory,
-  fsm,
-  <span class="hljs-attr">commandHandlers</span>: commandHandlersWithRender,
-  effectHandlers,
-  options
-&#125;);
-
-render(h(<span class="hljs-string">"movie-search"</span>), <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"root"</span>));</code></pre>
+    <p><img src="../../images/coming-soon/jet-plane-under-construction-royalty-free-vector-clip-art-39637.png" alt></p>
 
   
   
