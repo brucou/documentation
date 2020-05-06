@@ -242,7 +242,60 @@
     <h1>Compiler</h1>
   
   
-    <p><img src="../../images/coming-soon/jet-plane-under-construction-royalty-free-vector-clip-art-39637.png" alt></p>
+    <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>The <code>lesser</code> package aims at supporting the creation of state machines with the <a href="https://brucou.github.io/documentation/">Kingly state machine library</a>. The Kingly state machine library may hover around a bundle size of 10-15KB. While Kingly is tree-shakeable and in practice the size after tree-shaking is around 5KB, the <code>lesser</code> compiler allows developers to reduce the footprint of their state machines. This may be worthy if developers are using only a few small machines. We expect that, as the machine grows in complexity (number of control states, and hierarchy depth), the gain in bundle size obtained through the compiler is naturally reduced. We however estimate the effort worthwhile, as developers would likely have to write really large machines to come down to the same size than the library (which includes debugging, tracing, and error management).</p>
+<p>With the <a href="https://www.yworks.com/products/yed-live" target="_blank" rel="noopener">yed graph editor</a>, <a href="https://github.com/brucou/yed2Kingly" target="_blank" rel="noopener">devtool</a> and the present compiler, we believe the minimal set of pieces is in place for developing and maintaining comfortably large Kingly state machines.</p>
+<h2 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h2><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>lesser</code> node script on the newly saved file and generates the compiled JavaScript file which exports the machine factory — you can of course also run the script manually instead of using a watcher. The provided exports can then be used as parameters to create a Kingly state machine.</p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p><code>npm install lesser</code></p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><pre><code class="hljs bash">lesser file.graphml</code></pre>
+<p>Running the converter produces two files, targeted at consumption in a browser and node.js environment:</p>
+<p>Before:<br><pre><code class="hljs bash">src/graphs/file.graphml</code></pre></p>
+<p>After:<br><pre><code class="hljs bash">src/graphs/file.graphml.fsm.compiled.js
+src/graphs/file.graphml.fsm.compiled.cjs</code></pre></p>
+<p>The converter must emit an error or exit with an error code if the converted graph will not give rise to a valid Kingly machine (in particular cf. rules). The idea is to fail as early as possible.</p>
+<p>The produced file export one factory function which when runs with the right parameters will return a Kingly state machine.</p>
+<p>There are plenty of examples of use in the test directory. Let’s illustrate the parameters received by the factory function:</p>
+<pre><code class="hljs js"><span class="hljs-comment">// require the js file</span>
+<span class="hljs-keyword">const</span> &#123; createStateMachine &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;graphMlFile&#125;</span>.fsm.compiled.cjs`</span>);
+
+<span class="hljs-comment">// Build the machine</span>
+<span class="hljs-keyword">const</span> guards = &#123;
+  <span class="hljs-string">'not(isNumber)'</span>: <span class="hljs-function">(<span class="hljs-params">s, e, stg</span>) =&gt;</span> <span class="hljs-keyword">typeof</span> s.n !== <span class="hljs-string">'number'</span>,
+  <span class="hljs-attr">isNumber</span>: <span class="hljs-function">(<span class="hljs-params">s, e, stg</span>) =&gt;</span> <span class="hljs-keyword">typeof</span> s.n === <span class="hljs-string">'number'</span>,
+&#125;;
+<span class="hljs-keyword">const</span> actionFactories = &#123;
+  <span class="hljs-attr">logOther</span>: <span class="hljs-function">(<span class="hljs-params">s, e, stg</span>) =&gt;</span> (&#123; <span class="hljs-attr">outputs</span>: [<span class="hljs-string">`logOther run on <span class="hljs-subst">$&#123;s.n&#125;</span>`</span>], <span class="hljs-attr">updates</span>: &#123;&#125; &#125;),
+  <span class="hljs-attr">logNumber</span>: <span class="hljs-function">(<span class="hljs-params">s, e, stg</span>) =&gt;</span> (&#123; <span class="hljs-attr">outputs</span>: [<span class="hljs-string">`logNumber run on <span class="hljs-subst">$&#123;s.n&#125;</span>`</span>], <span class="hljs-attr">updates</span>: &#123;&#125; &#125;),
+&#125;;
+<span class="hljs-keyword">const</span> fsm1 = createStateMachine(&#123;
+  <span class="hljs-attr">initialExtendedState</span>: &#123; <span class="hljs-attr">n</span>: <span class="hljs-number">0</span> &#125;,
+  actionFactories,
+  guards,
+  updateState,
+&#125;, settings);</code></pre>
+<p>As can be seen from the example, the factory function’s first parameter consists of four objects: the initial extended state of the machine; the JavaScript code for the action factories and guards referenced by name in the <code>.graphml</code> file;  and a reducer function <code>updateState</code> which takes an object and an array of modifications to perform on that object.</p>
+<p>Note that the compiled machine does not offer error messages, protection against malformed inputs, devtool or logging functionality. This is only possible when using the Kingly library.</p>
+<p>Note also that, as much as possible, we refrain from using advanced JavaScript language features in the code generated by the compiler with a view for that code to be usable in older browsers without polyfilling or babel-parsing. This however has not really been tested so far.</p>
+<h2 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h2><p>Some definitions:</p>
+<ul>
+<li>An initial transition is that which originates from a node whose label is <code>init</code></li>
+<li>A top-level initial transition is that initial transition which does not have any parent node</li>
+<li>A history pseudo-state is a node whose label is H (shallow history) or H* (deep history)</li>
+<li>A compound node is a node which is created in the yEd interface by using the group functionality (<em>Grouping &gt; Group</em> or <em>Ctrl-Alt-G</em> in version 3.19).</li>
+</ul>
+<ul>
+<li><code>lesser</code> rules:<ul>
+<li>The compiler converts the <code>.graphml</code> file using the same algorithm than <code>yed2Kingly</code>. As such the same conversion rules that apply: the machine encoded in the <code>.graphml</code> file must correspond to a valid Kingly machine.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p>There are plenty of graph examples in the <a href="https://github.com/brucou/slim/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. An example, extracted from the tests directory and involving compound states and history pseudo-states is as follows:</p>
+<p><img src="https://imgur.com/VjKaIkL.png" alt="example of yed graph with history pseudo-state and compound state"></p>
+<h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>Tests are run with <a href="https://mochajs.org/" target="_blank" rel="noopener">mocha</a>. Go to the <a href="https://github.com/brucou/slim/tree/master/tests" target="_blank" rel="noopener"><code>tests</code> directory</a> and run:</p>
+<pre><code class="lang-bash">mcocha *specs*
+</code></pre>
+<h2 id="Final-note"><a href="#Final-note" class="headerlink" title="Final note"></a>Final note</h2><p>After using and working with state machine for the past four years, I believe I am reaching a satisfying API and process. The idea is really to avoid unnecessary complexity. I am however interested in hearing your comment, and suggestions together with use cases that you believe are not satisfactorily addressed -&gt; post an issue in the project directory.</p>
+<p>I am trying to get the <code>slim</code> package name instead of <code>lesser</code>. Let’s see how that goes.</p>
+<p><img src="../../images/coming-soon/jet-plane-under-construction-royalty-free-vector-clip-art-39637.png" alt></p>
 
   
   
