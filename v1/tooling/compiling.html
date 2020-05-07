@@ -242,11 +242,17 @@
     <h1>Compiler</h1>
   
   
-    <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>The <code>lesser</code> package aims at supporting the creation of state machines with the <a href="https://brucou.github.io/documentation/">Kingly state machine library</a>. The Kingly state machine library may hover around a bundle size of 10-15KB. While Kingly is tree-shakeable and in practice the size after tree-shaking is around 5KB, the <code>lesser</code> compiler allows developers to reduce the footprint of their state machines. This may be worthy if developers are using only a few small machines. We expect that, as the machine grows in complexity (number of control states, and hierarchy depth), the gain in bundle size obtained through the compiler is naturally reduced. We however estimate the effort worthwhile, as developers would likely have to write really large machines to come down to the same size than the library (which includes debugging, tracing, and error management).</p>
+    <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>The <code>slim</code> package aims at supporting the creation of state machines with the <a href="https://brucou.github.io/documentation/">Kingly state machine library</a>. The Kingly state machine library may hover around a bundle size of 10-15KB. While Kingly is tree-shakeable and in practice the size after tree-shaking is around 5KB, the <code>slim</code> compiler allows developers to reduce the footprint of their state machines. This may be worthy if developers are using only a few small machines. We expect that, as the machine grows in complexity (number of control states, and hierarchy depth), the gain in bundle size obtained through the compiler is naturally reduced. We however estimate the effort worthwhile, as developers would likely have to write really large machines to come down to the same size than the library (which includes debugging, tracing, and error management).</p>
 <p>With the <a href="https://www.yworks.com/products/yed-live" target="_blank" rel="noopener">yed graph editor</a>, <a href="https://github.com/brucou/yed2Kingly" target="_blank" rel="noopener">devtool</a> and the present compiler, we believe the minimal set of pieces is in place for developing and maintaining comfortably large Kingly state machines.</p>
-<h2 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h2><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>lesser</code> node script on the newly saved file and generates the compiled JavaScript file which exports the machine factory — you can of course also run the script manually instead of using a watcher. The provided exports can then be used as parameters to create a Kingly state machine.</p>
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p><code>npm install lesser</code></p>
-<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><pre><code class="hljs bash">lesser file.graphml</code></pre>
+<h2 id="Guiding-principles"><a href="#Guiding-principles" class="headerlink" title="Guiding principles"></a>Guiding principles</h2><ul>
+<li>the generated code should be readable by a human</li>
+<li>the generated code should work in as many browsers as possible with a minimum of polyfills</li>
+<li>the generated code should be easy to debug</li>
+</ul>
+<p>We thus decided to use <code>prettifyer</code>, include comments in the generated code, and avoid arrow functions and other newer JavaScript language features.</p>
+<h2 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h2><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>slim</code> node script on the newly saved file and generates the compiled JavaScript file which exports the machine factory — you can of course also run the script manually instead of using a watcher. The provided exports can then be used as parameters to create a Kingly state machine.</p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p><code>npm install slim</code></p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><pre><code class="hljs bash">slim file.graphml</code></pre>
 <p>Running the converter produces two files, targeted at consumption in a browser and node.js environment:</p>
 <p>Before:<br><pre><code class="hljs bash">src/graphs/file.graphml</code></pre></p>
 <p>After:<br><pre><code class="hljs bash">src/graphs/file.graphml.fsm.compiled.js
@@ -283,13 +289,15 @@ src/graphs/file.graphml.fsm.compiled.cjs</code></pre></p>
 <li>A compound node is a node which is created in the yEd interface by using the group functionality (<em>Grouping &gt; Group</em> or <em>Ctrl-Alt-G</em> in version 3.19).</li>
 </ul>
 <ul>
-<li><code>lesser</code> rules:<ul>
+<li><code>slim</code> rules:<ul>
 <li>The compiler converts the <code>.graphml</code> file using the same algorithm than <code>yed2Kingly</code>. As such the same conversion rules that apply: the machine encoded in the <code>.graphml</code> file must correspond to a valid Kingly machine.</li>
 </ul>
 </li>
 </ul>
 <h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p>There are plenty of graph examples in the <a href="https://github.com/brucou/slim/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. An example, extracted from the tests directory and involving compound states and history pseudo-states is as follows:</p>
 <p><img src="https://imgur.com/VjKaIkL.png" alt="example of yed graph with history pseudo-state and compound state"></p>
+<p>The compiled machine is below 170 lines of code and the minified compressed size is below 1KB.</p>
+<h2 id="Size-of-file-generated"><a href="#Size-of-file-generated" class="headerlink" title="Size of file generated"></a>Size of file generated</h2><p>The size file is mostly proportional to the sum of the number of control states and the number of transitions of the graph. The proportional coefficient seems to be fairly low.</p>
 <h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>Tests are run with <a href="https://mochajs.org/" target="_blank" rel="noopener">mocha</a>. Go to the <a href="https://github.com/brucou/slim/tree/master/tests" target="_blank" rel="noopener"><code>tests</code> directory</a> and run:</p>
 <pre><code class="lang-bash">mcocha *specs*
 </code></pre>
