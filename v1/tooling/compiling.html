@@ -249,7 +249,7 @@
 <li>the generated code should work in as many browsers as possible with a minimum of polyfills</li>
 <li>the generated code should be easy to debug</li>
 </ul>
-<p>We thus decided to use <code>prettifyer</code>, include comments in the generated code, and avoid arrow functions and other newer JavaScript language features.</p>
+<p>We thus decided to use <code>prettier</code>, include comments in the generated code, and avoid arrow functions and other newer JavaScript language features.</p>
 <h2 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h2><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>slim</code> node script on the newly saved file and generates the compiled JavaScript file which exports the machine factory — you can of course also run the script manually instead of using a watcher. The provided exports can then be used as parameters to create a Kingly state machine.</p>
 <h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p><code>npm install slim</code></p>
 <h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><pre><code class="hljs bash">slim file.graphml</code></pre>
