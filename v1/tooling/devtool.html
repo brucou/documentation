@@ -245,13 +245,10 @@
     <h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>To install the extension, go to the Google Chrome Store, and search for <em>Courtesan</em> (or go <a href="https://chrome.google.com/webstore/search/courtesan" target="_blank" rel="noopener">here</a>), then click on <em>Add to Chrome</em>. The extension should work on all Chromium browsers. I do my tests with the <a href="https://brave.com/" target="_blank" rel="noopener">Brave browser</a> rather than Chrome.</p>
 <h2 id="Screenshot"><a href="#Screenshot" class="headerlink" title="Screenshot"></a>Screenshot</h2><figure class="fullwidth"><p><img src="../../images/extension/courtesan%200.png" alt></p>
 </figure>
-<h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h2><p>For Kingly to send messages to the devtool, you will need to create a Kingly state machine with the right <code>settings</code> parameter configuration. An example taken from the tests is as follows:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123;tracer&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"../devtool"</span>;
-
-...
-
-[...] createStateMachine(fsmDef, &#123;<span class="hljs-attr">debug</span>:&#123;<span class="hljs-built_in">console</span>&#125;, <span class="hljs-attr">devTool</span>:&#123;tracer&#125;&#125;));</code></pre>
-<p>As you can see, the <code>devTool</code> parameter admits the <code>tracer</code> property. The corresponding tracer object can be imported from the Kingly library.  </p>
+<h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h2><p>Kingly developers must first download the <a href="https://chrome.google.com/webstore/search/courtesan" target="_blank" rel="noopener">courtesan extension</a> of the Chrome store. Then, for Kingly to send messages to the dev tool, you will need to create a Kingly state machine as follows:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123;tracer&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"Kingly"</span>;
+      ...
+const fsm = createStateMachine(fsmDef, &#123;<span class="hljs-attr">debug</span>:&#123;<span class="hljs-built_in">console</span>&#125;, <span class="hljs-attr">devTool</span>:&#123;tracer&#125;&#125;);</code></pre>
 <p>The extension graphical interface is divided into two panels: the left panel which displays the messages received by the extension; and the right panel which displays specific details about the received messages.</p>
 <h3 id="Left-panel"><a href="#Left-panel" class="headerlink" title="Left panel"></a>Left panel</h3><p>The Kingly library logs:</p>
 <ul>
