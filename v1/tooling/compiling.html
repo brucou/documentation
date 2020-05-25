@@ -294,10 +294,111 @@ src/graphs/file.graphml.fsm.compiled.cjs</code></pre></p>
 </ul>
 </li>
 </ul>
-<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p>There are plenty of graph examples in the <a href="https://github.com/brucou/slim/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. An example, extracted from the tests directory and involving compound states and history pseudo-states is as follows:</p>
-<p><img src="https://imgur.com/VjKaIkL.png" alt="example of yed graph with history pseudo-state and compound state"></p>
-<p>The compiled machine is below 170 lines of code and the minified compressed size is below 1KB.</p>
-<h2 id="Size-of-file-generated"><a href="#Size-of-file-generated" class="headerlink" title="Size of file generated"></a>Size of file generated</h2><p>The size file is mostly proportional to the sum of the number of control states and the number of transitions of the graph. The proportional coefficient seems to be fairly low.</p>
+<h2 id="Size-of-file-generated"><a href="#Size-of-file-generated" class="headerlink" title="Size of file generated"></a>Size of file generated</h2><p>There are plenty of graph examples in the <a href="https://github.com/brucou/slim/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. </p>
+<p>Assuming the machine has no isolated states (i.e. states which are not reached by any transitions), the size of the compiled file follows the shape <code>a + b x Number of transitions</code>, i.e. is mostly proportional to the number of transitions of the graph. The proportional coefficient <code>b</code> seems to be fairly low and the compression factor increases with the size of the machine. In short, you need to write a really large graph to get to 5Kb just for the machine.</p>
+<p>We give two data points. Minification is performed online with the <a href="https://javascript-minifier.com/" target="_blank" rel="noopener">javascript-minifier</a> tool. Liens of code are counted with an <a href="https://codetabs.com/count-loc/count-loc-online.html" target="_blank" rel="noopener">online tool</a>. The simple counter machine, which is about the smallest non-trivial machine that can be drawn:</p>
+<p><img src="./tests/graphs/counter.png" alt="counter machine graph"></p>
+<p>is compiled (as of Slim 0.6.0) to 37 lines of code, and has a minified compressed size of 500 bytes.</p>
+<p>The password meter machine, a slightly more complex but still small example from the <a href="https://brucou.github.io/documentation/v1/tutorials/password-meter.html">documentation website</a>:   </p>
+<p><img src="https://brucou.github.io/documentation/graphs/password-meter.png" alt="[password meter modelization]"></p>
+<p>is compiled (as of Slim 0.6.0) to zero-dependency 75 lines of code:</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStateMachine</span>(<span class="hljs-params">fsmDefForCompile, stg</span>) </span>&#123;
+  <span class="hljs-keyword">var</span> actions = fsmDefForCompile.actionFactories;
+  <span class="hljs-keyword">var</span> guards = fsmDefForCompile.guards;
+  <span class="hljs-keyword">var</span> updateState = fsmDefForCompile.updateState;
+  <span class="hljs-keyword">var</span> initialExtendedState = fsmDefForCompile.initialExtendedState;
+
+  <span class="hljs-comment">// Initialize machine state,</span>
+  <span class="hljs-keyword">var</span> cs = <span class="hljs-string">"nok"</span>;
+  <span class="hljs-keyword">var</span> es = initialExtendedState;
+
+  <span class="hljs-keyword">var</span> eventHandlers = &#123;
+    n4ღidle: &#123;
+      <span class="hljs-attr">start</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">es, ed, stg</span>) </span>&#123;
+        <span class="hljs-keyword">let</span> computed = actions[<span class="hljs-string">"display initial screen"</span>](es, ed, stg);
+        cs = <span class="hljs-string">"n3ღweak"</span>;
+        es = updateState(es, computed.updates);
+
+        <span class="hljs-keyword">return</span> computed;
+      &#125;,
+    &#125;,
+    n3ღweak: &#123;
+      <span class="hljs-attr">typed</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">es, ed, stg</span>) </span>&#123;
+        <span class="hljs-keyword">let</span> computed = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (guards[<span class="hljs-string">"!letter and numbers?"</span>](es, ed, stg)) &#123;
+          computed = actions[<span class="hljs-string">"display weak password screen"</span>](es, ed, stg);
+          cs = <span class="hljs-string">"n3ღweak"</span>;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (guards[<span class="hljs-string">"letter and numbers?"</span>](es, ed, stg)) &#123;
+          computed = actions[<span class="hljs-string">"display strong password screen"</span>](es, ed, stg);
+          cs = <span class="hljs-string">"n2ღstrong"</span>;
+        &#125;
+        <span class="hljs-keyword">if</span> (computed !== <span class="hljs-literal">null</span>) &#123;
+          es = updateState(es, computed.updates);
+        &#125;
+
+        <span class="hljs-keyword">return</span> computed;
+      &#125;,
+    &#125;,
+    n2ღstrong: &#123;
+      <span class="hljs-attr">typed</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">es, ed, stg</span>) </span>&#123;
+        <span class="hljs-keyword">let</span> computed = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (guards[<span class="hljs-string">"letter and numbers?"</span>](es, ed, stg)) &#123;
+          computed = actions[<span class="hljs-string">"display strong password screen"</span>](es, ed, stg);
+          cs = <span class="hljs-string">"n2ღstrong"</span>;
+        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (guards[<span class="hljs-string">"!letter and numbers?"</span>](es, ed, stg)) &#123;
+          computed = actions[<span class="hljs-string">"display weak password screen"</span>](es, ed, stg);
+          cs = <span class="hljs-string">"n3ღweak"</span>;
+        &#125;
+        <span class="hljs-keyword">if</span> (computed !== <span class="hljs-literal">null</span>) &#123;
+          es = updateState(es, computed.updates);
+        &#125;
+
+        <span class="hljs-keyword">return</span> computed;
+      &#125;,
+      <span class="hljs-string">"clicked submit"</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">es, ed, stg</span>) </span>&#123;
+        <span class="hljs-keyword">let</span> computed = actions[<span class="hljs-string">"display password submitted screen"</span>](es, ed, stg);
+        cs = <span class="hljs-string">"n1ღdone"</span>;
+        es = updateState(es, computed.updates);
+
+        <span class="hljs-keyword">return</span> computed;
+      &#125;,
+    &#125;,
+    <span class="hljs-attr">nok</span>: &#123;
+      <span class="hljs-attr">init</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">es, ed, stg</span>) </span>&#123;
+        cs = <span class="hljs-string">"n4ღidle"</span>; <span class="hljs-comment">// No action, only cs changes!</span>
+
+        <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">outputs</span>: [], <span class="hljs-attr">updates</span>: [] &#125;;
+      &#125;,
+    &#125;,
+  &#125;;
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span>(<span class="hljs-params">event</span>) </span>&#123;
+    <span class="hljs-keyword">var</span> eventLabel = <span class="hljs-built_in">Object</span>.keys(event)[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">var</span> eventData = event[eventLabel];
+    <span class="hljs-keyword">var</span> controlStateHandlingEvent = (eventHandlers[cs] || &#123;&#125;)[eventLabel] &amp;&amp; cs;
+
+    <span class="hljs-keyword">if</span> (controlStateHandlingEvent) &#123;
+      <span class="hljs-comment">// Run the handler</span>
+      <span class="hljs-keyword">var</span> computed = eventHandlers[controlStateHandlingEvent][eventLabel](es, eventData, stg);
+
+      <span class="hljs-comment">// cs, es, hs have been updated in place by the handler</span>
+      <span class="hljs-comment">// If transition, but no guards fulfilled =&gt; null, else =&gt; computed outputs</span>
+      <span class="hljs-keyword">return</span> computed === <span class="hljs-literal">null</span> ? <span class="hljs-literal">null</span> : computed.outputs;
+    &#125;
+    <span class="hljs-comment">// Event is not accepted by the machine</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+  &#125;
+
+  <span class="hljs-comment">// Start the machine</span>
+  process(&#123; [<span class="hljs-string">"init"</span>]: initialExtendedState &#125;);
+
+  <span class="hljs-keyword">return</span> process;
+&#125;
+
+<span class="hljs-keyword">export</span> &#123; createStateMachine &#125;;</code></pre>
+<p>with a minified compressed size of 660 bytes. </p>
+<p>Assuming 30 bytes per transitions (computed from those two data points), with a base line of 500 bytes, to reach 5KB we need a machine with 150 transitions!!</p>
+<p>Im summary, endowed with the present compiler, <strong>Kingly proposes state machines as a zero-cost abstraction</strong>.</p>
 <h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><p>Tests are run with <a href="https://mochajs.org/" target="_blank" rel="noopener">mocha</a>. Go to the <a href="https://github.com/brucou/slim/tree/master/tests" target="_blank" rel="noopener"><code>tests</code> directory</a> and run:</p>
 <pre><code class="lang-bash">mcocha *specs*
 </code></pre>
