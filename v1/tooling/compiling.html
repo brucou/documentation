@@ -398,7 +398,10 @@ src/graphs/file.graphml.fsm.compiled.cjs</code></pre></p>
 <span class="hljs-keyword">export</span> &#123; createStateMachine &#125;;</code></pre>
 <p>with a minified compressed size of 660 bytes. </p>
 <p>Assuming 30 bytes per transitions (computed from those two data points), with a base line of 500 bytes, to reach 5KB we need a machine with 150 transitions!! 50 transitions would bring the compiled machine size around 2KB.</p>
-<p>The following complex wizard form was <a href="https://github.com/brucou/cycle-state-machine-demo" target="_blank" rel="noopener">implemented</a> with a machine having around 25 transitions: </p>
+<p>The following complex wizard form:</p>
+<figure class="fullwidth"><p><img src="https://imgur.com/xcO9xnY.jpg" alt="Imgur"></p>
+</figure>
+<p>was <a href="https://github.com/brucou/cycle-state-machine-demo" target="_blank" rel="noopener">implemented</a> with a machine having around 25 transitions: </p>
 <p><img src="https://github.com/brucou/cycle-state-machine-demo/raw/master/public/assets/images/graphs/sparks%20application%20process%20with%20comeback%20proper%20syntax%20-%20flat%20fsm.png" alt="subscription wizard form modelization"></p>
 <p>In summary, endowed with the present compiler, <strong>Kingly proposes state machines as a zero-cost abstraction</strong>.</p>
 <h2 id="Final-note"><a href="#Final-note" class="headerlink" title="Final note"></a>Final note</h2><p>After using and working with state machines for the past four years, I believe I am reaching a satisfying API and process. The idea is really to avoid unnecessary complexity. I am however interested in hearing your comments, and suggestions together with use cases that you believe are not satisfactorily addressed -&gt; post an issue in the project directory.</p>
