@@ -511,27 +511,27 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>We are going all along to refer to a image search application example to illustrate our argumentation. Cf. <a href="#example">Example section</a> for more details.</p>
 <p>In a traditional architecture, a simple scenario would be expressed as follows:</p>
 <p><img src="https://imgur.com/AbCtBgn.ong" alt="image search basic scenario"></p>
-<p>What we can derive from that is that the application is interfacing with other systems : the user<br> interface and what we call external systems (local storage, databases, etc.). The application<br> responsibility is to translate user actions on the user interface into commands on the external systems, execute those commands and deal with their result.</p>
+<p>What we can derive from that is that the application is interfacing with other systems : the user interface and what we call external systems (local storage, databases, etc.). The application  responsibility is to translate user actions on the user interface into commands on the external systems, execute those commands and deal with their result.</p>
 <p>In our proposed architecture with all options used, the same scenario would become:</p>
 <p><img src="https://imgur.com/kdsOIV1.png" alt="image search basic scenario"></p>
 <p>In our proposed architecture with only mandatory options used, the same scenario would become:<br><img src="https://imgur.com/iNGLUSw.png" alt="image search basic scenario"></p>
-<p>In that architecture, the application is refactored into a mediator, a preprocessor, a state<br>machine, a command handler, and an effect handler. The application is thus split into smaller parts<br>which address specific concerns :</p>
+<p>In that architecture, the application is refactored into a mediator, a preprocessor, a state machine, a command handler, and an effect handler. The application is thus split into smaller parts which address specific concerns:</p>
 <ul>
 <li>the preprocessor translates user interface events into inputs for the state machine</li>
-<li>the state machine computes the commands to execute as a result of its present and past inputs,<br>or, what is equivalent, its present input and current state </li>
-<li>the command handler interprets and executes incoming commands, delegating the execution of<br>effects to the effect handler when necessary</li>
-<li>the mediator orchestrates the user interface, the preprocessor, the state machine and the command<br>handler</li>
+<li>the state machine computes the commands to execute as a result of its present and past inputs, or, what is equivalent, its present input and current state </li>
+<li>the command handler interprets and executes incoming commands, delegating the execution of effects to the effect handler when necessary</li>
+<li>the mediator orchestrates the user interface, the preprocessor, the state machine and the command handler</li>
 </ul>
-<p>While the architecture may appear more complex (isolating concerns means more parts), we have<br>reduced the complexity born from the interconnection between the parts. </p>
-<p>Concretely, we increased the testability of our implementation :</p>
+<p>While the architecture may appear more complex (isolating concerns means more parts), we have reduced the complexity born from the interconnection between the parts. </p>
+<p>Concretely, we increased the testability of our implementation:</p>
 <ul>
-<li>the mediator algorithm is the same independently of the pieces it coordinates. This means it<br>can be written and tested once, then reused at will. This is our <code>&lt;Machine /&gt;</code> component. <strong>This is<br>glue code that you do not have to write and test anymore</strong></li>
-<li>effect handlers are pretty generic pieces of code. An example could be code to fetch a<br>resource. That code is written and tested once (and comes generally tested out of the box), and<br>then reused for any resource. Additionally, only the effect handlers can perform effects on the<br>external systems, which helps testing, tracing and debugging<sup><a href="#fn_3" id="reffn_3">3</a></sup></li>
-<li>effect handlers, being isolated in their own module, are easy to mock, without resorting to<br>a complex machinery specific to a testing library</li>
-<li>the state machine is a function which <strong>performs no effects</strong>, and whose output exclusively depends<br>on current state, and present input<sup><a href="#fn_2" id="reffn_2">2</a></sup>. We will use the term <em>causal</em> functions for such<br>functions, in  reference to <a href="https://en.wikipedia.org/wiki/Causal_system" target="_blank" rel="noopener">causal systems</a>, which<br>exhibit the same property<sup><a href="#fn_1" id="reffn_1">1</a></sup>. The causality property means state machines are a breeze<br>to reason about and test (well, not as much as pure functions, but infinitely better than<br>effectful functions)</li>
-<li>only the preprocessor and mediator can perform effects on the user interface, which helps<br>testing, tracing and debugging </li>
+<li>the mediator algorithm is the same independently of the pieces it coordinates. This means it can be written and tested once, then reused at will. This is our <code>&lt;Machine /&gt;</code> component. <strong>This is glue code that you do not have to write and test anymore</strong></li>
+<li>effect handlers are pretty generic pieces of code. An example could be code to fetch a resource. That code is written and tested once (and comes generally tested out of the box), and then reused for any resource. Additionally, only the effect handlers can perform effects on the external systems, which helps testing, tracing and debugging<sup><a href="#fn_3" id="reffn_3">3</a></sup></li>
+<li>effect handlers, being isolated in their own module, are easy to mock, without resorting to a complex machinery specific to a testing library</li>
+<li>the state machine is a function which <strong>performs no effects</strong>, and whose output exclusively depends on current state, and present input<sup><a href="#fn_2" id="reffn_2">2</a></sup>. We will use the term <em>causal</em> functions for such functions, in  reference to <a href="https://en.wikipedia.org/wiki/Causal_system" target="_blank" rel="noopener">causal systems</a>, which exhibit the same property<sup><a href="#fn_1" id="reffn_1">1</a></sup>. The causality property means state machines are a breeze to reason about and test (well, not as much as pure functions, but infinitely better than  effectful functions)</li>
+<li>only the preprocessor and mediator can perform effects on the user interface, which helps testing, tracing and debugging </li>
 </ul>
-<p>We also have achieved greater modularity: our parts are coupled only through their interface. For<br> instance, we use in our example below <code>Rxjs</code> for preprocessing events, and <a href="https://github.com/brucou/state-transducer" target="_blank" rel="noopener"><code>state-transducer</code></a> as state machine library. We could easily switch to <a href="https://github.com/cujojs/most" target="_blank" rel="noopener"><code>most</code></a> and <a href="https://github.com/davidkpiano/xstate" target="_blank" rel="noopener"><code>xstate</code></a> if the need be, or to a barebone event emitter (like <code>emitonoff</code>) by simply building interface adapters.</p>
+<p>We also have achieved greater modularity: our parts are coupled only through their interface. For instance, we use in our example below <code>Rxjs</code> for preprocessing events, and <a href="https://github.com/brucou/state-transducer" target="_blank" rel="noopener"><code>state-transducer</code></a> as state machine library. We could easily switch to <a href="https://github.com/cujojs/most" target="_blank" rel="noopener"><code>most</code></a> and <a href="https://github.com/davidkpiano/xstate" target="_blank" rel="noopener"><code>xstate</code></a> if the need be, or to a barebone event emitter (like <code>emitonoff</code>) by simply building interface adapters.</p>
 <p>There are more benefits but this is not the place to go about them. Cf:</p>
 <ul>
 <li><a href="https://brucou.github.io/posts/user-interfaces-as-reactive-systems/">User interfaces as reactive systems</a></li>
@@ -541,7 +541,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <blockquote id="fn_3">
 <sup>3</sup>. Command handlers can only perform effects internally (for instance async. communication <a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a>
 </blockquote>
-<p>with the mediator)<br><sup><a href="#fn_2" id="reffn_2">2</a></sup>: In relation with state machines, it is the same to say that<br>      an output depends exclusively on past and present inputs and that an output exclusively depends<br>      on current state, and present input.<br><sup><a href="#fn_1" id="reffn_1">1</a></sup>: Another term used elsewhere is <em>deterministic</em> functions, but we<br>      found that term could be confusing.          </p>
+<p>with the mediator)<br><sup><a href="#fn_2" id="reffn_2">2</a></sup>: In relation with state machines, it is the same to say that       an output depends exclusively on past and present inputs and that an output exclusively depends       on current state, and present input.<br><sup><a href="#fn_1" id="reffn_1">1</a></sup>: Another term used elsewhere is <em>deterministic</em> functions, but we       found that term could be confusing.          </p>
 <h2 id="Code-examples"><a href="#Code-examples" class="headerlink" title="Code examples"></a>Code examples</h2><p>For the impatient ones, you can directly review the available demos:</p>
 <div class="table-container">
 <table>
@@ -566,20 +566,20 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 </tbody>
 </table>
 </div>
-<h2 id="API-design-goals"><a href="#API-design-goals" class="headerlink" title="API design goals"></a>API design goals</h2><p>We want to have an integration which is generic enough to accommodate a large set of use cases,<br>and specific enough to be able to take advantage as much as possible of the <code>React</code> ecosystem<br>and API. Unit-testing should ideally be based on the specifications of the behaviour of the<br>component rather than its implementation details, and leverage the automatic test generator of<br>the underlying <code>state-tranducer</code> library. In particular :</p>
+<h2 id="API-design-goals"><a href="#API-design-goals" class="headerlink" title="API design goals"></a>API design goals</h2><p>We want to have an integration which is generic enough to accommodate a large set of use cases, and specific enough to be able to take advantage as much as possible of the <code>React</code> ecosystem and API. Unit-testing should ideally be based on the specifications of the behaviour of the component rather than its implementation details, and leverage the automatic test generator of the underlying <code>state-tranducer</code> library. In particular :</p>
 <ul>
 <li>it should be seamless to use both controlled and uncontrolled components</li>
 <li>it should be possible to use without risk of interference standard React features like <code>Context</code></li>
-<li>it should use the absolute minimum React features internally, in order to favor for instance a<br>painless port to React copycats (Preact, etc.)</li>
-<li>non-React functionalities should be coupled only through interfaces, allowing to use any<br>suitable implementation</li>
+<li>it should use the absolute minimum React features internally, in order to favor for instance a painless port to React copycats (Preact, etc.)</li>
+<li>non-React functionalities should be coupled only through interfaces, allowing to use any suitable implementation</li>
 <li>the specifics of the implementation should not impact testing (hooks, suspense, context, etc.)</li>
 </ul>
 <p>As a result of these design goals :</p>
 <ul>
-<li>we do not use React hooks, context, portal, fragments, <code>jsx</code>, and use the minimum React lifecycle<br>hooks</li>
-<li>the component user can of course use the whole extent of the API at disposal, those restrictions<br>only concern our implementation of the <code>&lt;Machine /&gt;</code> component.</li>
-<li>we defined interfaces for extended state updates (reducer interface), event processing<br>(observer and observable interfaces).</li>
-<li>any state machine implementation (including one that uses no dedicated library) can be<br>substituted to our library provided that it respects the machine interface and contracts: <ul>
+<li>we do not use React hooks, context, portal, fragments, <code>jsx</code>, and use the minimum React lifecycle hooks</li>
+<li>the component user can of course use the whole extent of the API at disposal, those restrictions only concern our implementation of the <code>&lt;Machine /&gt;</code> component.</li>
+<li>we defined interfaces for extended state updates (reducer interface), event processing (observer and observable interfaces).</li>
+<li>any state machine implementation (including one that uses no dedicated library) can be substituted to our library provided that it respects the machine interface and contracts: <ul>
 <li>the machine is implemented by a function</li>
 <li>it takes an unique input parameter of the shape <code>{[event name]: event data}</code></li>
 <li>it returns an array of commands</li>
@@ -589,19 +589,19 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <li>we use dependency injection to pass the modules responsible for effects to the <code>&lt;Machine /&gt;</code> component</li>
 </ul>
 <h2 id="Tips-and-gotchas"><a href="#Tips-and-gotchas" class="headerlink" title="Tips and gotchas"></a>Tips and gotchas</h2><ul>
-<li>most of the time <code>preprocessor</code> will just change the name of the event. You can<br>perfectly if that makes sense, use <code>preprocessor : x =&gt; x</code> and directly pass on the raw<br>events to the machine as input. That is fine <ul>
-<li>as long as the machine never has to perform an effect (this is one of the machine’s contract)<br>. In our example, you will notice that we are doing <code>e.preventDefault()</code> in the preprocessor.<br>Furthermore, for documentation and design purposes, it makes sense to use any input<br>nomenclature which links to the domain rather than the user interface. As we have seen, what is<br>a <strong>button click</strong> on the interface is a <strong>search input</strong> for the machine, and results in a<br><strong>search command</strong> to the command handler. </li>
-<li>if the machine at hand is only designed for that user interface and not intended to be reused<br>in any other context. This approach as a matter of fact couple the view to the machine. In the<br>case of our image gallery component, we could imagine a reusable parameterizable machine which<br>implements the behaviour of a generic search input. Having a preprocessor enables to integrate<br>such machines without a hiccup.</li>
+<li>most of the time <code>preprocessor</code> will just change the name of the event. You can perfectly if that makes sense, use <code>preprocessor : x =&gt; x</code> and directly pass on the raw events to the machine as input. That is fine <ul>
+<li>as long as the machine never has to perform an effect (this is one of the machine’s contract). In our example, you will notice that we are doing <code>e.preventDefault()</code> in the preprocessor.  Furthermore, for documentation and design purposes, it makes sense to use any input   nomenclature which links to the domain rather than the user interface. As we have seen, what is   a <strong>button click</strong> on the interface is a <strong>search input</strong> for the machine, and results in a    <strong>search command</strong> to the command handler. </li>
+<li>if the machine at hand is only designed for that user interface and not intended to be reused in any other context. This approach as a matter of fact couple the view to the machine. In the  case of our image gallery component, we could imagine a reusable parameterizable machine which  implements the behaviour of a generic search input. Having a preprocessor enables to integrate such machines without a hiccup.</li>
 </ul>
 </li>
-<li>some machine inputs may correspond to the aggregation of several events (in advanced usage). For<br>instance, if we had to recreate a double click for the <code>Search</code> button, we would have to receive<br>two clicks before passing a <code>SEARCH</code> input to the machine. Having an <code>eventHandler</code> interface<br>allows to use <code>Rxjs</code> to deal with those cases, as its combinator library (<code>map</code>, <code>filter</code>,<br><code>takeUntil</code> etc.) allow to aggregate events in a fairly simple manner. Note that we could<br>implement this logic in the state machine itself (our machines are essentially Turing machines, they can implement any effect-less computation), but: <ol>
-<li>it may be better to keep the machine dealing with inputs at a consistent level of<br>abstraction; 2. that kind of event aggregation is done easily enough with a dedicated<br>library such as <code>rxjs</code></li>
+<li>some machine inputs may correspond to the aggregation of several events (in advanced usage). For instance, if we had to recreate a double click for the <code>Search</code> button, we would have to receive two clicks before passing a <code>SEARCH</code> input to the machine. Having an <code>eventHandler</code> interface allows to use <code>Rxjs</code> to deal with those cases, as its combinator library (<code>map</code>, <code>filter</code>, <code>takeUntil</code> etc.) allow to aggregate events in a fairly simple manner. Note that we could implement this logic in the state machine itself (our machines are essentially Turing machines, they can implement any effect-less computation), but: <ol>
+<li>it may be better to keep the machine dealing with inputs at a consistent level of   abstraction; 2. that kind of event aggregation is done easily enough with a dedicated   library such as <code>rxjs</code></li>
 </ol>
 </li>
-<li>you may want to handle some concurrency issues at the machine level. Typically in our<br>example, that would mean handling the user scenario when the user is requesting two<br>different queries in rapid succession and the first query response has not arrived before the<br>second query is executed. There is in this case a risk of the user interface displaying the wrong<br>response.</li>
-<li>you may also want to do it at the command handler level to keep your machine at a higher level<br>of abstraction. A command handler may for instance recreate Rxjs’s <code>switchMap</code> by keeping a record<br>of in-flight queries.</li>
-<li>the interfaced systems can communicate with the machine via an event emitter. The<br><code>props.renderWith</code> React component is injected a <code>next</code> <em>prop</em> which is an event emitter which<br>relays events to the machine’s raw event source. Associated with DOM event handlers, this allows<br>the machine to receive DOM events. Command handlers are also passed the <code>next</code> event emitter, and<br>can use it to send to the machine any messages from the interfaced systems. </li>
-<li>in those cases where the machine needs to communicate with other local but out of scope entities,<br>it can emit its own events, for instance custom DOM events</li>
+<li>you may want to handle some concurrency issues at the machine level. Typically in our example, that would mean handling the user scenario when the user is requesting two different queries in rapid succession and the first query response has not arrived before the second query is executed. There is in this case a risk of the user interface displaying the wrong response.</li>
+<li>you may also want to do it at the command handler level to keep your machine at a higher level of abstraction. A command handler may for instance recreate Rxjs’s <code>switchMap</code> by keeping a record of in-flight queries.</li>
+<li>the interfaced systems can communicate with the machine via an event emitter. The<br><code>props.renderWith</code> React component is injected a <code>next</code> <em>prop</em> which is an event emitter which relays events to the machine’s raw event source. Associated with DOM event handlers, this allows the machine to receive DOM events. Command handlers are also passed the <code>next</code> event emitter, and can use it to send to the machine any messages from the interfaced systems. </li>
+<li>in those cases where the machine needs to communicate with other local but out of scope entities, it can emit its own events, for instance custom DOM events</li>
 </ul>
 
   
