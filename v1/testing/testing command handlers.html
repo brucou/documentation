@@ -238,7 +238,7 @@
     <h1>Testing command handlers</h1>
   
   
-    <label for="mn-demo-3" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-3" class="margin-toggle"><span class="marginnote"><p><img src="../../../../src/graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly%20selected%20command%20handler.png" alt="kingly-favoured ui architecture"></p>
+    <label for="mn-demo-1" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-1" class="margin-toggle"><span class="marginnote"><p><img src="../../../../src/graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly%20selected%20command%20handler.png" alt="kingly-favoured ui architecture"></p>
 </span>
 <p>In our architecture, the Command Handler module is in charge of receiving commands from the Kingly machine and executing them, possibly realizing effects on the interfaced systems, and communicating back to the machine through an event emitter.  Testing the command handler module means generating command sequences and ensuring that the right effects are performed on the interface systems, and the right events are propagated to the Kingly machine. </p>
 <p>Let’s illustrate the process with our simple Vanilla-js counter application. For that application, the command handler was integrated as follows:</p>

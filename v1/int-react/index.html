@@ -256,10 +256,10 @@
 <pre><code class="hljs sh">npm install react-state-driven</code></pre>
 <h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="lt-Machine-fsm-renderWith-commandHandlers-eventHandler-preprocessor-effectHandlers-options-gt"><a href="#lt-Machine-fsm-renderWith-commandHandlers-eventHandler-preprocessor-effectHandlers-options-gt" class="headerlink" title="&lt;Machine fsm, renderWith, commandHandlers, eventHandler?, preprocessor?, effectHandlers?, options? /&gt;"></a><code>&lt;Machine fsm, renderWith, commandHandlers, eventHandler?, preprocessor?, effectHandlers?, options? /&gt;</code></h3><p>We expose a <code>&lt;Machine /&gt;</code> React component which will hold the state machine and implement its behaviour using React’s API. The <code>Machine</code> component behaviour is specified by its props. </p>
 <p>There are 3 mandatory props and four optional props. The three mandatory props are the machine specifying the component’s behavior, the component to render the screens with, and the command handlers to execute the commands computed by the machine.</p>
-<p>The four optional props exists to address more complex use cases without modifying the <code>&lt;Machine/&gt;</code> component. This is in line with the open-closed principle which states that “software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification”. </p>
+<p>The four optional props exist to address more complex use cases without modifying the <code>&lt;Machine/&gt;</code> component. This is in line with the open-closed principle which states that “software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification”. </p>
 <p>We will examine these use cases in a dedicated section. Let’s now describe the semantics of the component:</p>
 <ul>
-<li>When the React <code>Machine</code> component is mounted, the <code>fsm</code> machine will be sent an event (called <code>MOUNTED</code> by default, and configurable in <code>options.initialEvent</code>). From that event, the machine generally computes the initial screen to be rendered. In fact the machine computes a <code>RENDER</code> command, which include the props for the <code>renderWith</code> component whose single responsibility is to render the screens for the <code>Machine</code> component.<ul>
+<li>When the React <code>Machine</code> component is mounted, the <code>fsm</code> machine will be sent an event (called <code>MOUNTED</code> by default, and configurable in <code>options.initialEvent</code>). From that event, the machine generally computes the initial screen to be rendered. In fact, the machine computes a <code>RENDER</code> command, which includes the props for the <code>renderWith</code> component whose single responsibility is to render the screens for the <code>Machine</code> component.<ul>
 <li>Assuming <code>fsm({[MOUNTED]: void 0}) = [{command: RENDER, params: initialProps}]</code>, and   <code>renderWith = Component</code> the screen <code>&lt;Component next {...initialProps} /&gt;</code> will be displayed when   the <code>Machine</code> component is mounted</li>
 </ul>
 </li>
@@ -268,7 +268,7 @@
 </ul>
 <p>The previous paragraph describes how the mandatory props (<code>fsm</code>, <code>renderWith</code>, <code>commandHandlers</code>) are used. Let’s talk about the optional props:</p>
 <ul>
-<li><code>eventHandler</code> defaults to a minimal event emitter based on <a href="https://github.com/konsumer/emitonoff" target="_blank" rel="noopener"><code>emitonoff</code></a>, a 300B library. You can provide your own event emitter fitting your own purposes. The event handler is an object with a <code>next</code> method. If no preprocessor is used, then additionally the event handler should have a <code>subscribe</code> method which when called returns an object with an <code>unsubscribe</code> method. This means that using a Subject as event handler is as easy as <code>eventHandler = new Rx.Subject()</code>. The event handler may also have <code>error</code> and <code>complete</code> method if the API user wants to deal with errors and disposal of resources in some ad-hoc ways.<ul>
+<li><code>eventHandler</code> defaults to a minimal event emitter based on <a href="https://github.com/konsumer/emitonoff" target="_blank" rel="noopener"><code>emitonoff</code></a>, a 300B library. You can provide your own event emitter fitting your own purposes. The event handler is an object with a <code>next</code> method. If no preprocessor is used, then the event handler should also have a <code>subscribe</code> method which when called returns an object with an <code>unsubscribe</code> method. This means that using a Subject as event handler is as easy as <code>eventHandler = new Rx.Subject()</code>. The event handler may also have <code>error</code> and <code>complete</code> methods if the API user wants to deal with errors and disposal of resources in some ad-hoc ways.<ul>
 <li>the <code>preprocessor</code> is receiving all events sent by the <code>next</code> dispatcher and converting them into events for the <code>fsm</code> machine. The preprocessor defaults to <code>x =&gt; x</code> i.e. the identity function. </li>
 <li><code>effectHandlers</code> allows command handlers to be more single-concern. Executing a command may involve realizing and coordinating several effects. In a clean architecture, the command handlers should only orchestrate the sequence of effects realizing the commands, and  the effects should only, well, execute a single effect. This is useful for testing purposes, as orchestration can be tested separately from effect execution. </li>
 <li><code>options</code> is designed to be a bag that gathers all customization opportunities which do not belong to any of the other classifications. As of now, it includes an <code>initialEvent</code> property which configured the event that will be run through the machine when mounting the <code>&lt;Machine /&gt;</code> component </li>
@@ -317,12 +317,12 @@
 </div>
 <p>Note that our <code>Machine</code> component expects some props but does not expect children components. </p>
 <p>We provide two examples, one illustrating the mandatory props, the second illustrating all optional props.</p>
-<h3 id="Example-with-mandatory-props"><a href="#Example-with-mandatory-props" class="headerlink" title="Example with mandatory props"></a>Example with mandatory props</h3><p>This example only uses the mandatory props. It also uses JSX, and JSON patch to update the machine’s extended state. We use JSON patch mainly to provide an example of configuration of <code>updateState</code> property. You may use a simple <code>Object.assign</code>-based reducer, or Immer or any other reducing function.</p>
+<h3 id="Example-with-mandatory-props"><a href="#Example-with-mandatory-props" class="headerlink" title="Example with mandatory props"></a>Example with mandatory props</h3><p>This example only uses the mandatory props. It also uses JSX, and JSONpatch to update the machine’s extended state. We use JSONpatch mainly to provide an example of configuration of <code>updateState</code> property. You may use a simple <code>Object.assign</code>-based reducer, or <a href="https://github.com/immerjs/immer" target="_blank" rel="noopener">Immer</a> or any other reducing function.</p>
 <p>For illustration, the behavior modelization is as follows:</p>
 <p><img src="https://res.infoq.com/articles/robust-user-interfaces-with-state-machines/en/resources/18-movie-search-good-fsm-corrected-flowchart%20no%20emphasis%20switchMap-1555879148127.jpg" alt="image search interface"> </p>
 <p>The demo application can be evaluated in a <a href="https://codesandbox.io/s/react-movie-app-state-driven-with-default-options-18m62?file=/src/MovieSearch.js" target="_blank" rel="noopener">codesandbox playground</a>.</p>
-<h3 id="Example-with-optional-props"><a href="#Example-with-optional-props" class="headerlink" title="Example with optional props"></a>Example with optional props</h3><p>This example uses the optional props. It uses hyperscripts instead of JSX and a Rxjs Subject for event emitter, and JSON patch to update the machine’s extended state.</p>
-<p>We will implement an <a href="https://css-tricks.com/robust-react-user-interfaces-with-finite-state-machines/#article-header-id-5" target="_blank" rel="noopener">image search application</a>.<br>That application basically takes an input from the user, looks up images related to that search input, and displays them. The user can then click on a particular image to see it  in more details. </p>
+<h3 id="Example-with-optional-props"><a href="#Example-with-optional-props" class="headerlink" title="Example with optional props"></a>Example with optional props</h3><p>This example uses the optional props. It uses hyperscripts instead of JSX and an Rxjs Subject for event emitter, and JSON patch to update the machine’s extended state.</p>
+<p>We will implement an <a href="https://css-tricks.com/robust-react-user-interfaces-with-finite-state-machines/#article-header-id-5" target="_blank" rel="noopener">image search application</a>.<br>That application basically takes an input from the user, looks up images related to that search input, and displays them. The user can then click on a particular image to see it  in more detail. </p>
 <p>For illustration, the user interface starts like this:</p>
 <p><img src="https://i.imgur.com/mDQQTX8.png?1" alt="image search interface"> </p>
 <p><a href="https://codesandbox.io/s/flickr-search-app-with-kingly-qivl3" target="_blank" rel="noopener">Click here</a> for a live demo.</p>
@@ -336,7 +336,7 @@
 <li>the <code>transitions</code> property of the machine encodes the edges of the graph that modelizes the behaviour of the interface</li>
 <li><code>updateState</code> specifies how to update the extended state of the machine from a description of the updates to perform. We use <a href="http://jsonpatch.com/" target="_blank" rel="noopener">JSON patch</a> in our example. A redux-like reducer, proxy-based <code>immer.js</code> or any user-provided function could also be used, as long as it respects the defined interface.</li>
 </ul>
-<h4 id="Using-a-preprocessor"><a href="#Using-a-preprocessor" class="headerlink" title="Using a preprocessor"></a>Using a preprocessor</h4><p>In this example, we translate DOM events into machine events with a preprocessor. The preprocessor is a function which receives the event handler as parameter (named <code>rawEventSource</code> here). As the event handler chosen is a Rx.js Subject, we can use <code>pipe</code>, <code>map</code> and all the Rx.js combinators to perform our event conversion. This example for instance eliminates all unnecessary information from the DOM events and React framework (<code>ref</code>), so the machine events are completely decoupled from the DOM. </p>
+<h4 id="Using-a-preprocessor"><a href="#Using-a-preprocessor" class="headerlink" title="Using a preprocessor"></a>Using a preprocessor</h4><p>In this example, we translate DOM events into machine events with a preprocessor. The preprocessor is a function that receives the event handler as parameter (named <code>rawEventSource</code> here). As the event handler chosen is a Rx.js Subject, we can use <code>pipe</code>, <code>map</code> and all the Rx.js combinators to perform our event conversion. This example for instance eliminates all unnecessary information from the DOM events and React framework (<code>ref</code>), so the machine events are completely decoupled from the DOM. </p>
 <p>We thus move from <code>onSubmit</code>,<code>onCancelClick</code>, <code>onGalleryClick</code>, <code>onPhotoClick</code> DOM events to <code>SEARCH</code>, <code>CANCEL_SEARCH</code>, <code>SELECT_PHOTO</code>, <code>EXIT_PHOTO</code> machine events.</p>
 <p>The preprocessor must return an object with a <code>subscribe</code> property by which the values computed in the preprocessor will flow. In other words, the preprocessor must return an observable. The <code>subscribe</code> method must return an object with an <code>unsubscribe</code> method which will be called when the <code>&lt;Machine /&gt;</code> component is unmounted. The API is thus designed to be a perfect fit for Rxjs Subjects and Observables.</p>
 <pre><code class="hljs js">...
@@ -378,7 +378,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
     &#125;),
     filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x !== NO_INTENT),
   ),</code></pre>
-<h4 id="Using-effect-handlers"><a href="#Using-effect-handlers" class="headerlink" title="Using effect handlers"></a>Using effect handlers</h4><p>In this example, we use two effect handlers, one to perform an API call, and the other one to perform rendering. We discuss the rendering in the next section. Effect handlers can only be called by command handlers, as command handlers are the only functions which receives the effect handlers as parameters. Here, our API call is a <code>fetchJsonp</code>: </p>
+<h4 id="Using-effect-handlers"><a href="#Using-effect-handlers" class="headerlink" title="Using effect handlers"></a>Using effect handlers</h4><p>In this example, we use two effect handlers, one to perform an API call, and the other one to perform rendering. We discuss the rendering in the next section. Effect handlers can only be called by command handlers, as command handlers are the only functions that receive the effect handlers as parameters. Here, our API call is a <code>fetchJsonp</code>: </p>
 <pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">runSearchQuery</span>(<span class="hljs-params">query</span>) </span>&#123;
   <span class="hljs-keyword">const</span> encodedQuery = <span class="hljs-built_in">encodeURIComponent</span>(query);
 
@@ -393,7 +393,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
     ...
   &#125;
 ...</code></pre>
-<p>Using effect handlers may seem overkill in some simple applications. In most cases, the only orchestration necessary is handling failing and successful effect execution with two different events. This is why effect handlers are optional. In more complex cases however, where the orchestration is complex, it will be useful to separate the orchestration of effects from the execution of effects. This is a tenet of functional programming: separating concerns enables easier testing, better composition and reuse.</p>
+<p>Using effect handlers may seem overkill in some simple applications. In most cases, the only orchestration necessary is handling failing and successful effect execution with two different events. This is why effect handlers are optional. In more complex cases, however, where the orchestration is complex, it will be useful to separate the orchestration of effects from the execution of effects. This is a tenet of functional programming: separating concerns enables easier testing, better composition, and reuse.</p>
 <h4 id="Customizing-rendering"><a href="#Customizing-rendering" class="headerlink" title="Customizing rendering"></a>Customizing rendering</h4><p>To customize rendering, we can override the default render handler. Rendering, as a matter of fact, is handled by an effect handler as any other effects. The effect handler for rendering can be configured on the key <code>[COMMAND_RENDER]</code>:</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> flipping = <span class="hljs-keyword">new</span> Flipping();
 ...
@@ -410,7 +410,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
   &#125;
 ...</code></pre>
 <p>The previous code shows how to customize the rendering to run a function just before rendering and just after rendering. The rendering itself is triggered with <code>React.setState</code> (you should not change that part). <code>React.setState</code> accepts as second argument a callback which runs immediately after rendering is performed. We may in the future hide away the details of <code>React.setState</code> so as not to expose implementation details in the interface.</p>
-<h4 id="Customizing-options"><a href="#Customizing-options" class="headerlink" title="Customizing options"></a>Customizing options</h4><p>Here we simply change the initial event that trigger the display of the initial screen:</p>
+<h4 id="Customizing-options"><a href="#Customizing-options" class="headerlink" title="Customizing options"></a>Customizing options</h4><p>Here we simply change the initial event that triggers the display of the initial screen:</p>
 <pre><code class="hljs js">...
   options: &#123; <span class="hljs-attr">initialEvent</span>: [ <span class="hljs-string">"START"</span>] &#125;,
 ...</code></pre>
@@ -432,14 +432,14 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 };
 </code></pre>
 <h4 id="A-typical-machine-run"><a href="#A-typical-machine-run" class="headerlink" title="A typical machine run"></a>A typical machine run</h4><p>Alright, now let’s leverage the example to explain what is going on here together with the <code>&lt;Machine /&gt;</code> semantics.</p>
-<p>First of all, we use <code>React.createElement</code> but you could just as well use jsx <code>&lt;Machine ... /&gt;</code>, that really is but an implementation detail. In our implementation we are mostly using core React API and <a href="https://github.com/mlmorg/react-hyperscript" target="_blank" rel="noopener">hyperscript</a> rather than jsx. Then keep in mind that when we write ‘the  machine’, we refer to the state machine whose graph has been given previously. When we want to  refer to the <code>Machine</code> React component, we will always specifically precise that.</p>
-<p>Our state machine is basically a function which takes an input and returns outputs. The inputs received by the machine are meant to be mapped to events triggered by the user through the user interface. The outputs from the machine are commands representing what commands/effects to perform on the interfaced system(s). The mapping between user/system events and machine input is performed by <code>preprocessor</code>. The commands output  by the machine are mapped to handlers gathered in <code>commandHandlers</code> so our <code>Machine</code>  component knows how to run a command when it receives one.</p>
+<p>First of all, we use <code>React.createElement</code> but you could just as well use jsx <code>&lt;Machine ... /&gt;</code>, that really is but an implementation detail. In our implementation, we are mostly using core React API and <a href="https://github.com/mlmorg/react-hyperscript" target="_blank" rel="noopener">hyperscript</a> rather than jsx. Then keep in mind that when we write ‘the  machine’, we refer to the state machine whose graph has been given previously. When we want to  refer to the <code>Machine</code> React component, we will always specifically precise that.</p>
+<p>Our state machine is basically a function that takes an input and returns outputs. The inputs received by the machine are meant to be mapped to events triggered by the user through the user interface. The outputs from the machine are commands representing what commands/effects to perform on the interfaced system(s). The mapping between user/system events and machine input is performed by <code>preprocessor</code>. The commands output  by the machine are mapped to handlers gathered in <code>commandHandlers</code> so our <code>Machine</code>  component knows how to run a command when it receives one.</p>
 <p>A run of the machine would then be like this :</p>
 <ul>
-<li>The machine will encapsulate the following properties as part of its extended state : <code>query</code>, <code>items</code>, <code>photo</code>. This extended state will be updated according to the machine specifications in function of the input received by the machine and the control state the machine is in.  </li>
+<li>The machine will encapsulate the following properties as part of its extended state : <code>query</code>, <code>items</code>, <code>photo</code>. This extended state will be updated according to the machine specifications according to the input received by the machine and the control state the machine is in.  </li>
 <li>The initial extended state is <code>{ query: &#39;&#39;, items: [], photo: undefined }</code></li>
 <li>The machine transitions automatically from the initial state to the <code>start</code> control state.<ul>
-<li>on doing so, it issues one command : render <code>GalleryApp</code>. Render commands have a default handler which renders the <code>renderWith</code> component passed as parameter with the <em>props</em> included in the render command. An event emitter (<code>next</code> in code sample above) is passed to allow for the element to send events to the state machine.</li>
+<li>on doing so, it issues one command: render <code>GalleryApp</code>. Render commands have a default handler which renders the <code>renderWith</code> component passed as parameter with the <em>props</em> included in the render command. An event emitter (<code>next</code> in the code sample above) is passed to allow for the element to send events to the state machine.</li>
 </ul>
 </li>
 <li>The <code>Machine</code> component executes the render command and renders a gallery app with an empty query text input, no images(<code>items</code>), and no selected image (<code>photo</code>).</li>
@@ -447,15 +447,15 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <li>The user clicks the <code>Search</code> button. <ul>
 <li>A <code>submit</code> event is triggered.</li>
 <li>The value of the input field is read, and the <code>submit</code> event is transformed into a machine input <code>{SEARCH : &lt;query&gt;}</code> which is passed to the machine</li>
-<li>The machine, per its specifications, outputs two commands : <code>COMMAND_SEARCH</code> and render <code>GalleryApp</code>, and transitions to <code>loading</code> control state </li>
-<li>The <code>Machine</code> component executes the two commands : the gallery is rendered (this time with a <code>Cancel</code> button appearing), and an API call is made. Depending on the eventual result of that API call, the command handler will trigger a <code>SEARCH_SUCCESS</code> or <code>SEARCH_FAILURE</code> event.</li>
+<li>The machine, per its specifications, outputs two commands: <code>COMMAND_SEARCH</code> and render <code>GalleryApp</code>, and transitions to <code>loading</code> control state </li>
+<li>The <code>Machine</code> component executes the two commands: the gallery is rendered (this time with a <code>Cancel</code> button appearing), and an API call is made. Depending on the eventual result of that API call, the command handler will trigger a <code>SEARCH_SUCCESS</code> or <code>SEARCH_FAILURE</code> event.</li>
 </ul>
 </li>
-<li>The search is successful : the <code>SEARCH_SUCCESS</code> event is transformed into a machine input <code>{SEARCH_SUCCESS: items}</code>. <ul>
+<li>The search is successful: the <code>SEARCH_SUCCESS</code> event is transformed into a machine input <code>{SEARCH_SUCCESS: items}</code>. <ul>
 <li>The machine, per its specifications, updates its extended state <code>items</code> property, and outputs a render <code>GalleryApp</code> command. This displays the list of fetched items on the screen.</li>
 </ul>
 </li>
-<li>Any further event will lead to the same sequence : <ul>
+<li>Any further event will lead to the same sequence: <ul>
 <li>the user or an interfaced system (network, etc.) triggers an event X,</li>
 <li>that event will be transformed into a machine input (as per <code>preprocessor</code>), </li>
 <li>the machine will, as per its specs, update its extended state and issue command(s) </li>
@@ -467,14 +467,14 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <p>Note that this example is contrived for educational purposes:</p>
 <ul>
 <li>we could do away with the preprocessor and have the DOM event handlers directly produce inputs in the format accepted by the machine</li>
-<li>we could handle concurrency issues (user makes a second search while the first search request is in-flight) either reusing rxjs capabilities (<code>switchMap</code>) or at the machine level (extra piece of state)</li>
+<li>we could handle concurrency issues (user makes a second search while the first search request is in-flight) either reusing Rxjs capabilities (<code>switchMap</code>) or at the machine level (extra piece of state)</li>
 </ul>
 <h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><p>Types  can be found in the <a href="https://github.com/brucou/react-state-driven/tree/master/types" target="_blank" rel="noopener">repository</a>. </p>
 <h3 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h3><ul>
 <li>command handlers delegate <strong>all effects on external systems</strong> through the effect handler module</li>
 <li>the <code>COMMAND_RENDER</code> command is reserved and must not be used in the command handlers’ specifications</li>
-<li>types contracts</li>
-<li><code>next</code> is injected as a <em>prop</em> to the <code>renderWith</code> component and as such cannot be overriden by the component’s defined <em>props</em></li>
+<li>type contracts</li>
+<li><code>next</code> is injected as a <em>prop</em> to the <code>renderWith</code> component and as such cannot be overridden by the component’s defined <em>props</em></li>
 </ul>
 <h2 id="Semantics"><a href="#Semantics" class="headerlink" title="Semantics"></a>Semantics</h2><ul>
 <li>The <code>&lt;Machine /&gt;</code> component:<ul>
@@ -492,7 +492,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 </ul>
 </li>
 <li>The machine receives preprocessed events from the preprocessor and computes a set of commands to be executed</li>
-<li>The global command handler execute the incoming commands:<ul>
+<li>The global command handler executes the incoming commands:<ul>
 <li>if the command is a render command, the global handler executes directly the command in the context of the <code>&lt;Machine/&gt;</code> component</li>
 <li>if the command is not a render command, the global handler dispatches the command to the user-configured command handlers</li>
 </ul>
@@ -503,16 +503,16 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <li>an object of type <code>EffectHandlers</code> which contains any relevant dependencies needed to perform effects (that is the object passed in props to the <code>&lt;Machine/&gt;</code> component)</li>
 </ul>
 </li>
-<li>Render commands leads to definition of React components with DOM event handlers. Those event handlers can pass their raw events (DOM events) to the machine thanks to the raw event source emitter</li>
-<li>Non-render commands leads to the execution of procedures which may be successful or fail. The command handler can pass back information to the machine thanks to the injected event emitter. </li>
+<li>Render commands lead to the rendering of React components that feature DOM event handlers. Those event handlers can pass their raw events (DOM events) to the machine thanks to the raw event source emitter</li>
+<li>Non-render commands lead to the execution of procedures which may be successful or fail. The command handler can pass back information to the machine thanks to the injected event emitter. </li>
 <li>The event handler must be an object with a <strong>synchronous</strong> <code>next</code> method (<code>Observer</code> interface) and optionally a <code>subscribe</code> method (<code>Observable</code> interface)</li>
 <li>The event source is terminated when the <code>&lt;Machine/&gt;</code> component is removed from the screen (<code>componentWillUnmount</code> lifecycle method)</li>
 </ul>
-<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>We are going all along to refer to a image search application example to illustrate our argumentation. Cf. <a href="#example">Example section</a> for more details.</p>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>We are going all along to refer to an image search application example to illustrate our argumentation. Cf. <a href="#example">Example section</a> for more details.</p>
 <p>In a traditional architecture, a simple scenario would be expressed as follows:</p>
 <figure class="fullwidth"><p><img src="https://imgur.com/AbCtBgn.png" alt="image search basic scenario"></p>
 </figure>
-<p>What we can derive from that is that the application is interfacing with other systems : the user interface and what we call external systems (local storage, databases, etc.). The application  responsibility is to translate user actions on the user interface into commands on the external systems, execute those commands and deal with their result.</p>
+<p>What we can derive from that is that the application is interfacing with other systems: the user interface and what we call external systems (local storage, databases, etc.). The application  responsibility is to translate user actions on the user interface into commands on the external systems, execute those commands, and deal with their result.</p>
 <p>In our proposed architecture with all options used, the same scenario would become:</p>
 <figure class="fullwidth"><p><img src="https://imgur.com/kdsOIV1.png" alt="image search basic scenario"></p>
 </figure>
@@ -524,15 +524,15 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <li>the preprocessor translates user interface events into inputs for the state machine</li>
 <li>the state machine computes the commands to execute as a result of its present and past inputs, or, what is equivalent, its present input and current state </li>
 <li>the command handler interprets and executes incoming commands, delegating the execution of effects to the effect handler when necessary</li>
-<li>the mediator orchestrates the user interface, the preprocessor, the state machine and the command handler</li>
+<li>the mediator orchestrates the user interface, the preprocessor, the state machine, and the command handler</li>
 </ul>
 <p>While the architecture may appear more complex (isolating concerns means more parts), we have reduced the complexity born from the interconnection between the parts. </p>
 <p>Concretely, we increased the testability of our implementation:</p>
 <ul>
 <li>the mediator algorithm is the same independently of the pieces it coordinates. This means it can be written and tested once, then reused at will. This is our <code>&lt;Machine /&gt;</code> component. <strong>This is glue code that you do not have to write and test anymore</strong></li>
 <li>effect handlers are pretty generic pieces of code. An example could be code to fetch a resource. That code is written and tested once (and comes generally tested out of the box), and then reused for any resource. Additionally, only the effect handlers can perform effects on the external systems, which helps testing, tracing and debugging<sup><a href="#fn_3" id="reffn_3">3</a></sup></li>
-<li>effect handlers, being isolated in their own module, are easy to mock, without resorting to a complex machinery specific to a testing library</li>
-<li>the state machine is a function which <strong>performs no effects</strong>, and whose output exclusively depends on current state, and present input<sup><a href="#fn_2" id="reffn_2">2</a></sup>. We will use the term <em>causal</em> functions for such functions, in  reference to <a href="https://en.wikipedia.org/wiki/Causal_system" target="_blank" rel="noopener">causal systems</a>, which exhibit the same property<sup><a href="#fn_1" id="reffn_1">1</a></sup>. The causality property means state machines are a breeze to reason about and test (well, not as much as pure functions, but infinitely better than  effectful functions)</li>
+<li>effect handlers, being isolated in their own module, are easy to mock, without resorting to complex machinery specific to a testing library</li>
+<li>the state machine is a function which <strong>performs no effects</strong>, and whose output exclusively depends on the current state, and present input<sup><a href="#fn_2" id="reffn_2">2</a></sup>. We will use the term <em>causal</em> functions for such functions, in  reference to <a href="https://en.wikipedia.org/wiki/Causal_system" target="_blank" rel="noopener">causal systems</a>, which exhibit the same property<sup><a href="#fn_1" id="reffn_1">1</a></sup>. The causality property means state machines are a breeze to reason about and test (well, not as much as pure functions, but infinitely better than  effectful functions)</li>
 <li>only the preprocessor and mediator can perform effects on the user interface, which helps testing, tracing and debugging </li>
 </ul>
 <p>We also have achieved greater modularity: our parts are coupled only through their interface. For instance, we use in our example below <code>Rxjs</code> for preprocessing events, and <a href="https://github.com/brucou/state-transducer" target="_blank" rel="noopener"><code>state-transducer</code></a> as state machine library. We could easily switch to <a href="https://github.com/cujojs/most" target="_blank" rel="noopener"><code>most</code></a> and <a href="https://github.com/davidkpiano/xstate" target="_blank" rel="noopener"><code>xstate</code></a> if the need be, or to a barebone event emitter (like <code>emitonoff</code>) by simply building interface adapters.</p>
@@ -545,7 +545,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <blockquote id="fn_3">
 <sup>3</sup>. Command handlers can only perform effects internally (for instance async. communication <a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a>
 </blockquote>
-<p>with the mediator)<br><sup><a href="#fn_2" id="reffn_2">2</a></sup>: In relation with state machines, it is the same to say that       an output depends exclusively on past and present inputs and that an output exclusively depends       on current state, and present input.<br><sup><a href="#fn_1" id="reffn_1">1</a></sup>: Another term used elsewhere is <em>deterministic</em> functions, but we       found that term could be confusing.          </p>
+<p>with the mediator)<br><sup><a href="#fn_2" id="reffn_2">2</a></sup>: In relation to state machines, it is the same to say that       an output depends exclusively on past and present inputs and that an output exclusively depends       on the current state, and present input.<br><sup><a href="#fn_1" id="reffn_1">1</a></sup>: Another term used elsewhere is <em>deterministic</em> functions, but we       found that term could be confusing.          </p>
 <h2 id="Code-examples"><a href="#Code-examples" class="headerlink" title="Code examples"></a>Code examples</h2><p>For the impatient ones, you can directly review the available demos:</p>
 <div class="table-container">
 <table>
@@ -570,7 +570,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 </tbody>
 </table>
 </div>
-<h2 id="API-design-goals"><a href="#API-design-goals" class="headerlink" title="API design goals"></a>API design goals</h2><p>We want to have an integration which is generic enough to accommodate a large set of use cases, and specific enough to be able to take advantage as much as possible of the <code>React</code> ecosystem and API. Unit-testing should ideally be based on the specifications of the behaviour of the component rather than its implementation details, and leverage the automatic test generator of the underlying <code>state-tranducer</code> library. In particular :</p>
+<h2 id="API-design-goals"><a href="#API-design-goals" class="headerlink" title="API design goals"></a>API design goals</h2><p>We want to have an integration that is generic enough to accommodate a large set of use cases, and specific enough to be able to take advantage as much as possible of the <code>React</code> ecosystem and API. Unit-testing should ideally be based on the specifications of the behaviour of the component rather than its implementation details, and leverage the automatic test generator of the underlying <code>state-tranducer</code> library. In particular :</p>
 <ul>
 <li>it should be seamless to use both controlled and uncontrolled components</li>
 <li>it should be possible to use without risk of interference standard React features like <code>Context</code></li>
@@ -585,7 +585,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <li>we defined interfaces for extended state updates (reducer interface), event processing (observer and observable interfaces).</li>
 <li>any state machine implementation (including one that uses no dedicated library) can be substituted to our library provided that it respects the machine interface and contracts: <ul>
 <li>the machine is implemented by a function</li>
-<li>it takes an unique input parameter of the shape <code>{[event name]: event data}</code></li>
+<li>it takes a unique input parameter of the shape <code>{[event name]: event data}</code></li>
 <li>it returns an array of commands</li>
 <li>it produces no effects</li>
 </ul>
@@ -595,17 +595,17 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <h2 id="Tips-and-gotchas"><a href="#Tips-and-gotchas" class="headerlink" title="Tips and gotchas"></a>Tips and gotchas</h2><ul>
 <li>most of the time <code>preprocessor</code> will just change the name of the event. You can perfectly if that makes sense, use <code>preprocessor : x =&gt; x</code> and directly pass on the raw events to the machine as input. That is fine <ul>
 <li>as long as the machine never has to perform an effect (this is one of the machine’s contract). In our example, you will notice that we are doing <code>e.preventDefault()</code> in the preprocessor.  Furthermore, for documentation and design purposes, it makes sense to use any input   nomenclature which links to the domain rather than the user interface. As we have seen, what is   a <strong>button click</strong> on the interface is a <strong>search input</strong> for the machine, and results in a    <strong>search command</strong> to the command handler. </li>
-<li>if the machine at hand is only designed for that user interface and not intended to be reused in any other context. This approach as a matter of fact couple the view to the machine. In the  case of our image gallery component, we could imagine a reusable parameterizable machine which  implements the behaviour of a generic search input. Having a preprocessor enables to integrate such machines without a hiccup.</li>
+<li>if the machine at hand is only designed for that user interface and not intended to be reused in any other context. This approach as a matter of fact couple the view to the machine. In the  case of our image gallery component, we could imagine a reusable parameterizable machine that implements the behaviour of a generic search input. Having a preprocessor enables us to integrate such machines without a hiccup.</li>
 </ul>
 </li>
-<li>some machine inputs may correspond to the aggregation of several events (in advanced usage). For instance, if we had to recreate a double click for the <code>Search</code> button, we would have to receive two clicks before passing a <code>SEARCH</code> input to the machine. Having an <code>eventHandler</code> interface allows to use <code>Rxjs</code> to deal with those cases, as its combinator library (<code>map</code>, <code>filter</code>, <code>takeUntil</code> etc.) allow to aggregate events in a fairly simple manner. Note that we could implement this logic in the state machine itself (our machines are essentially Turing machines, they can implement any effect-less computation), but: <ol>
+<li>some machine inputs may correspond to the aggregation of several events (in advanced usage). For instance, if we had to recreate a double click for the <code>Search</code> button, we would have to receive two clicks before passing a <code>SEARCH</code> input to the machine. Having an <code>eventHandler</code> interface allows us to use <code>Rxjs</code> to deal with those cases, as its combinator library (<code>map</code>, <code>filter</code>, <code>takeUntil</code> etc.) allows us to aggregate events in a fairly simple manner. Note that we could implement this logic in the state machine itself (our machines are essentially Turing machines, they can implement any effect-less computation), but: <ol>
 <li>it may be better to keep the machine dealing with inputs at a consistent level of   abstraction; 2. that kind of event aggregation is done easily enough with a dedicated   library such as <code>rxjs</code></li>
 </ol>
 </li>
 <li>you may want to handle some concurrency issues at the machine level. Typically in our example, that would mean handling the user scenario when the user is requesting two different queries in rapid succession and the first query response has not arrived before the second query is executed. There is in this case a risk of the user interface displaying the wrong response.</li>
 <li>you may also want to do it at the command handler level to keep your machine at a higher level of abstraction. A command handler may for instance recreate Rxjs’s <code>switchMap</code> by keeping a record of in-flight queries.</li>
-<li>the interfaced systems can communicate with the machine via an event emitter. The<br><code>props.renderWith</code> React component is injected a <code>next</code> <em>prop</em> which is an event emitter which relays events to the machine’s raw event source. Associated with DOM event handlers, this allows the machine to receive DOM events. Command handlers are also passed the <code>next</code> event emitter, and can use it to send to the machine any messages from the interfaced systems. </li>
-<li>in those cases where the machine needs to communicate with other local but out of scope entities, it can emit its own events, for instance custom DOM events</li>
+<li>the interfaced systems can communicate with the machine via an event emitter. The<br><code>props.renderWith</code> React component is injected a <code>next</code> <em>prop</em> which is an event emitter that relays events to the machine’s raw event source. Associated with DOM event handlers, this allows the machine to receive DOM events. Command handlers are also passed the <code>next</code> event emitter, and can use it to send to the machine any messages from the interfaced systems. </li>
+<li>in those cases where the machine needs to communicate with other local but out of scope entities, it can emit its own events, for instance, custom DOM events</li>
 </ul>
 
   
