@@ -609,8 +609,8 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 </ol>
 </li>
 <li>you may want to handle some concurrency issues at the machine level. Typically in our example, that would mean handling the user scenario when the user is requesting two different queries in rapid succession and the first query response has not arrived before the second query is executed. There is in this case a risk of the user interface displaying the wrong response.</li>
-<li>you may also want to do it at the command handler level to keep your machine at a higher level of abstraction. A command handler may for instance recreate Rxjs’s <code>switchMap</code> by keeping a record of in-flight queries.</li>
-<li>the interfaced systems can communicate with the machine via an event emitter. The<br><code>props.renderWith</code> React component is injected a <code>next</code> <em>prop</em> which is an event emitter that relays events to the machine’s raw event source. Associated with DOM event handlers, this allows the machine to receive DOM events. Command handlers are also passed the <code>next</code> event emitter, and can use it to send to the machine any messages from the interfaced systems. </li>
+<li>you may alternatively want to do it at the command handler level to keep your machine at a higher level of abstraction. A command handler may for instance recreate Rxjs’s <code>switchMap</code> by keeping a record of in-flight queries.</li>
+<li>the interfaced systems can communicate with the machine via an event emitter. The <code>props.renderWith</code> React component is injected a <code>next</code> <em>prop</em> which is an event emitter that relays events to the machine’s raw event source. Associated with DOM event handlers, this allows the machine to receive DOM events. Command handlers are also passed the <code>next</code> event emitter, and can use it to send to the machine any messages from the interfaced systems. </li>
 <li>in those cases where the machine needs to communicate with other local but out of scope entities, it can emit its own events, for instance, custom DOM events</li>
 </ul>
 
