@@ -575,7 +575,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 </tbody>
 </table>
 </div>
-<h2 id="API-design-goals"><a href="#API-design-goals" class="headerlink" title="API design goals"></a>API design goals</h2><p>We want to have an integration that is generic enough to accommodate a large set of use cases, and specific enough to be able to take advantage as much as possible of the <code>React</code> ecosystem and API. Unit-testing should ideally be based on the specifications of the behaviour of the component rather than its implementation details, and leverage the automatic test generator of the underlying <code>state-tranducer</code> library. In particular :</p>
+<h2 id="API-design-goals"><a href="#API-design-goals" class="headerlink" title="API design goals"></a>API design goals</h2><p>We want to have an integration that is generic enough to accommodate a large set of use cases, and specific enough to be able to take advantage as much as possible of the <code>React</code> ecosystem and API. Unit-testing should ideally be based on the specifications of the behaviour of the component rather than its implementation details, and leverage the automatic test generator of the underlying <code>state-tranducer</code> library. In particular:</p>
 <ul>
 <li>it should be seamless to use both controlled and uncontrolled components</li>
 <li>it should be possible to use without risk of interference standard React features like <code>Context</code></li>
@@ -583,7 +583,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <li>non-React functionalities should be coupled only through interfaces, allowing to use any suitable implementation</li>
 <li>the specifics of the implementation should not impact testing (hooks, suspense, context, etc.)</li>
 </ul>
-<p>As a result of these design goals :</p>
+<p>As a result of these design goals:</p>
 <ul>
 <li>we do not use React hooks, context, portal, fragments, <code>jsx</code>, and use the minimum React lifecycle hooks</li>
 <li>the component user can of course use the whole extent of the API at disposal, those restrictions only concern our implementation of the <code>&lt;Machine /&gt;</code> component.</li>
