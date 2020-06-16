@@ -604,7 +604,8 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 </ul>
 </li>
 <li>some machine inputs may correspond to the aggregation of several events (in advanced usage). For instance, if we had to recreate a double click for the <code>Search</code> button, we would have to receive two clicks before passing a <code>SEARCH</code> input to the machine. Having an <code>eventHandler</code> interface allows us to use <code>Rxjs</code> to deal with those cases, as its combinator library (<code>map</code>, <code>filter</code>, <code>takeUntil</code> etc.) allows us to aggregate events in a fairly simple manner. Note that we could implement this logic in the state machine itself (our machines are essentially Turing machines, they can implement any effect-less computation), but: <ol>
-<li>it may be better to keep the machine dealing with inputs at a consistent level of   abstraction; 2. that kind of event aggregation is done easily enough with a dedicated   library such as <code>rxjs</code></li>
+<li>it may be better to keep the machine dealing with inputs at a consistent level of   abstraction; </li>
+<li>that kind of event aggregation is done easily enough with a dedicated library such as <code>rxjs</code></li>
 </ol>
 </li>
 <li>you may want to handle some concurrency issues at the machine level. Typically in our example, that would mean handling the user scenario when the user is requesting two different queries in rapid succession and the first query response has not arrived before the second query is executed. There is in this case a risk of the user interface displaying the wrong response.</li>
