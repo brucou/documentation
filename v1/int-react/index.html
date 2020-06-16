@@ -510,11 +510,15 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 </ul>
 <h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>We are going all along to refer to a image search application example to illustrate our argumentation. Cf. <a href="#example">Example section</a> for more details.</p>
 <p>In a traditional architecture, a simple scenario would be expressed as follows:</p>
-<p><img src="https://imgur.com/AbCtBgn.png" alt="image search basic scenario"></p>
+<figure class="fullwidth"><p><img src="https://imgur.com/AbCtBgn.png" alt="image search basic scenario"></p>
+</figure>
 <p>What we can derive from that is that the application is interfacing with other systems : the user interface and what we call external systems (local storage, databases, etc.). The application  responsibility is to translate user actions on the user interface into commands on the external systems, execute those commands and deal with their result.</p>
 <p>In our proposed architecture with all options used, the same scenario would become:</p>
-<p><img src="https://imgur.com/kdsOIV1.png" alt="image search basic scenario"></p>
-<p>In our proposed architecture with only mandatory options used, the same scenario would become:<br><img src="https://imgur.com/iNGLUSw.png" alt="image search basic scenario"></p>
+<figure class="fullwidth"><p><img src="https://imgur.com/kdsOIV1.png" alt="image search basic scenario"></p>
+</figure>
+<p>In our proposed architecture with only mandatory options used, the same scenario would become:</p>
+<figure class="fullwidth"><p><img src="https://imgur.com/iNGLUSw.png" alt="image search basic scenario"></p>
+</figure>
 <p>In that architecture, the application is refactored into a mediator, a preprocessor, a state machine, a command handler, and an effect handler. The application is thus split into smaller parts which address specific concerns:</p>
 <ul>
 <li>the preprocessor translates user interface events into inputs for the state machine</li>
