@@ -287,9 +287,21 @@ src/graphs/file.graphml.fsm.cjs</code></pre></p>
 <li>you can use the exact same label for different nodes (I do so in some of the tests), however, beware that this may come and bite you when you are tracing or debugging</li>
 <li>The action label cannot be the reserved label <code>ACTION_IDENTITY</code></li>
 <li>A label <code>x</code> must be so that the following JavaScript <code>{[x]: value}</code> is valid syntactically. This means labels can have spaces and a large set of Unicode characters, as allowed by the JavaScript specifications. Action labels such as <em>do this, do that</em> are thus valid.</li>
-<li>Edge labels <strong>must not</strong> have more than one <code>/</code> character (action separator)</li>
-<li>Edge labels <strong>must not</strong> have any <code>|</code> character (transition separator)</li>
+<li>edge labels (which contain the event/guard/action triple under the following syntax <code>event [guard] / action (comment)</code>) are parsed with an <a href="https://github.com/brucou/slim/blob/master/yedEdgeLabelGrammar.ne" target="_blank" rel="noopener">EBNF grammar</a>. As of June 2020, to avoid having to handle an ambiguous grammar:<ul>
+<li><code>event</code> cannot have the characters <code>[</code>, <code>]</code>, <code>/</code>, <code>,</code> and <code>|</code> </li>
+<li><code>guard</code> cannot have the characters <code>[</code>, <code>]</code>, and <code>,</code></li>
+<li><code>actions</code> cannot have the characters <code>[</code>, <code>]</code>, <code>/</code>, <code>,</code> <code>(</code>, <code>)</code>, and <code>|</code></li>
+</ul>
+</li>
 <li>an edge label may encode several transitions, separated by <code>|</code>. All rules above apply to each of the transition as if it was alone</li>
+<li>edge labels can encode multiple transitions, provided those transitions encoding are separated by the <code>|</code> (pipe) character:<ul>
+<li>e.g. <code>| event1 [guard1] / action1 | event2 [guard2] / action2</code> encodes two transitions triggered respectively by <code>event1</code> and <code>event2</code></li>
+</ul>
+</li>
+<li>edge labels also encode composite guards and composite actions. Composite guards and actions are comma-separated actions. <code>guard1, guard2</code> encodes a guard which will be satisfied only and only if both <code>guard1</code> and <code>guard2</code> are satisfied. Similarly, <code>action1, action2</code> encode two actions that will be composed to form a single action. The outputs of the composed is the concatenation of the outputs of each action, in the same order<ul>
+<li>e.g. <code>event [cond1, cond2] / action1, action2 (comment)</code></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -368,13 +380,17 @@ src/graphs/file.graphml.fsm.cjs</code></pre></p>
 <td>Yes, parses two transitions</td>
 </tr>
 <tr>
-<td>&#124; start [letters?&#124;] / display initial screen &#124; reset / navigate back</td>
+<td>&#124; start [letters? &#124; ] / display initial screen &#124; reset / navigate back</td>
 <td>No</td>
+</tr>
+<tr>
+<td>&#124; start [visible?, letters?] / display initial screen, navigate back</td>
+<td>Yes</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>We recommend to use the pipe character <code>|</code> exclusively and only to separate transitions.</p>
+<p>We recommend to use the pipe character <code>|</code> exclusively and only to separate transitions. We recommend the comma <code>,</code> character exclusively to separate the components of a composite guard or action.</p>
 <h4 id="Language-support"><a href="#Language-support" class="headerlink" title="Language support"></a>Language support</h4><p>Unfortunately, as of today, only English and German are supported in the yed interface. However, all UTF-8 characters are accepted in the graphs that you can edit. The previous chinese and japanese characters have been copy/pasted into yed and are displayed fine. </p>
 <p>There is however an old issue (dating from 2015) that seems to indicate that it may not be possible to write the characters from a chinese/japanese keyboard. Please open an issue in the github directory if you encounter a problem.</p>
 <p>Lastly, right-to-left, and vertical languages will not be displayed in the correct order. Shamefully, yed offers very little in terms of internationalization and localization.</p>

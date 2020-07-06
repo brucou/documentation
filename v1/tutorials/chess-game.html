@@ -590,7 +590,7 @@
   eventEmitter,
   chessEngine
 &#125;);</code></pre>
-<label for="mn-demo-20" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-20" class="margin-toggle"><span class="marginnote"><p>We use here the chess engine to establish the validity of a move and detect the end game, but take care of reversing its effects. As a rule, guards and action factories <strong>must be pure functions</strong>. This avoids difficult-to-detect bugs where the game state is de-synchronized from the machine state. </p>
+<label for="mn-demo-22" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-22" class="margin-toggle"><span class="marginnote"><p>We use here the chess engine to establish the validity of a move and detect the end game, but take care of reversing its effects. As a rule, guards and action factories <strong>must be pure functions</strong>. This avoids difficult-to-detect bugs where the game state is de-synchronized from the machine state. </p>
 </span>
 <p>Doing so make the event emitter and engine visible in guards and action factories. For instance:</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isLegalNonWinningMove</span>(<span class="hljs-params">extendedState, eventData, settings</span>)</span>&#123;
