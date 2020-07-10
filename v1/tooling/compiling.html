@@ -332,10 +332,10 @@ StringLiteral -&gt; [\w]:+
 <p>Assuming the machine has no isolated states (i.e. states which are not reached by any transitions), the size of the compiled file follows the shape <code>a + b x Number of transitions</code>, i.e. is mostly proportional to the number of transitions of the graph. The proportional coefficient <code>b</code> seems to be fairly low and the compression factor increases with the size of the machine. In short, you need to write a really large graph to get to 5Kb just for the machine.</p>
 <p>We give two data points. For the sake of these measurements, minification is performed online with the <a href="https://javascript-minifier.com/" target="_blank" rel="noopener">javascript-minifier</a> tool. Liens of code are counted with an <a href="https://codetabs.com/count-loc/count-loc-online.html" target="_blank" rel="noopener">online tool</a>. The simple counter machine, which is about the smallest non-trivial machine that can be drawn:</p>
 <p><img src="https://imgur.com/mk9hM6u.png" alt="counter machine graph"></p>
-<p>is compiled (as of Slim 0.9.0) to 50 lines of code, and has a minified compressed size of 500 bytes.</p>
+<p>is compiled (as of Slim 0.10.0) to 50 lines of code, and has a minified compressed size of 500 bytes.</p>
 <p>The password meter machine, a slightly more complex but still small example from the <a href="https://brucou.github.io/documentation/v1/tutorials/password-meter.html">documentation website</a>:   </p>
 <p><img src="https://brucou.github.io/documentation/graphs/password-meter.png" alt="[password meter modelization]"></p>
-<p>is compiled (as of Slim 0.9.0) to zero-dependency 76 lines of code, with a minified compressed size of 600 bytes, with a minified compressed size of 600 bytes. </p>
+<p>is compiled (as of Slim 0.10.0) to zero-dependency 76 lines of code, with a minified compressed size of 600 bytes, with a minified compressed size of 600 bytes. </p>
 <p>The following complex wizard form:</p>
 <figure class="fullwidth"><p><img src="https://imgur.com/xcO9xnY.jpg" alt="Imgur"></p>
 </figure>
