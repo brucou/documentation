@@ -346,13 +346,6 @@ StringLiteral -&gt; [\w]:+
 <p>In summary, endowed with the present compiler, <strong>Kingly proposes state machines as a zero-cost abstraction</strong>. This means that if you would have written that logic by hand, you would not have been able to achieve a significantly improved min.gzipped size.</p>
 <h2 id="Known-limitations"><a href="#Known-limitations" class="headerlink" title="Known limitations"></a>Known limitations</h2><p>The <code>.graphml</code> format for yEd is not publicly documented. The parser for it thus may have holes or may break if the format specifications change, It is thus important that you log issues if you encounter any errors wile running the compiler. To be fair, the specifications have not changed in many years.</p>
 <h2 id="Final-note"><a href="#Final-note" class="headerlink" title="Final note"></a>Final note</h2><p>After using and working with state machines for the past four years, I believe I am reaching a satisfying API and process. The idea is really to avoid unnecessary complexity. I am however interested in hearing your comments, and suggestions together with use cases that you believe are not satisfactorily addressed -&gt; post an issue in the project directory.</p>
-<ul>
-<li>explain the new syntax for composites guards and actions and edge cases (no () except at the end for actions)<ul>
-<li>NO: [isAuthenticated &amp; tags already fetched] / update (reset) pagination fetch articles render loading</li>
-<li>no commas in action names or guards names (basically review the grammar maybe paste it)</li>
-</ul>
-</li>
-</ul>
 
   
   
