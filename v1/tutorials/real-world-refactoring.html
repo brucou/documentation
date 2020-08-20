@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Interface implementation — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Refactoring — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Interface implementation — Kingly.js">
+  <meta property="og:title" content="Refactoring — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Interface implementation — Kingly.js">
+  <meta name="twitter:title" content="Refactoring — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -284,7 +284,7 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link current">Interface implementation</a>
+      <a href="/documentation/v1/tutorials/password-meter-ui-implementation.html" class="sidebar-link">Interface implementation</a>
     </li>
   
     
@@ -496,7 +496,7 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/real-world-refactoring.html" class="sidebar-link">Refactoring</a>
+      <a href="/documentation/v1/tutorials/real-world-refactoring.html" class="sidebar-link current">Refactoring</a>
     </li>
   
     
@@ -527,89 +527,25 @@
     
   
   
-    <h1>Interface implementation</h1>
+    <h1>Refactoring</h1>
   
   
-    <p>Now that we have our state machine, i.e. the controller for our user interface, we need to implement the rest: listening to events, and executing commands, and linking with the machine.</p>
-<p>In this simple example, we only have one command, which is to render a screen. The render command has a <code>params</code> property with itself two properties: <em>props</em> and <em>screen</em>. The <em>screen</em> property codifies whether we should underline the password field with green or red. The <em>props</em> property contains the content of the password field. Armed with this knowledge, it is easy to pick a UI library, or use Vanilla JavaScript and render the appropriate screens. </p>
-<p>In a similar way, you can pick from miscellaneous ways to connect the events to the machine. I used a <a href="https://github.com/konsumer/emitonoff" target="_blank" rel="noopener">300b basic event emitter library <code>emitonoff</code></a>. You may also use Rxjs, or any other mechanism offered by a UI framework.</p>
-<p>We give here various implementations of the interface with different libraries. We reached for simple, not necessarily optimal or DRY implementations. How we decide to implement the view has no incidence on the application, as long as any implementation respects the designed (props) interface.</p>
-<p>&lt;<strong>TODO</strong>: update vue-state-driven, write the react impl., add something on the logic of state-driven&gt; </p>
-<h2 id="Vanilla-js"><a href="#Vanilla-js" class="headerlink" title="Vanilla js"></a>Vanilla js</h2><p>The Vanilla JavaScript implementation directly updates the DOM, and uses <code>emitonoff</code> as event emitter. Here we do direct DOM updates. We also use the <code>nanohtml</code> library which creates actual DOM elements (instead of a virtual DOM structure) through a <code>html</code> tag template.</p>
-<p>The full implementation is available here:</p>
-<iframe src="https://codesandbox.io/embed/mqx96pm64j?fontsize=12&module=%2Fsrc%2Findex.js" title="password-meter-nanomorph" style="width:1000px; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
-
-<h2 id="Nanomorph"><a href="#Nanomorph" class="headerlink" title="Nanomorph"></a>Nanomorph</h2><p>This implementation uses <a href="https://github.com/choojs/nanomorph" target="_blank" rel="noopener">nanomorph</a> as DOM renderer, and <code>emitonoff</code> as event emitter. We use here a variation of the <code>vDom = f(state)</code> approach, where the state consists of <code>screen</code> and <code>props</code>. The screen repeats plenty of view code, but that is fine for a demo. You can replace <code>screens[screen](props)</code> as <code>f(screen, props)</code> with a <code>f</code> of your own. You can use the <code>Vue</code> implementation in the following sections as a source of inspiration.</p>
-<pre><code class="hljs js">[CLICKED_SUBMIT, TYPED_CHAR, START].forEach(<span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> &#123;
-  eventEmitter.on(event, arg =&gt; &#123;
-    <span class="hljs-keyword">const</span> commands = pwdFsm(&#123; [event]: arg &#125;);
-    <span class="hljs-keyword">if</span> (commands) &#123;
-      commands
-        .filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x !== <span class="hljs-literal">null</span>)
-        .forEach(<span class="hljs-function">(<span class="hljs-params">&#123; command, params &#125;</span>) =&gt;</span> &#123;
-          <span class="hljs-keyword">if</span> (command === RENDER) &#123;
-            <span class="hljs-keyword">const</span> &#123; screen, props &#125; = params;
-            morph(rootEl, screens[screen](props));
-          &#125;
-        &#125;);
-    &#125;
-  &#125;);
-&#125;);</code></pre>
-<p>The full implementation is available here:</p>
-<iframe src="https://codesandbox.io/embed/73wy8jwk86?fontsize=12&module=%2Fsrc%2Findex.js" title="password-meter-nanomorph" style="width:1000px; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
-
-<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><p><strong>TODO</strong><br><strong>TODO</strong> several implementation switching the emitonoff, and rxjs and then give the stack vanilla/emitonoff stack, nanomorph/emitonoff, react/rxjs stack etc.</p>
-<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><p>The Vue implementation relies on a standard <code>PasswordMeter</code> Vue component, and Kingly’s <a href="https://github.com/brucou/vue-state-driven" target="_blank" rel="noopener">vue-state-driven helper library</a>:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  <span class="hljs-attr">template</span>: <span class="hljs-string">`
-     &lt;section v-if="!submittedPassword"&gt;
-      &lt;label for="password"&gt;Enter password&lt;/label&gt;
-      &lt;input type="password" name="password" id="password" v-on:input="PASSWORD_FIELD_CHANGED" /&gt;
-
-      &lt;meter v-if="isUnknown" max="4" id="password-strength-meter"&gt;&lt;/meter&gt;
-      &lt;meter v-else-if="isStrong" max="4" id="password-strength-meter" value="4"&gt;&lt;/meter&gt;
-      &lt;meter v-else="!isStrong" max="4" id="password-strength-meter" value="1"&gt;&lt;/meter&gt;
-      
-      &lt;p id="password-strength-text"&gt;&lt;/p&gt;
-      &lt;button v-on:click="PASSWORD_SUBMITTED"&gt;Submit&lt;/button&gt;
-     &lt;/section&gt;
-    &lt;section v-else="submittedPassword"&gt;That's all folks! Submitted password is &#123;&#123;password&#125;&#125;&lt;/section&gt;
-  `</span>,
-  <span class="hljs-attr">props</span>: [<span class="hljs-string">"screen"</span>, <span class="hljs-string">"input"</span>, <span class="hljs-string">"password"</span>, <span class="hljs-string">"next"</span>],
-  <span class="hljs-attr">computed</span>: &#123;
-    <span class="hljs-attr">submittedPassword</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.screen === SUBMITTED_PASSWORD
-    &#125;,
-    <span class="hljs-attr">isUnknown</span> : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.screen === INIT_SCREEN
-    &#125;,
-    <span class="hljs-attr">isStrong</span> : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.screen === GREEN_INPUT
-    &#125;,
-  &#125;,
-  <span class="hljs-attr">methods</span>: &#123;
-    <span class="hljs-comment">// reminder : do not use fat arrow functions!</span>
-    PASSWORD_FIELD_CHANGED: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">passwordChangedEventHandler</span>(<span class="hljs-params">ev</span>) </span>&#123;
-      <span class="hljs-keyword">this</span>.next(&#123; [TYPED_CHAR]: ev.target.value &#125;)
-    &#125;,
-    <span class="hljs-attr">PASSWORD_SUBMITTED</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buttonEventHandler</span>(<span class="hljs-params">ev</span>) </span>&#123;
-      <span class="hljs-keyword">this</span>.next(&#123; [CLICKED_SUBMIT]: <span class="hljs-keyword">void</span> <span class="hljs-number">0</span> &#125;)
-    &#125;,
-  &#125;
-&#125;;</code></pre>
-<p>The full implementation is available here:</p>
-<iframe src="https://codesandbox.io/embed/l9o1qknoz7?fontsize=12&module=%2Fsrc%2Findex.js" title="password-meter-nanomorph" style="width:1000px; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+    <p>The graph that we came up with previously accurately describes the specifications for the Conduit demo app. However, anytime we need to do an action that requires authentication, we are checking the authentication of the user. This leads to many control states and transitions in the graph that carry essentially the same function. </p>
+<p>Instead of querying the authentication status every time, we now react to changes in authentication, and keep the authentication status in the extended state of the machine. We thus no longer to trigger an action to query the authentication status, we just need to access it in the extended state of the machine. A lot of transitions thus disappear. </p>
+<p>The machine is also refactored to reduce its depth by eliminating compoound states that are not factoring transitions. Eventually, the resulting graph has a depth of 3 and less control states and transitions: </p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-with-subscription-syntax-experiment.png" alt="article route refactoring"></p>
+</figure>
 
   
   
     <div class="next-links">
       
       
-        <span>← <a href="/documentation/v1/tutorials/password-meter-implementation.html">Machine implementation</a></span>
+        <span>← <a href="/documentation/v1/tutorials/real-world-article.html">Article route</a></span>
       
       
       
-        <span style="float: right;"><a href="/documentation/v1/tutorials/password-meter-using-graph-editor.html">Implementation with the yEd graph editor</a> →</span>
+        <span style="float: right;"><a href="/documentation/v1/tutorials/real-world-lessons-learnt.html">Lessons learnt</a> →</span>
       
     </div>
   
