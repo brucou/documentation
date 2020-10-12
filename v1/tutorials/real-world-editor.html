@@ -523,14 +523,14 @@
 <li>create a new article (<code>#/editor/</code>)</li>
 <li>publish a new or edited article</li>
 </ul>
-<p>Articles may have a title, a subject, <a href="https://www.markdownguide.org/" target="_blank" rel="noopener"><em>Markdown</em></a> content, and a list of tags. Tags are entered in a dedicated field, and added to the tag list by pressing the <em>Enter</em> key.</p>
+<p>Articles may have a title, a subject, <a href="https://www.markdownguide.org/" target="_blank" rel="noopener"><em>Markdown</em></a> content, and a list of tags. Tags are entered in a dedicated field and added to the tag list by pressing the <em>Enter</em> key.</p>
 <p>The following rules apply:</p>
 <ul>
 <li>unauthenticated users navigating to the <em>editor</em> page should be redirected to the <em>home</em> route</li>
 <li>unauthenticated users cannot publish articles. Any attempt to do so will trigger a redirection to the <em>home</em> route </li>
 <li>the editor form fields must be validated for the article to be added to the articles database. Validation happens server-side with the API returns validation errors in the form of an object.</li>
 <li>users cannot add a tag that is already present in the tag list</li>
-<li>if there is no corresponding article (assuming user navigated to a <code>#/editor/:slug</code> route), the user is redirected to the <em>home</em> route</li>
+<li>if there is no corresponding article (assuming the user navigated to a <code>#/editor/:slug</code> route), the user is redirected to the <em>home</em> route</li>
 </ul>
 <h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>We have the following events for the <em>editor</em> route:</p>
 <div class="fullwidth"><div class="table-container">
@@ -582,10 +582,10 @@
 </table>
 </div>
 </div>
-<p>Additionally, the user may click on links (like <em>settings</em>). However, this is not handled directly by the machine. Instead, this is handled by the browser as any other links, triggering a change of url, which then triggers a <em>ROUTE_CHANGED</em> event to the machine.</p>
+<p>Additionally, the user may click on links (like <em>settings</em>). However, this is not handled directly by the machine. Instead, this is handled by the browser as any other links, triggering a change of URL, which then triggers a <em>ROUTE_CHANGED</em> event to the machine.</p>
 <p>And….. there is one more thing that a lot of people may trip up on the first time (I did), so we talk about it here separately. This has to do with the concept of <a href="https://stackoverflow.com/questions/42522515/what-are-controlled-components-and-uncontrolled-components" target="_blank" rel="noopener">controlled vs. uncontrolled</a> fields. </p>
-<p>We render the <code>title</code>, <code>description</code>, <code>body</code> fields with their initial value, and we never need to update these fields after that. So our <em>prop</em> <code>title</code> would actually better read as <code>initialTitle</code>, to indicate that this title value is not an evolving value, but the value of the field when the form is first created. The field values on the screen, i.e. in the DOM may change freely without necessity of the application to be notified. Such free-evolving fields are called <em>uncontrolled</em> fields.</p>
-<p>The situation changes for the <code>tag</code> DOM field. As the name indicates, the <code>currentTag</code> <em>prop</em> indicates the value of the tag at the time of rendering. This means than the <em>Render</em> command means to update the <code>tag</code> field on the form. In other words, the <code>currentTag</code> <em>prop</em> represents the evolving value of the <code>tag</code> field in the DOM. In yet other words, <code>currentTag</code> is <strong>bound</strong> to the value of the <code>tag</code> field. Some UI libraries implement this logic with <a href="https://medium.com/front-end-weekly/what-is-2-way-data-binding-44dd8082e48e" target="_blank" rel="noopener">two-way binding</a> (Svelte is one of those). Other UI libraries implement the binding by tracking the events triggered by the field modification (typically <em>keyup</em>) and synchronize the internal field value with the field value as stored in the OM. The <code>currentTag</code> is said to be a <em>controlled field</em>.</p>
+<p>We render the <code>title</code>, <code>description</code>, <code>body</code> fields with their initial value, and we never need to update these fields after that. So our <em>prop</em> <code>title</code> would actually better read as <code>initialTitle</code>, to indicate that this title value is not an evolving value, but the value of the field when the form is first created. The field values on the screen, i.e. in the DOM may change freely without it being necessary for the application to be notified. Such free-evolving fields are called <em>uncontrolled</em> fields.</p>
+<p>The situation changes for the <code>tag</code> DOM field. As the name indicates, the <code>currentTag</code> <em>prop</em> indicates the value of the tag at the time of rendering. This means than the <em>Render</em> command means updating the <code>tag</code> field on the form. In other words, the <code>currentTag</code> <em>prop</em> represents the evolving value of the <code>tag</code> field in the DOM. In yet other words, <code>currentTag</code> is <strong>bound</strong> to the value of the <code>tag</code> field. Some UI libraries implement this logic with <a href="https://medium.com/front-end-weekly/what-is-2-way-data-binding-44dd8082e48e" target="_blank" rel="noopener">two-way binding</a> (Svelte is one of those). Other UI libraries implement the binding by tracking the events triggered by the field modification (typically <em>keyup</em>) and synchronize the internal field value with the field value as stored in the DOM. The <code>currentTag</code> is said to be a <em>controlled field</em>.</p>
 <p>In our case, because we want the <em>Render</em> <code>currentTag</code> to mean to display the form with the corresponding <code>tag</code> field set to the <code>currentTag</code> value, it means we have to track i.e. control the <code>tag</code> DOM form field. That then means we need to add an event <code>EDITED_TAG</code> to do that tracking. </p>
 <p>As a result, our events are now as follows:</p>
 <div class="fullwidth"><div class="table-container">
@@ -651,12 +651,12 @@
 <tr>
 <td style="text-align:left"><code>PUBLISH_ARTICLE</code></td>
 <td style="text-align:left">article data (<code>{title, description, body, tagList}</code>)</td>
-<td style="text-align:left">sends an API request to the publishing end point</td>
+<td style="text-align:left">sends an API request to the publishing endpoint</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>UPDATE_ARTICLE</code></td>
 <td style="text-align:left">article data including slug (<code>{slug, title, description, body, tagList}</code>)</td>
-<td style="text-align:left">sends an API request to the publishing end point</td>
+<td style="text-align:left">sends an API request to the publishing endpoint</td>
 </tr>
 </tbody>
 </table>
@@ -686,7 +686,7 @@
 </table>
 </div>
 </div>
-<p>The UI for the <em>editor</em> route will be implemented with a <em>Editor</em> Svelte component. The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-editor-route/src/UI/Editor.svelte" target="_blank" rel="noopener">full source code</a> for the <code>Editor</code> component can be accessed in the repository.</p>
+<p>The UI for the <em>editor</em> route will be implemented with an <em>Editor</em> Svelte component. The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-editor-route/src/UI/Editor.svelte" target="_blank" rel="noopener">full source code</a> for the <code>Editor</code> component can be accessed in the repository.</p>
 <h2 id="UI-testing"><a href="#UI-testing" class="headerlink" title="UI testing"></a>UI testing</h2><p>As before, we test the UI with <a href="https://storybook.js.org/" target="_blank" rel="noopener">Storybook</a>. The <a href="https://github.com/brucou/realworld-kingly-svelte/tree/with-settings-route/stories" target="_blank" rel="noopener">corresponding stories</a> are available in the source repository.</p>
 <h2 id="Commands-implementation"><a href="#Commands-implementation" class="headerlink" title="Commands implementation"></a>Commands implementation</h2><p>To implement the <code>PUBLISH_ARTICLE</code> and <code>UPDATE_ARTICLE</code> command, we defer to the API. The logic, as before is enclosed into functions passed as effect handlers (<code>saveArticle</code>, and <code>updateArticle</code>):</p>
 <pre><code class="hljs javascript">[PUBLISH_ARTICLE]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
@@ -713,7 +713,7 @@
       dispatch(&#123; [FAILED_PUBLISHING]: errors &#125;);
     &#125;);
 &#125;</code></pre>
-<h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>We test five key user scenarios, checking the aforementioned behaviour rules, the content of which should be clear from their identifiers in the code:</p>
+<h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>We test five key user scenarios, checking the aforementioned behavior rules, the content of which should be clear from their identifiers in the code:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">const</span> userStories = [
   [
     UNAUTH_USER_ON_EDITOR_NEW_ARTICLE_IS_REDIRECTED,
@@ -742,18 +742,18 @@
   ]
 ];</code></pre>
 <h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The modelization we reach is the following:</p>
-<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-editor-unfactored.png" alt="editor route behaviour modelization high level"></p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-editor-unfactored.png" alt="editor route behavior modelization high level"></p>
 </figure>
 <p>Zooming in on the <em>Editor route</em> compound control state:</p>
-<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-editor-level-1.png" alt="editor route behaviour modelization zoomed in"></p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-editor-level-1.png" alt="editor route behavior modelization zoomed in"></p>
 </figure>
-<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>We have two reasons for refactoring appearing. On the one hand, all compound states have a transition towards the <code>routing</code> control state. That transitions relates to the user clicking links, which cause a change of route and possibly a redirection to another part of the application. We have those transitions for the four routes we have modelized so far, and we can expect that to remain true for any new route that we are going to modelize. This means we can <strong>factor</strong> those transitions out into a single transition from a compound control state comprising all the route control states: </p>
+<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>We have two reasons for refactoring appearing. On the one hand, all compound states have a transition towards the <code>routing</code> control state. That transition relates to the user clicking links, which cause a change of route and possibly a redirection to another part of the application. We have those transitions for the four routes we have modelized so far, and we can expect that to remain true for any new route that we are going to modelize. This means we can <strong>factor</strong> those transitions out into a single transition from a compound control state comprising all the route control states: </p>
 <figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-editor.png" alt="factoring routes inside single compound state"></p>
 </figure>
 <p>We created here a compound control state called <em>Application core</em> with a transition triggered by the <code>ROUTE_CHANGED</code> event. We thus replaced four transitions by a single one, simplifying the graph, while keeping the exact same semantics. To remind semantics of the visual formalism, an event triggering a transition from a compound state to a target control state (<code>ROUTE_CHANGED</code> is such an event) is equivalent to an event on each sub-states of that compound state triggering a transition to the same target control state. </p>
 <p>If you are familiar with algebra, we simply <strong>factorized</strong> $(a \underset{event}{\rightarrow}b , a \underset{event}{\rightarrow} c , a \underset{event}{\rightarrow} d  , a \underset{event}{\rightarrow} e)$ into $a \underset{event}{\rightarrow}(b,c,d,e)$ where the $a \underset{event}{\rightarrow}b $ indicates a transition from $a$ to $b$ triggered by $event$ and $(a,b)$ indicates two control states which are part of the same compound control state. To make it more obvious, this is the same as expressing $ab+ac+ad+ae$ as $a(b+c+d+e)$, where $ab$ is the same as $a \underset{event}{\rightarrow}b$, and $a+b$ is the same as $(a,b)$.</p>
-<p>That refactoring is useful as, not only we removed here three edges from our visualization, making it more readable, but also, as we keep on adding route, the same transition triggered by <code>ROUTE_CHANGED</code> will still be valid. Thus for $n$ similar transitions, we will have saved $n-1$ edges from the visualization.</p>
-<p>The second reason for refactoring is directed by reuse purposes. The forms from the <em>sign in</em> route, the <em>sign up</em> route and the <em>editor</em> route behave in similar ways. In all three routes, the user can only see the form if he is authenticated, then the submitting operation can only go through if the user is authenticated, and if the submitting operation is not successful, errors are displayed on the form, otherwise, the user is redirected.</p>
+<p>That refactoring is useful as, not only we removed here three edges from our visualization, making it more readable, but also, as we keep on adding routes, the same transition triggered by <code>ROUTE_CHANGED</code> will still be valid. Thus, for $n$ similar transitions, we will have saved $n-1$ edges from the visualization.</p>
+<p>The second reason for refactoring is directed by reuse purposes. The forms from the <em>sign-in</em> route, the <em>sign-up</em> route, and the <em>editor</em> route behave in similar ways. In all three routes, the user can only see the form if he is authenticated, then the submitting operation can only go through if the user is authenticated, and if the submitting operation is not successful, errors are displayed on the form, otherwise, the user is redirected.</p>
 <p>To make this obvious, let’s compare the <em>sign up</em> route and the <em>editor</em> routes’ modelization:</p>
 <div class="fullwidth"><div class="table-container">
 <table>
@@ -790,10 +790,10 @@
 </table>
 </div>
 </div>
-<p>We have highlighted the common graph structure shared by those three visualizations, i.e. the common behaviour shared by these three parts of the application. By the <em>rule of three</em>, we have found a candidate target for <a href="https://apiumhub.com/tech-blog-barcelona/dry-dont-repeat-yourself/" target="_blank" rel="noopener">DRY refactoring</a>.</p>
-<p>How would we proceed and factor this common behaviour so it can be reused in the implementation of all three routes? We already isolated the common behaviour, next we abstract or lift as parameters the parts constituting the common behaviour, i.e. the events, action factories, commands involved in that behaviour. Concretely, our common behaviour can be represented by the following machine part:</p>
+<p>We have highlighted the common graph structure shared by those three visualizations, i.e. the common behavior shared by these three parts of the application. By the <em>rule of three</em>, we have found a candidate target for <a href="https://apiumhub.com/tech-blog-barcelona/dry-dont-repeat-yourself/" target="_blank" rel="noopener">DRY refactoring</a>.</p>
+<p>How would we proceed and factor this common behavior so it can be reused in the implementation of all three routes? We already isolated the common behavior, next we abstract or lift as parameters the parts constituting the common behavior, i.e. the events, action factories, commands involved in that behavior. Concretely, our common behavior can be represented by the following machine part:</p>
 <p><img src="../../graphs/real-world/two-step-auth-process-factoring-highlighted.png" alt="two-step-auth-process-factoring-highlighted"> </p>
-<p>Now that is not a valid machine, as there is no initial control state. However, this machine part has all the transitions that figure in all previous three routes implementation. We thus define a function which compute the transitions to add to a given machine to implement the authenticated form submitting behaviour (<a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-editor-route/src/behaviour/abstracted.js" target="_blank" rel="noopener"><code>src/behaviour/abstracted.js</code></a>):</p>
+<p>Now that is not a valid machine, as there is no initial control state. However, this machine part has all the transitions that figure in all previous three routes implementation. We thus define a function which computes the transitions to add to a given machine to implement the authenticated form submitting behaviour (<a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-editor-route/src/behaviour/abstracted.js" target="_blank" rel="noopener"><code>src/behaviour/abstracted.js</code></a>):</p>
 <pre><code class="hljs javascript"><span class="hljs-comment">/**
  * @param &#123;&#123;events: AuthFormEvents, actionFactories: AuthFormActionFactories, states: AuthFormStates,
  *   isAuthenticatedGuard: Guard&#125;&#125; def
@@ -922,14 +922,14 @@
     &#125;
   &#125;)
 ].flat();</code></pre>
-<p>Note how we use the transitions computed by the <code>getAuthenticatedFormPageTransitions</code> function and how we integrate them in the <em>editor</em> route machine. As a final note, we have decided (for now) against refactoring the other two routes which exhibits the behaviour we just abstracted. Those routes are already written and tested, so we don’t have a productivity advantage here. If the behaviour abstracted in the <code>getAuthenticatedFormPageTransitions</code> should require tweaking in the future (because of bugs or else), we will then consider moving the other two routes to using it, so they also benefit from that tweaking. But as of now, we don’t have much to win by doing rewriting the existing implementation of those two routes exhibiting a common behaviour.</p>
+<p>Note how we use the transitions computed by the <code>getAuthenticatedFormPageTransitions</code> function and how we integrate them in the <em>editor</em> route machine. As a final note, we have decided (for now) against refactoring the other two routes which exhibit the behavior we just abstracted. Those routes are already written and tested, so we don’t have a productivity advantage here. If the behavior abstracted in the <code>getAuthenticatedFormPageTransitions</code> should require tweaking in the future (because of bugs or else), we will then consider using the mentioned abstraction for our two routes, so they also benefit from that tweaking. But as of now, we don’t have much to win by doing rewriting the existing implementation of those two routes exhibiting a common behavior.</p>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We modelized and implemented the <em>Editor</em> route portion of our Conduit clone app. Our modelization allowed us to handle nested routing very naturally. We handled some specific aspects of forms (controlled fields vs. uncontrolled fields), and decided to control the <code>tag</code> field of the editor form. We refactored our visual modelization by factoring the <code>ROUTE_CHANGED</code> event into an <em>Application core</em> compound state containing all the route substates. We also refactored the implementation of the machine for the <em>editor</em> route by extracting the common parts of three of the previously implemented routes and abstracting the varying parts into parameters for a factory function. </p>
-<p>The first refactoring enhances readability of the visualization, and the capacity to communicate the application hehaviour to stakeholders in a more concise way. It is important to note that this refactoring is merely visual: the semantics addressed by the visualization are exactly the same. We have not reduced or increased the complexity of our application, we instead reduced the complexity of the visualization, and slightly that of the implementation. This refactoring additionally has slightly increased maintainability, as, when new routes will be added to the <em>Application core</em> compound state, they will automatically be subject to the transition triggered by the <code>ROUTE_CHANGED</code> event.</p>
-<p>The second refactoring does not pursue a reduction in lines of code. Actually it may often be that lines of code increase as a result of the indirection caused by the <code>getAuthenticatedFormPageTransitions</code> function. Rather, the idea is to reuse a logic that have already been implemented several times, speeding up the implementation of new occurrences of that logic, and removing possible mistakes occurring when duplicating that logic. The more complex a shared behaviour is, the more beneficial it is to capture it in a reusable form. It is up to the programmer to determine when the benefits compensate the indirection cost of the reusable abstraction.</p>
-<p>We decided for instance against abstracting the following behaviour of an API call:</p>
+<p>The first refactoring enhances the readability of the visualization, and the capacity to communicate the application behavior to stakeholders in a more concise way. It is important to note that this refactoring is merely visual: the semantics addressed by the visualization are exactly the same. We have not reduced or increased the complexity of our application, we instead reduced the complexity of the visualization, and slightly that of the implementation. This refactoring additionally has slightly increased maintainability, as, when new routes will be added to the <em>Application core</em> compound state, they will automatically be subject to the transition triggered by the <code>ROUTE_CHANGED</code> event.</p>
+<p>The second refactoring does not pursue a reduction in lines of code. Actually, it may often be that lines of code increase as a result of the indirection caused by the <code>getAuthenticatedFormPageTransitions</code> function. Rather, the idea is to reuse a logic that has already been implemented several times, speeding up the implementation of new occurrences of that logic, and removing possible mistakes occurring when duplicating that logic. The more complex a shared behavior is, the more beneficial it is to capture it in a reusable form. It is up to the programmer to determine when the benefits compensate for the indirection cost of the reusable abstraction.</p>
+<p>We decided for instance against abstracting the following behavior of an API call:</p>
 <p><img src="../../graphs/real-world/API%20call%20machine.png" alt="API call absracted machine"></p>
-<p>We believe this behaviour is simple enough to not be worth being abstracted.</p>
-<p>Lastly, we do not recommend to abstract too early. It is important to evaluate the generality of the abstraction (the rule of three is a good rule of thumb), its current benefits and its future applicability.</p>
+<p>We believe this behavior is simple enough to not be worth being abstracted.</p>
+<p>Lastly, we do not recommend to abstract too early. It is important to evaluate the generality of the abstraction (the rule of three is a good rule of thumb), its current benefits, and its future applicability.</p>
 
   
   
