@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Sign in route — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Sign-in route — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Sign in route — Kingly.js">
+  <meta property="og:title" content="Sign-in route — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Sign in route — Kingly.js">
+  <meta name="twitter:title" content="Sign-in route — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -405,7 +405,7 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign up route</a>
+      <a href="/documentation/v1/tutorials/real-world-sign-up.html" class="sidebar-link">Sign-up route</a>
     </li>
   
     
@@ -418,7 +418,7 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link current">Sign in route</a>
+      <a href="/documentation/v1/tutorials/real-world-sign-in.html" class="sidebar-link current">Sign-in route</a>
     </li>
   
     
@@ -514,26 +514,26 @@
     
   
   
-    <h1>Sign in route</h1>
+    <h1>Sign-in route</h1>
   
   
-    <p>In this section, we will modelize and implement the user flows related to the sign in route. In the <em>sign in</em> route, the user logs in with his email and password. The following rules apply:</p>
+    <p>In this section, we will modelize and implement the user flows related to the sign in route. In the <em>sign-in</em> route, the user logs in with his email and password. The following rules apply:</p>
 <ul>
-<li>authenticated users navigating to the <em>sign in</em> page should be redirected to the <em>home</em> route</li>
+<li>authenticated users navigating to the <em>sign-in</em> page should be redirected to the <em>home</em> route</li>
 <li>authenticated users cannot sign in while being logged in. Any attempt to do so will trigger a redirection to the <em>home</em> route </li>
 </ul>
 <p>The second rule is one that we added ourselves. The <a href="https://demo.realworld.io/#/" target="_blank" rel="noopener">demo app</a> actually lets you log in with two competing identities. I believe it is probably a bug. The reproducing sequence is as follows:</p>
 <ul>
 <li>open the login page in two separate tabs</li>
-<li>log in with user 1 in first tab</li>
-<li>log in with user 2 in second tab</li>
+<li>log in with user 1 in the first tab</li>
+<li>log in with user 2 in the second tab</li>
 </ul>
-<p>You should see in each tab the user feeds corresponding to each user. Further navigation however will use the latest logged in user as current user, which is at best confusing, and in the worse case unsafe. In the context of this demo application, the impact is not huge, but we nonetheless insist here on taking a safer approach. </p>
-<h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><p>The screens for the <em>sign in</em> route are similar to those of the <em>sign up</em> screen with the difference that there is no <code>username</code> field in the <em>sign in</em> page.</p>
+<p>You should see in each tab the user feeds corresponding to each user. Further navigation however will use the latest logged in user as the current user, which is at best confusing, and in the worse case unsafe. In the context of this demo application, the impact is not huge, but we nonetheless insist here on taking a safer approach. </p>
+<h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><p>The screens for the <em>sign-in</em> route are similar to those of the <em>sign-up</em> screen with the difference that there is no <code>username</code> field in the <em>sign-in</em> page.</p>
 <p>Implementation for the <code>src/UI/SignIn.svelte</code> component is similar to that of the <code>SignUp</code> component.</p>
 <p>The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-sign-in-route/src/UI/SignIn.svelte" target="_blank" rel="noopener">full source code</a> for the <code>SignIn</code> component can be accessed in the repository.</p>
 <h2 id="UI-testing"><a href="#UI-testing" class="headerlink" title="UI testing"></a>UI testing</h2><p>As before, we test the UI with <a href="https://storybook.js.org/" target="_blank" rel="noopener">Storybook</a>. The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-sign-in-route/stories/RealWorld.SignIn.stories.js" target="_blank" rel="noopener">corresponding stories</a> are available in the source repository.</p>
-<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>We have the following events for the <em>sign in</em> route:</p>
+<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>We have the following events for the <em>sign-in</em> route:</p>
 <div class="table-container">
 <table>
 <thead>
@@ -547,23 +547,23 @@
 <tr>
 <td style="text-align:left"><code>CLICKED_SIGNIN</code></td>
 <td style="text-align:left">form data (<code>{email, password}</code>)</td>
-<td style="text-align:left">user submits the <em>sign in</em> form</td>
+<td style="text-align:left">user submits the <em>sign-in</em> form</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>FAILED_SIGN_IN</code></td>
-<td style="text-align:left">errors (as returned from sign in API)</td>
-<td style="text-align:left">user submitted the <em>sign in</em> form but the request failed</td>
+<td style="text-align:left">errors (as returned from the sign-in API)</td>
+<td style="text-align:left">user submitted the <em>sign-in</em> form but the request failed</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>SUCCEEDED_SIGN_IN</code></td>
-<td style="text-align:left">signed in user (as returned from sign in API)</td>
-<td style="text-align:left">user submitted the <em>sign in</em> form and the request succeeded</td>
+<td style="text-align:left">signed in user (as returned from the sign-in API)</td>
+<td style="text-align:left">user submitted the <em>sign-in</em> form and the request succeeded</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Additionally, the user may click on links (like <em>have an account</em>). However, this is not handled directly by the machine. Instead, this is handled by the browser as any other links, triggering a change of url, which then triggers a <em>ROUTE_CHANGED</em> event to the machine.</p>
-<h2 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h2><p>We have the following commands for the <em>sign in</em> route:</p>
+<p>Additionally, the user may click on links (like <em>have an account</em>). However, this is not handled directly by the machine. Instead, this is handled by the browser as any other links, triggering a change of URL, which then triggers a <em>ROUTE_CHANGED</em> event to the machine.</p>
+<h2 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h2><p>We have the following commands for the <em>sign-in</em> route:</p>
 <div class="table-container">
 <table>
 <thead>
@@ -581,14 +581,14 @@
 </tr>
 <tr>
 <td style="text-align:left"><code>SIGN_IN</code></td>
-<td style="text-align:left">sign in form data (<code>{email, password}</code>)</td>
+<td style="text-align:left">sign-in form data (<code>{email, password}</code>)</td>
 <td style="text-align:left">sends an API request to sign the user in</td>
 </tr>
 </tbody>
 </table>
 </div>
 <h2 id="Commands-implementation"><a href="#Commands-implementation" class="headerlink" title="Commands implementation"></a>Commands implementation</h2><p>We already have implemented the <code>REDIRECT</code> command, so we will reuse that. </p>
-<p>To implement the sign in command, we again defer to the API and update the session repository with the new user data. The logic, as before, is enclosed into functions passed as effect handlers (<code>saveUser</code>, and <code>login</code>):</p>
+<p>To implement the sign-in command, we again defer to the API and update the session repository with the new user data. The logic, as before, is enclosed into functions passed as effect handlers (<code>saveUser</code>, and <code>login</code>):</p>
 <pre><code class="hljs javascript">[SIGN_IN]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
   <span class="hljs-keyword">const</span> &#123; email, password &#125; = params;
   <span class="hljs-keyword">const</span> &#123; login, saveUser &#125; = effectHandlers;
@@ -626,21 +626,21 @@
     UNAUTH_USER_ON_SIGNIN_SEES_FORM_FAILS_SIGN_IN_AND_SEES_FORM_WITH_ERRORS_COMMANDS
   ]
 ];</code></pre>
-<h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The behaviour to modelize is very similar to that of the <em>sign up</em> route with the difference that there is no <em>username</em> field in the <em>sign in</em> route. With that exception, the logic is the same and we reach the following modelization: </p>
+<h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The behaviour to modelize is very similar to that of the <em>sign up</em> route with the difference that there is no <em>username</em> field in the <em>sign-in</em> route. With that exception, the logic is the same and we reach the following modelization: </p>
 <figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-signin.png" alt="realworld-home-tag-filter"></p>
 </figure>
-<p>Note that we do not need to guard against a user clicking the <em>sign in</em> button twice, as, after the first click, the machine will be in another state which does not accept the second click! It is a good practice to also ensure that at the UI level by disabling the button when it is first clicked, but the state machine design already naturally cover that case. </p>
-<p>Note also how we check twice that our user is authenticated before either displaying the sign up form, or executing the sign up API request. Note also, how the nested structure of our state machine allows us to focus on the part that we are interested in visualizing, while folding the part we are not interested in.</p>
-<p>More importantly, this <em>Sign in route</em> sub-machine has the same structure than the <em>Sign up route</em> sub-machine! That makes it a target candidate for refactoring. When it comes to DRY refactoring, we follow the <a href="https://blog.codinghorror.com/rule-of-three/" target="_blank" rel="noopener">rule of three</a>, i.e. we will wait for a third occurrence of a sub-machine with an identical structure before commiting to defining a reusable abstraction.</p>
+<p>Note that we do not need to guard against a user clicking the <em>sign-in</em> button twice, as, after the first click, the machine will be in another state which does not accept the second click! It is a good practice to also ensure that at the UI level by disabling the button when it is first clicked, but the state machine design already naturally covers that case. </p>
+<p>Note also how we check twice that our user is authenticated before either displaying the sign-up form or executing the sign-up API request. Note also, how the nested structure of our state machine allows us to focus on the part that we are interested in visualizing, while folding the part we are not interested in.</p>
+<p>More importantly, this <em>Sign-in route</em> sub-machine has the same structure as the <em>Sign-up route</em> sub-machine! That makes it a target candidate for refactoring. When it comes to DRY refactoring, we follow the <a href="https://blog.codinghorror.com/rule-of-three/" target="_blank" rel="noopener">rule of three</a>, i.e. we will wait for the third occurrence of a sub-machine with an identical structure before committing to defining a reusable abstraction.</p>
 <h2 id="Behaviour-implementation"><a href="#Behaviour-implementation" class="headerlink" title="Behaviour implementation"></a>Behaviour implementation</h2><p>The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-sign-in-route/src/behaviour/signIn.js" target="_blank" rel="noopener">implementation</a> (<code>src/behaviour/signIn.js</code>) derives directly from the modelization. </p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>sign in</em> route for our application, following the <a href="/real-world.html#Implementation-strategy">implementation strategy</a> we previously detailed. The <em>sign in</em> route behaviour was very similar to the <em>sign up</em> route behaviour, and we have identified but delayed an opportunity to isolate the common behaviour in a refactoring.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>sign-in</em> route for our application, following the <a href="/real-world.html#Implementation-strategy">implementation strategy</a> we previously detailed. The <em>sign-in</em> route behaviour was very similar to the <em>sign-up</em> route behaviour, and we have identified but delayed an opportunity to isolate the common behaviour in a refactoring.</p>
 
   
   
     <div class="next-links">
       
       
-        <span>← <a href="/documentation/v1/tutorials/real-world-sign-up.html">Sign up route</a></span>
+        <span>← <a href="/documentation/v1/tutorials/real-world-sign-up.html">Sign-up route</a></span>
       
       
       
