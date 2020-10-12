@@ -517,16 +517,16 @@
     <h1>Sign up route</h1>
   
   
-    <p>In this section, we will modelize and implement the user flows related to the sign up route. There are two main entries to that route:</p>
+    <p>In this section, we will modelize and implement the user flows related to the sign-up route. There are two main entries to that route:</p>
 <ul>
 <li>a user may directly load the route in the browser</li>
-<li>a user may be redirected to that route, for instance if the user is not authenticated and likes/unlikes an article from the global feed</li>
+<li>a user may be redirected to that route —- for instance if the user is not authenticated and likes/unlikes an article from the global feed</li>
 </ul>
-<p>In the <em>sign up</em> route, the user may register with a username, an email and a password. The following rules apply:</p>
+<p>In the <em>sign-up</em> route, the user may register with a username, an email, and a password. The following rules apply:</p>
 <ul>
-<li>authenticated users navigating to the <em>sign up</em> page should be redirected to the <em>home</em> route</li>
+<li>authenticated users navigating to the <em>sign-up</em> page should be redirected to the <em>home</em> route</li>
 <li>authenticated users cannot sign up while being logged in. Any attempt to do so will trigger a redirection to the <em>home</em> route </li>
-<li>sign up form fields must be validated for the sign up to go through (validation is handled partly by the browser (email field) and partly server side, the client does no validation).</li>
+<li>sign-up form fields must be validated for the sign-up to go through (validation is handled partly by the browser (email field) and partly server-side, the client does no validation).</li>
 </ul>
 <h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><p>We already have identified the screens in the <em>Specifications</em> section. Ler’s remind them here:</p>
 <div class="fullwidth"><div class="table-container">
@@ -558,7 +558,7 @@
 </table>
 </div>
 </div>
-<p>The UI for the <em>sign up</em> route will be implemented with a <em>SignUp</em> Svelte component which will take two parameters:</p>
+<p>The UI for the <em>sign-up</em> route will be implemented with a <em>SignUp</em> Svelte component which will take two parameters:</p>
 <div class="table-container">
 <table>
 <thead>
@@ -570,19 +570,19 @@
 <tbody>
 <tr>
 <td style="text-align:left"><code>inProgress</code></td>
-<td style="text-align:left">boolean which indicates that the sign up API is pending returning a response. This will be used to give a visual feedback to the user about the in-flight request</td>
+<td style="text-align:left">boolean which indicates that the sign-up API is pending returning a response. This will be used to give visual feedback to the user about the in-flight request</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>errors</code></td>
-<td style="text-align:left">errors object returned by the sign up API in case of sign up request failure</td>
+<td style="text-align:left">errors object returned by the sign-up API in case of sign up request failure</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>There is no mystery to that component, it depending as usual exclusively on its <em>props</em>. It may be worth mentioning that we use the <code>FormData</code> browser API to get the value of the form inputs. Some implementations are listening on form input changes and maintaining a copy of the form input values. This is however not necessary and we prefer using the standard browser API, and using the DOM as single source of truth.</p>
+<p>There is no mystery to that component, it depending as usual exclusively on its <em>props</em>. It may be worth mentioning that we use the <code>FormData</code> browser API to get the value of the form inputs. Some implementations are listening on form input changes and maintaining a copy of the form input values. This is however not necessary and we prefer using the standard browser API, and using the DOM as the single source of truth.</p>
 <p>The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-sign-up-route/src/UI/SignUp.svelte" target="_blank" rel="noopener">full source code</a> for the <code>SignUp</code> component can be accessed in the repository.</p>
 <h2 id="UI-testing"><a href="#UI-testing" class="headerlink" title="UI testing"></a>UI testing</h2><p>As before, we test the UI with <a href="https://storybook.js.org/" target="_blank" rel="noopener">Storybook</a>. The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-sign-up-route/stories/RealWorld.SignUp.stories.js" target="_blank" rel="noopener">corresponding stories</a> are available in the source repository.</p>
-<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>We have the following events for the <em>sign up</em> route:</p>
+<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>We have the following events for the <em>sign-up</em> route:</p>
 <div class="table-container">
 <table>
 <thead>
@@ -596,23 +596,23 @@
 <tr>
 <td style="text-align:left"><code>CLICKED_SIGNUP</code></td>
 <td style="text-align:left">form data (<code>{username, email, password}</code>)</td>
-<td style="text-align:left">user submits the <em>sign up</em> form</td>
+<td style="text-align:left">user submits the <em>sign-up</em> form</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>FAILED_SIGN_UP</code></td>
-<td style="text-align:left">errors (as returned from sign up API)</td>
-<td style="text-align:left">user submitted the <em>sign up</em> form but the request failed</td>
+<td style="text-align:left">errors (as returned from sign-up API)</td>
+<td style="text-align:left">user submitted the <em>sign-up</em> form but the request failed</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>SUCCEEDED_SIGN_UP</code></td>
-<td style="text-align:left">signed up user (as returned from sign up API)</td>
-<td style="text-align:left">user submitted the <em>sign up</em> form and the request succeeded</td>
+<td style="text-align:left">signed up user (as returned from sign-up API)</td>
+<td style="text-align:left">user submitted the <em>sign-up</em> form and the request succeeded</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Additionally, the user may click on links (like <em>have an account</em>). However, this is not handled directly by the machine. Instead, this is handled by the browser as any other links, triggering a change of url, which then triggers a <em>ROUTE_CHANGED</em> event to the machine.</p>
-<h2 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h2><p>We have the following commands for the <em>sign up</em> route:</p>
+<p>Additionally, the user may click on links (like <em>have an account</em>). However, this is not handled directly by the machine. Instead, this is handled by the browser as any other links, triggering a change of URL, which then triggers a <em>ROUTE_CHANGED</em> event to the machine.</p>
+<h2 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h2><p>We have the following commands for the <em>sign-up</em> route:</p>
 <div class="table-container">
 <table>
 <thead>
@@ -630,20 +630,20 @@
 </tr>
 <tr>
 <td style="text-align:left"><code>SIGN_UP</code></td>
-<td style="text-align:left">sign up form data (<code>{username, email, password}</code>)</td>
+<td style="text-align:left">sign-up form data (<code>{username, email, password}</code>)</td>
 <td style="text-align:left">sends an API request to sign the user up</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h2 id="Commands-implementation"><a href="#Commands-implementation" class="headerlink" title="Commands implementation"></a>Commands implementation</h2><p>To implement the redirect command (without having a reload of the page), we have to update directly the browser location. We do so with <em>pushState</em> in order to have the browser history updated without the <code>onhashchange</code> event being triggered. The latter is important as we listen on <code>onhashchange</code> to send a <code>ROUTE_CHANGED</code> to the machine, and we do not want that event to be triggered for a redirection. Just like for the previous rouet, the function realizing the redirection is passed to the corresponding command handler as effect handler: </p>
+<h2 id="Commands-implementation"><a href="#Commands-implementation" class="headerlink" title="Commands implementation"></a>Commands implementation</h2><p>To implement the redirect command (without having a reload of the page), we have to update directly the browser location. We do so with <em>pushState</em> in order to have the browser history updated without the <code>onhashchange</code> event being triggered. The latter is important as we listen on <code>onhashchange</code> to send a <code>ROUTE_CHANGED</code> to the machine, and we do not want that event to be triggered for a redirection. Just like for the previous route, the function realizing the redirection is passed to the corresponding command handler as effect handler: </p>
 <pre><code class="hljs javascript">[REDIRECT]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
   <span class="hljs-keyword">const</span> hash = params;
   <span class="hljs-keyword">const</span> &#123; redirect &#125; = effectHandlers;
 
   redirect(hash);
 &#125;,</code></pre>
-<p>To implement the sign up command, we defer to the API and update the session repository with the new user data. The logic, as before is enclosed into functions passed as effect handlers (<code>saveUser</code>, and <code>register</code>):</p>
+<p>To implement the sign-up command, we defer to the API and update the session repository with the new user data. The logic, as before is enclosed into functions passed as effect handlers (<code>saveUser</code>, and <code>register</code>):</p>
 <pre><code class="hljs javascript">[SIGN_UP]: <span class="hljs-function">(<span class="hljs-params">dispatch, params, effectHandlers</span>) =&gt;</span> &#123;
   <span class="hljs-keyword">const</span> &#123; email, username, password &#125; = params;
   <span class="hljs-keyword">const</span> &#123; register, saveUser &#125; = effectHandlers;
@@ -658,7 +658,7 @@
       dispatch(&#123; [FAILED_SIGN_UP]: errors &#125;);
     &#125;);
 &#125;</code></pre>
-<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>Writing the tests for the user scenarios, we came to realize the need to refactor our implementation to accomodate the new route, and the future routes in a way that will minimize maintainability and testing issues.</p>
+<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>Writing the tests for the user scenarios, we came to realize the need to refactor our implementation to accommodate the new route, and the future routes in a way that will minimize maintainability and testing issues.</p>
 <p>What are those issues which did not appear before?</p>
 <p>On the one hand, we now have a lot of <em>props</em> for our <code>RealWorld</code> component. Some of these props are only relevant for one specific route. Testing the <code>RealWorld</code> component with all these <em>props</em> will quickly become cumbersome, so we create one component for each route. We will arrange our rendering code to be able to test each route component separately. This concretely means having the <code>RealWorld</code> pick the component to display as a function of the route, and pass the appropriate selection of the <code>RealWorld</code> <em>props</em> to the corresponding route component.</p>
 <p>Svelte allows us to implement this logic relatively straightforwardly with <a href="https://svelte.dev/tutorial/svelte-component" target="_blank" rel="noopener"><em>dynamic components</em></a>. The <code>scr/App.svelte</code> thus goes like this:</p>
@@ -731,7 +731,7 @@
   <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> &#123;<span class="hljs-attr">user</span>&#125; /&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">svelte:component</span> <span class="hljs-attr">this</span>=<span class="hljs-string">"&#123;component&#125;"</span> &#123;<span class="hljs-attr">...componentProps</span>&#125;  &#123;<span class="hljs-attr">dispatch</span>&#125; /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
-<p>The second maintainability issue we are confronted with is that our state machine becomes quite large to be conveniently contained in a single file. As a result, we create a <code>behaviour</code> directory and we put there the parts of the state machine concerned exclusively with a specific route in separate files, and aggregate those parts into the state machine (<code>src/behaviour/fsm.js</code>):</p>
+<p>The second maintainability issue we are confronted with is that our state machine becomes quite large to be conveniently contained in a single file. As a result, we create a <code>behavior</code> directory and we put there the parts of the state machine concerned exclusively with a specific route in separate files, and aggregate those parts into the state machine (<code>src/behaviour/fsm.js</code>):</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; ACTION_IDENTITY, createStateMachine &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"kingly"</span>;
 <span class="hljs-keyword">import</span> &#123; events, routes &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"../constants"</span>;
 <span class="hljs-keyword">import</span> &#123; allRoutesViewLens, initialAllRoutesState, updateURL &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"./common"</span>;
@@ -868,7 +868,7 @@
   [allRoutes]: initialAllRoutesState,
   [signUp]: initialSignUpRouteState
 &#125;;</code></pre>
-<p>This in turn means that we have to change the extended state updates performed by the action factories so they now address the new location of the extended state to modify. To do this in a maintainable way, we take inspiration from <a href="https://medium.com/@dtipson/functional-lenses-d1aba9e52254" target="_blank" rel="noopener">functional lenses</a>. We do not use exactly that due to the shape of our <code>updateState</code> function, but we do create view and update helpers functions for each of our route which will update the relevant parts of the extended state. We correspondingly update our <code>updateState</code> to reflect these changes. For instance:</p>
+<p>This in turn means that we have to change the extended state updates performed by the action factories so they now address the new location of the extended state to modify. To do this in a maintainable way, we take inspiration from <a href="https://medium.com/@dtipson/functional-lenses-d1aba9e52254" target="_blank" rel="noopener">functional lenses</a>. We do not use exactly that due to the shape of our <code>updateState</code> function, but we do create view and update helpers functions for each of our routes which will update the relevant parts of the extended state. We correspondingly update our <code>updateState</code> to reflect these changes. For instance:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">routeViewLens</span>(<span class="hljs-params">route</span>) </span>&#123;
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">extendedState</span>) </span>&#123;
     <span class="hljs-keyword">return</span> extendedState[route];
@@ -931,10 +931,10 @@
     UNAUTH_USER_ON_SIGNUP_SEES_FORM_FAILS_SIGN_UP_AND_SEES_FORM_WITH_ERRORS_COMMANDS
   ]
 ];</code></pre>
-<h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The behaviour to modelize is relatively simple with the small complication to make sure that the user is not authenticated before signing up a possibly new user. We maintain the current modelization for the <em>home</em> route while adding the <em>sign up</em> behaviour to the existing machine. The final modelization is as follows:</p>
+<h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The behavior to modelize is relatively simple with the small complication that we must make sure that the user is not authenticated before signing up a potentially new user. We maintain the current modelization for the <em>home</em> route while adding the <em>sign-up</em> behavior to the existing machine. The final modelization is as follows:</p>
 <figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-signup.png" alt="realworld-home-tag-filter"></p>
 </figure>
-<p>Note how we check twice that our user is authenticated before either displaying the sign up form, or executing the sign up API request. Note also, how the nested structure of our state machine allows us to focus on the part that we are interested in visualizing, while folding the part we are not interested in.</p>
+<p>Note how we check twice that our user is authenticated before either displaying the sign-up form, or executing the sign-up API request. Note also, how the nested structure of our state machine allows us to focus on the part that we are interested in visualizing, while folding the part we are not interested in.</p>
 <h2 id="Behaviour-implementation"><a href="#Behaviour-implementation" class="headerlink" title="Behaviour implementation"></a>Behaviour implementation</h2><p>The implementation (<code>src/behaviour/signUp.js</code>) derives directly from the modelization. We reproduce here the main part which are the transitions:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> signUpTransitions = [
   &#123;
@@ -983,11 +983,12 @@
   &#125;
 ];</code></pre>
 <p>The transitions are very simply the edges of the previously represented graph.</p>
-<h2 id="What-we-learnt"><a href="#What-we-learnt" class="headerlink" title="What we learnt"></a>What we learnt</h2><p>Changing the shape of the extended state of the machine potentially requires reviewing <em>all</em> the state updates made by the action factories. As the machine grows, this can be cumbersome, which is why it is important to think in advance about how to structure the machine to minimize this. Here, we know that there are route-specific piece of states which will only be modified by specific section of the machine, which we have grouped in dedicated compound states (one compound state per route). As such, in the future, we will not have to review the whole machine when reviewing a piece of state, but only the part which read or update that piece of state, which we have conveniently identified beforehand. </p>
-<p>By separating the behaviour specification from the implementation, and by modelizing the behaviour as a state machine, we can deduce from the modelization graph that a user will not be able to sign up if he is already authenticated. Such assurance is hard to derive in a simple manner in other implementations. To do so in those alternative implementation involving components may require delving into the code, and manually tracing the user flows across the component tree. This illustrates on an admittedly small scale why state machines are so often used in safety-critical software where safety guarantees are paramount.</p>
-<p>As a matter of fact, the <a href="https://github.com/jorgebucaran/hyperapp" target="_blank" rel="noopener"><code>hyperapp</code></a> <a href="https://hyperapp.netlify.com/register" target="_blank" rel="noopener">implementation</a> the <a href="https://demo.realworld.io/#/" target="_blank" rel="noopener">Conduit demo app</a> does not implement those safety requirements. This could be simply an oversight (there are after all no written specifications for the Conduit app), or this could result from a view-first approach which favors such behavioural oversight. </p>
-<p>In any case, it is by specifying our behaviour with state machines that we realized, <strong>before reaching to the implementation phase</strong> the necessity to add an authentication check before signing up the user, while there was no specifications telling us to do so. This is another crucial advantage of state machine modelization. They make it easier to review a modelized behaviour vs. the expected behaviour, and find design bugs before they get buried deep into the code. </p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>sign up</em> route for our application. We followed the <a href="/real-world.html#Implementation-strategy">implementation strategy</a> we previously detailed. In the process of doing so, we came to refactor our application, keeping our architecture, but structuring the application per route to minimize the amount of code we have to modify to add future routes. We have around 10 routes to implement so it was important to do so early. We were also able with our modelization to ensure at the design level that our requirements will be indeed implemented by our implementation. For instance, our design ensures that a user clicking twice on the <em>sign up</em> button will not lead to attempting to sign in twice.</p>
+<h2 id="What-we-learned"><a href="#What-we-learned" class="headerlink" title="What we learned"></a>What we learned</h2><p>Changing the shape of the extended state of the machine potentially requires reviewing <em>all</em> the state updates made by the action factories. As the machine grows, this can be cumbersome. A simple way to mitigate the impact of refactoring the extended state is to divide it into groups with high cohesion and low coupling. That means that the pieces of state within a group should be accessed or modified by action factories from a selected set of control states. This ensures that refactoring those pieces of state will only affect that selected set of control states. On the other hand, pieces of state in different groups should rarely be accessed or modified together by action factories.</p>
+<p>In our implementation of the Conduit application, we thus grouped pieces of state by route, and associated each route with a dedicated compound control state. When we will refactor a route due to changes in requirements, we will know the parts that will be impacted by the new requirements, and the parts that will not.</p>
+<p>Then, by separating the behavior specification from the implementation, and by modelizing the behavior as a state machine that we can visually represent as a graph, we can immediately deduce  properties of our modelization. In this case, the modelization graph directly shows that a user will not be able to sign up if he is already authenticated: no transition implements this behavior in the graph. Such assurance is hard to derive in a simple manner in implementations that are not based on state machines. In a fictional alternative implementation that relies on components, developers may have to delve into the code for each component and manually trace the user flows across the component tree. This illustrates, on an admittedly small scale, why state machines are so often used in safety-critical software where safety guarantees are paramount.</p>
+<p>As a matter of fact, the <a href="https://github.com/jorgebucaran/hyperapp" target="_blank" rel="noopener"><code>hyperapp</code></a> <a href="https://hyperapp.netlify.com/register" target="_blank" rel="noopener">implementation</a> of the <a href="https://demo.realworld.io/#/" target="_blank" rel="noopener">Conduit demo app</a> does not implement those safety requirements. This could be simply an oversight (there are after all no written specifications for the Conduit app), or this could result from a view-first approach that favors such behavioral oversight. </p>
+<p>In any case, it is by specifying our behavior with state machines that we realized, <strong>before reaching the implementation phase</strong> the necessity to add an authentication check before signing up the user, while there were no specifications telling us to do so. This is another crucial advantage of state machine modelization. They make it easier to review a modelized behavior vs. the expected behavior, and find design bugs before they get buried deep into the code. </p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>sign-up</em> route for our application. We followed the <a href="/real-world.html#Implementation-strategy">implementation strategy</a> we previously detailed. In the process of doing so, we came to refactor our application, keeping our architecture, but structuring the application per route to minimize the amount of code we have to modify to add future routes. We have around 10 routes to implement so it was important to do so early. We were also able with our modelization to ensure at the design level that our requirements will be indeed implemented by our implementation. For instance, our design ensures that a user clicking twice on the <em>sign-up</em> button will not lead to attempting to sign in twice.</p>
 
   
   
