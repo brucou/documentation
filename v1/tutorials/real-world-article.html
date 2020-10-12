@@ -519,7 +519,7 @@
   
     <p>In this section, we will modelize and implement the user flows related to the <em>Article</em> route. In that route, the navigating user can view an article’s content. If the navigating user is also the article’s author, he can edit or delete the article. Otherwise, he can follow the article’s author and like/unlike the article. In all cases, the navigating user can additionally post comments about the article, and can delete the comments he posted.</p>
 <p>An example of article route is as follows: <code>/#/article/real-worl-editor-9zlwb7</code>.</p>
-<p>The user needs not be authenticated to access the <em>Article</em> route. However, if the user tries to follow or like/unlike an article’s author, he will be redirected to the <em>Sign up</em> route. Additionally, if the user is not authenticated, he cannot post comments.</p>
+<p>The user does not need to be authenticated to access the <em>Article</em> route. However, if the user tries to follow or like/unlike an article’s author, he will be redirected to the <em>Sign-up</em> route. Additionally, if the user is not authenticated, he cannot post comments.</p>
 <h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><p>We already have identified the screens in the <em>Specifications</em> section. Ler’s remind them here:</p>
 <div class="fullwidth"><div class="table-container">
 <table>
@@ -550,7 +550,7 @@
 </table>
 </div>
 </div>
-<p>The UI for the <em>Article</em> route will be implemented with a <em>Article</em> Svelte component. The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-article-route/src/UI/Article.svelte" target="_blank" rel="noopener">full source code</a> for the <code>Article</code> component can be accessed in the repository.</p>
+<p>The UI for the <em>Article</em> route will be implemented with an <em>Article</em> Svelte component. The <a href="https://github.com/brucou/realworld-kingly-svelte/blob/with-article-route/src/UI/Article.svelte" target="_blank" rel="noopener">full source code</a> for the <code>Article</code> component can be accessed in the repository.</p>
 <h2 id="UI-testing"><a href="#UI-testing" class="headerlink" title="UI testing"></a>UI testing</h2><p>As before, we test the UI with <a href="https://storybook.js.org/" target="_blank" rel="noopener">Storybook</a>. The <a href="https://github.com/brucou/realworld-kingly-svelte/tree/with-article-route/stories" target="_blank" rel="noopener">corresponding stories</a> are available in the source repository.</p>
 <h2 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h2><p>We have the following commands for the <em>Article</em> route (some of which also being used for the <em>User Profile</em> route):</p>
 <div class="table-container">
@@ -576,27 +576,27 @@
 <tr>
 <td style="text-align:left"><code>FETCH_ARTICLE</code></td>
 <td style="text-align:left">slug</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#get-article" target="_blank" rel="noopener"><em>Get Article</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#get-article" target="_blank" rel="noopener"><em>Get Article</em> endpoint</a></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>FETCH_COMMENTS</code></td>
 <td style="text-align:left">slug</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#get-comments-from-an-article" target="_blank" rel="noopener"><em>Get Comments from an Article</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#get-comments-from-an-article" target="_blank" rel="noopener"><em>Get Comments from an Article</em> endpoint</a></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>DELETE_COMMENT</code></td>
 <td style="text-align:left">slug, comment id</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#delete-comment" target="_blank" rel="noopener"><em>Delete Comment</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#delete-comment" target="_blank" rel="noopener"><em>Delete Comment</em> endpoint</a></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>POST_COMMENT</code></td>
 <td style="text-align:left">slug, comment to post</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#add-comments-to-an-article" target="_blank" rel="noopener"><em>Add Comments to an Article</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#add-comments-to-an-article" target="_blank" rel="noopener"><em>Add Comments to an Article</em> endpoint</a></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>DELETE_ARTICLE</code></td>
 <td style="text-align:left">slug</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#delete-article" target="_blank" rel="noopener"><em>Delete Article</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#delete-article" target="_blank" rel="noopener"><em>Delete Article</em> endpoint</a></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>FAVORITE_ARTICLE</code></td>
@@ -611,12 +611,12 @@
 <tr>
 <td style="text-align:left"><code>FOLLOW_PROFILE</code></td>
 <td style="text-align:left">username</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#follow-user" target="_blank" rel="noopener"><em>Follow user</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#follow-user" target="_blank" rel="noopener"><em>Follow user</em> endpoint</a></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>UNFOLLOW_PROFILE</code></td>
 <td style="text-align:left">username</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#unfollow-user" target="_blank" rel="noopener"><em>Unfollow user</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#unfollow-user" target="_blank" rel="noopener"><em>Unfollow user</em> endpoint</a></td>
 </tr>
 </tbody>
 </table>
@@ -678,22 +678,22 @@
 <tr>
 <td style="text-align:left"><code>FETCHED_ARTICLE</code></td>
 <td style="text-align:left">article data</td>
-<td style="text-align:left">api response to a <em>Get profile</em> request</td>
+<td style="text-align:left">API response to a <em>Get profile</em> request</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>FAILED_FETCH_ARTICLE</code></td>
 <td style="text-align:left">—</td>
-<td style="text-align:left">api response to a <em>Get profile</em> request</td>
+<td style="text-align:left">API response to a <em>Get profile</em> request</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>FETCH_COMMENTS_OK</code></td>
 <td style="text-align:left">comments</td>
-<td style="text-align:left">api error response to a <em>Get profile</em> request</td>
+<td style="text-align:left">API error response to a <em>Get profile</em> request</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>FETCH_COMMENTS_NOK</code></td>
 <td style="text-align:left">—</td>
-<td style="text-align:left">api error response to a <em>Get profile</em> request</td>
+<td style="text-align:left">API error response to a <em>Get profile</em> request</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>DELETE_COMMENTS_OK</code></td>
@@ -790,15 +790,15 @@
 </div>
 </div>
 <h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The modelization we reach is the following:</p>
-<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-article.png" alt="article route behaviour modelization high level"></p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-article.png" alt="article route behavior modelization high level"></p>
 </figure>
 <p>Zooming in on the <em>Article route</em> compound control state:</p>
-<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-article-level-1.png" alt="article route behaviour modelization zoomed in"></p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-article-level-1.png" alt="article route behavior modelization zoomed in"></p>
 </figure>
-<h2 id="Refactor"><a href="#Refactor" class="headerlink" title="Refactor"></a>Refactor</h2><p>We used a <code>API_REQUEST_FAILED</code> event gathering failure for some API requests for which we have the same failure processing: <em>post comment</em>, <em>delete article</em>, <em>delete comments</em>, <em>fetch comments</em>. As a matter of fact, if any of these three API calls fail, we just ignore that failure. We do not include however in that list the <em>fetch article</em> API call, as we think it is important to show some message to the user in that case to indicate that something went wrong fetching the article. Similarly, the follow/unfollow and like/unlike feature are also excluded from the list, as the corresponding button is re-enabled in case of request failure. The <code>API_REQUEST_FAILED</code> event thus replaces the following events: <code>POST_COMMENTS_NOK</code>, <code>DELETE_ARTICLE_NOK</code>, <code>DELETE_ARTICLE_NOK</code>, <code>FETCH_COMMENTS_NOK</code>.</p>
-<p>Second refactor we did, is isolate the common path structure describing the execution of an API which requires user authentication. Here, the following features require authentication: <em>post comment</em>, <em>delete article</em>, <em>delete comments</em>, <em>like/unlike article</em>, <em>follow/unfollow user</em>. The common structure then goes as follows:</p>
+<h2 id="Refactor"><a href="#Refactor" class="headerlink" title="Refactor"></a>Refactor</h2><p>We used an <code>API_REQUEST_FAILED</code> event gathering failure for some API requests for which we have the same failure processing: <em>post comment</em>, <em>delete article</em>, <em>delete comments</em>, <em>fetch comments</em>. As a matter of fact, if any of these three API calls fail, we just ignore that failure. We do not include however in that list the <em>fetch article</em> API call, as we think it is important to show, in that case, some message to the user to indicate that something went wrong fetching the article. Similarly, the follow/unfollow and like/unlike feature are also excluded from the list, as the corresponding button is re-enabled in case of request failure. The <code>API_REQUEST_FAILED</code> event thus replaces the following events: <code>POST_COMMENTS_NOK</code>, <code>DELETE_ARTICLE_NOK</code>, <code>DELETE_ARTICLE_NOK</code>, <code>FETCH_COMMENTS_NOK</code>.</p>
+<p>Our second refactor had us isolating the common path structure describing the execution of an API which requires user authentication. Here, the following features require authentication: <em>post comment</em>, <em>delete article</em>, <em>delete comments</em>, <em>like/unlike article</em>, <em>follow/unfollow user</em>. The common structure then goes as follows:</p>
 <p><img src="../../graphs/real-world/API%20call%20with%20auth%20required.png" alt="API call with authentication required"></p>
-<p>The parameters (<em>trigger</em>, <em>cond</em>, <em>API call</em>, <em>Start</em>, <em>Next</em>, <em>Fallback</em>, <em>fallback</em>) allow to fully specify the sought-out behaviour.</p>
+<p>The parameters (<em>trigger</em>, <em>cond</em>, <em>API call</em>, <em>Start</em>, <em>Next</em>, <em>Fallback</em>, <em>fallback</em>) allow us to fully specify the sought-out behavior.</p>
 <h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>As before, we pick our user scenarios to fulfill the <em>all-transitions</em> coverage criteria. </p>
 <p>In our main cases, we distinguish between unauthenticated users:</p>
 <div class="table-container">
@@ -1031,7 +1031,7 @@
   &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"article-rendering"</span>, <span class="hljs-attr">event</span>: DELETE_ARTICLE_OK, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">action</span>: redirectToHome &#125;,
   &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"article"</span>, <span class="hljs-attr">event</span>: ROUTE_CHANGED, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">action</span>: updateURL &#125;
 ].flat();</code></pre>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>Article</em> route of our Conduit clone demo application. We recognized recurring behaviour patterns and abstracted them to compose the machine modelizing the route’s behaviour.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>Article</em> route of our Conduit clone demo application. We recognized recurring behavior patterns and abstracted them to compose the machine modelizing the route’s behavior.</p>
 
   
   
