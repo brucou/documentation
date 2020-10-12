@@ -519,7 +519,7 @@
   
     <p>In this section, we will modelize and implement the user flows related to the <em>User profile</em> route. In that route, articles favorited by a given user (i.e. liked by that user) and articles written by that given user will be displayed. The user in question is identified by the route with the shape <code>#/@username</code>. Articles liked by a given user have a specific route of the shape <code>#/@username/favorites</code>, allowing for direct linking. </p>
 <p>If the (authenticated) user navigating to the route is the same as the user whose profile must be displayed, that user may edit his profile settings. Otherwise, the navigating user may follow the user whose profile page is displayed. In both cases, the navigating user may view and like/unlike any displayed articles, just like in the <em>Home</em> route.</p>
-<p>The user needs not be authenticated to access the <em>User profile</em> route and its functionalities. The user however needs to authenticate himself to like/unlike an article, or follow a user profile. When attempting to do so, the user will be redirected to the <em>Sign up</em> page.</p>
+<p>The user does not need to be authenticated to access the <em>User profile</em> route and its functionalities. The user however needs to authenticate himself to like/unlike an article or follow a user profile. When attempting to do so, the user will be redirected to the <em>Sign-up</em> page.</p>
 <h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><p>We already have identified the screens in the <em>Specifications</em> section. Ler’s remind them here:</p>
 <div class="fullwidth"><div class="table-container">
 <table>
@@ -591,22 +591,22 @@
 <tr>
 <td style="text-align:left"><code>FETCH_PROFILE</code></td>
 <td style="text-align:left">username</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#get-profile" target="_blank" rel="noopener"><em>Get profile</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#get-profile" target="_blank" rel="noopener"><em>Get profile</em> endpoint</a></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>FOLLOW_PROFILE</code></td>
 <td style="text-align:left">username</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#follow-user" target="_blank" rel="noopener"><em>Follow user</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#follow-user" target="_blank" rel="noopener"><em>Follow user</em> endpoint</a></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>UNFOLLOW_PROFILE</code></td>
 <td style="text-align:left">username</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#unfollow-user" target="_blank" rel="noopener"><em>Unfollow user</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#unfollow-user" target="_blank" rel="noopener"><em>Unfollow user</em> endpoint</a></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>FETCH_AUTHOR_FEED</code></td>
 <td style="text-align:left">articles’ author’s username and page index</td>
-<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#list-articles" target="_blank" rel="noopener"><em>List Articles</em> end point</a></td>
+<td style="text-align:left">sends an API request to the <a href="https://github.com/gothinkster/realworld/tree/master/api#list-articles" target="_blank" rel="noopener"><em>List Articles</em> endpoint</a></td>
 </tr>
 </tbody>
 </table>
@@ -685,12 +685,12 @@
 <tr>
 <td style="text-align:left"><code>FETCHED_PROFILE</code></td>
 <td style="text-align:left">profile data</td>
-<td style="text-align:left">api response to a <em>Get profile</em> request</td>
+<td style="text-align:left">API response to a <em>Get profile</em> request</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>FETCH_PROFILE_NOK</code></td>
 <td style="text-align:left">error</td>
-<td style="text-align:left">api error response to a <em>Get profile</em> request</td>
+<td style="text-align:left">API error response to a <em>Get profile</em> request</td>
 </tr>
 </tbody>
 </table>
@@ -731,12 +731,12 @@
     .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> dispatch(&#123;[UNFOLLOW_NOK]: err&#125;))
 &#125;,</code></pre>
 <h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The modelization we reach is the following:</p>
-<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-profile.png" alt="profile route behaviour modelization high level"></p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-profile.png" alt="profile route behavior modelization high level"></p>
 </figure>
 <p>Zooming in on the <em>Profile route</em> compound control state:</p>
-<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-profile-level-1.png" alt="profile route behaviour modelization zoomed in"></p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-profile-level-1.png" alt="profile route behavior modelization zoomed in"></p>
 </figure>
-<h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>We pick a set of scenarios which covers the transitions of our modelized graph, so that every transition in our graph is exercised at least one during our tests. We can conceptually separate those scenarios into main cases and edge cases (API request failure, unexpected inputs etc.).</p>
+<h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>We pick a set of scenarios that covers the transitions of our modelized graph so that every transition in our graph is exercised at least once during our tests. We can conceptually separate those scenarios into main cases and edge cases (API request failure, unexpected inputs, etc.).</p>
 <p>In the main cases group, we will select the following tests: </p>
 <div class="table-container">
 <table>
@@ -847,7 +847,7 @@
     USER_NAVIGATES_TO_PROFILE_FOLLOWS_AND_IS_REDIRECTED_COMMANDS
   ]
 ];</code></pre>
-<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>We take advantage of our TDD refactoring stage to do a little bit of cleanup in our application shell. We also initially started with events such as <code>FOLLOW_OK</code>, <code>UNFOLLOW_OK</code>, <code>FOLLOW_NOK</code>, <code>UNFOLLOW_NOK</code>, i.e. 4 events to cover the API responses linked to the follow/unfollow functionality. We brought that down to 2: <code>TOGGLE_FOLLOW_OK</code> and <code>TOGGLE_FOLLOW_NOK</code>. We also identified some possible target for refactoring (some actions are duplicated) but do not act on them just yet. When we will stop and have a look at our application performance and size, we may DRY things up further.</p>
+<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>We take advantage of our TDD refactoring stage to do a little bit of cleanup in our application shell. We also initially started with events such as <code>FOLLOW_OK</code>, <code>UNFOLLOW_OK</code>, <code>FOLLOW_NOK</code>, <code>UNFOLLOW_NOK</code>, i.e. 4 events to cover the API responses linked to the follow/unfollow functionality. We brought that down to 2: <code>TOGGLE_FOLLOW_OK</code> and <code>TOGGLE_FOLLOW_NOK</code>. We also identified some possible targets for refactoring (some actions are duplicated) but do not act on them just yet. When we will stop and have a look at our application performance and size, we may DRY things up further.</p>
 <h2 id="Behaviour-implementation"><a href="#Behaviour-implementation" class="headerlink" title="Behaviour implementation"></a>Behaviour implementation</h2><p>The implementation (<code>src/behaviour/profile.js</code>) derives directly from the modelization. We reproduce here the main part which are the transitions:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> profileTransitions = [
   &#123;
@@ -994,7 +994,7 @@
   &#125;,
   &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"profile"</span>, <span class="hljs-attr">event</span>: ROUTE_CHANGED, <span class="hljs-attr">to</span>: <span class="hljs-string">"routing"</span>, <span class="hljs-attr">action</span>: updateURL &#125;,
 ];</code></pre>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>Profile</em> route of our Conduit clone application. As the user interface for the <em>Profile</em> route had commonalities both at the interface and behaviour level with the <em>Home</em> route, we were able to reuse part of the <em>Home</em> route implementation. We also identified further opportunities for code size reduction.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We implemented the <em>Profile</em> route of our Conduit clone application. As the user interface for the <em>Profile</em> route had commonalities both at the interface and behavior level with the <em>Home</em> route, we were able to reuse part of the <em>Home</em> route implementation. We also identified further opportunities for code size reduction.</p>
 
   
   
