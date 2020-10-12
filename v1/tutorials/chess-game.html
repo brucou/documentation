@@ -323,7 +323,7 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learned</a>
     </li>
   
     
@@ -365,19 +365,6 @@
     
     <li>
       <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
-    </li>
-  
-    
-    
-      
-      
-      
-      
-      
-    
-    
-    <li>
-      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
     </li>
   
     
@@ -530,7 +517,7 @@
     <h1>Two-player chess game</h1>
   
   
-    <p>In the previous sections, we saw how to implement a password meter, whose behaviour is modelized with state machines. We illustrated basic concepts which will be constantly recurring, such as control states, extended state, transitions, guards, actions, commands. In this section, we will modelize a more complex interface, and illustrate advanced concepts like state nesting, compound control states, initial transitions, and command and effect handlers.</p>
+    <p>In the previous sections, we saw how to implement a password meter, whose behavior is modelized with state machines. We illustrated basic concepts that will be constantly recurring, such as control states, extended state, transitions, guards, actions, commands. In this section, we will modelize a more complex interface, and illustrate advanced concepts like state nesting, compound control states, initial transitions, and command and effect handlers.</p>
 <h2 id="Specifications"><a href="#Specifications" class="headerlink" title="Specifications"></a>Specifications</h2><p>This application is a two-player chess game. Follows some screens sample of the application in different states:</p>
 <div class="table-container">
 <table>
@@ -558,13 +545,13 @@
 <li>white plays, then black plays repeatedly till a game end condition is reached</li>
 </ul>
 </li>
-<li>When a player whose turn it is clicks on one of his pieces, the piece is temporarily highlighted till the move is performed. The player must subsequently click on a board location to indicate the target location for the piece. The piece is removed from its current position and moved to the target location.</li>
+<li>When a player whose turn it is to play clicks on one of his pieces, the piece is temporarily highlighted till the move is performed. The player must subsequently click on a board location to indicate the target location for the piece. The piece is removed from its current position and moved to the target location.</li>
 <li>When the game is over, as per the chess game rules, no more actions may be performed by the players.</li>
 </ul>
-<h2 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h2><p>The previously informally specified behaviour can be modelized formally with the following state machine:</p>
+<h2 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h2><p>The previously informally specified behavior can be modelized formally with the following state machine:</p>
 <p><img src="../../graphs/chess%20game%20with%20hierarchy%20no%20undo.jpg" alt="chess game no undo"></p>
 <p>This machine presents new aspects vs. what we presented in the previous example. First of all, it has hierarchy. The <em>White plays</em> control state is <strong>nested within</strong> the <em>White turn</em> control state. We will say that <em>White turn</em> is a <strong>compound state</strong>, and in contrast, that <em>White plays</em> is an <strong>atomic state</strong>. </p>
-<p>Compound states have an initial control state which is obtained as the target control state for the initial transition for that compound state. The initial transition is recognizable by the fact that its origin control state is the <em>init</em> control state — singled out from the other nodes using a smaller node size, and a different colour. In our modelization, the initial control state for <em>White turn</em> is <em>White plays</em>. </p>
+<p>Compound states have an initial control state which is obtained as the target control state for the initial transition for that compound state. The initial transition is recognizable by the fact that its origin control state is the <em>init</em> control state — singled out from the other nodes using a smaller node size, and a different color. In our modelization, the initial control state for <em>White turn</em> is <em>White plays</em>. </p>
 <p>In our modelization, the machine starts in the <em>White turn</em> initial control state. As this is a compound state, the machine then immediately moves to the initial control state of that state, which is <em>White plays</em>. As the latter control state is atomic, the machine remains in that initial control state and starts listening to events.</p>
 <p>In the general case, the mechanism is identical. When a machine transitions to a compound state, it immediately transitions to the initial state for that compound state.</p>
 <h2 id="API-dive"><a href="#API-dive" class="headerlink" title="API dive"></a>API dive</h2><p>With Kingly, we will call that transition, an <strong>initial transition</strong>, and we will add it to the data structure passed to the state machine factory: </p>
@@ -668,14 +655,14 @@
     ]
   &#125;
 &#125;</code></pre>
-<p>The command <code>MOVE_PIECE</code> requests execution of the player’s move in the chess engine. As the implementation uses React, we use the <a href="https://github.com/brucou/react-state-driven" target="_blank" rel="noopener">react-state-driven</a> library to integrate with React. This library is documented in its own section. It suffices to say for now that <code>react-state-driven</code> exposes a <code>&lt;Machine /&gt;</code> component which takes a machine, an event emitter, a React component to execute the <code>render</code> commands received from the machine, command handlers and event handlers to actually run the received commands.</p>
+<p>The command <code>MOVE_PIECE</code> requests execution of the player’s move in the chess engine. As the implementation uses React, we use the <a href="https://github.com/brucou/react-state-driven" target="_blank" rel="noopener">react-state-driven</a> library to integrate with React. This library is documented in its own section. It suffices to say for now that <code>react-state-driven</code> exposes a <code>&lt;Machine /&gt;</code> component which takes a machine, an event emitter, a React component to execute the <code>render</code> commands received from the machine, command handlers, and event handlers to actually run the received commands.</p>
 <p>The usage with <code>react-state-driven</code> is to issue render commands whose parameters specify a screen to render. By default, the configured <code>renderWith</code> React component (here <code>ChessBoard</code>) is called with those parameters. For instance:</p>
 <pre><code class="hljs js">&#123;
   <span class="hljs-attr">command</span>: COMMAND_RENDER,
   <span class="hljs-attr">params</span>: &#123; draggable, width, position, boardStyle, squareStyles, onSquareClick &#125;
 &#125;,</code></pre>
 <p>will lead to rendering the React element <code>ChessBoard(draggable, width, position, boardStyle, squareStyles, onSquareClick)</code>.</p>
-<p>Non-render commands are addressed by specifying a command handler which receive in addition to the commands parameters, the event emitter, and the effect handlers. Effect handlers isolate the execution of effects into single-concern functions. In our example, the <code>MOVE_PIECE</code> command handler will be called as a <code>function (next, {from, to}, effectHandlers)</code>, matching the parameters of the command (<code>params: {from: fromSquare, to:square}</code>): </p>
+<p>Non-render commands are addressed by specifying a command handler that receives in addition to the commands parameters, the event emitter, and the effect handlers. Effect handlers isolate the execution of effects into single-concern functions. In our example, the <code>MOVE_PIECE</code> command handler will be called as a <code>function (next, {from, to}, effectHandlers)</code>, matching the parameters of the command (<code>params: {from: fromSquare, to:square}</code>): </p>
 <label for="mn-demo-27" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-27" class="margin-toggle"><span class="marginnote"><p>Note as the chess engine is passed as effect handler, and made available to the <code>MOVE_PIECE</code> command handler. At testing time, it will be easy to replace the chess engine by a mock without recurring to an extra mocking library or tying tests to a specific framework. This is yet another facet of Kingly’s portable UI philosophy.</p>
 </span> 
 <pre><code class="hljs js">render(
@@ -711,15 +698,15 @@
   </iframe>
 </div>
 
-<h2 id="What-we-learnt"><a href="#What-we-learnt" class="headerlink" title="What we learnt"></a>What we learnt</h2><p>This example introduced new concepts and learnings:</p>
+<h2 id="What-we-learned"><a href="#What-we-learned" class="headerlink" title="What we learned"></a>What we learned</h2><p>This example introduced new concepts and learnings:</p>
 <ul>
 <li>control states can be nested — the machine is then called a <strong>hierarchical state machine</strong></li>
 <li>compound states are control states which can have nested control states</li>
 <li>compound states specify their initial control state with an initial transition to the target control state</li>
 <li>the <code>createStateMachine</code> factory accepts an optional parameter which allows developers to inject dependencies into guards, and action factories</li>
 <li>integration with React can be achieved manually or via the <a href="https://github.com/brucou/react-state-driven" target="_blank" rel="noopener"><code>react-state-driven</code></a> library</li>
-<li>the state machine controls the UI and necessitates only of React stateless components. No hooks, mixin and other React paraphernalia to learn.</li>
-<li>a functional design which separates effect execution from other effectless computations, concentrates effect execution into single-concern functions, and gathers all orchestration concerns into a single state machine enables cohesion, low coupling and easy testing.</li>
+<li>the state machine controls the UI and necessitates only of React stateless components. No hooks, mixin, and other React paraphernalia to learn.</li>
+<li>a functional design that separates effect execution from other effectless computations, concentrates effect execution into single-concern functions, and gathers all orchestration concerns into a single state machine enables cohesion, low coupling, and easy testing.</li>
 </ul>
 <p>Additionally, we illustrated the integration of Kingly with React through the <code>react-state-driven</code> library’s <code>&lt;Machine renderWith fsm eventHandler commandHandlers effectHandlers&gt;</code> component:</p>
 <ul>
@@ -734,7 +721,7 @@
     <div class="next-links">
       
       
-        <span>← <a href="/documentation/v1/tutorials/password-meter-learnt.html">What we learnt</a></span>
+        <span>← <a href="/documentation/v1/tutorials/password-meter-learnt.html">What we learned</a></span>
       
       
       

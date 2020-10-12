@@ -323,7 +323,7 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learned</a>
     </li>
   
     
@@ -365,19 +365,6 @@
     
     <li>
       <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
-    </li>
-  
-    
-    
-      
-      
-      
-      
-      
-    
-    
-    <li>
-      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
     </li>
   
     
@@ -530,13 +517,13 @@
     <h1>RealWorld app</h1>
   
   
-    <p>In the previous tutorials, we saw how to implement relatively simple applications with Kingly state machines. In this tutorial, we are going to implement Conduit, which describes itself as <a href="https://github.com/gothinkster/realworld" target="_blank" rel="noopener"><strong>the mother of all demo apps</strong></a>. That application aims at replacing the  app commonly used to compare front-end frameworks. The <a href="https://medium.com/@ericsimons/introducing-realworld-6016654d36b5" target="_blank" rel="noopener">rationale for the RealWorld app</a> is similar to that of <a href="http://todomvc.com/" target="_blank" rel="noopener">TodoMVC</a>: implementing the same application with different frameworks allows to make an informed comparison between frameworks. RealWorld takes it up a notch by specifying a <strong>full-stack</strong>, <em>realistic</em> web application. Eric Simons, cofounder of StackBlitz, and at the origin of the idea, explains:</p>
+    <p>In the previous tutorials, we saw how to implement relatively simple applications with Kingly state machines. In this tutorial, we are going to implement Conduit, which describes itself as <a href="https://github.com/gothinkster/realworld" target="_blank" rel="noopener"><strong>the mother of all demo apps</strong></a>. That application aims at replacing the  app commonly used to compare front-end frameworks. The <a href="https://medium.com/@ericsimons/introducing-realworld-6016654d36b5" target="_blank" rel="noopener">rationale for the RealWorld app</a> is similar to that of <a href="http://todomvc.com/" target="_blank" rel="noopener">TodoMVC</a>: implementing the same application with different frameworks allows us to make an informed comparison between frameworks. RealWorld takes it up a notch by specifying a <strong>full-stack</strong>, <em>realistic</em> web application. Eric Simons, cofounder of StackBlitz, and at the origin of the idea, explains:</p>
 <blockquote>
-<p>Reusing the best ideas from TodoMVC […], we took a stab at solving this problem by creating the design &amp; API spec for a real world social blogging site similar to Medium.com. We named it <strong>Conduit</strong>.</p>
+<p>Reusing the best ideas from TodoMVC […], we took a stab at solving this problem by creating the design &amp; API spec for a real-world social blogging site similar to Medium.com. We named it <strong>Conduit</strong>.</p>
 </blockquote>
 <p>The Conduit app, as of today (August 2019), has 18 front-end implementations, ranging from popular frameworks (Elm, Vue, React, Angular, Aurelia) to minimalistic frameworks (AppRun, Hyperapp, Crizmas MVC), and including compile-to-JavaScript frameworks (Svelte, Stencil, Purescript, ClojureScript). The Conduit app is additionally used as a base for <a href="https://www.infoq.com/news/2019/04/real-world-framework-benchmark/" target="_blank" rel="noopener">benchmarking front-end frameworks</a>.</p>
-<p>The Kingly architecture allows us to pick our UI framework as we please. In this tutorial, we will do a step-by-step implementation of Conduit with Svelte. We will also provide implementations in other frameworks (React and Vue), this time without detailing much the steps taken. Because we will be using only the basic syntax of Svelte, which is akin to HTML, you should not need know much about Svelte to understand the UI implementation.</p>
-<h2 id="Svelte-primer"><a href="#Svelte-primer" class="headerlink" title="Svelte primer"></a>Svelte primer</h2><p>We thus quickly give the reader some Svelte basics to better understand the code. Svelte is a compiler which takes <code>.svelte</code> files and turn them into standard JavaScript. A <code>.svelte</code> file consists of three optional parts: </p>
+<p>The Kingly architecture allows us to pick our UI framework as we please. In this tutorial, we will do a step-by-step implementation of Conduit with Svelte. We will also provide implementations in other frameworks (React and Vue), this time without detailing much the steps taken. Because we will be using only the basic syntax of Svelte, which is akin to HTML, you should not need to know much about Svelte to understand the UI implementation.</p>
+<h2 id="Svelte-primer"><a href="#Svelte-primer" class="headerlink" title="Svelte primer"></a>Svelte primer</h2><p>We thus quickly give the reader some Svelte basics to better understand the code. Svelte is a compiler that takes <code>.svelte</code> files and turns them into standard JavaScript. A <code>.svelte</code> file consists of three optional parts: </p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
 <span class="hljs-comment">// imports, props, local variables definitions, and code to execute </span>
 <span class="hljs-comment">// once, every time the component is mounted</span>
@@ -697,7 +684,7 @@
 </table>
 </div>
 </div>
-<label for="mn-demo-17" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-17" class="margin-toggle"><span class="marginnote"><p>Note that it is unclear if the reference implementation is exempt of bugs. It is however the reference implementation, and we will seek to replicate its behaviour unless we have a good reason not to.</p>
+<label for="mn-demo-17" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-17" class="margin-toggle"><span class="marginnote"><p>Note that it is unclear if the reference implementation is exempt of bugs. It is however the reference implementation, and we will seek to replicate its behavior unless we have a good reason not to.</p>
 </span>
 <p>Authentication is required to:</p>
 <ul>
@@ -707,18 +694,18 @@
 <li>publish an article</li>
 <li>and obviously to modify one’s settings and profile</li>
 </ul>
-<p>The <em>Sign in</em> and <em>Sign up</em> screens will display validation information in case of errors while attempting login or signing up. Markwdown can be used in published articles, but not in posted comments. </p>
+<p>The <em>Sign in</em> and <em>Sign up</em> screens will display validation information in case of errors while attempting to log in or sign up. Markdown can be used in published articles, but not in posted comments. </p>
 <p>Other general front-end specs can be found <a href="https://github.com/gothinkster/realworld/tree/master/spec#frontend-specs" target="_blank" rel="noopener">here</a>.</p>
 <h2 id="Specifications-analysis"><a href="#Specifications-analysis" class="headerlink" title="Specifications analysis"></a>Specifications analysis</h2><p>While not an overly complex application, Conduit has enough features and a complex enough control flow to be challenging to implement. As the former section exemplifies, the same route can correspond to different states of the application and may result in different screens being displayed and different control flow being applied. </p>
 <p>Good, that is exactly what state machines are good at modelizing.</p>
 <p>The application is complex enough to warrant thinking ahead about architecture before entering the implementation phase.</p>
-<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>We have two obvious interfaced systems: the browser DOM and the API server with a series of endpoints. We have to handle authentication, so we will add a third interfaced systems (local storage) to keep track of a user session. Authentication state does not belong to application state as its life span is greater than the application’s.</p>
-<p>The whole application will be handled with a single state machine. The Kingly architecture will be used, separating commands from command execution. API commands will be gather in a domain module with all the allowed domain operations (typically CRUD operations on domain objects — articles, comments, etc.). </p>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>We have two obvious interfaced systems: the browser DOM and the API server with a series of endpoints. We have to handle authentication, so we will add a third interfaced systems (local storage) to keep track of a user session. Authentication state does not belong to application state as its life span is greater than that of the application state.</p>
+<p>The whole application will be handled with a single state machine. The Kingly architecture will be used, separating commands from command execution. API commands will be gathered in a domain module with all the allowed domain operations (typically CRUD operations on domain objects — articles, comments, etc.). </p>
 <p>This leads us to the following architecture:</p>
 <figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-high-level-architecture.png" alt="articles"></p>
 </figure>
-<h2 id="Cross-cutting-concerns"><a href="#Cross-cutting-concerns" class="headerlink" title="Cross-cutting concerns"></a>Cross-cutting concerns</h2><p>Routing and authentication will be omnipresent parts of the application. It is thus convenient to think ahead how to integrate those. </p>
-<p>Routing in Conduit is driven by the hash tag. As such there is no reload when updating the route. Instead the browser emits a <code>hashchange</code> event. If the user loads or reloads a page, the route is available in the <code>location</code> property of the global <code>window</code> object. Lastly, we also have to deal with the <em>Back</em> and <em>Forward</em> buttons. To that effect, we can use the <code>popstate</code> event. In summary:</p>
+<h2 id="Cross-cutting-concerns"><a href="#Cross-cutting-concerns" class="headerlink" title="Cross-cutting concerns"></a>Cross-cutting concerns</h2><p>Routing and authentication will be omnipresent parts of the application. It is thus convenient to think ahead of how to integrate those. </p>
+<p>Routing in Conduit is driven by the hashtag. As such, there is no reload when updating the route. Instead, the browser emits a <code>hashchange</code> event. If the user loads or reloads a page, the route is available in the <code>location</code> property of the global <code>window</code> object. Lastly, we also have to deal with the <em>Back</em> and <em>Forward</em> buttons. To that effect, we can use the <code>popstate</code> event. In summary:</p>
 <div class="table-container">
 <table>
 <thead>
@@ -747,18 +734,18 @@
 </tbody>
 </table>
 </div>
-<p>By subscribing to the aforementioned events, and forwarding them to the Kingly machine, we can handle hash-routing without need of an external library.</p>
-<p>Authentication consists of login and registration (sign up). The Conduit API specs provide a <a href="https://github.com/gothinkster/realworld/tree/master/api#authentication" target="_blank" rel="noopener">login endpoint</a> and a <a href="https://github.com/gothinkster/realworld/tree/master/api#registration" target="_blank" rel="noopener">registration endpoint</a> which we will use to that purpose. The returned user data will be stored locally on the user browser (using the <code>LocalStorage</code> browser API). This means a successful log-in API call must result in an update of local storage. Similarly a successful log out must update accordingly <code>LocalStorage</code>. With this set, identifying whether a user is authenticated becomes a matter of reading the user log-in data in the local storage. </p>
+<p>By subscribing to the aforementioned events, and forwarding them to the Kingly machine, we can handle hash-routing without the need of an external library.</p>
+<p>Authentication consists of login and registration (sign up). The Conduit API specs provide a <a href="https://github.com/gothinkster/realworld/tree/master/api#authentication" target="_blank" rel="noopener">login endpoint</a> and a <a href="https://github.com/gothinkster/realworld/tree/master/api#registration" target="_blank" rel="noopener">registration endpoint</a> which we will use for that purpose. The returned user data will be stored locally on the user browser (using the <code>LocalStorage</code> browser API). This means a successful log-in API call must result in an update of local storage. Similarly, a successful log out must update accordingly <code>LocalStorage</code>. With this set, identifying whether a user is authenticated becomes a matter of reading the user log-in data in the local storage. </p>
 <h2 id="Implementation-strategy"><a href="#Implementation-strategy" class="headerlink" title="Implementation strategy"></a>Implementation strategy</h2><p>This being a reasonably complex application, we are going to follow an iterative implementation process. At each implementation step, we will seek to implement a larger portion of the specification.</p>
 <p>In each step, we will follow the same process:</p>
 <ul>
-<li>select the user flows we want to implement (generally will be those associated to a given route)</li>
-<li>get a refined understanding of the interface behaviour associated to the selected user flows</li>
+<li>select the user flows we want to implement (generally will be those associated with a given route)</li>
+<li>get a refined understanding of the interface behavior associated with the selected user flows</li>
 <li>define the user interface’s interface (i.e. <em>props</em> interface, and dispatched events)</li>
 <li>implement and test the user interface</li>
 <li>define the command module interface (i.e. which commands are triggered by the user, the shape of those commands, and which events they produce as a result of their execution)</li>
 <li>implement and test the command module</li>
-<li>modelize the interface behaviour with a graph editor (I recommend <a href="https://www.yworks.com/downloads#yEd" target="_blank" rel="noopener">yed</a>)</li>
+<li>modelize the interface behavior with a graph editor (I recommend <a href="https://www.yworks.com/downloads#yEd" target="_blank" rel="noopener">yed</a>)</li>
 <li>write some tests (with at least all-transitions coverage of the modelized machine)</li>
 <li>write the definition of the machine (i.e. initial state, events, transitions, guards, action factories) and pass the previous tests</li>
 <li>pass a few end-to-end tests (all-states coverage may suffice if high confidence derived from unit tests)</li>
@@ -771,7 +758,7 @@
     <div class="next-links">
       
       
-        <span>← <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html">What we learnt</a></span>
+        <span>← <a href="/documentation/v1/tutorials/chess-game-ultimate.html">Chess game - more features</a></span>
       
       
       

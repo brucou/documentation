@@ -323,7 +323,7 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learnt</a>
+      <a href="/documentation/v1/tutorials/password-meter-learnt.html" class="sidebar-link">What we learned</a>
     </li>
   
     
@@ -365,19 +365,6 @@
     
     <li>
       <a href="/documentation/v1/tutorials/chess-game-ultimate.html" class="sidebar-link">Chess game - more features</a>
-    </li>
-  
-    
-    
-      
-      
-      
-      
-      
-    
-    
-    <li>
-      <a href="/documentation/graphs/movie-search/TMDB-lessons-learnt.html" class="sidebar-link">What we learnt</a>
     </li>
   
     
@@ -530,7 +517,7 @@
     <h1>Chess game - adding features</h1>
   
   
-    <p>In this section, we are going to add features to our chess application. In the process, we will evaluate the maintainability of a state machine modelling. The new features will also allow us to illustrate how using compound control states decreases the size of our modelling graphs.</p>
+    <p>In this section, we are going to add features to our chess application. In the process, we will evaluate the maintainability of state machine modelization. The new features will also allow us to illustrate how using compound control states decreases the size of our modelized graphs.</p>
 <h2 id="New-features’-specifications"><a href="#New-features’-specifications" class="headerlink" title="New features’ specifications"></a>New features’ specifications</h2><p>We will add an info area which will indicate:</p>
 <ul>
 <li>the player who must play next</li>
@@ -576,9 +563,9 @@
 <h2 id="Modification-targets"><a href="#Modification-targets" class="headerlink" title="Modification targets"></a>Modification targets</h2><p>Remember that the functional design of Kingly encourages implementing a user interface with three modules with non-overlapping concerns:</p>
 <p><img src="../../graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly.jpg" alt="kingly-favoured ui architecture"></p>
 <p>The interfaced systems, including the input device (e.g. your laptop or mobile phone) send events to the Kingly machine. The machine computes commands which are executed by command handlers. Those commands may result in API calls on the interfaced systems, whose responses may be processed by the command handler module, which in turn decides whether to send an event back to the machine for processing. This is the architecture that is implemented through the <code>react-state-driven</code> library for use within the React ecosystem.</p>
-<p>As such, modifying our current chess game implementation potentially implies modifying all, some or none of the three modules.</p>
+<p>As such, modifying our current chess game implementation potentially implies modifying all, some, or none of the three modules.</p>
 <p>We will examine these modules one by one and see how adding the new features impact the current code. Let’s start with the machine.</p>
-<h3 id="The-machine"><a href="#The-machine" class="headerlink" title="The machine"></a>The machine</h3><p>A modification of the machine behaviour is a modification of the parameters of its factory function, namely:</p>
+<h3 id="The-machine"><a href="#The-machine" class="headerlink" title="The machine"></a>The machine</h3><p>A modification of the machine behavior is a modification of the parameters of its factory function, namely:</p>
 <ul>
 <li>states</li>
 <li>events</li>
@@ -594,8 +581,8 @@
 </ul>
 </li>
 </ul>
-<p>The first two added features do not modify the control flow of the machine (i.e. the transitions of the machine). Instead, they involve displaying additional information. The impact thus is limited to the rendering command, which may extend to an impact on the action factories producing those commands. Those factories themselves takes as parameter the extended state of the machine, and the triggering event. The two new features add no new events, hence we are left with examining the possible modifications of the extended state of the machine. To summarize, the impact is limited to all rendering commands, action factories producing rendering commands, and the extended state of the machine.</p>
-<p>The <em>undo</em> feature introduces a new <code>Undo</code> event, corresponding to the new <em>undo</em> button. The new behaviour can be described as follows:</p>
+<p>The first two added features do not modify the control flow of the machine (i.e. the transitions of the machine). Instead, they involve displaying additional information. The impact thus is limited to the rendering command, which may extend to an impact on the action factories producing those commands. Those factories themselves takes as parameter the extended state of the machine and the triggering event. The two new features add no new events, hence we are left with examining the possible modifications of the extended state of the machine. To summarize, the impact is limited to all rendering commands, action factories producing rendering commands, and the extended state of the machine.</p>
+<p>The <em>undo</em> feature introduces a new <code>Undo</code> event, corresponding to the new <em>undo</em> button. The new behavior can be described as follows:</p>
 <ul>
 <li>in the absence of <em>undo</em> click, the machine behaves as before</li>
 <li>when the user clicks on <em>undo</em>:<ul>
@@ -606,20 +593,20 @@
 </li>
 </ul>
 <p>This gives us the following modelization:</p>
-<label for="mn-demo-5" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-5" class="margin-toggle"><span class="marginnote"><p>The machine modification are emphasized in red. Rendering commands are not represented for the sake of readability.</p>
+<label for="mn-demo-5" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-5" class="margin-toggle"><span class="marginnote"><p>The modifications performed on the machine are emphasized in red. Rendering commands are not represented for the sake of readability.</p>
 </span>
 <p><img src="../../graphs/chess%20game%20with%20hierarchy%20with%20undo%20with%20emphasis%20no%20grouping.jpg" alt>  </p>
 <p>It turns out that we can simplify our graph. The <em>Black plays</em> and <em>Black piece selected</em> are the totality of the control states of the compound state <em>Black turn</em>. We are going to factor the arrows leaving the two black atomic states into a unique one, linking the <em>Black turn</em> control state, and the common target control state <em>White plays</em>. We naturally do the same for whites, and the modelization becomes:</p>
 <p><img src="../../graphs/chess%20game%20with%20hierarchy%20with%20undo%20with%20emphasis.jpg" alt></p>
-<p>If that helps, you can think about it like an application of the good old distributivity law $ab + ac = a(b+c)$ with convenient definition of addition and multiplication operations. The bottom line is that we simplified our graph by reducing the number of edges (transitions) between nodes (control states). </p>
-<p>Why is that a good thing? First of all, this helps visualization. Having less edges to draw gives a clearer graph, which is important to communicate our design. Communicate our design in turn is important to evolve and maintain it. Maintaining 4 edges instead of 2 is more error-prone. Additionally, provided our compound states have some meaning, it reformulates more concisely the behaviour! That helps avoiding errors (say you had 5 control states in the <em>Black turn</em> and you forgot to wire one) and finding errors in our machine design (it would be weird if one control state would go to <em>White piece selected</em> instead of <em>White plays</em>).</p>
+<p>If that helps, you can think about it as an application of the good old distributivity law $ab + ac = a(b+c)$ with convenient definitions of addition and multiplication operations. The bottom line is that we simplified our graph by reducing the number of edges (transitions) between nodes (control states). </p>
+<p>Why is that a good thing? First of all, this helps visualization. Having fewer edges to draw gives a clearer graph, which is important to communicate our design. Communicate our design in turn is important to evolve and maintain it. Maintaining 4 edges instead of 2 is more error-prone. Additionally, provided our compound states have some meaning, it reformulates more concisely the behavior! That helps to avoid errors (say you had 5 control states in the <em>Black turn</em> and you forgot to wire one) and finding errors in our machine design (it would be weird if one control state would go to <em>White piece selected</em> instead of <em>White plays</em>).</p>
 <p>There is a last dimension to that. You could have for instance started your design in a top-down manner by identifying the <em>White turn</em> and <em>Black turn</em> control states, arriving first to this modelization:</p>
 <p><img src="../../graphs/chess%20game%20with%20hierarchy%20with%20undo%20with%20emphasis%20high%20level.jpg" alt></p>
-<p>This modelization is correct and complete, but less detailed. For instance, if in the <em>White turn</em> atomic control state, we have a <em>Click</em> event, and that <em>somehow</em> indicates a valid move which is not final, then we should indeed go to the <em>Black turn</em> atomic state. Our more detailed designed explicits the <em>somehow</em> by introducing a second inner state for when a piece has already been clicked. This process by which an atomic state becomes a compound state by introducing sub-states is called <em>refinement</em>. We will not say more about this at the moment. This will be the object of a separate tutorial dedicated to modelling techniques. It suffices for now to understand that modelling can be an iterative top-down process by which control states are identified and then refined till a sufficient level of details is reached. </p>
+<p>This modelization is correct and complete, but less detailed. For instance, if in the <em>White turn</em> atomic control state, we have a <em>Click</em> event, and that <em>somehow</em> indicates a valid move which is not final, then we should indeed go to the <em>Black turn</em> atomic state. Our more detailed designed explicits the <em>somehow</em> by introducing a second inner state for when a piece has already been clicked. This process by which an atomic state becomes a compound state by introducing sub-states is called <em>refinement</em>. We will not say more about this at the moment. This will be the object of a separate tutorial dedicated to modelization techniques. It suffices, for now, to understand that modeling can be an iterative top-down process by which control states are identified and then refined till a sufficient level of details is reached. </p>
 <p>Back to the subject matter of eliciting targets for modification to implement the new features, we have finished identifying the impact of the <em>undo</em> feature on the machine graph. We have a new event for the machine to process. The new transitions will come with new guards and action factories. The action factories should update the extended state of the machine so that it is reversed to its previous value, and produce a new <em>Undo</em> command to update the chess engine which implements the game logic. The extended state of the machine may have to be augmented to keep a history of previous moves — that would impact the <em>Move</em> action factories related. </p>
 <p>As a conclusion, as a result of the new features, we need to review all rendering commands, the action factories producing these commands, the extended state of the machine (adding properties to discriminate the player turn and the game status, and keeping a history of previous states), and add two new transitions.</p>
 <p> The updated machine is as follows:</p>
-<label for="mn-demo-13" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-13" class="margin-toggle"><span class="marginnote"><p>We reproduce here only the changes to the state machine. The full history of changes (rendering commands, action factories, etc.) can be observed by comparing with the <a href="https://glitch.com/~chess-game-basics" target="_blank" rel="noopener">code playground</a> from the previous implementation. At the machine level, the changes are the introduction of a new <code>Undo</code> event, two new properties to the extended state, and two new transitions.</p>
+<label for="mn-demo-13" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-13" class="margin-toggle"><span class="marginnote"><p>We reproduce here only the changes to the state machine. The full history of changes (rendering commands, action factories, etc.) can be observed by comparing it with the <a href="https://glitch.com/~chess-game-basics" target="_blank" rel="noopener">code playground</a> from the previous implementation. At the machine level, the changes are the introduction of a new <code>Undo</code> event, two new properties to the extended state, and two new transitions.</p>
 </span>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> events = [UNDO, BOARD_CLICKED, START];</code></pre>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> initialExtendedState = &#123;
@@ -685,7 +672,7 @@
 &#125;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> ChessBoardWithInfo</code></pre>
-<h3 id="Command-handlers"><a href="#Command-handlers" class="headerlink" title="Command handlers"></a>Command handlers</h3><p>We had two commands in the basic version of the chess game: <em>Render</em> and <em>Move</em>. We now have the new <em>Undo</em> command. Executing this commands simply means executing the <code>.undo</code> API of the chess engine:</p>
+<h3 id="Command-handlers"><a href="#Command-handlers" class="headerlink" title="Command handlers"></a>Command handlers</h3><p>We had two commands in the basic version of the chess game: <em>Render</em> and <em>Move</em>. We now have the new <em>Undo</em> command. Executing this command simply means executing the <code>.undo</code> API of the chess engine:</p>
 <pre><code class="hljs js">commandHandlers: &#123;
   (...)
   UNDO_MOVE: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">next, _, effectHandlers</span>) </span>&#123;
@@ -747,18 +734,19 @@
   &#125;</code></pre>
 <p>Can you tell at a glance the logic that the click handler implemented? </p>
 <p>We see branches, but it is not immediate how they relate to the interface specification. This problem could be remediated somewhat with a refactoring following the <a href="https://spin.atomicobject.com/2016/12/21/clean-code-full-stack-javascript/" target="_blank" rel="noopener">clean code principles</a>. For instance, the first branch <code>if(this.state.sourceSelection === -1)</code> would become <code>if (isPieceSelected)</code>. Applying this in every <code>if .. else</code> construct would then help figure out the logic.</p>
-<p>When that is done, a second problem remains: there are still many branches. The <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" target="_blank" rel="noopener">cyclomatic complexity</a> is 14! High cyclomatic complexity have the bad habit to correlate positively with the density of bugs. This comes from the fact that maintaining and updating logic in a code with 14 branches is error-prone. How would you go about adding an undo feature? Which branch(es) do you modify? Do you modify any in the first place? If you do, how can you be sure that you are not breaking other features? It is hard to tell both <strong>quickly</strong> and <strong>accurately</strong>.</p>
-<p>In comparison, the control flow implemented by the <code>if</code> branches is immediately visible in our state machine. The behaviour of the interface is understandable <strong>quickly</strong> without reaching for the code. That speed is achieved because targeted visualizations can help our brain process information much faster than the equivalent text representation — that is why we use graphs instead of data tables, images instead of words, maps instead of text instructions.</p>
-<p>The machine’s visualization shows in detail the control flow corresponding to the interface behavior while displaying the other details (state updates, rendering) with a low fidelity (only action names). The visualization however does not loose semantics: the corresponding visual language semantics are defined to be as <strong>accurate</strong> as the equivalent textual languages. </p>
-<p>As a matter of fact, Kingly comes with a <a href="https://brucou.github.io/documentation/v1/tooling/compiling.html">compiler</a> that converts from the visualization language into the JavaScript textual language (we could compile to <a href="https://ziglang.org/" target="_blank" rel="noopener">Zig</a>, <a href="https://www.rust-lang.org/" target="_blank" rel="noopener">Rust</a> or <a href="https://swift.org/" target="_blank" rel="noopener">Swift</a> as easily). Alternatively, as we did here, developers can encode the graph in a JSON data structure, and run the <code>createStateMachine</code> factory to generate an executable version of the machine. Either way, as the translation process is automated, developers cannot mess the implementation of the interface behavior. If the graph is correct (i.e. translates accurately the target specifications), and the compiler/machine factory is correct, the executable machine will also be.</p>
-<p>Because of the equivalence between the machine’s visualization and its implementation, the visualization can become the source of truth for the interface behavior. That source of truth thus serve as a <a href="https://johnfergusonsmart.com/living-documentation-not-just-test-reports/" target="_blank" rel="noopener">living documentation</a> of the interface behavior.</p>
-<p>&lt;<strong>TO REMOVE??</strong> How easy was it to modify our chess application? Identifying the impact of a new feature is relatively easy. Adding transitions, control states, guards is easy — they have a localized impact on the rest of the machine. However, changing the extended state potentially impacts the whole machine. In practice, with a good design, the impact area can be narrowed down. We will discuss modelling and modularization techniques in further sections of the tutorial.&gt;</p>
-<h2 id="What-we-learnt"><a href="#What-we-learnt" class="headerlink" title="What we learnt"></a>What we learnt</h2><p>We learnt a lot in this section. </p>
-<p>Compound states introduces a hierarchy of states which helps to hide complexity (the sub-states in the compound state) behind an abstraction layer (the compound state). In the bottom-up design process we followed, we reached a graph with 7 control states, which gives a detailed vision of the chess application behaviour. We also shown how a high-level graph, with only 3 states, can be automatically obtained by simply hiding the content of the compound states. Both visions have their value, and hierarchical state machines allow us to go back and forth between level of details seamlessly.</p>
-<p>Furthermore, we shown that compound states allows the designer to simplify the visualization of a model by substituting $n$ transitions by one transition when some conditions apply. That economy is desirable as it helps control the growing complexity that characterizes an iterative development process.</p>
-<p>We compared our machine-based interface implementation with a standard implementation and outlined that our implementation facilitates the maintainability of the application. It is easier and faster to understand the behaviour as a result of the visualization of the design, and the separation of concerns realized when breaking down the behaviour in control states, separating logic from effects, and using single-concern functions: guards, action factories, command handlers.</p>
-<p>We are also decreasing the surface area of bugs, as an executable version of the machine is generated by Kingly from the machine definition. Provided that Kingly itself is exempt of bugs, the produced machine (i.e. function) is guaranteed to follow the specified definition. </p>
-<p>Additionally, our behaviour model implemented by the machine serves as a living documentation of the specifications of the application’s behaviour.</p>
+<p>When that is done, a second problem remains: there are still many branches. The <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity" target="_blank" rel="noopener">cyclomatic complexity</a> is 14! A high cyclomatic complexity correlates positively with the density of bugs. This comes from the fact that maintaining and updating logic in a code section with 14 branches is error-prone. How would you go about adding an undo feature? Which branch(es) do you modify? Do you modify any in the first place? If you do, how can you be sure that you are not breaking other features? It is hard to tell both <strong>quickly</strong> and <strong>accurately</strong>.</p>
+<p>In comparison, the control flow implemented by the <code>if</code> branches is immediately visible in our state machine. The behavior of the interface is understandable <strong>quickly</strong> without reaching for the code. That speed is achieved because targeted visualizations can help our brain process information much faster than the equivalent text representation — that is why we use graphs instead of data tables, images instead of words, maps instead of text instructions.</p>
+<p>The machine’s visualization shows in detail the control flow corresponding to the interface behavior while displaying the other details (state updates, rendering) with low fidelity (only action names). The visualization however does not loose semantics: the corresponding visual language semantics are defined to be as <strong>accurate</strong> as the equivalent textual languages. </p>
+<p>As a matter of fact, Kingly comes with a <a href="https://brucou.github.io/documentation/v1/tooling/compiling.html">compiler</a> that converts from the visualization language into the JavaScript textual language (we could compile to <a href="https://ziglang.org/" target="_blank" rel="noopener">Zig</a>, <a href="https://www.rust-lang.org/" target="_blank" rel="noopener">Rust</a>, or <a href="https://swift.org/" target="_blank" rel="noopener">Swift</a> as easily). Alternatively, as we did here, developers can encode the graph in a JSON data structure, and run the <code>createStateMachine</code> factory to generate an executable version of the machine. Either way, as the translation process is automated, developers cannot mess the implementation of the interface behavior. If the graph is correct (i.e. translates accurately the target specifications), and the compiler/machine factory is correct, the executable machine will also be.</p>
+<p>Because of the equivalence between the machine’s visualization and its implementation, the visualization can become the source of truth for the interface behavior. That source of truth thus serves as a <a href="https://johnfergusonsmart.com/living-documentation-not-just-test-reports/" target="_blank" rel="noopener">living documentation</a> of the interface behavior.</p>
+<note how easy was it to modify our chess application? identifying the impact of a new feature is relatively easy. adding transitions, control states, guards -- they have localized on rest machine. however, changing extended state potentially impacts whole in practice, with good design, area can be narrowed down. we will discuss modelling and modularization techniques further sections tutorial.>
+
+<h2 id="What-we-learned"><a href="#What-we-learned" class="headerlink" title="What we learned"></a>What we learned</h2><p>We learned a lot in this section. </p>
+<p>Compound states introduce a hierarchy of states which helps to hide complexity (the sub-states in the compound state) behind an abstraction layer (the compound state). In the bottom-up design process we followed, we reached a graph with 7 control states, which gives a detailed vision of the chess application behavior. We also showed how a high-level graph, with only 3 states, can be automatically obtained by simply hiding the content of the compound states. Both visions have their value, and hierarchical state machines allow us to go back and forth between different levels of details seamlessly.</p>
+<p>Furthermore, we showed that compound states allow the designer to simplify the visualization of a model by substituting $n$ transitions by one transition when some conditions apply. That economy is desirable as it helps control the growing complexity that characterizes an iterative development process.</p>
+<p>We compared our machine-based interface implementation with a standard implementation and outlined that our implementation facilitates the maintainability of the application. It is easier and faster to understand the behavior as a result of the visualization of the design, and the separation of concerns realized when breaking down the behavior in control states, separating logic from effects, and using single-concern functions: guards, action factories, command handlers.</p>
+<p>We are also decreasing the surface area of bugs, as an executable version of the machine is generated by Kingly from the machine definition. Provided that Kingly itself is bug-free (!), the produced machine (i.e. function) is guaranteed to follow the specified definition. </p>
+<p>Additionally, our behavior model implemented by the machine serves as a living documentation of the specifications of the application’s behavior.</p>
 <h2 id="Exercises"><a href="#Exercises" class="headerlink" title="Exercises"></a>Exercises</h2><p>The following exercises should help you check your understanding:</p>
 <ul>
 <li>It would be nice to display the pieces as they are captured in the game. How would you add the feature? <strong>HINT:</strong> the ChessBoard React component <a href="https://www.chessboardjsx.com/props" target="_blank" rel="noopener">has a <em>prop</em></a> to that effect. </li>
@@ -766,7 +754,7 @@
 <li>We can improve on the info area by adding a message when the player attempts to make an invalid move. Do you see how to do it?</li>
 <li>The current specification do not allow for undo operations once the game is over. Can you change that so a player can undo also when the game is ended?</li>
 </ul>
-
+</note>
   
   
     <div class="next-links">
