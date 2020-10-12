@@ -519,7 +519,7 @@
   
     <p>In this section, we will modelize and implement the user flows related to the <em>settings</em> route. In that route, the user may:</p>
 <ul>
-<li>update his profile picture, username, biography, email and password </li>
+<li>update his profile picture, username, biography, email, and password </li>
 <li>logout</li>
 </ul>
 <p>The following rules apply:</p>
@@ -632,7 +632,7 @@
   <span class="hljs-keyword">const</span> &#123;removeUserSession&#125; = effectHandlers;
   removeUserSession();
 &#125;,</code></pre>
-<h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>We test four key user scenarios, checking the aforementioned behaviour rules, the content of which should be clear from their identifiers in the code:</p>
+<h2 id="User-scenarios-test"><a href="#User-scenarios-test" class="headerlink" title="User scenarios test"></a>User scenarios test</h2><p>We test four key user scenarios, checking the aforementioned behavior rules, the content of which should be clear from their identifiers in the code:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">const</span> userStories = [
   [
     UNAUTH_USER_ON_SETTINGS_IS_REDIRECTED,
@@ -656,12 +656,12 @@
   ]
 ];</code></pre>
 <h2 id="Behaviour-modelization"><a href="#Behaviour-modelization" class="headerlink" title="Behaviour modelization"></a>Behaviour modelization</h2><p>The modelization we reach is the following:</p>
-<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-settings.png" alt="settings route behaviour modelization high level"></p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-settings.png" alt="settings route behavior modelization high level"></p>
 </figure>
 <p>Zooming in on the <em>Editor route</em> compound control state:</p>
-<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-settings-level-1.png" alt="settings route behaviour modelization zoomed in"></p>
+<figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-routing-settings-level-1.png" alt="settings route behavior modelization zoomed in"></p>
 </figure>
-<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>Remember than in the previous route (the <em>Editor</em> route), we identified a recurring pattern of behaviour (authenticated form submission) which we abstracted in a function <code>getAuthenticatedFormPageTransitions</code>. We are going to use that function for our implementation, given that we again have the same pattern appearing for the <em>Settings</em> route.</p>
+<h2 id="Refactoring"><a href="#Refactoring" class="headerlink" title="Refactoring"></a>Refactoring</h2><p>Remember than in the previous route (the <em>Editor</em> route), we identified a recurring pattern of behavior (authenticated form submission) which we abstracted in a function <code>getAuthenticatedFormPageTransitions</code>. We are going to use that function for our implementation, given that we again have the same pattern appearing for the <em>Settings</em> route.</p>
 <p>We take advantage of our TDD refactoring stage to do a little bit of cleanup here and there in our Svelte UI code.</p>
 <h2 id="Behaviour-implementation"><a href="#Behaviour-implementation" class="headerlink" title="Behaviour implementation"></a>Behaviour implementation</h2><p>The implementation (<code>src/behaviour/editor.js</code>) derives directly from the modelization. We reproduce here the main part which are the transitions:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> settingsTransitions = [
