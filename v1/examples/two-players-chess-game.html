@@ -259,10 +259,10 @@
     <h1>Two-players chess game</h1>
   
   
-    <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This example is a simple user interface, which is used in the <a href="../tutorials">tutorials</a> section to introduce hierarchical machines. Aside from that, it showcases example of reuse of existing battle-tested components (<code>ChessBoard</code> component for displaying a chess game, <code>chess.js</code> library to handle the game itself) so the machine only focuses on the UI.</p>
+    <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This example is a simple user interface that is used in the <a href="../tutorials">tutorials</a> section to introduce hierarchical machines. Aside from that, it showcases how the reuse of battle-tested components (<code>ChessBoard</code> component for displaying a chess game, <code>chess.js</code> library to handle the game itself) allows the machine to focus only on the UI logic.</p>
 <p>Among the learnings from the example are:</p>
 <ul>
-<li>use of <code>settings</code> parameter for dependency injection (chess engine)</li>
+<li>use of the <code>settings</code> parameter for dependency injection (chess engine)</li>
 <li>use of history states</li>
 <li>you can do effects in the state machine if you immediately cancel them so that those effects are invisible from outside the machine</li>
 </ul>
