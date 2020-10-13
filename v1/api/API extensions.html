@@ -251,12 +251,8 @@
 <li>decorating action factories : entry actions are already implemented and will be documented in a future version of the library. Examples can be found in the <a href="https://github.com/brucou/kingly/blob/master/test/entry-actions.specs.js" target="_blank" rel="noopener">test directory</a>.</li>
 </ul>
 </li>
-<li>logging/tracing/monitoring<ul>
-<li>achieved through decorating both guards and action factories</li>
-</ul>
-</li>
 <li>contract checking (preconditions, postconditions and probably invariants - to be investigated) for both states and transitions<ul>
-<li>can be done by inserting in first position extra guards which either fail or throw, and decorating exising guards</li>
+<li>can be done by inserting in first position extra guards which either fail or throw, and decorating existing guards</li>
 </ul>
 </li>
 <li>overriding initial control state and extended state<ul>
@@ -265,8 +261,8 @@
 </li>
 </ul>
 <p>Note that some extensions may perform effects (logs, …), meaning that the order of evaluation and application of operations would then become significant in general. Extension performing effects should only be used in development.</p>
-<p>Equipped with a history of inputs and the corresponding history of outputs, it is also possible to do property-based testing (for instance checking that a pattern in a sequence of outputs occurs only when a pattern occurs in the matching sequence of inputs).</p>
-<p>Some extensions may be useful to check/test the <strong>design</strong> of the automata, i.e. checking that the automata which acts as modelization of requirements indeed satisfies the requirements. When sufficient confidence is acquired, those extensions can be safely removed or deactivated.</p>
+<p>Equipped with a history of inputs and the corresponding history of outputs, it is also possible to do property-based testing (for instance checking that a pattern in a sequence of outputs occurs only when another pattern occurs in the matching sequence of inputs).</p>
+<p>Some extensions may be useful to check/test the <strong>design</strong> of the automaton, i.e. checking that the automaton which acts as the modelization of requirements indeed satisfies the requirements. When sufficient confidence is acquired, those extensions can be safely removed or deactivated.</p>
 
   
   
