@@ -517,9 +517,9 @@
     <h1>Refactoring</h1>
   
   
-    <p>The graph that we came up with previously accurately describes the specifications for the Conduit demo app. However, anytime we need to do an action that requires authentication, we are checking the authentication of the user. This leads to many control states and transitions in the graph that carry essentially the same function. </p>
-<p>Instead of querying the authentication status every time, we now react to changes in authentication, and keep the authentication status in the extended state of the machine. We thus no longer to trigger an action to query the authentication status, we just need to access it in the extended state of the machine. A lot of transitions thus disappear. </p>
-<p>The machine is also refactored to reduce its depth by eliminating compoound states that are not factoring transitions. Eventually, the resulting graph has a depth of 3 and less control states and transitions: </p>
+    <p>The graph that we came up with previously accurately describes the specifications for the Conduit demo app. However, anytime we need to do an action that requires authentication, we are checking the authentication of the user. Doing this leads to many control states and transitions in the graph that essentially carry  the same function. </p>
+<p>Instead of querying the authentication status every time, we now react to changes in authentication and keep the authentication status in the extended state of the machine. We thus no longer need to trigger an action to query the authentication status —- we only need to access it in the extended state of the machine. A lot of transitions thus disappear. </p>
+<p>The machine is also refactored to reduce its depth by eliminating compound states that are not factoring transitions. Eventually, the resulting graph has a depth of 3 and fewer control states and transitions: </p>
 <figure class="fullwidth"><p><img src="../../graphs/real-world/realworld-with-subscription-syntax-experiment.png" alt="article route refactoring"></p>
 </figure>
 
