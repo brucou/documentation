@@ -663,7 +663,7 @@
 &#125;,</code></pre>
 <p>will lead to rendering the React element <code>ChessBoard(draggable, width, position, boardStyle, squareStyles, onSquareClick)</code>.</p>
 <p>Non-render commands are addressed by specifying a command handler that receives in addition to the commands parameters, the event emitter, and the effect handlers. Effect handlers isolate the execution of effects into single-concern functions. In our example, the <code>MOVE_PIECE</code> command handler will be called as a <code>function (next, {from, to}, effectHandlers)</code>, matching the parameters of the command (<code>params: {from: fromSquare, to:square}</code>): </p>
-<label for="mn-demo-27" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-27" class="margin-toggle"><span class="marginnote"><p>Note as the chess engine is passed as effect handler, and made available to the <code>MOVE_PIECE</code> command handler. At testing time, it will be easy to replace the chess engine by a mock without recurring to an extra mocking library or tying tests to a specific framework. This is yet another facet of Kingly’s portable UI philosophy.</p>
+<label for="mn-demo-27" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-27" class="margin-toggle"><span class="marginnote"><p>Note how the chess engine is passed as effect handler, and made available to the <code>MOVE_PIECE</code> command handler. At testing time, it will be easy to replace the chess engine by a mock without recurring to an extra mocking library or tying tests to a specific framework. This is yet another facet of Kingly’s portable UI philosophy.</p>
 </span> 
 <pre><code class="hljs js">render(
   h(
@@ -701,7 +701,7 @@
 <h2 id="What-we-learned"><a href="#What-we-learned" class="headerlink" title="What we learned"></a>What we learned</h2><p>This example introduced new concepts and learnings:</p>
 <ul>
 <li>control states can be nested — the machine is then called a <strong>hierarchical state machine</strong></li>
-<li>compound states are control states which can have nested control states</li>
+<li>compound states are control states that can have nested control states</li>
 <li>compound states specify their initial control state with an initial transition to the target control state</li>
 <li>the <code>createStateMachine</code> factory accepts an optional parameter which allows developers to inject dependencies into guards, and action factories</li>
 <li>integration with React can be achieved manually or via the <a href="https://github.com/brucou/react-state-driven" target="_blank" rel="noopener"><code>react-state-driven</code></a> library</li>
