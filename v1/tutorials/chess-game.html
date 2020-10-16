@@ -592,7 +592,7 @@
 &#125;);</code></pre>
 <label for="mn-demo-22" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-22" class="margin-toggle"><span class="marginnote"><p>We use here the chess engine to establish the validity of a move and detect the end game, but take care of reversing its effects. As a rule, guards and action factories <strong>must be pure functions</strong>. This avoids difficult-to-detect bugs where the game state is de-synchronized from the machine state. </p>
 </span>
-<p>Doing so make the event emitter and engine visible in guards and action factories. For instance:</p>
+<p>Doing so makes the event emitter and engine visible in guards and action factories. For instance:</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isLegalNonWinningMove</span>(<span class="hljs-params">extendedState, eventData, settings</span>)</span>&#123;
   <span class="hljs-keyword">const</span> &#123;chessEngine&#125; = settings;
   <span class="hljs-keyword">const</span> &#123;pieceSquare&#125; = extendedState;
@@ -609,7 +609,7 @@
 
   <span class="hljs-keyword">return</span> isLegalMove  &amp;&amp; !hasWon
 &#125;</code></pre>
-<p>Unlike the previous example, we need to inject the event emitter in the machine. As a matter of fact, the <code>ChessBoard</code> stateless React component, exposes an <code>onSquareClick</code> handler which is run when a player clicks on a board square. We thus need to pass the <code>click</code> event to the machine and to do so we need to access the machine’s event emitter. In the previous example, as we were the author of the rendering component, we injected directly the event emitter as property of the component. We cannot do that here as we cannot (and should not) modify the source code for <code>ChessBoard</code>:</p>
+<p>Unlike the previous example, we need to inject the event emitter in the machine. As a matter of fact, the <code>ChessBoard</code> stateless React component exposes an <code>onSquareClick</code> handler which is run when a player clicks on a board square. We thus need to pass the <code>click</code> event to the machine and to do so we need to access the machine’s event emitter. In the previous example, as we were the author of the rendering component, we injected directly the event emitter as property of the component. We cannot do that here as we cannot (and should not) modify the source code for <code>ChessBoard</code>:</p>
 <pre><code class="hljs js"><span class="hljs-keyword">const</span> onSquareClickFactory = memoize(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">eventEmitter</span>)</span>&#123;
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onSquareClick</span>(<span class="hljs-params">square</span>) </span>&#123;
     eventEmitter.next(&#123;[BOARD_CLICKED]: square&#125;)
