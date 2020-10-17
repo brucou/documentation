@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>ListOf — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ListOf — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ListOf — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  
+  
+    <h1>ListOf</h1>
+  
+  
+    <h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>The <code>ListOf</code> component allows to execute a single given template component for different values of a parameterizing input. Typically, the values come from an array, and a component is constructed from the execution, for each value of the array, of the given template component parameterized by that value.</p>
+<p>Practically speaking, this is akin to a <code>for</code> loop on an input array. While it is easy for a known array with a given length to execute that loop, the <code>ListOf</code> component abstract out managing cases where the array content or length is not known in advance. The <code>ListOf</code> component as such combines well with the <code>ForEach</code> component, which can serve as the source of the array from which build the loop.</p>
+<p>Note that for each incoming array, the <code>ListOf</code> component is switched off and then on again. This means any non-persisted state local to the component will be reinitialized. In this case this behaviour is not desired, a turn-around is to persist the local state to retrieve it between switches.</p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><h2 id="ListOf-ListOfSettings-gt-ListEmptyComponent-ListNonEmptyComponent-gt-ListOfComponent"><a href="#ListOf-ListOfSettings-gt-ListEmptyComponent-ListNonEmptyComponent-gt-ListOfComponent" class="headerlink" title="ListOf :: ListOfSettings -&gt; [ListEmptyComponent, ListNonEmptyComponent] -&gt; ListOfComponent"></a>ListOf :: ListOfSettings -&gt; [ListEmptyComponent, ListNonEmptyComponent] -&gt; ListOfComponent</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Creates a <code>ListOf</code> component whose behaviour is parameterized via <code>ListOfSettings</code>. Has exactly 2 children components corresponding to two cases :</p>
+<ul>
+<li>the source array has no items (empty array) : In that case, the first child component (<code>ListEmptyComponent</code>) is selected as the child component of relevance</li>
+<li>the source array has some items : In that case, the second child component (<code>ListNonEmptyComponent</code>) is selected as the child component of relevance</li>
+</ul>
+<p>The parametrization is as follows :</p>
+<ul>
+<li>The source array is specified by <code>list</code> property in settings, in the form of a string which is the name of the property to be found in the <code>Settings</code> parameter for the component. That property will hold the source array.</li>
+<li>The parameterizing array item is specified by <code>as</code> property in settings. The component will be executed with the property whose name is specified in <code>as</code> passed in its settings. </li>
+<li>the optional setting property <code>buildActionsFromChildrenSinks</code> has the same function as <code>mergeSinks</code> in the <code>m</code> component factory. It can be :<ul>
+<li>a function <code>mergeSinks :: makeOwnSinks -&gt; Array&lt;Sinks&gt; -&gt; Settings -&gt; Sinks</code><ul>
+<li>that function takes all sinks produced by parent and children components, and reduces them into a single <code>Sinks</code> object</li>
+</ul>
+</li>
+<li>a hashmap <code>mergeSinks :: HashMap&lt;SinkName, SinkMergeFn&gt;</code> with <code>SinkMergeFn :: Sink -&gt; Array&lt;Sink&gt; -&gt; Settings -&gt; Sinks</code><ul>
+<li>the hashmap contains for each given sink, a reducing function which takes all such given sink produced by the children component and the parent component (<code>makeOwnSinks</code>) and produces a single reduced sink.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>the optional setting property <code>actionsMap</code> serves to rename sinks returned by the reducing <code>mergeSinks</code> functions, whether user-configured or the default ones. <code>actionsMap</code> simply maps an input sink name (keys of the object) to an output sink name (values of the object).</li>
+</ul>
+<p>The behaviour is as follows :</p>
+<ul>
+<li>the source array pointed to by <code>list</code> property is identified and accessed</li>
+<li>If there is no values in the array, the first child component is selected</li>
+<li>If there are values in the array, the second child component is selected</li>
+<li>for all values in the array, the selected child component will receive that value in the property pointed to by <code>as</code> and be executed</li>
+<li>there will be then be as many resulting children components as there are values in the array (except if there were no values in the array, in which case there is only one child component)</li>
+<li>the resulting children components sinks and the parent component sinks are reduced into what will become the <code>ListOf</code> component sinks, according to the reducing logic specified by <code>buildActionsFromChildrenSinks</code> and <code>actionsMap</code> properties</li>
+</ul>
+<p><strong>NOTE</strong> : The sinks reducing function <code>buildActionsFromChildrenSinks</code> is called as such as most often, the children component will return intent sinks, which will be transformed into actions sinks by the reducing function. It seems the chosen name illustrates better the purpose than a more generic name like <code>mergeSinks</code>, which is already used in a number of other places and contexts.</p>
+<p><strong>NOTE</strong> : The <code>Pipe</code> combinator allows to <a href="https://github.com/cyclejs-community/component-combinators/blob/master/examples/AllInDemo/src/.MainPanel/..Project/...ProjectTaskList/TaskList.js#L65" target="_blank" rel="noopener">perform the same</a> conversion of intents sinks into action sinks.</p>
+<h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><ul>
+<li><code>ListOfComponent :: Component</code></li>
+<li><code>ListEmptyComponent :: Component</code></li>
+<li><code>ListNonEmptyComponent :: Component</code></li>
+<li><code>ListOfSettings :: Record {</code></li>
+<li><code>list :: SettingsPropertyPath</code> <strong>Mandatory</strong></li>
+<li><code>as :: SettingsPropertyName</code> <strong>Mandatory</strong></li>
+<li><code>buildActionsFromChildrenSinks :: (cf. m)</code> <strong>Optional</strong></li>
+<li><code>actionsMap :: HashMap&lt;SinkName, SinkName&gt;</code> <strong>Optional</strong></li>
+<li><code>}</code></li>
+<li><code>SinkName :: String</code></li>
+</ul>
+<h3 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h3><ul>
+<li>for a given configuration of the <code>list</code> setting property, there MUST be a matching property in the same settings object. That property must correspond to an array. That is, if <code>list</code> is <code>&#39;items.info&#39;</code>, then there must be an array in <code>settings.items.info</code>.</li>
+<li>there MUST be exactly two children components</li>
+</ul>
+<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><p>cf. demo and <a href="https://github.com/brucou/component-combinators/blob/master/test/ListOf.specs.js" target="_blank" rel="noopener">tests</a></p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ul>
+<li>Used in combination with <code>ForEach</code>, the <code>ListOf</code> component allows to implement displaying a list of component while allowing for the source array for that list to change dynamically (see demo).<ul>
+<li>note that the whole list component is switched off and then back on every time a new source array is produced. If one wants to, instead, match a diff of the new and current source array to a diff of the resulting components, that logic has to be implemented in a specific component whose input will be array updates instead of arrays.</li>
+</ul>
+</li>
+<li>The renaming facilities offered by the <code>ListOf</code> configuration allows to reuse existing library components with a slightly different surface API by making the connection between the output of upstreams components with the input of such existing library components.</li>
+</ul>
+
+  
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

@@ -1,0 +1,610 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>m - the generic component combinator — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="m - the generic component combinator — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="m - the generic component combinator — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  
+  
+    <h1>m - the generic component combinator</h1>
+  
+  
+    <h1 id="The-case-for-m-the-component-factory"><a href="#The-case-for-m-the-component-factory" class="headerlink" title="The case for m, the component factory"></a>The case for <code>m</code>, the component factory</h1><p>In a <a href="/posts/a-componentization-framework-for-cyclejs/">previous article</a> about componentization frameworks, we saw how parallel and sequential<br>composition are necessary to assemble components into a larger component. At the core of<br>composition is a <code>combine</code> function which takes components and combine them into a target component, i.e <code>combine :: Array&lt;Component&gt; -&gt; Component</code>. That function can take any extra arguments, in which case, by uncurrying, it is always possible to come back the canonical <code>combine</code> form shown previously. As any component used to derive another component can itself have been derived, componentization naturally leads to the manipulation of component trees.</p>
+<p>The function <code>m</code> is a such a combinator, specialized to the domain of reactive systems’s user interface, and which abstracts out a limited set of operations/patterns by which a component tree can be composed.</p>
+<p>In what follows :</p>
+<ul>
+<li><code>m</code> will be interchangeably termed as component combinator, component factory, utility function, or helper function.</li>
+<li>components will be understood as <code>:: Sources -&gt; Settings -&gt; Actions</code>, i.e. functions which :<ul>
+<li>take a <code>Sources</code> data structure which contains a way to receive event from event sources</li>
+<li>take a <code>Settings</code> data structure which allows to parameterize the behaviour of the component</li>
+<li>return an <code>Actions</code> data structure which encodes the actions to be performed by the reactive system under study.</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE</strong> : The type definition for components is adapted from the one used in the reactive framework <code>cyclejs</code>. We added the <code>Settings</code> parameter to cleanly separate the parameterization/configuration concern from the input sourcing concern. We believe this is an important, though trivial, design change, which allows, among other thing, for better readability. This is as a matter of fact in line with other major componentization efforts such as <code>React</code> which uses <code>props</code>  to that same parameterization effect.</p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><p>Abstracting from a large cyclejs codebase (20K+ lines of javascript), we retained a <code>m</code> combinator<br>articulated around three computation strategies, from the most generic to the most specific :</p>
+<ul>
+<li><code>CombineGenericSpecs</code></li>
+<li><code>CombineAllSinksSpecs</code></li>
+<li><code>CombinePerSinkSpecs</code></li>
+</ul>
+<p>Additionally, examining the patterns in that codebase, and given the specific importance of the<br>DOM in a user interface implementation (!), we refined the array of components to incorporate an<br> optional container component, which subjects the rest of the components to convenient rules as per the merging of DOM<br> content (slot-based merge, as specified for web components).</p>
+<p>Last, we incorporated other concerns that were frequently recurring in our codebase :</p>
+<ul>
+<li>parameterization of the <code>m</code> combinator</li>
+<li>contract checking (preconditions, postconditions)</li>
+<li>sources and settings preprocessing (we did not include sinks postprocessing (other than the<br>aforementioned postconditions checking), as this was relatively infrequently appearing in our codebase)</li>
+</ul>
+<p>The API of <code>m</code> hence derives directly from these considerations.</p>
+<p> In what follows :</p>
+<ul>
+<li>the component returned by the <code>m</code> factory will be called combined component</li>
+<li>the container component, when present, will sometimes be called the parent component</li>
+<li>the remnant of the component will be called children components</li>
+<li>We will use <code>Sinks</code> as a type synonym for <code>Actions</code>, and <code>Sink</code> as a type synonym for <code>ActionStream</code>. This is to reuse the terminology put in vogue by <code>cyclejs</code>.</li>
+</ul>
+<p>Let’s go over the three computation strategies for <code>m</code>.</p>
+<h2 id="m-CombineGenericSpecs-gt-Settings-gt-ComponentTree-gt-Component"><a href="#m-CombineGenericSpecs-gt-Settings-gt-ComponentTree-gt-Component" class="headerlink" title="m :: CombineGenericSpecs -&gt; Settings -&gt; ComponentTree -&gt; Component"></a><code>m :: CombineGenericSpecs -&gt; Settings -&gt; ComponentTree -&gt; Component</code></h2><h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><ul>
+<li><code>Component :: Sources -&gt; Settings -&gt; Sinks</code></li>
+<li><code>ComponentTree :: ChildrenComponents | [ContainerComponent, ChildrenComponents]</code></li>
+<li><code>ContainerComponent :: Component</code></li>
+<li><code>ChildrenComponents :: Array&lt;Component&gt;</code></li>
+<li><code>CombineGenericSpecs :: Record {</code><ul>
+<li><code>computeSinks :: ParentComponent -&gt; Array&lt;Component&gt; -&gt; Sources -&gt; Settings -&gt; Sinks</code></li>
+<li><code>makeLocalSources :: Optional &lt; Sources -&gt; Settings -&gt; Sources &gt;</code></li>
+<li><code>makeLocalSettings :: Optional &lt; Settings -&gt; Settings &gt;</code></li>
+<li><code>checkPreConditions :: Optional &lt; Sources -&gt; Settings -&gt; Boolean &gt;</code></li>
+<li><code>checkPostConditions :: Optional &lt; Sinks -&gt; Boolean &gt;</code></li>
+<li><code>}</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h3><p>Aside from the type contracts, there is the possibility to configure user-defined contracts (pre- and post-conditions), which are predicates who return true if the contract is fulfilled. There is no further contracts.</p>
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>The <code>CombineGenericSpecs</code> computation strategy is summarized in the following figure :</p>
+<p><img src="/img/graphs/m%20-%20CombineGenericSpecs.png" alt="m - CombineGenericSpecs"></p>
+<p>As a matter of fact, the <code>m</code> factory returns a component computed as follows :</p>
+<ol>
+<li>contracts are checked<ul>
+<li>if at least one contract fails, an exception is raised</li>
+</ul>
+</li>
+<li>additional sources and settings are generated via <code>makeLocalSources</code>, and <code>makeLocalSettings</code><ul>
+<li><code>makeLocalSources</code> returns the extra sources to inject  to the children and parent<br>components.<ul>
+<li>If not present, no extra sources are added.</li>
+<li><code>makeLocalSources</code> is called with the sources passed to the combined component and the fully merged settings (i.e. include also settings from <code>makeLocalSettings</code>)<ul>
+<li>Note that so far there has been no cases where an extra source might depend on settings. We expect the local sources factory to be independent of any settings but keep the door open, should that case occur.</li>
+</ul>
+</li>
+<li>In case of conflict, the local sources factory has the lowest precedence vs. the factory sources</li>
+</ul>
+</li>
+<li><code>makeLocalSettings</code> returns the extra settings to inject to the settings passed in parameter<br>to the computed combined component.<ul>
+<li>If not present, no extra settings is added.</li>
+<li>The local settings are computed from the merge of the computed combined component settings and  the <code>m</code> factory settings.</li>
+<li>The local settings added have the lowest priority in case of conflict (cf. section on<br>settings prioritization).</li>
+<li>The settings passed in parameter to the combined component have the maximum priority.</li>
+<li>the computed combined component settings have a priority between the two.</li>
+<li><strong>TODO: seriously, draw it or give an example, that is totally obstruse</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>the <code>computeSinks</code> reducing function computes the combined component’s sinks from the parent component, children component, merged sources, and merged settings.</li>
+</ol>
+<p>This is certainly the most generic strategy as the <code>computeSinks</code> function receives all the<br>parameters from the <code>m</code> combinator, except the specs themselves. Such a generic form is for<br>instance useful if the computation of the combined component depends on information held in the<br>component themselves (type, names, number of arguments, number of components, presence of a<br>container component, etc.).</p>
+<p>However, in our codebase, we found very few cases where we would have needed to recourse to<br>this most generic form. That form however comes in handy to create generic combinators (<a href="https://github.com/brucou/component-combinators/blob/master/src/components/ForEach/ForEach.js" target="_blank" rel="noopener"><code>ForEach</code><br>combinator</a> is such a case).</p>
+<h2 id="m-CombineAllSinksSpecs-gt-Settings-gt-ComponentTree-gt-Component"><a href="#m-CombineAllSinksSpecs-gt-Settings-gt-ComponentTree-gt-Component" class="headerlink" title="m :: CombineAllSinksSpecs -&gt; Settings -&gt; ComponentTree -&gt; Component"></a><code>m :: CombineAllSinksSpecs -&gt; Settings -&gt; ComponentTree -&gt; Component</code></h2><h3 id="Types-1"><a href="#Types-1" class="headerlink" title="Types"></a>Types</h3><ul>
+<li><code>CombineAllSinksSpecs :: Record {</code><ul>
+<li><code>makeOwnSinks :: Sources -&gt; Settings -&gt; ParentSinks</code></li>
+<li><code>mergeSinks :: ParentSinks -&gt; Array&lt;Sinks&gt; -&gt; Settings -&gt; Sinks</code></li>
+<li><code>makeLocalSources :: Optional &lt; Sources -&gt; Settings -&gt; Sources &gt;</code></li>
+<li><code>makeLocalSettings :: Optional &lt; Settings -&gt; Settings &gt;</code></li>
+<li><code>checkPreConditions :: Optional &lt; Sources -&gt; Settings -&gt; Boolean &gt;</code></li>
+<li><code>checkPostConditions :: Optional &lt; Sinks -&gt; Boolean &gt;</code></li>
+<li><code>}</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Contracts-1"><a href="#Contracts-1" class="headerlink" title="Contracts"></a>Contracts</h3><p>This signature fulfills the same contract as the general signature.</p>
+<h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>The <code>CombineAllSinksSpecs</code> computation strategy is summarized in the following figure :</p>
+<p><img src="/img/graphs/m%20-%20CombineAllSinksSpecs.png" alt="m - CombineAllSinksSpecs"></p>
+<p>As a matter of fact, the <code>m</code> factory returns a component computed as follows :</p>
+<ul>
+<li><strong>1-3</strong>. same as in the general signature</li>
+<li><strong>4</strong>. Sinks are computed for each component from the merged sources and merged settings.</li>
+<li><strong>5</strong>. Those sinks are later reduced by <code>mergeSinks</code> into the combined component sinks.</li>
+</ul>
+<p>This computation strategy is more frequent than the most generic one, though still relatively<br>infrequent. That form however comes in handy to create generic combinators (<code>Switch</code> combinator<br>is such a case).</p>
+<h2 id="m-CombinePerSinkSpecs-gt-Settings-gt-ComponentTree-gt-Component"><a href="#m-CombinePerSinkSpecs-gt-Settings-gt-ComponentTree-gt-Component" class="headerlink" title="m :: CombinePerSinkSpecs -&gt; Settings -&gt; ComponentTree -&gt; Component"></a><code>m :: CombinePerSinkSpecs -&gt; Settings -&gt; ComponentTree -&gt; Component</code></h2><h3 id="Types-2"><a href="#Types-2" class="headerlink" title="Types"></a>Types</h3><ul>
+<li><code>Sinks :: HashMap&lt;SinkName, Sink&gt;</code></li>
+<li><code>ContainerSink :: Sink</code></li>
+<li><code>Sink :: Stream &lt;*&gt;</code></li>
+<li><code>CombinePerSinkSpecs :: Record {</code><ul>
+<li><code>SinkMergeFn :: ContainerSink -&gt; Array&lt;Sink&gt; -&gt; Settings -&gt; Sinks</code></li>
+<li><code>mergeSinks :: HashMap&lt;SinkName, SinkMergeFn&gt;</code></li>
+<li><code>makeLocalSources :: Optional &lt; Sources -&gt; Settings -&gt; Sources &gt;</code></li>
+<li><code>makeLocalSettings :: Optional &lt; Settings -&gt; Settings &gt;</code></li>
+<li><code>checkPreConditions :: Optional &lt; Sources -&gt; Settings -&gt; Boolean &gt;</code></li>
+<li><code>checkPostConditions :: Optional &lt; Sinks -&gt; Boolean &gt;</code></li>
+<li><code>}</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Contracts-2"><a href="#Contracts-2" class="headerlink" title="Contracts"></a>Contracts</h3><p>This signature fulfills the same contract as the general signature.</p>
+<h3 id="Description-2"><a href="#Description-2" class="headerlink" title="Description"></a>Description</h3><p>The <code>CombinePerSinkSpecs</code> computation strategy is summarized in the following figure :</p>
+<p><img src="/img/graphs/m%20-%20CombinePerSinkSpecs.png" alt="m - CombinePerSinkSpecs"></p>
+<p>As a matter of fact, the <code>m</code> factory returns a component computed as follows :</p>
+<ul>
+<li><strong>1-3</strong>. same as in the general signature</li>
+<li><strong>4</strong>. Sinks are computed for each child component from the merged sources, and merged settings.</li>
+<li><strong>5</strong>. For each sink (uniquely identified by <code>sinkName :: SinkName</code>) :<ul>
+<li>if there is a merge function defined in <code>mergeSinks</code> for that <code>sinkName</code>, that function is used to compute the resulting combined component sink from the parent’s sink, the children components’ sinks, and the merged settings.</li>
+<li>If not, a default merge function is used :<ul>
+<li>If there is no slots in the container component, default DOM merge function will merge the<br><code>VTree</code> from the children components <strong>INSIDE</strong> the <code>Vtree</code> from the container component’s DOM sink<ul>
+<li>if there is no DOM sink at all, it returns <code>null</code></li>
+<li>if there is no container DOM sink, then it returns the children VTrees wrapped in a <code>div</code> VNode</li>
+<li>if there is a container DOM sink, and there is no children DOM sinks, then it returns the parent DOM sink</li>
+<li>if there is a container DOM sink, and there are children DOM sinks, then it returns a VTree in which the children DOM vNodes are children of the parent’s vNode<br>children vNodes are <strong>appended</strong> to any already existing children of the parent vNode</li>
+</ul>
+</li>
+<li>If there are slots in the container component, default DOM merge function will<br>distribute the <code>VTree</code> from the children components according to their respective<br>slots</li>
+<li>Default non-DOM merge function will merge the parent’s sink together with the children sinks via simple stream merge (i.e. <code>Rx.Observable.merge</code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Default merge functions have been extracted from patterns from our codebase. While non-DOM sinks<br>ever rarely get merged in any other way than a simple observable merge, there are more patterns<br>appearing for merging of DOM VTrees. Frequently, children DOM vNodes are merged immediately<br>inside a parent DOM’s vNodes. In the general case however, children DOM vNodes can be located arbitrarily inside<br>the parent DOM’s vNodes. Web components faced the same distribution issue and resolved it with a<br>slot mechanism, and we reused that. This is how we arrived to our default merge functions :</p>
+<ul>
+<li>one unique strategy for non-DOM sinks</li>
+<li>two strategies for DOM sinks (container-based and slot-based)</li>
+</ul>
+<p>The <code>CombinePerSinkSpecs</code> covers a large set of patterns of our code base. In fact, the default<br>merge behaviour covers a large enough portion of cases which occur when combining components for<br>us to create a <code>Combine</code> combinator, simply defined as a partial application of <code>m</code> with no<br>specification (empty object passed as first parameter) : <code>Combine(settings, componentTree) = m 
+({}, settings, componentTree)</code>.</p>
+<h1 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h1><p>In this section, we are going to show miscellaneous examples of use of componentization with the<code>m</code> factory.<br>Most of those examples will be inspired from already-existent UI component library, such as<code>Semantic UI</code>.</p>
+<p>Examples for the DOM merge functions are gathered in a <a href="/projects/component-combinators/m-component---merge-default-functions/">specific article</a>.</p>
+<h2 id="Event-factory-component"><a href="#Event-factory-component" class="headerlink" title="Event factory component"></a>Event factory component</h2><ul>
+<li><code>Events = m(eventFactorySpec, eventFactorySettings, componentTree)</code>, or by partially applying <code>m</code><br>into <code>mEventFactory</code> :</li>
+<li><code>Events = mEventFactory(EventFactorySettings, componentTree)</code></li>
+</ul>
+<p>This example makes use of :</p>
+<ul>
+<li><code>checkPreConditions</code></li>
+<li>a component tree with container and children</li>
+<li><code>mergeSinks</code></li>
+<li>utility function <code>defaultMergeSinkFn</code></li>
+</ul>
+<h3 id="Description-3"><a href="#Description-3" class="headerlink" title="Description"></a>Description</h3><p>This component allows to create events from event sources. For ease of reasoning and<br>maintainability, the created events should be coupled to the DOM representation generated by the children component. There is however no enforcement of such property. The created events will be mixed with the sinks returned from the children components.</p>
+<p><strong>Contracts:</strong></p>
+<ul>
+<li>an event sink generated from event sources MUST NOT conflict with a sink with the same key from the children component</li>
+<li>there MUST be an <code>events</code> property in the settings object. The corresponding object MAY be empty (event factory created no events).</li>
+</ul>
+<h3 id="EventFactorySettings"><a href="#EventFactorySettings" class="headerlink" title="EventFactorySettings"></a>EventFactorySettings</h3><ul>
+<li><code>{</code><ul>
+<li><code>events : {</code><ul>
+<li><code>custom : {eventName : (sources, settings) =&gt;  event$},</code></li>
+<li><code>DOM : { DomEventName : {selectorDesc : &#39;selector&#39;}}</code></li>
+</ul>
+</li>
+<li><code>}</code></li>
+</ul>
+</li>
+<li><code>}</code></li>
+</ul>
+<p>Note that all events generated from the DOM remove the default DOM side effect with <code>preventDefault</code>.</p>
+<h4 id="events-DOM-property"><a href="#events-DOM-property" class="headerlink" title="events.DOM property"></a><code>events.DOM</code> property</h4><p><code>events.DOM</code> is a list of selectors that MAY be later used in the children components, for instance to uniquely identify the target of an event. This allow to parameterize the coupling between the parent and the children components, i.e. between the events and the event targets.</p>
+<p><code>events.DOM</code> is also used to set an event listener on the matching DOM element (as specified by <code>selector</code>). Corresponding listened-to events will be streamed through a sink with identifier <code>[selectorDesc]_[DomEventName]</code>.</p>
+<p>For instance :<br><pre><code class="hljs javascript">&#123;
+  <span class="hljs-attr">events</span> : &#123;
+    <span class="hljs-attr">DOM</span> : &#123;
+      <span class="hljs-attr">click</span> : &#123;
+        <span class="hljs-attr">PriceSelector</span> : <span class="hljs-string">'.block__element--modifier'</span>
+      &#125;
+    &#125;
+  &#125;
+&#125;</code></pre></p>
+<p>will lead to registering a listener on the DOM element(s) identified by the selector <code>.block__element--modifier</code>. As the events factory parameterization is inherited by<br>children (through settings), children components can reference within their DOM tree the passed on selector (<code>settings.events.DOM.click.PriceSelector</code>). Repetition is avoided and the coupling of behaviour and visual representation is made explicit.</p>
+<h4 id="events-custom-property"><a href="#events-custom-property" class="headerlink" title="events.custom property"></a><code>events.custom</code> property</h4><p>This allows for generating a custom stream of events from the event source and settings.</p>
+<p>For instance :<br><pre><code class="hljs javascript">&#123;
+  <span class="hljs-attr">events</span> : &#123;
+    <span class="hljs-attr">custom</span> : &#123;
+      [eventName] : <span class="hljs-function">(<span class="hljs-params">sources, settings</span>) =&gt;</span> sources.motionSensor.zipWith(sources.locationSensor)
+    &#125;
+  &#125;
+&#125;</code></pre></p>
+<p>The resulting stream of events is passed through the sink <code>eventName</code>.</p>
+<h3 id="Source-code"><a href="#Source-code" class="headerlink" title="Source code"></a>Source code</h3><p>cf. <a href="https://github.com/brucou/component-combinators/blob/master/src/components/mEventFactory.js" target="_blank" rel="noopener">repo</a></p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> checkEventFactoryPreConditions = checkAndGatherErrors([
+  [hasEventsProperty, <span class="hljs-string">`Settings parameter must have an events property!`</span>],
+  [isEventFactoryEventSettings, <span class="hljs-string">`settings' events property has unexpected shape!`</span>]
+], <span class="hljs-string">`checkEventFactoryPreConditions : fails!`</span>);
+
+<span class="hljs-comment">/** Settings : 
+ - `&#123;`
+ - `events : &#123;`
+ -   `custom : &#123;eventName : (sources, settings) =&gt;  event$&#125;,`
+ -   `DOM : &#123; eventName : &#123;selectorDesc : 'selector&#125;&#125;`
+ -   `&#125;`
+ - `&#125;`
+ * Returns : HashMap&lt;EventName, Observable&gt;
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeEventFactorySinks</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">events</span>: &#123; custom, DOM &#125; &#125; = settings;
+
+  <span class="hljs-keyword">const</span> customEvents = reduce([...], &#123;&#125;, keys(custom));
+
+  <span class="hljs-keyword">const</span> DOMEvents = reduce([...], &#123;&#125;, keys(DOM));
+
+  assertContract(hasNoDuplicateKeys, [customEvents, DOMEvents], <span class="hljs-string">`makeEventFactorySinks : Event definition object leads to at least one event name which is BOTH a custom event and a DOM event! (custom : <span class="hljs-subst">$&#123;format(customEvents)&#125;</span> ; DOM : <span class="hljs-subst">$&#123;format(DOMEvents)&#125;</span>)`</span>);
+
+  <span class="hljs-keyword">return</span> merge(customEvents, DOMEvents)
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mergeEventFactorySinksWithChildrenSinks</span>(<span class="hljs-params">eventSinks, childrenSinks, localSettings</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> childrenSinksArray = flatten(removeNullsFromArray([childrenSinks]))
+  <span class="hljs-keyword">const</span> allSinks = flatten(removeNullsFromArray([eventSinks, childrenSinks]))
+  <span class="hljs-keyword">const</span> eventSinkNames = keys(eventSinks)
+  <span class="hljs-keyword">const</span> childrenSinkNames = getSinkNamesFromSinksArray(childrenSinksArray)
+  <span class="hljs-keyword">const</span> sinkNames = getSinkNamesFromSinksArray(allSinks)
+
+  <span class="hljs-comment">// We needed to make use of `combineAllSinks` strategy to enforce the following contract</span>
+  <span class="hljs-comment">// which applies to the container sinks :</span>
+  <span class="hljs-comment">// Children sinks cannot have the same sink name as event sinks</span>
+  assertContract(hasNoCommonValues, [eventSinkNames, childrenSinkNames],
+    <span class="hljs-string">`mEventFactory &gt; mergeEventFactorySinksWithChildrenSinks : found children sinks with 
+           at least one sink name conflicting with an event sink : 
+           <span class="hljs-subst">$&#123;eventSinkNames&#125;</span> vs. <span class="hljs-subst">$&#123;childrenSinkNames&#125;</span>`</span>);
+
+  <span class="hljs-comment">// We guarded against sink telescoping, we just have to merge the events sinks to the sinks </span>
+  <span class="hljs-comment">// from the children component and we are done. Default merge is what we want</span>
+  <span class="hljs-keyword">return</span> defaultMergeSinkFn(eventSinks, childrenSinks, localSettings, sinkNames)
+&#125;
+
+<span class="hljs-keyword">const</span> eventFactorySpec = &#123;
+  <span class="hljs-comment">// No extra sources</span>
+  makeLocalSources: <span class="hljs-literal">null</span>,
+  <span class="hljs-comment">// No extra settings</span>
+  makeLocalSettings: <span class="hljs-literal">null</span>,
+  <span class="hljs-comment">// We check that the settings have the appropriate shape</span>
+  checkPreConditions: checkEventFactoryPreConditions,
+  <span class="hljs-attr">checkPostConditions</span>: <span class="hljs-literal">null</span>,
+  <span class="hljs-comment">// We merge children sinks with the by-default merge functions</span>
+  mergeSinks: mergeEventFactorySinksWithChildrenSinks
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mEventFactory</span>(<span class="hljs-params">eventFactorySettings, componentTree</span>) </span>&#123;
+  <span class="hljs-comment">// returns a component which default-merges sinks coming from the children</span>
+  <span class="hljs-comment">// and adds its events sinks to it</span>
+
+  <span class="hljs-comment">// NOTE : we could test against eventFactorySettings here, before doing it in `m` too</span>
+  <span class="hljs-comment">// (fails fast). We will not.</span>
+  <span class="hljs-comment">// Instead, we will wait for the settings passed to `mEventFactory` at</span>
+  <span class="hljs-comment">// run time to be merged with the settings passed at creation time. This opens the</span>
+  <span class="hljs-comment">// possibility to have a factory with some default events, and adding some additional events</span>
+  <span class="hljs-comment">// at run time via settings</span>
+  <span class="hljs-keyword">return</span> m(eventFactorySpec, eventFactorySettings, [makeEventFactorySinks, componentTree])
+&#125;</code></pre>
+<h2 id="Button-component-combinator"><a href="#Button-component-combinator" class="headerlink" title="Button component combinator"></a>Button component combinator</h2><p><code>Button = m(ButtonComponentSpec, ButtonComponentSettings, childrenComponents)</code><br><code>Button = mButton(ButtonComponentSettings, childrenComponents)</code></p>
+<p>This example makes use of :</p>
+<ul>
+<li><code>checkPreConditions</code></li>
+<li>a component tree with container and children</li>
+<li>(non-slotted) default merge of sinks (DOM and non-DOM sinks)</li>
+</ul>
+<h3 id="Description-4"><a href="#Description-4" class="headerlink" title="Description"></a>Description</h3><p>The button component is a <code>&lt;div&gt;</code> that will behave like a button, according to the parameters specified in settings. Cf. <code>semanticUI</code> documentation for a description of the settings properties.</p>
+<ul>
+<li>The component MAY listen to any of the regular DOM event associated to a button:<ul>
+<li>click, hover, etc.</li>
+</ul>
+</li>
+<li>A button MAY have content inside, which is any valid HTML representation</li>
+<li>A button component inserts inside its tag the DOM content from its children components.</li>
+<li>Any non-DOM children sink is default-merged with the button sink with the same sink name.</li>
+</ul>
+<h3 id="ButtonComponentSettings"><a href="#ButtonComponentSettings" class="headerlink" title="ButtonComponentSettings"></a>ButtonComponentSettings</h3><ul>
+<li>classes</li>
+<li>emphasis : ‘primary, secondary, positive, negative, basic’</li>
+<li>tabIndex</li>
+<li>animated : {‘’, fade, vertical}</li>
+<li>label : {text, position : ‘left, right’}</li>
+<li>icon : for instance ‘cloud’ - must be mapped to an actual icon previously</li>
+<li>visualState : ‘active, disabled, loading’</li>
+<li>social : ‘facebook, twitter, google, vk, linkedin, instagram, youtube’</li>
+<li>size ‘mini tiny small medium large big huge massive’</li>
+<li>layout : ‘compact, fluid, attached, top attached, bottom attached, left attached, right attached’</li>
+<li>listenTo : event list such as click, hover, etc.</li>
+</ul>
+<h3 id="Source-code-1"><a href="#Source-code-1" class="headerlink" title="Source code"></a>Source code</h3><p>Cf. <a href="https://github.com/brucou/component-combinators/blob/master/src/components/mButton.js" target="_blank" rel="noopener">repo</a></p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mButton</span>(<span class="hljs-params">mButtonSettings, childrenComponents</span>) </span>&#123;
+  <span class="hljs-comment">// returns a DOM tree representation with the specifications passed through settings</span>
+  <span class="hljs-comment">// and enclosing the DOM trees returned by the children components</span>
+  <span class="hljs-comment">// Non-DOM children sinks are default-merged</span>
+
+  <span class="hljs-keyword">return</span> m(mButtonSpec, mButtonSettings, [makeButtonSinks, childrenComponents])
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeButtonSinks</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> attrs = &#123;&#125;;
+  <span class="hljs-keyword">const</span> buttonClasses = [<span class="hljs-string">'ui'</span>, <span class="hljs-string">'button'</span>];
+  <span class="hljs-keyword">const</span> focusable = <span class="hljs-literal">true</span>;
+  <span class="hljs-keyword">const</span> &#123;
+    classes, listenOn, emphasis, basic, animated, label, icon, visualState, social, size, shape, layout, listenTo
+  &#125; = settings;
+
+  <span class="hljs-keyword">if</span> (classes) &#123;
+    <span class="hljs-built_in">Array</span>.prototype.push.apply(buttonClasses, classes);
+  &#125;
+
+  <span class="hljs-keyword">if</span> (focusable) &#123;
+    attrs.tabindex = <span class="hljs-string">'0'</span>;
+  &#125;
+
+  <span class="hljs-keyword">if</span> (emphasis) &#123;
+    buttonClasses.push(emphasis);
+  &#125;
+
+[...]
+
+  <span class="hljs-keyword">const</span> classObject = buttonClasses
+    ? reduce(<span class="hljs-function">(<span class="hljs-params">acc, className</span>) =&gt;</span> &#123;
+      acc[className] = <span class="hljs-literal">true</span>
+      <span class="hljs-keyword">return</span> acc
+    &#125;, &#123;&#125;, buttonClasses)
+    : <span class="hljs-literal">null</span>;
+
+  <span class="hljs-keyword">let</span> sinks = &#123;&#125;;
+  <span class="hljs-keyword">if</span> (listenTo &amp;&amp; listenOn) &#123;
+    sinks = reduce(<span class="hljs-function">(<span class="hljs-params">acc, eventName</span>) =&gt;</span> &#123;
+      acc[eventName] = sources.DOM.select(listenOn).events(eventName);
+
+      <span class="hljs-keyword">return</span> acc
+    &#125;, &#123;&#125;, listenTo)
+  &#125;
+  sinks.DOM = $.<span class="hljs-keyword">of</span>(
+    div(&#123;
+      <span class="hljs-attr">class</span>: classObject,
+      <span class="hljs-attr">attrs</span>: attrs
+    &#125;)
+  )
+
+  <span class="hljs-keyword">return</span> sinks
+&#125;</code></pre>
+<p>We hence have :</p>
+<ul>
+<li><code>makeButtonSinks</code> which generates <code>&lt;div class = &#39;ui button ...&#39;&gt; &lt;/div&gt;</code><ul>
+<li>class list will depend on settings</li>
+</ul>
+</li>
+<li>children component’s DOM sinks will correspond to <code>Content</code> in<br><code>&lt;div class = &#39;ui button ...&#39;&gt; Content &lt;/div&gt;</code><ul>
+<li>that is the default non-slotted DOM merge</li>
+<li>we keep also the non-DOM sinks returned by the children (default non-DOM sink merge)</li>
+<li>content MAY be empty</li>
+</ul>
+</li>
+</ul>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ul>
+<li>when writing the component tree, a common error is to use <code>[containerComponent]</code> to signify a<br>container component without children. This will actually be parsed as one unique child component (i.e. as <code>[uniqueChild]</code>). The correct syntax would be <code>[containerComponent, []]</code>.</li>
+</ul>
+<h1 id="Bibliography"><a href="#Bibliography" class="headerlink" title="Bibliography"></a>Bibliography</h1><ul>
+<li>Brooks, Fred P. (1986). “No Silver Bullet — Essence and Accident in Software Engineering”.<br>Proceedings of the IFIP Tenth World Computing Conference: 1069–1076</li>
+<li>Ernst, Erik. “Separation of concerns.” Proceedings of the AOSD 2003 Workshop on Software-Engineering Properties of Languages for Aspect Technologies (SPLAT), Boston, MA, USA. 2003.<br><a href="https://pdfs.semanticscholar.org/c052/f9d0e7e4c89a9d7abd36ffed4051ec59bb64.pdf" target="_blank" rel="noopener">https://pdfs.semanticscholar.org/c052/f9d0e7e4c89a9d7abd36ffed4051ec59bb64.pdf</a></li>
+</ul>
+
+  
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

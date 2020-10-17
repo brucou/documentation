@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Pipe — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Pipe — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pipe — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  
+  
+    <h1>Pipe</h1>
+  
+  
+    <h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>The <code>Pipe</code> component allows to execute a number of components sequentially, with the ouptuts (sinks)<br> of each connected to the inputs of the next.  </p>
+<p>This covers the case of components which do not output action sinks but intermediary sinks,<br>destined to serve as inputs for components finalizing the sinks computation. </p>
+<ul>
+<li>It allows to use the event-intent-action pattern, by isolating each concern in a single component, and<br>sequentially composing them: <code>ComposedComponent = Pipe(Event, Intent, Action)</code>, where <code>Event</code><br>acts as event factory, returns sinks which are events, <code>Intent</code> aggregates events into intent<br>sinks, <code>Action</code> computes the actions sinks from the intents. </li>
+<li>It also covers the case of reuse of generic components, by allowing to prefix an adapter component to match interfaces :<br><code>AdaptedComponent = Pipe(AdHocComponentA, AdapterA, ReusableComponent, AdapterB, AdHocComponentB)</code>. A simple case for instance is when it is needed to change the name of an output sink or<br>input source to respect the interface of another component.</li>
+</ul>
+<p>To realize the chaining, sinks returned by a component will be passed as source to the next<br>component in the sequence. In the general case, one should not allow collision between source and<br> sink, i.e. sink names should be different from source names - unintended behaviour linked to<br> this can be VERY HARD to debug. To cover for the unexpected case where the previously described behaviour would be desired, such behaviour should be parameterizable, albeit with a sound default.</p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><h2 id="Pipe-PipeSettings-gt-Component-gt-PipedComponent"><a href="#Pipe-PipeSettings-gt-Component-gt-PipedComponent" class="headerlink" title="Pipe :: PipeSettings -&gt; [Component] -&gt; PipedComponent"></a>Pipe :: PipeSettings -&gt; [Component] -&gt; PipedComponent</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Creates a <code>PipedComponent</code> whose behaviour is parameterized via <code>PipeSettings</code>. Its second<br>argument is a non-empty list of components to be sequentially composed.</p>
+<p>The parametrization is as follows :</p>
+<ul>
+<li><code>PipeSettings :: SomeOf&lt;Overwrite&gt;</code></li>
+</ul>
+<p>The behaviour is as follows :</p>
+<ul>
+<li>if the array of component is empty, an error is thrown</li>
+<li>the first component in the sequence is executed</li>
+<li>its sinks are merged with the sources :<ul>
+<li>if there is collision between sources and sinks, and <code>settings.overwrite</code> is false, throws an<br>exception</li>
+<li>otherwise, merge the sinks into the sources, with the sinks replacing the sources in case of<br>collision</li>
+</ul>
+</li>
+<li>the process is iterated with the next component in sequence, with the merged object as its<br><code>sources</code> object.</li>
+<li>at the end of iteration, the sinks for the last component are returned as sinks of the<br><code>PipedComponent</code></li>
+</ul>
+<h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><ul>
+<li><code>PipeSettings :: Record {</code></li>
+<li><code>Pipe : { throwIfSinkSourceConflict :: Boolean}</code> <strong>Optional - default : false</strong></li>
+<li><code>}</code></li>
+<li><code>PipedComponent :: Component</code></li>
+</ul>
+<h3 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h3><ul>
+<li>if <code>throwIfSinkSourceConflict</code> is set to true, a component cannot return a sink<br>whose sink name is equal to a source name - unless it is the final component in the component sequence.</li>
+</ul>
+<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><p>cf. <a href="https://github.com/brucou/component-combinators/blob/master/test/Pipe.specs.js" target="_blank" rel="noopener">tests</a>, and [example application]<br>(/posts/applying-componentization-to-reactive-systems—-sample-application/)</p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ul>
+<li>All components have the ability to include contracts in their definition. It is recommended to<br>use those for some basic error management. A common risk in the sequential composition<br>formulation is that the interface between components do not match, or match erroneously. The<br>appropriate contracts can check the relevant conditions prior to executing the component (<em>fail<br>fast</em>). For instance, one can :<ul>
+<li>check that the expected sources are present</li>
+<li>if necessary, also check that there are no extra sources (to use carefully, as it might be<br>normal to have extra sources…) </li>
+</ul>
+</li>
+<li>A typical mistake when using <code>Pipe</code>, in for instance <code>Pipe(a, b)</code>, where <code>a</code> produces sinks<br><code>asink1</code> and <code>asink2</code>, is to focus in <code>b</code> on <code>asink1</code> and forget to pass on <code>asink2</code> if for<br>example there is no work to be done on <code>asink2</code>. Such a mistake would produce an error whose<br>message would be rather hard to relate to the actual cause. So it is important to remember that<br>while combinators for parallel composition merge sinks by default and pass them on <em>invisibly</em>,<br>the <code>Pipe</code> sequential composition combinator requires to explicit all the sinks to be passed.</li>
+</ul>
+
+  
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

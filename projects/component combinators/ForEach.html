@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>ForEach — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ForEach — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ForEach — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  
+  
+    <h1>ForEach</h1>
+  
+  
+    <h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>The <code>ForEach</code> component allows to ‘execute’ a component every time a source is emitting a value. It is hence similar to the <code>Switch</code> component in that a component is switched on and off for every incoming value on the source. <code>ForEach</code> semantics are similarly akin to those of  <code>flatMapLatest</code> or <code>switchMap</code> but on a component instead of on a source.</p>
+<p>Practically speaking, given a component which is parameterized by a value, the <code>ForEach</code> component allows to account for the variability of that value outside of the component’s design.  For instance, given a component which displays a list of items, which can change according to the contents of a database, one can write the component in the form of <code>DisplayListItems(listItem)</code> instead of <code>DisplayListItems(listItem$)</code>, which leads to a simpler implementation for <code>DisplayListItems</code>.</p>
+<p>Note that for each incoming value of the source, the component is switched off and then on again. This means any non-persisted state local to the component will be reinitialized. In this case this behaviour is not desired, a turn-around is to persist the local state to retrieve it between switches.</p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><h2 id="ForEach-ForEachSettings-gt-ComponentTree-gt-ForEachComponent"><a href="#ForEach-ForEachSettings-gt-ComponentTree-gt-ForEachComponent" class="headerlink" title="ForEach :: ForEachSettings -&gt; ComponentTree -&gt; ForEachComponent"></a>ForEach :: ForEachSettings -&gt; ComponentTree -&gt; ForEachComponent</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Creates a <code>ForEach</code> component whose behaviour is parameterized via <code>ForEachSettings</code>. Children components are the components to be mapped to incoming values on the <code>ForEach</code> source.</p>
+<p>The parametrization is as follows :</p>
+<ul>
+<li>an array of sink names must be passed to indicate which sinks are to be extracted from the case components. Sinks produced by any child component which are not in the sink names array will be ignored. It is not necessary, for any sink name in that array, for a child component to return a sink of that name.</li>
+<li>the <code>ForEach</code> source is specified by <code>from</code> property in the form of a string which is the name of the source to be found in the <code>sources</code> parameter for the component.</li>
+<li>the incoming value from the <code>from</code> configured source is passed to the children component in their settings in a property configured in the <code>as</code> property of the <code>ForEach</code> component’s settings.</li>
+</ul>
+<p>The behaviour is as follows :</p>
+<ul>
+<li>for every incoming value of the <code>ForEach</code> source, the children components are switched off and then switched on </li>
+<li>Children components are called with the same <code>sources</code> as the <code>ForEach</code> component, unless explicitly configured otherwise</li>
+<li>Children components are called with the same <code>settings</code> as the <code>ForEach</code> component, with the addition of a new property whose name is configured in <code>as</code> property of <code>ForEach</code> settings.</li>
+</ul>
+<h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><ul>
+<li><code>ForEachComponent :: Component</code></li>
+<li><code>ComponentTree :: ChildrenComponents | [ParentComponent, ChildrenComponents]</code></li>
+<li><code>ParentComponent :: Component</code></li>
+<li><code>ChildrenComponents :: Array&lt;CaseComponent&gt;</code></li>
+<li><code>ForEachSettings :: Record {</code></li>
+<li><code>sinkNames :: [SinkName]</code>  <strong>Mandatory</strong></li>
+<li><code>from :: SourceName</code> <strong>Mandatory</strong></li>
+<li><code>as :: SettingsPropertyName</code> <strong>Mandatory</strong></li>
+<li><code>}</code></li>
+<li><code>SwitchOnCondition :: Sources -&gt; Settings -&gt; Source</code></li>
+<li><code>SwitchOnSource:: SourceName</code></li>
+<li><code>SourceName :: String</code></li>
+<li><code>SinkName :: String</code></li>
+<li><code>SettingsPropertyName :: String</code></li>
+</ul>
+<h3 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h3><ul>
+<li>the source configured through the <code>from</code> property MUST be found as a property of the <code>sources</code> parameter.</li>
+<li>there must be at least one child component</li>
+</ul>
+<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><p>cf. demo and <a href="https://github.com/brucou/component-combinators/blob/master/test/ForEach.specs.js" target="_blank" rel="noopener">tests</a></p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ul>
+<li>If it is necessary to implement a logic by which the component switching should only trigger on <strong>CHANGES</strong> of the incoming value, that logic could be implemented with appending a <code>distinctUntilChanged</code> to the <code>ForEach</code> source.</li>
+<li>For each incoming value of the source, the component is switched off and then on again. This means any non-persisted state local to the component will be reinitialized. In this case this behaviour is not desired, a turn-around is to persist the local state to retrieve it between switches.</li>
+</ul>
+
+  
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

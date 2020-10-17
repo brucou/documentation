@@ -1,0 +1,659 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>runTestScenario — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="runTestScenario — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="runTestScenario — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  
+  
+    <h1>runTestScenario</h1>
+  
+  
+    <h1 id="Table-of-content"><a href="#Table-of-content" class="headerlink" title="Table of content"></a>Table of content</h1><ul>
+<li><a href="#context">Context</a></li>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#api">API</a><ul>
+<li><a href="#key-types">Key types</a></li>
+<li><a href="#runtestscenario-1">runTestScenario</a></li>
+<li><a href="#mocking">Mocking</a></li>
+<li><a href="#source-factories">Source factories</a></li>
+<li><a href="#contracts">Contracts</a></li>
+</ul>
+</li>
+<li><a href="#example">Example</a><ul>
+<li><a href="#basic-example">Basic example</a></li>
+<li><a href="#using-ad-hoc-mocks-and-factories">Using ad-hoc mocks and factories</a></li>
+</ul>
+</li>
+<li><a href="#known-limitations">Known limitations</a></li>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#npm">npm</a></li>
+<li><a href="#direct-download">Direct download</a></li>
+<li><a href="#bower">Bower</a></li>
+<li><a href="#jspm">jspm</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#breaking-changes">Breaking Changes</a></li>
+<li><a href="#roadmap">Roadmap</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#contributing">Contributing</a></li>
+</ul>
+<h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><p>There exists a number of ways to test functions which take a stream and return a stream (referred to, in what follows, as stream combinator). Most streaming libraries have at least some basic APIs to that purpose. </p>
+<ul>
+<li><code>Rxjs</code> for example uses a test scheduler, and offers some specific constructs (<code>TestScheduler</code>, <code>startWithTiming</code>, <code>createHotObservable</code>, <code>Rx.ReactiveTest.onNext</code> etc.). <code>Most</code> has the <code>most-test</code> community library which can also help. </li>
+<li>In the worse case, if the streaming library offers subjects from the get-go, it is relatively easy to pass a sequence of inputs through that, run the stream combinator and gather back the output in sequence.</li>
+</ul>
+<p>Testing functions which take a collection of streams and return a collection of streams requires specific treatment in the case when order of inputs is total. That is the case when inputs are syntactically divided into a collection of source streams (<code>HashMap&lt;SourceName, Stream&lt;*&gt;&gt;</code>), but semantically are in fact equivalent to a single source stream (<code>Stream&lt;HashMap&lt;SourceName, *&gt;&gt;</code>), whose inputs carry both source type and message information. On the other hand, we assume here that ordering of outputs is only partial on the collection, and total on any given output stream.</p>
+<p>The total order on the input streams collection requires the testing facility to simulate the emission of inputs in the expected order. The partial order on the output streams collection allows the testing facility to only gather the outputs on a per-stream basis.</p>
+<p><code>runTestScenario</code> is such a testing facility which provides an interface for creating a collection of streams from an array of input values, executing a function on that collection and comparing the resulting collection of output streams vs. an expected array of output values.</p>
+<p>In what follows :</p>
+<ul>
+<li>by a collection of streams, we will refer to a hash object (i.e. standard javascript object), keyed by stream identifier, matched to the actual stream.</li>
+<li>the collection of streams, when envisioned as an input to the function under test, may also be called sources</li>
+<li>the collection of streams, when envisioned as an output to the function under test, may also be called sinks</li>
+<li>hence the function under test is a function which takes sources and computes sinks.</li>
+</ul>
+<h1 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a>Dependencies</h1><ul>
+<li>functional toolkit : <code>ramda</code></li>
+<li>streaming library : <code>rxjs</code></li>
+</ul>
+<p>Customizing the testing library for a specific streaming is relatively simple as only the most basic functionalities of rxjs are used here. A <code>most</code> version already has already been published in the most community though no longer maintained by this author.</p>
+<h1 id="Running-tests"><a href="#Running-tests" class="headerlink" title="Running tests"></a>Running tests</h1><p><code>npm run build-node-test ; npm run test</code></p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><h2 id="Key-types"><a href="#Key-types" class="headerlink" title="Key types"></a>Key types</h2><pre><code class="hljs undefined">/**
+ * @typedef &#123;function(*):boolean&#125; Predicate
+ * @typedef &#123;Object&#125; Input
+ * @typedef &#123;Object&#125; Output
+ * @typedef &#123;&#123;diagram: string, values: Object.&lt;string, Input&gt;&#125;&#125; Sequence
+ * @typedef &#123;Object&#125; ExpectedRecord
+ * @property &#123;?function (output:Output):Output&#125; transform
+ * @property &#123;Array&lt;Output&gt;&#125; outputs
+ * @property &#123;?String&#125; successMessage
+ * @property &#123;!function (Array&lt;Output&gt;, Array&lt;Output&gt;), String&#125; analyzeTestResults
+ * @typedef &#123;!Object.&lt;string, ExpectedRecord&gt;&#125; ExpectedTestResults
+ * @typedef &#123;&#123;diagram: string, values:*&#125;&#125; Input
+ * only one key,value pair though
+ * @typedef &#123;Object.&lt;string, Input&gt;&#125; SourceInput
+ * only one key,value pair though
+ * @typedef &#123;Object&#125; TestRunnerSettings
+ * @property &#123;Number&#125; tickDuration
+ * @property &#123;Number&#125; waitForFinishDelay
+ * @property &#123;function(error:Exception):void&#125; errorHandler
+ * @property &#123;function(actual, expected):void&#125; analyzeTestResults By contract, should throw if actual != expected
+ * @property &#123;Object.&lt;String, function():Subject&gt;&#125; sourceFactory hashmap associating a mocked source to a subject factory. The factory should create a subject through which test inputs are emitted
+ * @property &#123;Object.&lt;String, function(mockedObj, sourceSpecs, stream):*&gt;&#125; mocks The keys of `mocks` are the mocked object to build. Those mocked objects are passed as a source to the sources parameter of the tested component function (:: Sources -&gt; Sinks, where Sources :: Object.&lt;key, Source&gt;).
+ * Mocked source objects are build iteratively. As such, the function referred to here is a reducing function, which receives as first parameter the current value of the constructed mocked object, an additional parameter allowing for further parameterization, and the subject by which test inputs will flow for that (mock object, sourceSpecs) instance.
+ * Best is to review the tests to have a more precise understanding of the mechanism.
+ */</code></pre>
+<h3 id="runTestScenario"><a href="#runTestScenario" class="headerlink" title="runTestScenario"></a><code>runTestScenario</code></h3><p>As extracted for current source code (as of <code>v0.1.0</code>),<br><pre><code class="hljs undefined">/**
+ * Tests a function which takes a collection of streams and returns a collection of streams. In the current implementation, a collection of streams refers to a hash object (POJO or Plain Old Javascript Object).
+ * The function is run on some inputs, and its output is compared against the expected values defined in a test case object.
+ *
+ * ### Test execution
+ * Input values are emitted on their respective input streams according to an order defined by the array `inputs` (rows) and the marble diagrams (columns). That order is such that the first column is emitted first, and
+ * then subsequent columns in the marble diagrams are emitted next.
+ * The time interval between column emission is configurable (`tickDuration`).
+ * When there are no more input values to emit, a configurable amount of time must lapse for the test to conclude (`waitForFinishDelay`).
+ * Output values are optionally transformed, then hashed by output streams and gathered into an output object which is compared against expected values.
+ * If there is a discrepancy between actual and expected values, an exception is raised.
+ *
+ * The testing behaviour can be configured with the following settings :
+ * - tickDuration :
+ *   - the interval (ms) between the emission of a column of inputs and the next one
+ * - waitForFinishDelay :
+ *   - the time lapse (ms) after the last input is emitted, after which the test is terminated
+ * - errorHandler :
+ *   - in case an exception is raised, the corresponding error is passed through that error handler
+ * - mocks :
+ *   - only used if one of the input source key is of the form
+ *   x!y, where x is the source identifier, and y is called the source qualifier
+ *   - matches a source identifier to a factory function which produces a mocked object to be used in lieu of an input source
+ *   - for instance, `DOM!.button@click` as a key in the `inputs` parameter corresponds to a `DOM` entry in the `mocks` object passed in settings
+ *   - the mock function takes three parameters :
+ *     - mockedObj :
+ *       - current constructed value of the mock object (object is iteratively constructed)
+ *     - sourceSpecs :
+ *       - correspond to the `y` in `x!y`
+ *     - stream :
+ *       - subject passed to transmit input values for the corresponding mocked object
+ * - sourceFactory :
+ *   - entries whose keys are of the form `x!y` where `x` is the identifier for the corresponding source stream, and `y` is the qualifier for that same source. That key is matched to a function which takes no parameter and returns a stream to be used to emit input values (hence MUST be a subject).
+ *
+ * @param &#123;Array&lt;SourceInput&gt;&#125; inputs
+ * Inputs are passed in the form of an array
+ * - Each element of the array is a POJO which exactly ONE key which is the identifier for the tested function&apos;s corresponding input stream
+ *   - Input values for a given input streams are passed using the marble diagram syntax
+ * @param &#123;ExpectedTestResults&#125; expected Object whose key corresponds to an output stream identifier, matched to an object containing the data relevant to the test case :
+ *   - outputs : array of expected values emitted by the output stream
+ *   - successMessage : description of the test being performed
+ *   - analyzeTestResults : function which receives the actual, expected, and test messages information. It MUST raise an exception if the test fails. Typically this function fulfills the same function as the usual `assert.equal(actual, expected, message)`. That function is optional. It also has lower precedence over the function with the same name passed in settings, if any.
+ *   - transform : function which transforms the actual outputs from a stream.
+ *   That transform function can be used to remove fields, which are irrelevant or non-reproducible (for instance timestamps), before comparison.
+ *
+ *   ALL output streams returned by the tested function must have defined expected results, otherwise an exception will be thrown.
+ * @param &#123;function(Sources):Sinks&#125; testFn Function to test
+ * @param &#123;TestRunnerSettings&#125; _settings
+ * @throws when a predefined contract is broken, or when the tested function throws
+ */</code></pre></p>
+<h2 id="Marble-syntax"><a href="#Marble-syntax" class="headerlink" title="Marble syntax"></a>Marble syntax</h2><p>The marble syntax used for representing input sequences is inspired from<br><code>rxjs5</code>‘s <a href="https://github.com/ReactiveX/rxjs/blob/master/doc/writing-marble-tests.md" target="_blank" rel="noopener">writing marble tests</a>.</p>
+<p>In the present context, the syntax is used to denote four meanings :</p>
+<ul>
+<li><code>-</code> : empty data slot - no data is emitted by the producer </li>
+<li><code>|</code> : completion of the sequence - this is the observable producer signaling <code>complete()</code></li>
+<li><code>#</code> : error - An error terminating the sequence. This is the observable producer signaling <code>error()</code></li>
+<li><code>a</code> (any ONE character) : input value - All other characters than the three<br>previously shown represent a value being emitted by the producer signaling <code>next()</code></li>
+</ul>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><ul>
+<li><code>a--#</code> : represents a producer which emits a value on the first time slot,<br>then emits nothing the next two time slots, and then on the 4th time slots<br>emits an error.</li>
+<li><code>-b|</code> : represents a producer which emits nothing on the first time slot,<br>then emits a value on the next time slot, then completes on the third<br>time slot..</li>
+</ul>
+<h3 id="Total-ordering"><a href="#Total-ordering" class="headerlink" title="Total ordering"></a>Total ordering</h3><p>The following inputs :</p>
+<pre><code class="hljs undefined">[
+  &#123; x$: &#123;diagram: `a-c`&#125; &#125;, // row 1
+  &#123; y$: &#123;diagram: `bde`&#125; &#125;  // row 2
+]</code></pre>
+<p>will result in the following data emission and sequence of actions:</p>
+<ul>
+<li>lapse of <code>tickDuration</code> ms</li>
+<li>emission of <code>&quot;a&quot;</code> by <code>x$</code> THEN emission of <code>&quot;b&quot;</code> by <code>y$</code></li>
+<li>lapse of <code>tickDuration</code> ms</li>
+<li>emission of <code>&quot;d&quot;</code> by <code>y$</code></li>
+<li>lapse of <code>tickDuration</code> ms</li>
+<li>emission of <code>&quot;c&quot;</code> by <code>x$</code> THEN emission of <code>&quot;e&quot;</code> by <code>y$</code></li>
+<li>lapse of <code>waitForFinishDelay</code> ms</li>
+<li>completion of the test producer and processing of outputs</li>
+</ul>
+<p>Hence data emission is such that, if <code>(i,j)</code>represents the input value at row <code>i</code> and column <code>j</code>, then <code>(i,j)</code> is ALWAYS emitted before <code>(k,l)</code> if <code>j &lt; l</code> or <code>j==l &amp;&amp; i &lt; k</code>.</p>
+<h3 id="Input-values"><a href="#Input-values" class="headerlink" title="Input values"></a>Input values</h3><p>Input values can be associated to the letter/character in the diagram through<br> the <code>values</code> property. When no matching entry can be found in <code>values</code>, the<br> input stream emits the character itself. For  instance :<br>  <pre><code class="hljs undefined">[
+  &#123; x$: &#123;diagram: `a-c`, values: &#123;c: `dummy`&#125;&#125; &#125;, // row 1
+  &#123; y$: &#123;diagram: `bde`&#125; &#125;  // row 2
+]</code></pre></p>
+<p>will result in the input stream <code>x$</code> emitting <code>a</code> on the first time slot<br>and dummy` on the third time slot.</p>
+<h2 id="Mocking"><a href="#Mocking" class="headerlink" title="Mocking"></a>Mocking</h2><p>In order to cover <code>cycle.js</code> applications’ use cases, where functions (called<br>components or component functions) take as input a collection of streams OR<br>regular  objects from which streams are derived, a mocking functionality has been added, extending the syntax. For example :<br><pre><code class="hljs undefined">[
+   &#123; x$: &#123;diagram: `a-c`, values: &#123;c: `dummy`&#125;&#125; &#125;, // row 1
+   &#123; `y!z`: &#123;diagram: `bde`&#125; &#125;  // row 2
+ ]</code></pre></p>
+<p>will construct a mock object <code>y</code> and an input stream (identified by <code>z</code>) which<br>will emit values corresponding to the marble diagram specification. <code>y</code> is<br>referred to as the mock identifier and can be any string (not including the <code>!</code> character). <code>z</code> is referred to as the stream qualifier and can be any string (not including the <code>!</code> character).</p>
+<p> For instance, in the included example, a <code>DOM!input@click</code> input entails the creation of a <code>DOM</code> mock object which will reference through an API of its choice an input stream corresponding to <code>input@click</code>.</p>
+<p> The DOM mock factory function, passed through the <code>settings</code> parameter<br> (<code>makeMockDOMSource</code>), builds the mock object iteratively and constructs the derived input streams using the relevant source factory (defined in<br> <code>settings.sourceFactory</code>).</p>
+<p>  Cf. the documentation in the code source and the example above for more<br>  details.</p>
+<h2 id="Source-factories"><a href="#Source-factories" class="headerlink" title="Source factories"></a>Source factories</h2><p>A source factory is a function which MUST return a subject (cf. contracts).<br>The functionality is added to support the object mocking ability.</p>
+<h2 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h2><ul>
+<li>key type contracts<ul>
+<li>tested function MUST have the expected signature<ul>
+<li>must take a collection of streams OR objects…</li>
+<li>…and return a collection of streams</li>
+</ul>
+</li>
+<li><code>analyzeTestResults</code> is mandatory and must throw to signal test failure<ul>
+<li>it however can be defined globally in settings, or locally for each output stream</li>
+</ul>
+</li>
+<li>source factory functions must return a subject</li>
+</ul>
+</li>
+<li>other rules<ul>
+<li>source identifier MUST be non-empty strings</li>
+<li>source identifier MUST follow either <code>x</code> or <code>x!y</code> syntax, where <code>x</code> and<br><code>y</code> are any non empty strings, i.e. <code>!sth</code> is not a permitted syntax</li>
+<li>if the syntax <code>x!y</code> is used for a source identifier, there MUST be a<br>corresponding key <code>x</code> in the <code>mocks</code> object</li>
+</ul>
+</li>
+</ul>
+<h1 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h1><h2 id="Basic-example"><a href="#Basic-example" class="headerlink" title="Basic example"></a>Basic example</h2><p>The example thereafter illustrates the following optional features:</p>
+<ul>
+<li>settings<ul>
+<li><code>tickDuration</code></li>
+<li><code>waitForFinishDelay</code></li>
+</ul>
+</li>
+<li>inputs<ul>
+<li>values matching marble diagram letters</li>
+</ul>
+</li>
+<li>outputs<ul>
+<li>transform function</li>
+</ul>
+</li>
+</ul>
+<pre><code class="hljs undefined">describe(&quot;When inputs are simulating regular stream behaviour&quot;, () =&gt; &#123;
+  it(`emits the inputs in increasing order of (i,j), where : 
+   - i is the (row) index of the source in the input array
+   - j is the (column) index of the emitted input value in the source diagram
+   - (2,1) &lt; (1,2)`, (done) =&gt; &#123;
+    const assertAsync = plan(3)
+
+    function analyzeTestResults(actual, expected, message) &#123;
+      assert.deepEqual(actual, expected, message)
+      assertAsync(done)
+    &#125;
+
+    const inputs = [
+      &#123;a: &#123;diagram: &apos;xy|&apos;, values: &#123;x: &apos;a-0&apos;, y: &apos;a-1&apos;&#125;&#125;&#125;,
+      &#123;b: &#123;diagram: &apos;xyz|&apos;, values: &#123;x: &apos;b-0&apos;, y: &apos;b-1&apos;, z: &apos;b-2&apos;&#125;&#125;&#125;,
+    ]
+
+    /** @type ExpectedTestResults */
+    const expected = &#123;
+      m: &#123;
+        outputs: [&apos;m-a-0&apos;, &apos;m-b-0&apos;, &apos;m-a-1&apos;, &apos;m-b-1&apos;, &apos;m-b-2&apos;],
+        successMessage: &apos;sink m produces the expected values&apos;,
+        analyzeTestResults: analyzeTestResults,
+        transform: undefined,
+      &#125;,
+      n: &#123;
+        outputs: [&apos;t-n-a-0&apos;, &apos;t-n-a-1&apos;],
+        successMessage: &apos;sink n produces the expected values&apos;,
+        analyzeTestResults: analyzeTestResults,
+        transform: x =&gt; &apos;t-&apos; + x,
+      &#125;,
+      o: &#123;
+        outputs: [&apos;o-b-0&apos;, &apos;o-b-1&apos;, &apos;o-b-2&apos;],
+        successMessage: &apos;sink o produces the expected values&apos;,
+        analyzeTestResults: analyzeTestResults,
+        transform: undefined,
+      &#125;
+    &#125;
+
+    const testFn = sources =&gt; (&#123;
+      m: $.merge(sources.a, sources.b).map((x =&gt; &apos;m-&apos; + x)),
+      n: sources.a.map(x =&gt; &apos;n-&apos; + x),
+      o: sources.b.delay(3).map(x =&gt; &apos;o-&apos; + x)
+    &#125;)
+
+    runTestScenario(inputs, expected, testFn, &#123;
+      tickDuration: 10,
+      waitForFinishDelay: 30
+    &#125;)
+  &#125;)
+&#125;)</code></pre>
+<h2 id="Using-ad-hoc-mocks-and-factories"><a href="#Using-ad-hoc-mocks-and-factories" class="headerlink" title="Using ad-hoc mocks and factories"></a>Using ad-hoc mocks and factories</h2><p>The example thereafter illustrates the following features:</p>
+<ul>
+<li>mock<ul>
+<li><code>makeDOMSource</code> mock</li>
+</ul>
+</li>
+<li>stream (subject) factory </li>
+<li>error handler</li>
+</ul>
+<p>Note that :</p>
+<ul>
+<li>the error handler is used here to pass on the error to the testing<br>library (here <code>mocha</code>).</li>
+</ul>
+<pre><code class="hljs undefined">describe(&quot;When inputs are simulating an object, AND there is a mock&quot; +
+  &quot; associated to that object&quot;, () =&gt; &#123;
+  it(&apos;constructs the object according to the mock handler, constructs the&apos; +
+    &apos; sources with the source factory and emits the input values through that&apos;,
+    (done) =&gt; &#123;
+      const assertAsync = plan(3)
+
+      function analyzeTestResults(actual, expected, message) &#123;
+        assert.deepEqual(actual, expected, message)
+        assertAsync(done)
+      &#125;
+
+      function noop() &#123;
+      &#125;
+
+      function makeDummyClickEvent(value) &#123;
+        return &#123;
+          preventDefault: noop,
+          tap: x =&gt; console.log(x),
+          target: &#123;
+            value: value
+          &#125;
+        &#125;
+      &#125;
+
+      function makeDummyHoverEvent(value) &#123;
+        return &#123;
+          value: value
+        &#125;
+      &#125;
+
+      const inputs = [
+        &#123;
+          &apos;DOM!input@click&apos;: &#123;
+            diagram: &apos;xy|&apos;, values: &#123;
+              x: makeDummyClickEvent(&apos;a-0&apos;), y: makeDummyClickEvent(&apos;a-1&apos;)
+            &#125;
+          &#125;
+        &#125;,
+        &#123;
+          &apos;DOM!a@hover&apos;: &#123;
+            diagram: &apos;-xyz|&apos;, values: &#123;
+              x: makeDummyHoverEvent(&apos;a-0&apos;),
+              y: makeDummyHoverEvent(&apos;a-1&apos;),
+              z: makeDummyHoverEvent(&apos;a-2&apos;),
+            &#125;
+          &#125;
+        &#125;,
+        &#123;b: &#123;diagram: &apos;xyz|&apos;, values: &#123;x: &apos;b-0&apos;, y: &apos;b-1&apos;, z: &apos;b-2&apos;&#125;&#125;&#125;,
+      ]
+
+      const testFn = function testFn(sources) &#123;
+        const DOMclick = sources.DOM.select(&apos;input&apos;).events(&apos;click&apos;);
+        const DOMhover = sources.DOM.select(&apos;a&apos;).events(&apos;hover&apos;);
+        return &#123;
+          m: DOMclick
+            .tap(ev =&gt; ev.preventDefault())
+            .map(x =&gt; &apos;m-&apos; + x.target.value),
+          n: DOMhover.map(x =&gt; &apos;n-&apos; + x.value),
+          o: DOMhover.combine((a,b)=&gt; (&#123;x: a.value,y:b.target.value&#125;), DOMclick)
+        &#125;
+      &#125;
+
+      /** @type ExpectedTestResults */
+      const expected = &#123;
+        m: &#123;
+          outputs: [&apos;m-a-0&apos;, &apos;m-a-1&apos;],
+          successMessage: &apos;sink m produces the expected values&apos;,
+          analyzeTestResults: analyzeTestResults,
+          transform: undefined,
+        &#125;,
+        n: &#123;
+          outputs: [&apos;t-n-a-0&apos;, &apos;t-n-a-1&apos;, &apos;t-n-a-2&apos;],
+          successMessage: &apos;sink n produces the expected values&apos;,
+          analyzeTestResults: analyzeTestResults,
+          transform: x =&gt; &apos;t-&apos; + x,
+        &#125;,
+        o: &#123;
+          outputs: [&#123;&quot;x&quot;:&quot;a-0&quot;,&quot;y&quot;:&quot;a-1&quot;&#125;,&#123;&quot;x&quot;:&quot;a-1&quot;,&quot;y&quot;:&quot;a-1&quot;&#125;,&#123;&quot;x&quot;:&quot;a-2&quot;,&quot;y&quot;:&quot;a-1&quot;&#125;],
+          successMessage: &apos;sink o produces the expected values&apos;,
+          analyzeTestResults: analyzeTestResults,
+          transform: undefined,
+        &#125;
+      &#125;
+
+      runTestScenario(inputs, expected, testFn, &#123;
+        tickDuration: 10,
+        waitForFinishDelay: 30,
+        mocks: &#123;
+          DOM: makeMockDOMSource
+        &#125;,
+        sourceFactory: &#123;
+          &apos;DOM!input@click&apos;: () =&gt; sync(),
+          &apos;DOM!a@hover&apos; : () =&gt; sync(),
+        &#125;,
+        errorHandler: function (err) &#123;
+          done(err)
+        &#125;
+      &#125;)
+    &#125;)
+&#125;)
+
+// DOM Mocking
+ function isValidDOMSourceInput(select, event) &#123;
+   // Keep it simple for now
+   return !!select &amp;&amp; !!event
+ &#125;
+ 
+ function makeDOMMock(hashTable) &#123;
+   return function mockCycleDOMSelect(selector) &#123;
+     return &#123;
+       events: function mockCycleDOMEvent(event) &#123;
+         return hashTable[selector][event]
+       &#125;
+     &#125;
+   &#125;
+ &#125;
+ 
+ function makeMockDOMSource(_mockedObj, sourceSpecs, stream) &#123;
+   const [select, event] = sourceSpecs.split(&apos;@&apos;);
+ 
+   if (!isValidDOMSourceInput(select, event)) &#123;
+     throw `Invalid spec for DOM source : $&#123;sourceSpecs&#125;`
+   &#125;
+ 
+   // Initialize object hash table if not done already
+   let mockedObj = _mockedObj || &#123;&#125;;
+   mockedObj.hashTable = mockedObj.hashTable || &#123;&#125;;
+   mockedObj.hashTable[select] = mockedObj.hashTable[select] || &#123;&#125;;
+   mockedObj.hashTable[select][event] = mockedObj.hashTable[select][event] || &#123;&#125;;
+   // register the stream in the hash table
+   mockedObj.hashTable[select][event] = stream;
+   // build the mock anew to incorporate the new stream
+   mockedObj.select = makeDOMMock(mockedObj.hashTable)
+   return mockedObj
+ &#125;</code></pre>
+<h1 id="Known-limitations"><a href="#Known-limitations" class="headerlink" title="Known limitations"></a>Known limitations</h1><ul>
+<li>The edge case of a tested function which takes streams and returns nothing is<br>not handled.</li>
+<li><code>rxjs</code> grammar is not enforced for the marble diagrams, i.e. behaviour of a<br>sequence such as <code>a-|b#-c|</code> is unspecified and untested.</li>
+<li>Due to the imprecision of <code>setTimeOut</code> and the like, it is impossible to enforce an absolute timing for input emission. This means that it is not possible to send input <code>x</code> after EXACTLY <code>t</code> ms.</li>
+<li>It is not possible in the current version of the API to check against total order of outputs, only against the relative order of output values for a given sink. This means it is not possible to discriminate whether the <code>i</code>-th output value of sink <code>S</code> was emitted before or after the <code>j</code>-th output of sink <code>T</code>. It is only guaranteed that the <code>i</code>-th output value of sink <code>S</code> was emitted before the <code>j</code>-th output of sink <code>S</code>, iff <code>i &lt; j</code>. For the vast majority of applications though, such a degree of precision is hopefully not necessary.</li>
+<li>Subjects are used to simulate input streams. Small semantic differences<br>between the two around edge cases, depending on the streaming library in use, may lead to false negatives.</li>
+</ul>
+<h1 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h1><p>No shooting, no trouble.</p>
+<h1 id="Breaking-Changes"><a href="#Breaking-Changes" class="headerlink" title="Breaking Changes"></a>Breaking Changes</h1><p>Maybe one day. Cf. roadmap</p>
+<h1 id="Roadmap"><a href="#Roadmap" class="headerlink" title="Roadmap"></a>Roadmap</h1><ul>
+<li>clean code</li>
+<li>review API against open/closed principle</li>
+<li>combine mocks and source factory in one indexed by the mock<br>i.e. DOM : {y_n: factory(), constructor: makeDOMsource}</li>
+<li>have documentation reviewed by external actor</li>
+</ul>
+<h1 id="License"><a href="#License" class="headerlink" title="License"></a>License</h1><p>MIT</p>
+<h1 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h1><p>Shoot but aim high. Open a pull request!</p>
+<p>Suggestions, if you are bored on a sunday :</p>
+<ul>
+<li>typescript type file<ul>
+<li>most of the type information is there</li>
+</ul>
+</li>
+</ul>
+
+  
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

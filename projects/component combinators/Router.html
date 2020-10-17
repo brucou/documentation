@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Router — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Router — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Router — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  
+  
+    <h1>Router</h1>
+  
+  
+    <h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>The <code>Router</code> component allows to associate a set of URL locations (routes) from a source (called location source) to a component or set of components. When the location source emits a route, the component(s) associated to that route should be activated and be parameterized by the information encoded in the route. </p>
+<p>Routing involves a sophisticated form of control flow, and relates strongly to the <code>Switch</code> component. However, there are specifics to the routing logic, due to the fact that routing in web applications is principally aimed at representing efficiently, concisely, and visually a specific state of the application :</p>
+<ul>
+<li>routing may be nested : a parent-child relationship at component level may be encoded with a parent-child relationship at route level <ul>
+<li>the standard mapping is a relationship between sections of the url. For instance <code>URL : &#39;x/y/z&#39;</code> mapped to <code>Components : A1(x,y) -- B1(z)</code></li>
+</ul>
+</li>
+<li>If a location source emits twice in sequence the same location, then there should be no update in the application state (i.e. no components activated, or deactivated, or updated)</li>
+<li>If a location source emits twice in sequence the same already mapped segment of url, then the associated component should not be updated. <ul>
+<li>In the previous case, this means <code>URL : &#39;x/y/a&#39;</code> should not lead to any change in the state of component <code>A1</code> while it might lead to the component <code>B1(z)</code> being replaced by the component <code>B2(a)</code></li>
+<li>visual representation of state is achieved by incorporating in route sections meaningful words from the application domain (<code>URL : show/items?all</code>)</li>
+<li>A route may also encode parameter passing in its sections (<code>URL : add/book?author=John&amp;title=Ahoj</code>) in a standard way to facilitate parsing by the matching component.</li>
+</ul>
+</li>
+</ul>
+<p>As one can see, routing, at a simplified level, can be modelized as a two-concerns entity :</p>
+<ol>
+<li>a mapping between a URL (representing the application state) and a tree of components (which compose the application in the given state). In the case of nested routing, we have <em>in fine</em> a mapping between a tree of URL sections and a tree of components.  This is generally referred to as <em>deep linking</em>.</li>
+<li>a procedure to match updates of that URL to updates of the component tree as efficiently as possible.</li>
+</ol>
+<p>Some applications add extra control-flow requirement to routing by adding another concern :</p>
+<ul>
+<li>accepting/rejecting transition from one route (application state) to another route</li>
+</ul>
+<p>The current routing component targets concerns 1 and 2, while leaving the third concern to the rest of the application. While a hierarchical state machine in principle addresses nicely all three concerns (at least for a low number of control states), we went for a simpler implementation in this first draft, which should fully address the most common nested routing cases.</p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><h2 id="OnRoute-RouteSettings-gt-Component-gt-RouteComponent"><a href="#OnRoute-RouteSettings-gt-Component-gt-RouteComponent" class="headerlink" title="OnRoute :: RouteSettings -&gt; [Component] -&gt; RouteComponent"></a>OnRoute :: RouteSettings -&gt; [Component] -&gt; RouteComponent</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>Creates a router component whose behaviour is parameterized via <code>RouteSettings</code>. Children components are the components to be mapped to the incoming route specified in settings.</p>
+<p>The parametrization is as follows :</p>
+<ul>
+<li>an array of sink names must be passed to indicate which sinks are to be extracted from the children components. Sinks produced by any child component which are not in the sink names array will be ignored. It is not necessary, for any sink name in that array, for a child component to return a sink of that name.</li>
+<li>the source from which the urls are emitted may be specified with <code>routeSource</code> setting property, in which case urls will be read from <code>sources[routeSource]</code>. <code>&#39;route$&#39;</code> is the default value for <code>routeSource</code></li>
+<li>the route matching/parameter parsing is specified by a <a href="https://github.com/cowboy/javascript-route-matcher" target="_blank" rel="noopener">syntax</a> akin to a regular expression (termed instead a dynamic expression) :<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> search = routeMatcher(<span class="hljs-string">"search/:query/p:page"</span>);
+search.parse(<span class="hljs-string">"search/gonna-fail"</span>) <span class="hljs-comment">// null (no match)</span>
+search.parse(<span class="hljs-string">"search/cowboy/p5"</span>)  <span class="hljs-comment">// &#123;query: "cowboy", page: "5"&#125;</span>
+search.parse(<span class="hljs-string">"search/gnarf/p10"</span>)  <span class="hljs-comment">// &#123;query: "gnarf", page: "10"&#125;</span></code></pre>
+</li>
+</ul>
+<p>The behaviour is as follows :</p>
+<ul>
+<li>for every incoming value of the location source, the incoming route is matched against the configured route</li>
+<li>if there is a match, and that match is the same as the previous match, nothing happens, the component(s) was/were already activated previously</li>
+<li>if there is a non-redundant positive match on the configured route, then <ul>
+<li>the associated components are executed with <ul>
+<li>a location source which is updated to remove the matched path from the current location source<ul>
+<li>this is the key mechanism allowing nested routing</li>
+</ul>
+</li>
+<li>a <code>matched</code> property in settings which contain the partial route matching (for instance <code>/section/:capture</code> will lead to <code>{matched: capture: &#39;...&#39;}</code>)</li>
+</ul>
+</li>
+<li>the sinks returned by the associated components are activated (merged into the rest of the application sinks)<ul>
+<li>those sinks whose name is not in the <code>sinkNames</code> property are discarded</li>
+<li>those sinks whose name is in the <code>sinkNames</code> property are merged according to settings (default-merged if not)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>if there is not a positive match on the configured route, then <ul>
+<li><code>null</code> is emitted on <code>DOM</code> sinks. This is so under the hypothesis that router’s parent DOM sink will merge its children sinks with <code>combineLatest</code>, so we need all DOM sinks to have an initial value to avoid blocking the <code>combineLatest</code> operation. We also need to pass on the fact that the DOM is actually empty on that route<sup><a href="#fn_1" id="reffn_1">1</a></sup>, so that previously displayed DOMs are actually erased on route changes. Concretely there are two common cases :<ul>
+<li>transition [MATCH, INIT] TO NO_MATCH -&gt; EMITS NULL</li>
+<li>transition [MATCH, NO_MATCH] -&gt; MATCH -&gt; ALWAYS STARTS WITH NULL</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>One can refer to the tests to see this in action.</p>
+<blockquote id="fn_1">
+<sup>1</sup>. The core reason is that DOM sink correspond to a behaviour, and hence should always have a value. That not being enforced by cyclejs framework forces us to adjust manually.<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h3><ul>
+<li><code>RouteComponent :: Component</code></li>
+<li><code>RouteSettings :: Record {</code></li>
+<li><code>sinkNames :: [String]</code>  <strong>Mandatory</strong></li>
+<li><code>route :: RouteSpec</code> <strong>Mandatory</strong></li>
+<li><code>routeSource :: String</code> <strong>Mandatory</strong></li>
+<li><code>}</code></li>
+<li><code>RouteSpec :: String</code> <a href="https://github.com/cowboy/javascript-route-matcher" target="_blank" rel="noopener">syntax</a></li>
+</ul>
+<h3 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h3><ul>
+<li>be careful about end slashing</li>
+<li><code>route :: RouteSpec</code> should not end by a <code>/</code> or start with a <code>/</code> (<strong>NOTE</strong> : for now! this is due to how <code>routeRemainder</code> is parsed and passed to children…)</li>
+<li>if <code>routeSource</code> is specified, then <code>sources[routeSource]</code> must be defined (and be an observable)</li>
+</ul>
+<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><p>cf. <a href="https://github.com/brucou/component-combinators/blob/master/test/Router.specs.js" target="_blank" rel="noopener">tests</a></p>
+<h1 id="Roadmap"><a href="#Roadmap" class="headerlink" title="Roadmap"></a>Roadmap</h1><ul>
+<li>route parsing<ul>
+<li>have the parsing library as a configurable dependency</li>
+<li>switch to more recent and functional <a href="https://github.com/rcs/route-parser" target="_blank" rel="noopener">https://github.com/rcs/route-parser</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ul>
+<li>The null emission mechanism is explained here for reference, and for analyzing output when testing. In a real application, the only impact this should have is that the DOM sink can receive null inputs, and as such must guards against them (filtering them out for instance)</li>
+<li>The current parsing library does not parse query strings but passes all the query string to the component. One can then use a specific query string parsing library.  This ensures maximal flexibility for the router component library as any extra parsing library can be plugged in according to the shape of the route.</li>
+<li>when the route changes to a route for which there is no matching component, the displayed DOM does not change. If there is a need for a different treatment in such cases, that should be implemented, by adding a component with a wildcard matching any children route of relevance.</li>
+</ul>
+
+  
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

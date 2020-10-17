@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Mocking the query driver — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Mocking the query driver — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mocking the query driver — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  
+  
+    <h1>Mocking the query driver</h1>
+  
+  
+    <h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>In the context of our cyclejs-based architecture, to read external system’s state (database content, external device, etc.) is realized by means of a <code>domainQuery</code> driver. That driver relies on a domain model abstraction :<br>a query has a context (for example a bounded context, or a domain entity), and parameters. As of<br>now, the <code>domainQuery</code> only allows one type of domain operation (typically a <code>get</code> operation).</p>
+<p>Here is an example of configuration for a domain with two entities (projects and opportunities) :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> domainObjectsQueryMap = &#123;
+  [PROJECTS]: &#123;
+    <span class="hljs-attr">get</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getProjectByProjectKey</span>(<span class="hljs-params">repository, context, params</span>) </span>&#123;
+      <span class="hljs-keyword">const</span> &#123; projectKey &#125; = params;
+      <span class="hljs-keyword">const</span> localforageKey = [PROJECTS_REF, projectKey].join(KEY_SEP);
+
+      <span class="hljs-keyword">return</span> repository.getItem(localforageKey);
+    &#125;
+  &#125;,
+  [OPPORTUNITY]: &#123;
+    <span class="hljs-attr">get</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOpportunityByOppKey</span>(<span class="hljs-params">repository, context, params</span>) </span>&#123;
+      <span class="hljs-keyword">const</span> &#123; opportunityKey &#125; = params;
+      <span class="hljs-keyword">const</span> localforageKey = [OPPORTUNITY_REF, opportunityKey].join(KEY_SEP);
+
+      <span class="hljs-keyword">return</span> repository.getItem(localforageKey);
+    &#125;
+  &#125;,
+  ...
+<span class="hljs-string">``</span><span class="hljs-string">` 
+  
+Here is an example of using the `</span>domainQuery<span class="hljs-string">` driver :
+
+`</span><span class="hljs-string">``</span>javascript
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchUserApplication</span>(<span class="hljs-params">domainQuery, opportunityKey, userKey</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> domainQuery.getCurrent(USER_APPLICATION, &#123; userKey, opportunityKey &#125;)
+&#125;</code></pre>
+<p>To be able to test applications written within our architecture, we propose a mechanism to mock<br> the <code>domainQuery</code> driver, hence avoiding the side-effects performed by such driver. </p>
+<p> In connection with the <code>runTestScenario</code> <a href="https://brucou.github.io/projects/component-combinators/runtestscenario/#mocking">mock factory syntax</a>, we propose here a syntax<br> <code>domainQuery!stringifiedParams@context</code> for mocked inputs. This will match a code written as <code>sources.domainQuery.getCurrent(context, parsedParams)</code>, where <code>parsedParams = JSON.parse(stringifiedParams)</code>. </p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><p>The <code>makeDomainQuerySource</code> function is exported to be used in conjunction with <code>runTestScenario</code><br>helper. For example : </p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> inputs = [
+  ...
+  &#123;
+    [<span class="hljs-string">`domainQuery!<span class="hljs-subst">$&#123;mockUserAppParams&#125;</span>@<span class="hljs-subst">$&#123;USER_APPLICATION&#125;</span>`</span>]: &#123;
+      <span class="hljs-attr">diagram</span>: <span class="hljs-string">'u----'</span>, <span class="hljs-attr">values</span>: &#123; <span class="hljs-attr">u</span>: <span class="hljs-literal">null</span> &#125;
+    &#125;
+  &#125;,
+  &#123;
+    [<span class="hljs-string">`domainQuery!<span class="hljs-subst">$&#123;mockTeamsParams&#125;</span>@<span class="hljs-subst">$&#123;TEAMS&#125;</span>`</span>]: &#123;
+      <span class="hljs-attr">diagram</span>: <span class="hljs-string">'v----'</span>, <span class="hljs-attr">values</span>: &#123; <span class="hljs-attr">v</span>: teams[<span class="hljs-string">`<span class="hljs-subst">$&#123;TEAMS_REF&#125;</span>!<span class="hljs-subst">$&#123;fakeProjectKey&#125;</span>`</span>] &#125;
+    &#125;
+  &#125;,
+  ...
+  ];
+
+runTestScenario(inputs, testResults, ProcessApplication, &#123;
+  <span class="hljs-attr">tickDuration</span>: <span class="hljs-number">5</span>,
+  <span class="hljs-attr">waitForFinishDelay</span>: <span class="hljs-number">20</span>,
+  <span class="hljs-attr">analyzeTestResults</span>: analyzeTestResults(assert, done),
+  <span class="hljs-attr">mocks</span>: &#123;
+    <span class="hljs-attr">DOM</span>: makeMockDOMSource,
+    <span class="hljs-attr">document</span>: makeMockDocumentSource,
+    <span class="hljs-attr">domainQuery</span>: makeDomainQuerySource
+  &#125;,
+  <span class="hljs-attr">sourceFactory</span>: &#123;
+    ...
+    [<span class="hljs-string">`domainQuery!<span class="hljs-subst">$&#123;mockUserAppParams&#125;</span>@<span class="hljs-subst">$&#123;USER_APPLICATION&#125;</span>`</span>]: subjectFactory,
+    [<span class="hljs-string">`domainQuery!<span class="hljs-subst">$&#123;mockTeamsParams&#125;</span>@<span class="hljs-subst">$&#123;TEAMS&#125;</span>`</span>]: subjectFactory,
+    ...
+  &#125;,</code></pre>
+<p>Note the mocked input syntax and the passing of timed diagrams. Also, as of now,<br><code>runTestScenario</code> requires the user to specify a factory for the input streams to which the<br>mocked inputs will be sent. In a live query case, this factory would typically be a <code>() =&gt; new Rx.ReplaySubject(1)</code>. In a standard case, it will usually be a <code>() =&gt; new Rx.Subject()</code>, but it will depend on the particular<br>component function under test. </p>
+<p>To get a deeper understanding of the consequences of each choice,<br>one can refer to the <a href="https://github.com/brucou/component-combinators/tree/master/test/mockDomainQuery.specs.js" target="_blank" rel="noopener">corresponding tests</a>,<br>and play with changing the type of subjects used, and see how the computed output changes. For<br>instance, in the [once query test], changing a standard subject to a memoized subject will lead<br>to the last output of <code>ANOTHER_SOURCE</code> to change to <code>${YET_ANOTHER_PREFIX}-${A_STRING}</code> from<br><code>${YET_ANOTHER_PREFIX}-${A_NUMBER}</code>, as the source inputs are <code>null, A_STRING, A_NUMBER</code>. With a<br>memoized subject, the memoized input at the moment of execution of <code>getCurrent</code> is used, hence the<br> <code>A_STRING</code>.  With a standard subject, at the moment of execution of <code>getCurrent</code>, the first value<br>  emitted (in the future) is taken, hence <code>A_NUMBER</code>.</p>
+<h1 id="Contracts"><a href="#Contracts" class="headerlink" title="Contracts"></a>Contracts</h1><ul>
+<li>In <code>domainQuery!stringifiedParams@context</code>, both <code>stringifiedParams</code> and <code>context</code> must be non empty.</li>
+<li>both <code>stringifiedParams</code> and <code>context</code> cannot have a <code>@</code> character</li>
+<li><code>stringifiedParams</code> must correspond to a JSON string (meaning for instance that <code>undefined</code> is<br>not a valid value)</li>
+<li><code>context</code> <strong>may</strong> start with <code>LIVE_QUERY_TOKEN</code>. This however must be consistent in the whole<br>test parameterization, i.e. it is not allowed in the same test to have the same context with a<br>different syntax.</li>
+</ul>
+<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><p>cf. <a href="https://github.com/brucou/component-combinators/blob/master/examples/volunteerApplication/test/app.specs.js#L199" target="_blank" rel="noopener">tests</a> from an example application.</p>
+<p>Also <a href="https://github.com/brucou/component-combinators/blob/master/test/mockDomainQuery.specs.js" target="_blank" rel="noopener">core tests</a> available. </p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ul>
+<li>choose carefully the type of subject factory in function of th implementation under test.<br>Nothing more frustating than writing tests that are wrong, with an implementation that is right<br>(you can’t test the tests, so write the tests right).</li>
+</ul>
+
+  
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>

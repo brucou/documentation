@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>EFSM combinator - sample application — Kingly.js</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="EFSM combinator - sample application — Kingly.js">
+  <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="EFSM combinator - sample application — Kingly.js">
+  <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
+  <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/documentation/images/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/documentation/images/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/documentation/images/icons/favicon-256x256.png">
+  <link rel="icon" href="/documentation/images/kingly_logo.png" type="image/png">
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Overlock:400&text=Kingly.js" rel="stylesheet" type="text/css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- main page styles -->
+  <link rel="stylesheet" href="/documentation/css/page.css">
+
+  <!--<script src="/documentation/js/kingly.js"></script>-->
+
+  <!-- ga -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-141924019-1', 'brucou.github.io/documentation');
+    ga('send', 'pageview');
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </head>
+
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+      <a class="logo" href="/documentation"></a>
+    </div>
+    
+
+<div id="header">
+  <a id="logo" href="/documentation/">
+    <img src="/documentation/images/kingly_logo.png" alt="library logo">
+    <span>Kingly</span>
+    
+  </a>
+  <ul id="nav">
+    <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+  </ul>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+          
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li class="nav-dropdown-container learn">
+  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tutorials/" class="nav-link">Tutorials</a></li>
+        <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
+        <li><a href="/documentation/v1/best-practices/" class="nav-link">Best practices</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/api/index.html" class="nav-link team">API</a>
+</li>
+<li class="nav-dropdown-container tooling">
+  <a class="nav-link">Tooling</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
+        <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
+        <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container integrations">
+  <a class="nav-link">Integrations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li>
+      <ul>
+        <li><a href="/documentation/v1/int-vanilla/" class="nav-link">Vanilla js</a></li>
+        <li><a href="/documentation/v1/int-react/" class="nav-link">React</a></li>
+        <li><a href="/documentation/v1/int-vue/" class="nav-link">Vue</a></li>
+        <li><a href="/documentation/v1/int-svelte/" class="nav-link">Svelte</a></li>
+        <li><a href="/documentation/v1/int-others/" class="nav-link">Others</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/documentation/v1/testing/index.html" class="nav-link team">Testing</a>
+</li>
+<li>
+  <a href="/documentation/v1/contributed/index.html" class="nav-link team">Contributed</a>
+</li>
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  
+  
+    <h1>EFSM combinator - sample application</h1>
+  
+  
+    <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>We presented in previous articles:</p>
+<ul>
+<li>the case for using <a href="/projects/component-combinators/efsm---the-case-for-ui-programming/">state machines for UI programming</a>, </li>
+<li><p><a href="/projects/component-combinators/efsm---documentation/">our state machine library</a>, in the<br>larger frame of our combinator library</p>
+<p>In the present article, we will illustrate our state machine library by implementing an average-complexity example<br>application. We will first introduce the sample application, in its two iterations, including functional specification, lo-fi wireframes, and user experience flowcharts. We will then implement that application in a stepwise manner (though focusing on<br>relevant parts of the application). We finish with the known limitations to the approach and<br>miscellaneous tips from our experience using state machines.</p>
+</li>
+</ul>
+<p><strong>Prerequisites</strong></p>
+<ul>
+<li>understanding of stream concepts</li>
+<li><code>cyclejs</code> knowledge, and Rxjs library knowledge for the implementation section</li>
+<li><code>JSON patch</code> RFC 6902</li>
+</ul>
+<h1 id="Sample-application"><a href="#Sample-application" class="headerlink" title="Sample application"></a>Sample application</h1><p>We will describe a user interface application which allows a volunteer to apply for a festival. That description consists of :</p>
+<ul>
+<li>functional specifications</li>
+<li>wireframes flows</li>
+</ul>
+<h2 id="High-level-specifications"><a href="#High-level-specifications" class="headerlink" title="High-level specifications"></a>High-level specifications</h2><h3 id="Initial-version"><a href="#Initial-version" class="headerlink" title="Initial version"></a>Initial version</h3><p>Every festival requires prospective volunteers to :</p>
+<ul>
+<li>provide pieces of information about themselves</li>
+<li>answer a motivational question whose answer will be reviewed by the volunteer coordinator</li>
+<li>apply for a list of volunteers’ teams by answering a specific motivational question on that team</li>
+</ul>
+<p>The designed process to allow a volunteer to apply to several teams with the minimal amount of steps is the following :</p>
+<ul>
+<li>fill-in personal information</li>
+<li>answer the festival’s motivational question</li>
+<li>review all teams which can be joined and join the one he/she is interested in</li>
+<li>for each selected team, the volunteer can review some details about that team and answer a<br>team-specific motivational question<ul>
+<li>the volunteers cannot continue to the review step if he has applied to no team</li>
+</ul>
+</li>
+<li>at the end of the process, the volunteer reviews its choices</li>
+<li>from there, the volunteer can either finalize his application, or modify his application</li>
+</ul>
+<p>If the volunteer interrupts its application in a given step, it can resume that application at a<br>convenient starting point. When reaching the review step, the volunteer can modify his<br>application, choosing the section of the application he wants to modify. When he finishes doing so, the next step must be to go back to the review step, where he sees all information about his application.</p>
+<p>Other relevant information :</p>
+<ul>
+<li>90% of students are using the application on low-tech small-screen mobile.</li>
+<li>All data about festival and teams is available and stored on a remote repository.</li>
+<li>When the volunteers’ application is finalized, the application data is saved in the remote repository.</li>
+</ul>
+<h3 id="Second-iteration-after-user-feedback"><a href="#Second-iteration-after-user-feedback" class="headerlink" title="Second iteration (after user feedback)"></a>Second iteration (after user feedback)</h3><p>Before continuing to the next step of the application, user inputs must be checked for validity. When some inputs are invalid, the relevant error messages will be displayed.</p>
+<h2 id="Wireframes"><a href="#Wireframes" class="headerlink" title="Wireframes"></a>Wireframes</h2><p>After discussion with stakeholders, the proposed flow is summarized with the following wireframes :</p>
+<p><img src="http://i.imgur.com/BFjfgWZ.png" alt="(Application process wireframes)" title="Application process wireframes"></p>
+<h1 id="Sample-application-implementation-first-iteration"><a href="#Sample-application-implementation-first-iteration" class="headerlink" title="Sample application implementation - first iteration"></a>Sample application implementation - first iteration</h1><h2 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h2><p>The events to process are pretty obvious from the wireframe flows (button clicks, etc.).<br>We will match each screen with a control state of our state machine. That makes 5 control states. To each of this control state, we will have a dataflow component whose only action request will be to update the DOM with that screen content.<br>The quantitative state will have to hold all necessary data for each screen to draw itself, and the guards and actions to describe their logic. This includes :</p>
+<ul>
+<li>all field contents for each screen</li>
+<li>the step (<code>progress indicator</code> region) of the application process</li>
+<li>an error message field to give feedback to the user if something went wrong</li>
+<li>validation messages representing the hints related to the content for each field</li>
+</ul>
+<p>Transitions and guards are partly given by the wireframe flows. They will have to be completed so there is no logic hole in the design (i.e. a logic branch which is not considered).</p>
+<p>The resulting target workflow is then established :</p>
+<p><img src="/img/graphs/sparks application process with errors flow.png" alt="First iteration workflow"></p>
+<h2 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h2><p>The events processed by the state machine are defined as follows :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> events = &#123;
+  [FETCH_EV]: fetchUserApplicationModelData,
+  [ABOUT_CONTINUE]: aboutContinueEventFactory,
+  [QUESTION_CONTINUE]: questionContinueEventFactory,
+  [TEAM_CLICKED]: teamClickedEventFactory,
+  [SKIP_TEAM_CLICKED]: skipTeamClickedEventFactory,
+  [JOIN_OR_UNJOIN_TEAM_CLICKED]: joinTeamClickedEventFactory,
+  [BACK_TEAM_CLICKED]: backTeamClickedEventFactory,
+  [TEAM_CONTINUE]: teamContinueEventFactory,
+  [CHANGE_ABOUT]: changeAboutEventFactory,
+  [CHANGE_QUESTION]: changeQuestionEventFactory,
+  [CHANGE_TEAMS]: changeTeamsEventFactory,
+  [APPLICATION_COMPLETED]: applicationCompletedEventFactory
+&#125;;</code></pre>
+<p>As an example, here is the fetch event factory :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchUserApplicationModelData</span>(<span class="hljs-params">sources: any, settings: any</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; user$ &#125; = sources;
+  <span class="hljs-keyword">const</span> &#123; opportunityKey, userKey &#125; = settings;
+  <span class="hljs-keyword">const</span> userApp$ = fetchUserApplicationData(sources, opportunityKey, userKey);
+  <span class="hljs-keyword">const</span> teams$ = sources.query$.query(TEAMS, &#123;&#125;);
+  <span class="hljs-keyword">const</span> opportunities$: Stream&lt;Opportunity&gt; = sources.query$.query(OPPORTUNITY, &#123; opportunityKey &#125;);
+
+  <span class="hljs-comment">// NOTE : combineArray will produce its first value when all its dependent streams have</span>
+  <span class="hljs-comment">// produced their first value. Hence this is equivalent to a zip for the first value, which</span>
+  <span class="hljs-comment">// is the only one we need anyways (there is no zipArray in most)</span>
+  <span class="hljs-keyword">return</span> combineArray&lt;FirebaseUserChange, Opportunity | <span class="hljs-literal">null</span>, UserApplication | <span class="hljs-literal">null</span>, Teams | <span class="hljs-literal">null</span>, any&gt;(
+    <span class="hljs-function">(<span class="hljs-params">user, opportunity, userApplication, teams</span>) =&gt;</span>
+      (&#123;
+        user,
+        opportunity,
+        userApplication,
+        teams,
+        <span class="hljs-attr">errorMessage</span>: <span class="hljs-literal">null</span>,
+        <span class="hljs-attr">validationMessages</span>: &#123;&#125;
+      &#125;),
+    [user$, opportunities$, userApp$, teams$]
+  )
+    .take(<span class="hljs-number">1</span>)
+&#125;</code></pre>
+<p>And here is the factory for the click on the <code>continue</code> button at the <code>About</code> step.</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">aboutContinueEventFactory</span>(<span class="hljs-params">sources: any, settings: any</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> sources.dom.select(<span class="hljs-string">'button.c-application__submit--about'</span>).events(<span class="hljs-string">'click'</span>)
+    .tap(preventDefault)
+    .map(<span class="hljs-function">(<span class="hljs-params">x: any</span>) =&gt;</span> (&#123;<span class="hljs-attr">formData</span> : getAboutFormData() &#125;))
+&#125;</code></pre>
+<h2 id="Transitions"><a href="#Transitions" class="headerlink" title="Transitions"></a>Transitions</h2><h3 id="Initialization"><a href="#Initialization" class="headerlink" title="Initialization"></a>Initialization</h3><p>To jump start the state machine, we will fetch the stored application from the server via <code>FETCH</code> event, which will be immediately emitted on state machine initialization (after the initial event is emitted). This means that the state machine is initialized with dummy/empty initial model (it will be fetched) and initial event data (unused). </p>
+<pre><code class="hljs javascript">T_INIT: &#123;
+  <span class="hljs-attr">origin_state</span>: INIT_STATE,
+  <span class="hljs-attr">event</span>: INIT_EVENT_NAME,
+  <span class="hljs-attr">target_states</span>: [
+    &#123;
+      <span class="hljs-attr">event_guard</span>: EV_GUARD_NONE,
+      <span class="hljs-attr">re_entry</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// necessary as INIT is both target and current state in the beginning</span>
+      action_request: ACTION_REQUEST_NONE,
+      <span class="hljs-attr">transition_evaluation</span>: [
+        &#123;
+          <span class="hljs-attr">action_guard</span>: ACTION_GUARD_NONE,
+          <span class="hljs-attr">target_state</span>: INIT_S,
+          <span class="hljs-attr">model_update</span>: modelUpdateIdentity
+        &#125;
+      ]
+    &#125;
+  ]
+&#125;,</code></pre>
+<p>For the fetch event data, we determine in which step the volunteer left the application and transition to the corresponding control state. But before that, we must check if the volunteer has actually already finished its application and apply the corresponding logic. This gives us the following transitions :</p>
+<pre><code class="hljs javacript">dispatch: &#123;
+  origin_state: INIT_S,
+  event: FETCH_EV,
+  target_states: [
+    &#123;
+      // whatever step the application is in, if the user has applied, we start with the review
+      event_guard: hasApplied,
+      action_request: ACTION_REQUEST_NONE,
+      transition_evaluation: [
+        &#123;
+          action_guard: ACTION_GUARD_NONE,
+          target_state: STATE_REVIEW,
+          // Business rule
+          // if the user has applied, then he starts the app process route with the review stage
+          model_update: initializeModelAndStepReview
+        &#125;
+      ]
+    &#125;,
+    &#123;
+      event_guard: isStep(STEP_ABOUT),
+      action_request: ACTION_REQUEST_NONE,
+      transition_evaluation: [
+        &#123;
+          action_guard: ACTION_GUARD_NONE,
+          target_state: STATE_ABOUT,
+          model_update: initializeModel // with event data which is read from repository
+        &#125;
+      ]
+    &#125;,
+    &#123;
+      event_guard: isStep(STEP_QUESTION),
+      action_request: ACTION_REQUEST_NONE,
+      transition_evaluation: [
+        &#123;
+          action_guard: ACTION_GUARD_NONE,
+          target_state: STATE_QUESTION,
+          model_update: initializeModel // with event data which is read from repository
+        &#125;
+      ]
+    &#125;,
+    &#123;
+      event_guard: isStep(STEP_TEAMS),
+      action_request: ACTION_REQUEST_NONE,
+      transition_evaluation: [
+        &#123;
+          action_guard: ACTION_GUARD_NONE,
+          target_state: STATE_TEAMS,
+          model_update: initializeModel // with event data which is read from repository
+        &#125;
+      ]
+    &#125;,
+    &#123;
+      event_guard: isStep(STEP_REVIEW),
+      action_request: ACTION_REQUEST_NONE,
+      transition_evaluation: [
+        &#123;
+          action_guard: ACTION_GUARD_NONE,
+          target_state: STATE_REVIEW,
+          model_update: initializeModel // with event data which is read from repository
+        &#125;
+      ]
+    &#125;
+  ]
+&#125;,</code></pre>
+<h3 id="Transition-away-from-About-screen"><a href="#Transition-away-from-About-screen" class="headerlink" title="Transition away from About screen"></a>Transition away from <code>About</code> screen</h3><p>We only have one event to consider here : the click on the <code>Continue</code> button. The application logic as specified is :</p>
+<ul>
+<li>if the user had already reached the review step, then click on <code>Continue</code> must : <ul>
+<li>update the user application remotely with the newly entered form data</li>
+<li>send the volunteer to the review step</li>
+</ul>
+</li>
+<li>otherwise it must : <ul>
+<li>update the user application remotely with the newly entered form data</li>
+<li>send the volunteer to the <code>Question</code> step</li>
+</ul>
+</li>
+</ul>
+<p>The corresponding transitions are defined here : </p>
+<pre><code class="hljs javascript">fromAboutScreen: &#123;
+  <span class="hljs-attr">origin_state</span>: STATE_ABOUT,
+  <span class="hljs-attr">event</span>: ABOUT_CONTINUE,
+  <span class="hljs-attr">target_states</span>: [
+    &#123;
+      <span class="hljs-comment">// Case form has NOT reached the review stage of the app</span>
+      event_guard: complement(hasReachedReviewStep),
+      <span class="hljs-attr">action_request</span>: &#123;
+        <span class="hljs-attr">driver</span>: <span class="hljs-string">'domainAction$'</span>,
+        <span class="hljs-attr">request</span>: makeRequestToUpdateUserApplication
+      &#125;,
+      <span class="hljs-attr">transition_evaluation</span>: makeDefaultActionResponseProcessing(&#123;
+        <span class="hljs-attr">success</span>: &#123;
+          <span class="hljs-attr">target_state</span>: STATE_QUESTION,
+          <span class="hljs-attr">model_update</span>: updateModelWithAboutDataAndStepQuestion
+        &#125;,
+        <span class="hljs-attr">error</span>: &#123;
+          <span class="hljs-attr">target_state</span>: STATE_ABOUT,
+          <span class="hljs-attr">model_update</span>: updateModelWithStepAndError(updateModelWithAboutData, STEP_ABOUT)
+        &#125;
+      &#125;)
+    &#125;,
+    &#123;
+      <span class="hljs-comment">// Case form has reached the review stage of the app</span>
+      event_guard: T,
+      <span class="hljs-attr">re_entry</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">action_request</span>: &#123;
+        <span class="hljs-attr">driver</span>: <span class="hljs-string">'domainAction$'</span>,
+        <span class="hljs-attr">request</span>: makeRequestToUpdateUserApplication
+      &#125;,
+      <span class="hljs-attr">transition_evaluation</span>: makeDefaultActionResponseProcessing(&#123;
+        <span class="hljs-attr">success</span>: &#123;
+          <span class="hljs-attr">target_state</span>: STATE_REVIEW,
+          <span class="hljs-attr">model_update</span>: updateModelWithAboutDataAndStepReview
+        &#125;,
+        <span class="hljs-attr">error</span>: &#123;
+          <span class="hljs-attr">target_state</span>: STATE_ABOUT,
+          <span class="hljs-attr">model_update</span>: updateModelWithStepAndError(updateModelWithAboutData, STEP_ABOUT)
+        &#125;
+      &#125;)
+    &#125;,
+  ]
+&#125;,</code></pre>
+<p>For information, here are some examples of model update functions :</p>
+<pre><code class="hljs undefined">export const aboutYouFields = [&apos;superPower&apos;];
+export const personalFields = [&apos;birthday&apos;, &apos;phone&apos;, &apos;preferredName&apos;, &apos;zipCode&apos;, &apos;legalName&apos;];
+export const questionFields = [&apos;answer&apos;];
+
+export const updateModelWithAboutDataAndStepQuestion = chainModelUpdates([
+  updateModelWithAboutData,
+  updateModelWithEmptyErrorMessages,
+  updateModelWithStepOnly(STEP_QUESTION)
+]);
+
+export function updateModelWithAboutData(model: FSM_Model, eventData: EventData,actionResponse: DomainActionResponse) &#123;
+  const formData = eventData.formData;
+
+  return flatten([
+    toJsonPatch(&apos;/userApplication/about/aboutYou&apos;)(pick(aboutYouFields, formData)),
+    toJsonPatch(&apos;/userApplication/about/personal&apos;)(pick(personalFields, formData)),
+  ])
+&#125;
+
+....etc....</code></pre>
+<p>and example of action request :</p>
+<pre><code class="hljs undefined">///////
+// Action requests
+export function makeRequestToUpdateUserApplication(model: UserApplicationModelNotNull, eventData: any) &#123;
+  const formData = eventData.formData;
+  const &#123; userApplication &#125; = model;
+  const newUserApplication  = getUserApplicationUpdates(formData, userApplication);
+ 
+  return &#123;
+    context: USER_APPLICATION,
+    command: UPDATE,
+    payload: newUserApplication
+  &#125;
+&#125;</code></pre>
+<h3 id="Other-transitions"><a href="#Other-transitions" class="headerlink" title="Other transitions"></a>Other transitions</h3><p>The full implementation can be found in the <a href="https://github.com/brucou/component-combinators/tree/master/examples/volunteerApplication" target="_blank" rel="noopener">corresponding repo</a></p>
+<h2 id="State-entry-components"><a href="#State-entry-components" class="headerlink" title="State entry components"></a>State entry components</h2><p>They will mainly serve to display the view derived from the value of the <code>model</code> parameter. For instance, the entry component for the state <code>About</code> is :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> entryComponents = &#123;
+...
+[STATE_ABOUT]: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showViewStateAbout</span>(<span class="hljs-params">model: UserApplicationModel</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> flip(renderComponent(STATE_ABOUT))(&#123; model &#125;)
+  &#125;,
+&#125;
+...</code></pre>
+<p>with <code>renderComponent</code> being :</p>
+<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params">model: UserApplicationModelNotNull</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> &#123; opportunity, userApplication, errorMessage &#125; = model;
+  <span class="hljs-keyword">const</span> &#123; description &#125; = opportunity;
+  <span class="hljs-keyword">const</span> &#123; about, questions, teams, progress &#125; = userApplication;
+  <span class="hljs-keyword">const</span> &#123; step, hasApplied, latestTeamIndex &#125; = progress;
+
+  <span class="hljs-keyword">return</span> div(<span class="hljs-string">'#page'</span>, [
+    div(<span class="hljs-string">'.c-application'</span>, [
+      div(<span class="hljs-string">'.c-application__header'</span>, [
+        div(<span class="hljs-string">'.c-application__opportunity-title'</span>, description),
+        div(<span class="hljs-string">'.c-application__opportunity-icon'</span>, <span class="hljs-string">'icon'</span>),
+        div(<span class="hljs-string">'.c-application__opportunity-location'</span>, <span class="hljs-string">'location'</span>),
+        div(<span class="hljs-string">'.c-application__opportunity-date'</span>, <span class="hljs-string">'date'</span>),
+      ]),
+      div(<span class="hljs-string">'.c-application__title'</span>, <span class="hljs-string">`Complete your application for <span class="hljs-subst">$&#123;description&#125;</span>`</span>),
+      div(<span class="hljs-string">'.c-application__progress-bar'</span>, flatten([renderApplicationProcessTabs(step)])),
+      form(<span class="hljs-string">'.c-application__form'</span>, flatten([renderApplicationProcessStep(step, model)])),
+      errorMessage
+        ? div(<span class="hljs-string">'.c-application__error'</span>, <span class="hljs-string">`An error occurred : <span class="hljs-subst">$&#123;errorMessage&#125;</span>`</span>)
+        : div(<span class="hljs-string">'.c-application__error'</span>, <span class="hljs-string">''</span>)
+    ]),
+  ]);
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_renderComponent</span>(<span class="hljs-params">state: State, sources: any, settings: any</span>) </span>&#123;
+  <span class="hljs-keyword">void</span> sources;
+  <span class="hljs-keyword">const</span> model: UserApplicationModelNotNull = settings.model;
+  <span class="hljs-built_in">console</span>.info(<span class="hljs-string">`entering <span class="hljs-subst">$&#123;state&#125;</span>`</span>, model);
+
+  <span class="hljs-keyword">return</span> &#123;
+    <span class="hljs-attr">dom</span>: just(render(model))
+  &#125;
+&#125;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> renderComponent = curry(_renderComponent);</code></pre>
+<h1 id="Sample-application-implementation-second-iteration"><a href="#Sample-application-implementation-second-iteration" class="headerlink" title="Sample application implementation - second iteration"></a>Sample application implementation - second iteration</h1><h2 id="Modelization-1"><a href="#Modelization-1" class="headerlink" title="Modelization"></a>Modelization</h2><p>We add the following fields to the model :</p>
+<ul>
+<li>validation messages representing the hints related to the content for each field</li>
+</ul>
+<p>The previous workflow is updated as follows :</p>
+<p><img src="/img/graphs/sparks%20application%20process%20with%20validation%20and%20errors%20flow.png" alt="Second iteration workflow"></p>
+<h2 id="Events-1"><a href="#Events-1" class="headerlink" title="Events"></a>Events</h2><p>We have to add the input form data validation functionalities. Control flow is decided at the guard level, and will basically include two branches : go to next step if fields valid ; remain in same step if one field is invalid.<br>Validating involves first retrieving the form data, and passing them through some validation function.<br>Retrieving form data will be performed in the event factory as it is a read effect, and we want to keep guards as pure functions.<br>We choose here to have the validation function return <code>true</code> if a field passed validation, and a string representing the error in case the field does not pass validation. The validation will also be performed in the event factory, as we want to keep guards are single-concern functions. Furthermore, including the validation at the guard level would imply that the validation is run several times (for each guard), which is a source of inefficiency.</p>
+<p>Applying these ideas to the <code>events</code> object, leads, for instance, to this factory for the click on the <code>continue</code> button at the <code>About</code> step becomes as follows:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">aboutContinueEventFactory</span>(<span class="hljs-params">sources: any, settings: any</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> sources.dom.select(<span class="hljs-string">'button.c-application__submit--about'</span>).events(<span class="hljs-string">'click'</span>)
+    .tap(preventDefault)
+    .map(<span class="hljs-function">(<span class="hljs-params">x: any</span>) =&gt;</span> &#123;
+      <span class="hljs-keyword">const</span> formData = getAboutFormData();
+
+      <span class="hljs-keyword">return</span> &#123;
+        formData,
+        <span class="hljs-attr">validationData</span>: validateScreenFields(aboutScreenFieldValidationSpecs, formData)
+      &#125;
+    &#125;)
+&#125;</code></pre>
+<h2 id="Transisition-away-from-About-screen"><a href="#Transisition-away-from-About-screen" class="headerlink" title="Transisition away from About screen"></a>Transisition away from <code>About</code> screen</h2><p>As before, we only have one event to consider here : the click on the <code>Continue</code> button. The application logic as now specified includes another branching level and becomes (the modifications vs. former specifications are in bold):</p>
+<ul>
+<li><strong>if the form data is valid then :</strong><ul>
+<li>if the user had already reached the review step, then click on <code>Continue</code> must :<ul>
+<li>update the user application remotely with the newly entered form data</li>
+<li>send the volunteer to the review step</li>
+</ul>
+</li>
+<li>otherwise it must :<ul>
+<li>update the user application remotely with the newly entered form data</li>
+<li>send the volunteer to the <code>Question</code> step</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>if the form data was invalid then :</strong><ul>
+<li><strong>the screen must show some error messages and visual feedback</strong></li>
+</ul>
+</li>
+</ul>
+<p>We hence now have three branches in our control flow (vs. two previously) and the corresponding updated transitions are defined here : </p>
+<pre><code class="hljs javascript">fromAboutScreen: &#123;
+  <span class="hljs-attr">origin_state</span>: STATE_ABOUT,
+  <span class="hljs-attr">event</span>: ABOUT_CONTINUE,
+  <span class="hljs-attr">target_states</span>: [
+    &#123;
+      <span class="hljs-comment">// Case form has only valid fields AND has NOT reached the review stage of the app</span>
+      event_guard: both(isFormValid, complement(hasReachedReviewStep)),
+      <span class="hljs-attr">action_request</span>: &#123;
+        <span class="hljs-attr">driver</span>: <span class="hljs-string">'domainAction$'</span>,
+        <span class="hljs-attr">request</span>: makeRequestToUpdateUserApplication
+      &#125;,
+      <span class="hljs-attr">transition_evaluation</span>: makeDefaultActionResponseProcessing(&#123;
+        <span class="hljs-attr">success</span>: &#123;
+          <span class="hljs-attr">target_state</span>: STATE_QUESTION,
+          <span class="hljs-attr">model_update</span>: updateModelWithAboutDataAndStepQuestion
+        &#125;,
+        <span class="hljs-attr">error</span>: &#123;
+          <span class="hljs-attr">target_state</span>: STATE_ABOUT,
+          <span class="hljs-attr">model_update</span>: updateModelWithStepAndError(updateModelWithAboutData, STEP_ABOUT)
+        &#125;
+      &#125;)
+    &#125;,
+    &#123;
+      <span class="hljs-comment">// Case form has only valid fields AND has reached the review stage of the app</span>
+      event_guard: both(isFormValid, hasReachedReviewStep),
+      <span class="hljs-attr">re_entry</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">action_request</span>: &#123;
+        <span class="hljs-attr">driver</span>: <span class="hljs-string">'domainAction$'</span>,
+        <span class="hljs-attr">request</span>: makeRequestToUpdateUserApplication
+      &#125;,
+      <span class="hljs-attr">transition_evaluation</span>: makeDefaultActionResponseProcessing(&#123;
+        <span class="hljs-attr">success</span>: &#123;
+          <span class="hljs-attr">target_state</span>: STATE_REVIEW,
+          <span class="hljs-attr">model_update</span>: updateModelWithAboutDataAndStepReview
+        &#125;,
+        <span class="hljs-attr">error</span>: &#123;
+          <span class="hljs-attr">target_state</span>: STATE_ABOUT,
+          <span class="hljs-attr">model_update</span>: updateModelWithStepAndError(updateModelWithAboutData, STEP_ABOUT)
+        &#125;
+      &#125;)
+    &#125;,
+    &#123;
+      <span class="hljs-comment">// Case form has invalid fields</span>
+      event_guard: T,
+      <span class="hljs-attr">re_entry</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">action_request</span>: ACTION_REQUEST_NONE,
+      <span class="hljs-attr">transition_evaluation</span>: [
+        &#123;
+          <span class="hljs-attr">action_guard</span>: T,
+          <span class="hljs-attr">target_state</span>: STATE_ABOUT,
+          <span class="hljs-comment">// keep model in sync with repository</span>
+          model_update: updateModelWithAboutValidationMessages
+        &#125;,
+      ]
+    &#125;
+  ]
+&#125;,</code></pre>
+<p>We also have to update the model update functions to reflect the changes in the model (which now includes validation messages). A change in model means revisiting all existing model update functions and possibly create new model update functions.<br>Here <code>updateModelWithAboutValidationMessages</code> is a new cretaed function. Existing model update functions will be updated to reflect the rule that validation messages are empty when the fields are valid. For instance, the function <code>updateModelWithAboutDataAndStepQuestion</code> adds <code>updateModelWithEmptyErrorMessages</code> to its updates and becomes :</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> updateModelWithAboutDataAndStepQuestion = chainModelUpdates([
+  updateModelWithAboutData,
+  updateModelWithEmptyErrorMessages,
+  updateModelWithStepOnly(STEP_QUESTION)
+]);</code></pre>
+<p>There is no further updates to the actions, and action guards. </p>
+<h3 id="Other-transitions-1"><a href="#Other-transitions-1" class="headerlink" title="Other transitions"></a>Other transitions</h3><p>The full implementation can be found in the <a href="https://github.com/brucou/component-combinators/tree/master/examples/volunteerApplication" target="_blank" rel="noopener">corresponding repo</a>.</p>
+<h2 id="State-entry-components-1"><a href="#State-entry-components-1" class="headerlink" title="State entry components"></a>State entry components</h2><p>State entry components have to be updated to display visually the validation messages passed through the <code>model</code> parameter.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In summary, the seemingly simple changes in specifications necessitated :</p>
+<ul>
+<li>changes in the model<ul>
+<li>reviewing all model update functions to reflect the new model dependencies. Here we added a new field to the model, so changes in model update functions were obvious and minimal.</li>
+</ul>
+</li>
+<li>changes in event factories<ul>
+<li>event now includes new data which are necessary to compute the validation rules</li>
+</ul>
+</li>
+<li>changes in the control flow<ul>
+<li>no new control state</li>
+<li>new transition logic implemented through update of event guards</li>
+</ul>
+</li>
+<li>changes in the state entry component<ul>
+<li>updating the view rendering model to display the validation messages</li>
+</ul>
+</li>
+</ul>
+<p>We have seen that :</p>
+<ul>
+<li>changes in the specifications are easily translated into changes in the implementation<ul>
+<li>most functions are pure functions with one single concern, hence it is easy to decide whether<br>to modify and how to modify such functions</li>
+<li>event factories have two concerns : capturing the source event, and producing the event data (producing in the way read effects). Given that the source event does not change, changes in the event factories were minimal</li>
+</ul>
+</li>
+<li>changes in the <code>model</code> require reviewing all functions taking <code>model</code> as a parameter (event, guards, action requests, entry components). However, because not all functions do not use all parts of the model, we are able to bring down the number of modifications performed on model-related functions.</li>
+</ul>
+<p>The lesson to be learnt is that special care have to be given to how the <code>model</code> is defined, as it is the key source of complexity left unabridged :</p>
+<ul>
+<li>writing the model in a way that all functions use all parts of the model gives the worse case for maintainability</li>
+<li>the model, by nature, gathers several concerns to be transmitted to different parts of the state machine component. It is good practice to isolate early cross-cutting concerns, and separate the concerns which are orthogonal into different properties. This would help ensure that a modification of the model structure have lower impact on the implementation.</li>
+</ul>
+<h1 id="Known-limitations"><a href="#Known-limitations" class="headerlink" title="Known limitations"></a>Known limitations</h1><h2 id="You-can-still-write-an-unmaintainable-spaghetti-implementation"><a href="#You-can-still-write-an-unmaintainable-spaghetti-implementation" class="headerlink" title="You can still write an unmaintainable spaghetti implementation"></a>You can still write an unmaintainable <em>spaghetti</em> implementation</h2><p>The need for guards in the extended state machine formalism is the immediate consequence of adding memory (extended state variables) to the state machine formalism. Used sparingly, extended state variables and guards make up an incredibly powerful mechanism that can immensely simplify designs. But don’t let the fancy name (“guard”) fool you. When you actually code an extended state machine, the guards become the same <code>IF</code>s and <code>ELSE</code>s that you wanted to eliminate by using the state machine in the first place. Too many of them, and you’ll find yourself back in square one (“spaghetti”), where the guards effectively take over handling of all the relevant conditions in the system.</p>
+<p>Indeed, abuse of extended state variables and guards is the primary mechanism of architectural decay in designs based on state machines. Usually, in the day-to-day battle, it seems very tempting, especially to programmers new to state machine formalism, to add yet another extended state variable and yet another guard condition (another if or an else) rather than to factor out the related behavior into a new qualitative aspect of the system—the control state. The likelihood of such an architectural decay is directly proportional to the overhead (actual or perceived) involved in adding or removing states. </p>
+<p>One of the main challenges in becoming an effective state machine designer is to develop a sense for which parts of the behavior should be captured as the qualitative” aspects (the “control state”) and which elements are better left as the “quantitative” aspects (extended state variables).</p>
+<h2 id="State-transition-topology-is-static"><a href="#State-transition-topology-is-static" class="headerlink" title="State - transition topology is static"></a>State - transition topology is static</h2><p>Capturing behavior as the “quantitative state” has its disadvantages and limitations, too. First, the state and transition topology in a state machine must be static and fixed at compile time, which can be too limiting and inflexible. Sure, you can easily devise state machines that would modify themselves at <strong>runtime</strong> (this is what often actually happens when you try to recode “stream spaghetti” as a state machine). However, this is like writing self-modifying code, which indeed was done in the early days of programming but was quickly dismissed as a generally bad idea. Consequently, “state” can capture only static aspects of the behavior that are known a priori and are unlikely to change in the future.</p>
+<h2 id="Does-not-do-well-with-a-high-number-of-control-states"><a href="#Does-not-do-well-with-a-high-number-of-control-states" class="headerlink" title="Does not do well with a high number of control states"></a>Does not do well with a high number of control states</h2><p>While extended FSMs are an excellent tool for tackling smaller problems, it is also generally known that they tend to become unmanageable even for moderately involved systems. Due to the phenomenon known as “state explosion”, the complexity of a traditional FSM tends to grow much faster than the complexity of the reactive system it describes.</p>
+<p>The issue is not so much the number of states than the transition topology of the modelized reactive system. Some events can lead to the same action and target state, independently of the current state. This means repeating a transition as many times as there are control states, hence the exponential growth of the complexity.<br>This issue is considerably alleviated with the statecharts formalism (also called Hierarchical State Machines), but we chose to remain at a simpler and more accessible conceptual level of extended state machine. We will see other techniques which help in practice keep the number of control states low.</p>
+<h2 id="Run-to-Completion-execution-model-can-over-simplify-concurrency-issues"><a href="#Run-to-Completion-execution-model-can-over-simplify-concurrency-issues" class="headerlink" title="Run-to-Completion execution model can over-simplify concurrency issues"></a>Run-to-Completion execution model can over-simplify concurrency issues</h2><p>The key advantage of RTC processing is simplicity. Its biggest disadvantage is that the responsiveness of a state machine is determined by its longest RTC step. Achieving short RTC steps can sometimes significantly complicate real-time designs. </p>
+<p>In a future version of the library, event queuing and convenient interruption policies will be added.</p>
+<h1 id="How-to"><a href="#How-to" class="headerlink" title="How to"></a>How to</h1><h2 id="Perform-operations-at-initialization"><a href="#Perform-operations-at-initialization" class="headerlink" title="Perform operations at initialization"></a>Perform operations at initialization</h2><p>The common use case is that you might want to fetch some remote data and update the internal model of the state machine with some of that.  Two options :</p>
+<ol>
+<li>Use <code>INIT</code> event in the state machine definition<br>Every state machine has a <code>INIT</code> event which is sent when the state machine is activated. It is possible to configure a transition with an action which updates the model from its result</li>
+<li>Use ONE event factory which immediately emits an event (i.e. synchronously)<br>When a state machine is activated, event factories are immediately executed, and the state machine starts listening on events coming from those event factories. If ONE of those event factories immediately emits an event, that event will immediately be processed (after the initial <code>INIT</code> event kicking off the state machine). It is better to have only one immediate event, as if there would be several, there is no guarantee on the order with which those events would be processed, hence there is no guarantee on their effects.</li>
+</ol>
+
+  
+  
+  <div class="footer">
+    <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
+      <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
+    </a>
+    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
+      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
+    </a>
+  </div>
+</div>
+
+      </div>
+      <script src="/documentation/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- script for sidebars, version selects etc. -->
+    <script src="/documentation/js/css.escape.js"></script>
+    <script src="/documentation/js/common.js"></script>
+    <!-- mathjax-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</body>
+</html>
