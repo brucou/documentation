@@ -462,7 +462,8 @@
 </ul>
 </li>
 <li>all action factories must fill in the <code>updates</code> and <code>outputs</code> property (no syntax sugar)<ul>
-<li><code>NO_OUTPUT</code> must be used to indicate the absence of outputs</li>
+<li><code>NO_OUTPUT</code> must be used to indicate the absence of outputs and only for that</li>
+<li>the <code>outputs</code> property should always be set (behavior in case of <code>undefined</code> is unspecified).</li>
 </ul>
 </li>
 <li>all transitions for a given origin control state and triggering event must be defined in one row of <code>fsmDef.transitions</code></li>
