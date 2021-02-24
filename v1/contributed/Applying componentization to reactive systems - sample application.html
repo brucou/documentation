@@ -354,7 +354,7 @@ This leads us to the following set up code:
 <h2 id="Tip-What-makes-a-good-breakdown"><a href="#Tip-What-makes-a-good-breakdown" class="headerlink" title="Tip: What makes a good breakdown"></a><strong>Tip</strong>: What makes a good breakdown</h2><p>What makes this breakdown a good one? Independence or loose coupling is the key here:</p>
 <ul>
 <li><code>MainPanel</code> can be implemented fairly independently from <code>SidePanel</code></li>
-<li>the only reason for change of <code>SidePanel</code> that would affect <code>MainPanel</code> is a change in the<br>route associated to the projects<sup><a href="#fn_routechange" id="reffn_routechange">routechange</a></sup></li>
+<li>the only reason for change of <code>SidePanel</code> that would affect <code>MainPanel</code> is a change in the route associated to the projects<sup><a href="#fn_routechange" id="reffn_routechange">routechange</a></sup></li>
 <li>both components share no common events or actions or logic. We took our initial reactive system, split it in two, smaller, largely independent subsystems, whose complexity is strictly lower than the original system, and easier to write</li>
 </ul>
 <blockquote id="fn_routechange">
@@ -627,14 +627,14 @@ As per specifications, the main panel is url-driven. This gives us the following
   ]]);</code></pre>
 <p>where:</p>
 <ul>
-<li><code>ProjectTaskListContainer</code> is a container component which allocates children content into their<br>slots and applies some styling</li>
+<li><code>ProjectTaskListContainer</code> is a container component which allocates children content into their slots and applies some styling</li>
 <li><code>ToggleButton</code> handles the tasks filter (values to be picked within <code>All</code>, <code>Open</code>, <code>Done</code>)</li>
 <li><code>EnterTask</code> allows the user to enter a new task for the active project</li>
 <li><code>TaskList</code> displays a list of project tasks, taking into account the task filter set by the user</li>
 </ul>
-<p>Note again how the slot mechanism allows to separate a template (fixed part of the target<br><code>vTree</code>), from the contents filling that template (variable part). It is important to become<br>familiar with the mechanism, as it is fundamental to divide the user interface in ever smaller<br>and isolated pieces. Pay attention also to how slots are declared: either directly through the<br>slot module, or with the <code>InSlot</code> combinator. The latter is useful in combination with other<br>components which do not declare slots for their DOM content, for instance generic components.<br><code>InSlot</code> can also be used to override existing slots for a given component’s DOM content. </p>
+<p>Note again how the slot mechanism allows to separate a template (fixed part of the target <code>vTree</code>), from the contents filling that template (variable part). It is important to become familiar with the mechanism, as it is fundamental to divide the user interface in ever smaller and isolated pieces. Pay attention also to how slots are declared: either directly through the slot module, or with the <code>InSlot</code> combinator. The latter is useful in combination with other components which do not declare slots for their DOM content, for instance generic components. <code>InSlot</code> can also be used to override existing slots for a given component’s DOM content. </p>
 <p>Note the use of the utility function <a href="https://github.com/brucou/component-combinators/blob/master/src/utils.js#L1118" target="_blank" rel="noopener"><code>vLift</code></a>, which takes a <code>Vtree</code> and lifts it into a component (whose only sink is a DOM sink emitting that <code>vTree</code>).</p>
-<p>Let’s go in further details about the <code>EnterTask</code> component (illustrating domain driver write<br>actions), and the <code>ToggleButton</code> component (illustrating local state driver actions).</p>
+<p>Let’s go in further details about the <code>EnterTask</code> component (illustrating domain driver write actions), and the <code>ToggleButton</code> component (illustrating local state driver actions).</p>
 <h2 id="Adding-a-task"><a href="#Adding-a-task" class="headerlink" title="Adding a task"></a>Adding a task</h2><p>The <code>EnterTask</code> has obvious specifications:</p>
 <div class="table-container">
 <table>
@@ -747,15 +747,14 @@ As per specifications, the main panel is url-driven. This gives us the following
 </tbody>
 </table>
 </div>
-<p>We will use the in-memory store driver to keep track of the task filter. As the<br> task filter will also be used by the <code>TaskList</code> component to filter out the project’s tasks,<br> it needs to be accessible by several components which are not in a parent/child relationship.<br> There are basically two ways to handle this:</p>
+<p>We will use the in-memory store driver to keep track of the task filter. As the task filter will also be used by the <code>TaskList</code> component to filter out the project’s tasks, it needs to be accessible by several components which are not in a parent/child relationship. There are basically two ways to handle this:</p>
 <ul>
-<li><p>The first one is to create and inject that piece of state at the closest ancestor level (this would be here at <code>ProjectTaskList</code> level). </p>
-<ul>
-<li>The second one is to create that piece of state at the global level (i.e. cutting across the component<br>hierarchy - that is what the in-memory store is), and access it anywhere necessary. </li>
+<li>The first one is to create and inject that piece of state at the closest ancestor level (this would be here at <code>ProjectTaskList</code> level). <ul>
+<li>The second one is to create that piece of state at the global level (i.e. cutting across the component hierarchy - that is what the in-memory store is), and access it anywhere necessary. </li>
 </ul>
-<p>We chose the second solution for didactic purposes (injecting <code>tasksFilter$</code>), as an example of use of the in-memory store driver. Concretely, the breakdown is as follows:</p>
 </li>
 </ul>
+<p>We chose the second solution for didactic purposes (injecting <code>tasksFilter$</code>), as an example of use of the in-memory store driver. Concretely, the breakdown is as follows:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> ToggleButton =
   InjectSourcesAndSettings(&#123;
       <span class="hljs-attr">sourceFactory</span>: tasksFilter$,
@@ -786,8 +785,8 @@ As per specifications, the main panel is url-driven. This gives us the following
       .distinctUntilChanged()
   &#125;
 &#125;</code></pre>
-<p>Note how we combine the store read and write drivers (<code>storeAccess</code>, <code>storeUpdate$</code>) to get<br>a <em>live</em> <code>taskFilter$</code> which emits the current value of the task filter and then the new values of<br>the task filter, every time that value changes. To ensure this, we listen on responses to<br>in-memory entity update requests. Such responses are objects which hold the updated entity in the<br><code>response</code> property. For extra details, refer to the <a href="https://github.com/brucou/component-combinators/blob/master/examples/AllInDemo/src/inMemoryStore/index.js#L21" target="_blank" rel="noopener">configuration</a><br> of the in-memory driver, and at the documentation for the <a href="/projects/component-combinators/actiondriver/">domain <code>Action</code> driver</a>.</p>
-<p>The <code>ButtonFromButtonGroup</code> is a component which will display a button with a label passed<br>through <code>settings</code> and update the task filter when the button is clicked:</p>
+<p>Note how we combine the store read and write drivers (<code>storeAccess</code>, <code>storeUpdate$</code>) to get a <em>live</em> <code>taskFilter$</code> which emits the current value of the task filter and then the new values of the task filter, every time that value changes. To ensure this, we listen on responses to<br>in-memory entity update requests. Such responses are objects which hold the updated entity in the <code>response</code> property. For extra details, refer to the <a href="https://github.com/brucou/component-combinators/blob/master/examples/AllInDemo/src/inMemoryStore/index.js#L21" target="_blank" rel="noopener">configuration</a> of the in-memory driver, and at the documentation for the <a href="/projects/component-combinators/actiondriver/">domain <code>Action</code> driver</a>.</p>
+<p>The <code>ButtonFromButtonGroup</code> is a component which will display a button with a label passed through <code>settings</code> and update the task filter when the button is clicked:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">const</span> updateTaskTabButtonGroupStateAction = <span class="hljs-function"><span class="hljs-params">label</span> =&gt;</span> (&#123;
     <span class="hljs-attr">context</span>: TASKS_FILTER,
     <span class="hljs-attr">command</span>: PATCH,
@@ -825,7 +824,7 @@ As per specifications, the main panel is url-driven. This gives us the following
 &#125;</code></pre>
 <p>Note that <a href="https://github.com/brucou/component-combinators/blob/master/examples/AllInDemo/src/inMemoryStore/index.js#L29" target="_blank" rel="noopener">in-memory store driver</a> uses <a href="http://jsonpatch.com/" target="_blank" rel="noopener">json patch</a> to describe the updates to the in-memory entity.</p>
 <p>For the full code and running demo, see <a href="https://github.com/brucou/component-combinators/tree/project-management-app-step-4/examples/AllInDemo" target="_blank" rel="noopener">here</a>.</p>
-<h2 id="Displaying-a-list-of-tasks"><a href="#Displaying-a-list-of-tasks" class="headerlink" title="Displaying a list of tasks"></a>Displaying a list of tasks</h2><p>A <code>TaskList</code> is a list of tasks. We inject the corresponding state, compute the component with<br><code>ListOf</code> combinator, and affect the DOM content to the corresponding slot:</p>
+<h2 id="Displaying-a-list-of-tasks"><a href="#Displaying-a-list-of-tasks" class="headerlink" title="Displaying a list of tasks"></a>Displaying a list of tasks</h2><p>A <code>TaskList</code> is a list of tasks. We inject the corresponding state, compute the component with <code>ListOf</code> combinator, and affect the DOM content to the corresponding slot:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> TaskList = InjectSourcesAndSettings(&#123; <span class="hljs-attr">sourceFactory</span>: taskListStateFactory &#125;, [TaskListContainer, [
   InSlot(<span class="hljs-string">'task'</span>, [
     ForEach(&#123; <span class="hljs-attr">from</span>: <span class="hljs-string">'filteredTasks$'</span>, <span class="hljs-attr">as</span>: <span class="hljs-string">'filteredTasks'</span> &#125;, [
@@ -836,7 +835,7 @@ As per specifications, the main panel is url-driven. This gives us the following
     ])
   ])
 ]]);</code></pre>
-<p>a <code>Task</code> is made of a checkbox to change its status, a button to allow deletion, another button<br>to allow task edition, and the task information. Clicking on a task detail button should route<br>the user to another screen where he can modify the task information. The breakdown is hence<br>as follows: </p>
+<p>A <code>Task</code> is made of a checkbox to change its status, a button to allow deletion, another button to allow task edition, and the task information. Clicking on a task detail button should route the user to another screen where he can modify the task information. The breakdown is hence as follows: </p>
 <pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">TaskContainer</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
   <span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">filteredTask</span>: &#123; done, title &#125;, listIndex &#125; = settings;
   <span class="hljs-keyword">const</span> coreVnodes = div(<span class="hljs-string">'.task'</span>, [
@@ -887,12 +886,12 @@ As per specifications, the main panel is url-driven. This gives us the following
     TaskLink
   ]),
 ]]);</code></pre>
-<p>Using <code>CheckBox</code> and <code>Editor</code> generic UI components requires us to do some adaption of input,<br>and output to fit their APIs. This allows to illustrate two interesting techniques:</p>
+<p>Using <code>CheckBox</code> and <code>Editor</code> generic UI components requires us to do some adaption of input, and output to fit their APIs. This allows to illustrate two interesting techniques:</p>
 <ul>
-<li>Inputs (here <code>settings</code>) are adapted through <code>InjectSourcesAndSettings</code> ahead of using the<br>generic UI components</li>
-<li>Outputs are adapted through the use of the <code>Pipe</code> combinator. For instance, <code>Editor</code> returns a<br><code>save$</code> sink which needs to be mapped to a <code>domainAction</code> sink to update the corresponding domain<br>entity. As a matter of fact, the <a href="/projects/component-combinators/pipe"><code>Pipe</code> combinator</a> allows to pass sinks of a component in the<br>pipe as sources for the next component in the pipe. In the mentioned case, for instance the<br>output adaptation is performed by <code>ComputeEditorActions</code>.</li>
+<li>Inputs (here <code>settings</code>) are adapted through <code>InjectSourcesAndSettings</code> ahead of using the generic UI components</li>
+<li>Outputs are adapted through the use of the <code>Pipe</code> combinator. For instance, <code>Editor</code> returns a <code>save$</code> sink which needs to be mapped to a <code>domainAction</code> sink to update the corresponding domain entity. As a matter of fact, the <a href="/projects/component-combinators/pipe"><code>Pipe</code> combinator</a> allows to pass sinks of a component in the  pipe as sources for the next component in the pipe. In the mentioned case, for instance the  output adaptation is performed by <code>ComputeEditorActions</code>.</li>
 </ul>
-<h1 id="TIP-How-to-write-a-component"><a href="#TIP-How-to-write-a-component" class="headerlink" title="TIP: How to write a component"></a>TIP: How to write a component</h1><p>Within the chosen architecture (cycle), writing a <em>leaf</em> component, i.e. a component<br>which is not derived from other components, but only from <code>sources</code> and <code>settings</code>, means:</p>
+<h1 id="TIP-How-to-write-a-component"><a href="#TIP-How-to-write-a-component" class="headerlink" title="TIP: How to write a component"></a>TIP: How to write a component</h1><p>Within the chosen architecture (cycle), writing a <em>leaf</em> component, i.e. a component which is not derived from other components, but only from <code>sources</code> and <code>settings</code>, means:</p>
 <ul>
 <li>having clear specifications as per the reactive behaviour to implement<ul>
 <li>from the equation <code>actions = f(state, events)</code>:<ul>
@@ -904,11 +903,11 @@ As per specifications, the main panel is url-driven. This gives us the following
 </ul>
 </li>
 <li>decide on the parameterization of the component<ul>
-<li>this means deciding which parts, if any, of the component’s behaviour will be parameterizable<br>through the component’s <code>settings</code> property</li>
+<li>this means deciding which parts, if any, of the component’s behaviour will be parameterizable through the component’s <code>settings</code> property</li>
 </ul>
 </li>
 <li>compute the events<ul>
-<li>while doing so, ensure in particular that events are coupled to unique selectors: this is<br>particularly important when operating within the cycle architecture where events are decoupled<br>from the elements that originate them.</li>
+<li>while doing so, ensure in particular that events are coupled to unique selectors: this is particularly important when operating within the cycle architecture where events are decoupled  from the elements that originate them.</li>
 </ul>
 </li>
 <li>compute the necessary pieces of state</li>
@@ -974,7 +973,7 @@ As per specifications, the main panel is url-driven. This gives us the following
 </tbody>
 </table>
 </div>
-<p>We assure the unicity of the selector for the click event, by coupling the corresponding element<br>to the project link, which is unique as per the specification. This is a tradeoff of <code>cyclejs</code>‘s<br>architectural choice to separate the event creation from the declaration of the view structure.<br>As a matter of fact, the view is conceptually tightly coupled to the event handlers, and forcing<br>the decoupling of the two results in having to define unequivocally, for each event handler, the DOM element to<br>which it relates. On the positive side of that tradeoff, we are able to test components, by<br>mocking their inputs. For readability and DRY reasons, we recommend to isolate the <code>css</code> selector by<br>which event handler and element are coupled into a separate variable. </p>
+<p>We assure the unicity of the selector for the click event, by coupling the corresponding element to the project link, which is unique as per the specification. This is a tradeoff of <code>cyclejs</code>‘s architectural choice to separate the event creation from the declaration of the view structure. As a matter of fact, the view is conceptually tightly coupled to the event handlers, and forcing the decoupling of the two results in having to define unequivocally, for each event handler, the DOM element to which it relates. On the positive side of that tradeoff, we are able to test components, by mocking their inputs. For readability and DRY reasons, we recommend to isolate the <code>css</code> selector by which event handler and element are coupled into a separate variable. </p>
 <p>This leads to the implementation below: </p>
 <pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NavigationItem</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
   <span class="hljs-keyword">const</span> &#123; url$ &#125; = sources;
@@ -1009,35 +1008,35 @@ As per specifications, the main panel is url-driven. This gives us the following
     <span class="hljs-attr">router</span>: actions.router
   &#125;
 &#125;</code></pre>
-<h1 id="TIP-How-to-write-a-component-combinator"><a href="#TIP-How-to-write-a-component-combinator" class="headerlink" title="TIP: How to write a component combinator"></a>TIP: How to write a component combinator</h1><p>We have already given two examples of component combinators (<a href="/posts/applying-componentization-to-reactive-system---sample-application/#navigation-combinator">here</a>, and <a href="/posts/applying-componentization-to-reactive-system---sample-application/#navigationsection-combinator">here</a>). The general<br>process is as follows:</p>
+<h1 id="TIP-How-to-write-a-component-combinator"><a href="#TIP-How-to-write-a-component-combinator" class="headerlink" title="TIP: How to write a component combinator"></a>TIP: How to write a component combinator</h1><p>We have already given two examples of component combinators (<a href="/posts/applying-componentization-to-reactive-system---sample-application/#navigation-combinator">here</a>, and <a href="/posts/applying-componentization-to-reactive-system---sample-application/#navigationsection-combinator">here</a>). The general process is as follows:</p>
 <ul>
 <li>having clear specifications as per the combining behaviour to implement<ul>
-<li>how is the component combinator to be parameterized ?</li>
-<li>is a container component necessary ?</li>
+<li>how is the component combinator to be parameterized?</li>
+<li>is a container component necessary?</li>
 <li>what are the contracts which settings or component tree must fulfill?</li>
 <li>how are the components’ sinks combined?<ul>
-<li>are default combining functions sufficient ?</li>
-<li>are specific combining functions necessary ?</li>
+<li>are default combining functions sufficient?</li>
+<li>are specific combining functions necessary?</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>implement the target behaviour<ul>
 <li>reuse as much as possible existing combinators</li>
-<li>select, when necessary, the most appropriate form of the <code>m</code> combinator (out of the three<br>reducing patterns)<ul>
+<li>select, when necessary, the most appropriate form of the <code>m</code> combinator (out of the three   reducing patterns)<ul>
 <li>reminder: <code>= m(componentCombinatorSpec, componentCombinatorSettings,
 childrenComponents | componentTree)</code></li>
-<li>understanding <code>m</code> default reducing functions is paramount: often times, they have the<br>behaviour that is sought for</li>
+<li>understanding <code>m</code> default reducing functions is paramount: often times, they have the    behaviour that is sought for</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h1 id="Generic-reusable-components"><a href="#Generic-reusable-components" class="headerlink" title="Generic, reusable components"></a>Generic, reusable components</h1><p>Components developed for a specific application usually have to be generalized to make them<br>reusable. The generalized component can then be adapted, specialized or parameterized to be used<br>for the specific application use case.</p>
-<p>For instance, in our application’s UI, we have a checkbox on which a click leads to miscellaneous<br>actions on the domain model. Abstracting out the actions specific to the domain model, we can<br>build a reusable checkbox UI component, where the clicks will emit a dummy action passing on the<br>status of the checkbox (checked/unchecked).</p>
-<p>That generic UI checkbox can then be reused in different contexts, within the application, or in<br>other applications, by specifying how the clicks translates into actions on the given domain<br>model: the UI checkbox component is <strong>adapted</strong> to the application under development.</p>
-<p>In other cases, the generalized component will be specialized (the <code>m</code> combinator is such a case,<br> where the programmer can specialize the reduction of the component tree to one of three patterns).</p>
-<p>In yet other cases, the generalized component behaviour will be configured by parameterization<br>through the component settings.</p>
+<h1 id="Generic-reusable-components"><a href="#Generic-reusable-components" class="headerlink" title="Generic, reusable components"></a>Generic, reusable components</h1><p>Components developed for a specific application usually have to be generalized to make them reusable. The generalized component can then be adapted, specialized or parameterized to be used for the specific application use case.</p>
+<p>For instance, in our application’s UI, we have a checkbox on which a click leads to miscellaneous actions on the domain model. Abstracting out the actions specific to the domain model, we can build a reusable checkbox UI component, where the clicks will emit a dummy action passing on the status of the checkbox (checked/unchecked).</p>
+<p>That generic UI checkbox can then be reused in different contexts, within the application, or in other applications, by specifying how the clicks translates into actions on the given domain model: the UI checkbox component is <strong>adapted</strong> to the application under development.</p>
+<p>In other cases, the generalized component will be specialized (the <code>m</code> combinator is such a case, where the programmer can specialize the reduction of the component tree to one of three patterns).</p>
+<p>In yet other cases, the generalized component behaviour will be configured by parameterization through the component settings.</p>
 <p>In our application, we have identified the following reusable UI components:</p>
 <ul>
 <li><code>CheckBox</code> component<ul>
@@ -1045,7 +1044,7 @@ childrenComponents | componentTree)</code></li>
 </ul>
 </li>
 <li><code>Editor</code> component<ul>
-<li>allows to define an editable user content zone where the user can modify, save, delete<br>content.</li>
+<li>allows to define an editable user content zone where the user can modify, save, delete  content.</li>
 </ul>
 </li>
 </ul>
@@ -1054,8 +1053,8 @@ childrenComponents | componentTree)</code></li>
 <li>ToggleButton (<em>xor</em> button group component)</li>
 <li>EnterTask (input entry)</li>
 </ul>
-<p>A component such as <code>TaskInfo</code> is not a fruitful target for a generalization that allows to reuse<br>it in other domains, as its behaviour seems very much tied (coupled) to the application’s domain<br>model. However, should that component be needed with slight modifications more than twice (<a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming" target="_blank" rel="noopener">rule of three</a>) in our application, we would have considered<br>writing a generalized version of the component.</p>
-<p>Ideally, there is already at hand a component (UI or domain) )library that is already tested, and<br>documented. That could be the case for example for UI components, such as those exposed<br>previously. This could also be the case if domain experts have succeeded in identifying repeating<br> patterns in their domain, and produced a domain-specific component library. In the general case,<br>  the software designer will have to find and assess the abstraction/generalization opportunities presented to<br> him. Those opportunities are generally identified while refactoring. As explained in a <a href="/posts/componentization-against-complexity/#barriers-to-reuse">former article</a>, refactoring for reuse has a<br> cost, and the possible benefits to be derived have to be weighted against that cost.</p>
+<p>A component such as <code>TaskInfo</code> is not a fruitful target for a generalization that allows to reuse it in other domains, as its behaviour seems very much tied (coupled) to the application’s domain model. However, should that component be needed with slight modifications more than twice (<a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming" target="_blank" rel="noopener">rule of three</a>) in our application, we would have considered writing a generalized version of the component.</p>
+<p>Ideally, there is already at hand a component (UI or domain) )library that is already tested, and documented. That could be the case for example for UI components, such as those exposed  previously. This could also be the case if domain experts have succeeded in identifying repeating patterns in their domain, and produced a domain-specific component library. In the general case,  the software designer will have to find and assess the abstraction/generalization opportunities presented to him. Those opportunities are generally identified while refactoring. As explained in a <a href="/posts/componentization-against-complexity/#barriers-to-reuse">former article</a>, refactoring for reuse has a  cost, and the possible benefits to be derived have to be weighted against that cost.</p>
 <p>For illustration purposes, here is part of the source code for the <code>CheckBox</code> component:</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CheckBox</span>(<span class="hljs-params">sources, settings</span>) </span>&#123;
   <span class="hljs-keyword">const</span> &#123; <span class="hljs-attr">checkBox</span>: &#123; <span class="hljs-attr">label</span>: _label, namespace, isChecked &#125; &#125; = settings;
@@ -1085,13 +1084,13 @@ childrenComponents | componentTree)</code></li>
     <span class="hljs-attr">isChecked$</span>: events.change
   &#125;
 &#125;</code></pre>
-<p>The <code>isChecked$</code> sink can later on be used in coordination with the <code>Pipe</code> combinator to produce<br>the desired sink.</p>
+<p>The <code>isChecked$</code> sink can later on be used in coordination with the <code>Pipe</code> combinator to produce the desired sink.</p>
 <h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>We have seen while implementing the sample application how to address common issues arising when implementing a web application:</p>
 <ul>
-<li><strong>routing</strong>: a quintessential requirement such as routing is very naturally expressed with<br>the <code>OnRoute</code> combinator.</li>
-<li><strong>state management</strong>: state can be injected at any point of the component tree and becomes<br>visible to any component down the injection point. Alternatively, state can also be kept at the<br>root level, through the use of in-memory store.</li>
-<li><strong>change propagation</strong>: at the lowest level, using streams as the corner stone of our<br>architecture solves the issue of updating a variable (behaviour) when one of its dependencies<br>change. <em>Live queries</em> can then be built on top of read and write drivers as exemplified in the<br>sample application. Additionally, we offer the <code>ForEach</code> combinator, to execute a given logic on<br>a every change of a behaviour. </li>
-<li><strong>communication between components</strong>: parent-child communication may occur through passing<br>settings and sources, child-parent communication and communication between components with no<br>direct ascendency relationship in the component tree may occur via shared state. </li>
+<li><strong>routing</strong>: a quintessential requirement such as routing is very naturally expressed with  the <code>OnRoute</code> combinator.</li>
+<li><strong>state management</strong>: state can be injected at any point of the component tree and becomes visible to any component down the injection point. Alternatively, state can also be kept at the root level, through the use of in-memory store.</li>
+<li><strong>change propagation</strong>: at the lowest level, using streams as the corner stone of our architecture solves the issue of updating a variable (behaviour) when one of its dependencies change. <em>Live queries</em> can then be built on top of read and write drivers as exemplified in the sample application. Additionally, we offer the <code>ForEach</code> combinator, to execute a given logic on a every change of a behaviour. </li>
+<li><strong>communication between components</strong>: parent-child communication may occur through passing settings and sources, child-parent communication and communication between components with no direct ascendency relationship in the component tree may occur via shared state. </li>
 <li><strong>lists</strong>: list of things are dealt with reactively with the <code>ListOf</code> and <code>ForEach</code> combinators. </li>
 </ul>
 <p>While these were not encountered in the present sample application, our combinator library also helps deal with:</p>
