@@ -195,7 +195,7 @@
 <li>part showcase, in which the advantages of the componentization approach appear in connection with an iterative software development process</li>
 </ul>
 <p>In the first section, we will quickly describe the application under development. We will then proceed with setting up the structure (shell) in which the application logic will be contained. We will then in subsequent sections, iteratively extend our code to implement more and more of our target application. For each section, we will provide a link to the corresponding source code, contained in a dedicated branch of the demo repository. We will however not develop the whole application here, but the minimum subset necessary for us to reach our documentation and showcasing goals.</p>
-<h1 id="Target-application"><a href="#Target-application" class="headerlink" title="Target application"></a>Target application</h1><p>The target application is a task management application, taken from the <a href="https://github.com/PacktPublishing/Mastering-Angular-2-Components" target="_blank" rel="noopener">Mastering Angular2<br>components</a> book. Users handle projects, projects have tasks, which can be in status finalized or pending. The user can review and update existing tasks, create new tasks, and delete existing ones. Tasks can be filtered by status. The user can add comments to a project which are presented chronologically. A summary of activities can be consulted in a dedicated section. A dashboard provides a summary view of the projects and tasks. Finally, plugins can be administered and integrated into the application to extend its functionality.</p>
+<h1 id="Target-application"><a href="#Target-application" class="headerlink" title="Target application"></a>Target application</h1><p>The target application is a task management application, taken from the <a href="https://github.com/PacktPublishing/Mastering-Angular-2-Components" target="_blank" rel="noopener">Mastering Angular2 components</a> book. Users handle projects, projects have tasks, which can be in status finalized or pending. The user can review and update existing tasks, create new tasks, and delete existing ones. Tasks can be filtered by status. The user can add comments to a project which are presented chronologically. A summary of activities can be consulted in a dedicated section. A dashboard provides a summary view of the projects and tasks. Finally, plugins can be administered and integrated into the application to extend its functionality.</p>
 <p>This is an application with a reasonable size, and we will not seek to implement the full functionality previously described, in one go. In the present version of this document, we will focus on a first batch of features, which includes only the project browsing and task management. We will also detail only portions of our implementation, selecting and detailing those portions which illustrates a use of the component model not previously illustrated. This aims at covering as large a percentage possible of the available component combinators, and illustrating as many different techniques as possible.</p>
 <p>Rather than producing a detailed written specification, we will provide the following screenshot, from which a feature list is easy to guess. For supplementary details, we refer the reader to the book.</p>
 <p><img src="https://raw.githubusercontent.com/brucou/component-combinators/master/examples/AllInDemo/assets/images/animated_demo.gif" alt="Angular2 project application"></p>
@@ -246,40 +246,34 @@ activities: [
     <span class="hljs-attr">message</span>: <span class="hljs-string">'The task \'New task created\' was updated on #project-1.'</span>,
     <span class="hljs-attr">_id</span>: <span class="hljs-string">'ECEF8127-C237-9612-924B-2A087D6FACA4'</span>
   &#125;,
-  ]
-<span class="hljs-string">``</span><span class="hljs-string">` 
-
-## Interfaced systems' drivers
-Actions that are undertaken as a response to events are: domain data update, DOM update, route change, and of course updating local state (persisted and non persisted). As per events to be handled by the system, we have: user events (i.e. DOM events), local state update notification, route change notification.
-
-This leads to the following drivers:
-
-- write drivers: DOM driver, router driver, domain update driver, local state update driver 
-- read drivers: DOM driver, router driver, domain query driver, local state query driver
-
-We will use:
-
-- router driver: for read and write, we use the same [history driver](https://github.com/cyclejs/cyclejs/tree/master/history) from `</span>cycle<span class="hljs-string">`
-- DOM write driver: standard snabbdom default DOM `</span>cycle<span class="hljs-string">` driver
-- DOM read driver: document driver which injects the `</span><span class="hljs-built_in">document</span><span class="hljs-string">` dependency to read from the DOM
-- domain update and query drivers: we use a domain [Query](/projects/component-combinators/querydriver) driver and domain [Action](/projects/component-combinators/actiondriver) driver, where entities and the methods applicable to them are defined 
-- local state drivers: we use a in-memory store to query and update data in the local domain
-
-This leads us to the following set up code:
-
-`</span><span class="hljs-string">``</span>javascript
-    <span class="hljs-keyword">const</span> &#123; sources, sinks &#125; = run(App, &#123;
-      [DOM_SINK]: filterNull(makeDOMDriver(<span class="hljs-string">'#app'</span>, &#123;
-        <span class="hljs-attr">transposition</span>: <span class="hljs-literal">false</span>,
-        <span class="hljs-attr">modules</span>: defaultModules
-      &#125;)),
-      <span class="hljs-attr">document</span>: documentDriver,
-      <span class="hljs-attr">domainQuery</span>: makeDomainQueryDriver(repository, domainObjectsQueryMap),
-      <span class="hljs-attr">domainAction$</span>: makeDomainActionDriver(repository, domainActionsConfig),
-      <span class="hljs-attr">storeAccess</span>: makeDomainQueryDriver(inMemoryStore, inMemoryStoreQueryMap),
-      <span class="hljs-attr">storeUpdate$</span>: makeDomainActionDriver(inMemoryStore, inMemoryStoreActionsConfig),
-      <span class="hljs-attr">router</span>: makeHistoryDriver(createHistory(), &#123; <span class="hljs-attr">capture</span>: <span class="hljs-literal">true</span> &#125;),
-    &#125;);</code></pre>
+  ]</code></pre>
+<h2 id="Interfaced-systems’-drivers"><a href="#Interfaced-systems’-drivers" class="headerlink" title="Interfaced systems’ drivers"></a>Interfaced systems’ drivers</h2><p>Actions that are undertaken as a response to events are: domain data update, DOM update, route change, and of course updating local state (persisted and non persisted). As per events to be handled by the system, we have: user events (i.e. DOM events), local state update notification, route change notification.</p>
+<p>This leads to the following drivers:</p>
+<ul>
+<li>write drivers: DOM driver, router driver, domain update driver, local state update driver </li>
+<li>read drivers: DOM driver, router driver, domain query driver, local state query driver</li>
+</ul>
+<p>We will use:</p>
+<ul>
+<li>router driver: for read and write, we use the same <a href="https://github.com/cyclejs/cyclejs/tree/master/history" target="_blank" rel="noopener">history driver</a> from <code>cycle</code></li>
+<li>DOM write driver: standard snabbdom default DOM <code>cycle</code> driver</li>
+<li>DOM read driver: document driver which injects the <code>document</code> dependency to read from the DOM</li>
+<li>domain update and query drivers: we use a domain <a href="/projects/component-combinators/querydriver">Query</a> driver and domain <a href="/projects/component-combinators/actiondriver">Action</a> driver, where entities and the methods applicable to them are defined </li>
+<li>local state drivers: we use a in-memory store to query and update data in the local domain</li>
+</ul>
+<p>This leads us to the following set up code:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> &#123; sources, sinks &#125; = run(App, &#123;
+  [DOM_SINK]: filterNull(makeDOMDriver(<span class="hljs-string">'#app'</span>, &#123;
+    <span class="hljs-attr">transposition</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">modules</span>: defaultModules
+  &#125;)),
+  <span class="hljs-attr">document</span>: documentDriver,
+  <span class="hljs-attr">domainQuery</span>: makeDomainQueryDriver(repository, domainObjectsQueryMap),
+  <span class="hljs-attr">domainAction$</span>: makeDomainActionDriver(repository, domainActionsConfig),
+  <span class="hljs-attr">storeAccess</span>: makeDomainQueryDriver(inMemoryStore, inMemoryStoreQueryMap),
+  <span class="hljs-attr">storeUpdate$</span>: makeDomainActionDriver(inMemoryStore, inMemoryStoreActionsConfig),
+  <span class="hljs-attr">router</span>: makeHistoryDriver(createHistory(), &#123; <span class="hljs-attr">capture</span>: <span class="hljs-literal">true</span> &#125;),
+&#125;);</code></pre>
 <p>For the full code and running demo, see <a href="https://github.com/brucou/component-combinators/tree/project-management-app-step-0/examples/AllInDemo" target="_blank" rel="noopener">here</a>. </p>
 <h1 id="Step-1-SidePanel-navigation-and-MainPanel"><a href="#Step-1-SidePanel-navigation-and-MainPanel" class="headerlink" title="Step 1: SidePanel (navigation) and MainPanel"></a>Step 1: SidePanel (navigation) and MainPanel</h1><p>We divide the application in two independent components, one handling the side navigation (<code>SidePanel</code>) and the other one handling functionalities depending on the current route (<code>MainPanel</code>). </p>
 <p>Our starting code for the <code>App</code> is then:</p>
@@ -510,7 +504,7 @@ This leads us to the following set up code:
       ])
     ])
   ]);
-<span class="hljs-string">``</span><span class="hljs-string">`   
+<span class="hljs-string">``</span><span class="hljs-string">`  
 
 For each new value of `</span>projectNavigationItems$<span class="hljs-string">`, the setting property `</span>projectList<span class="hljs-string">` will be updated to that value, and a list of `</span>NavigationItem<span class="hljs-string">` will be activated. Each of the `</span>NavigationItem<span class="hljs-string">` will receive a `</span>project<span class="hljs-string">` setting property which holds the value of one element of the `</span>projectList<span class="hljs-string">` array, together with the index of that particular element. For more information, see the corresponding documentation of both operators. 
 
