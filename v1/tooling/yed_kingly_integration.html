@@ -52,9 +52,8 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
-      <a class="menu-button"></a>
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -263,14 +262,45 @@
     <h1>Integration with Kingly</h1>
   
   
-    <p>The yEd<br>In the next section, we will describe the <code>yed2kingly</code> utility script which supports converting a <code>yEd</code> graphml file containing nodes, edges, node labels and edge labels into a Kingly state machine.</p>
-<h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>The <code>yed2kingly</code> package aims at supporting the creation of state machines with the <a href="https://brucou.github.io/documentation/">Kingly state machine library</a>. While by design the Kingly configuration for state machines follows a simple and minimal syntax, crafting and maintaining a large state machine by hand can involve repetitive tasks. Such tasks include for instance looking up a transition and remove it, or checking that a new transition to add does not conflict with an existing one.</p>
-<p> Furthermore, a large machine is rarely written directly in a textual format but is rather supported by some kind of visualization whether hand-written graphs or professional graph editors. When switching to text editing, the visual information is lost, the text-based version eventually becomes desynchronized with the visualization. </p>
-<p>This is a case in hand where visual tooling can strengthen part of an error-prone manual process, and automate the repetitive tasks.</p>
-<p><a href="https://www.yworks.com/products/yed" target="_blank" rel="noopener">yEd</a> is a versatile professional graph editor that produces high-quality diagrams for a large set of use cases. yEd is not open source, however, there is no fee linked to its usage as an end-user. I have been using it for the past four years to generate all kinds of diagrams including state machine graphs. The key features that I found extremely valuable in this time are the accessibility to non-professional users (this is no photoshop), its large set of sophisticated automatic highly-customizable layouts, and its text-based versionable graphml format.</p>
-<p>This makes yEd a valuable tool to use for state machine creation, edition, and maintenance. yEd exists in desktop and online versions. I recommend strongly the desktop version on the grounds that it is more productive for serious tasks, but your mileage may vary. For educational or demonstration purposes, there may be educational value in the online version.</p>
-<h3 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h3><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>yed2kingly</code> node script on the newly saved file and generates a JavaScript file that exports the events, state hierarchy, and transitions contained in the graph — you can of course also run the script manually instead of using a watcher. The provided <code>exports</code> can then be used as parameters to create a Kingly state machine.</p>
-<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p><code>npm install yed2kingly</code></p>
+    <p>You want to use yEd to create Kingly state machines. You do. As simple and minimal as Kingly API strives to be, crafting and maintaining a large state machine by hand can involve repetitive tasks, tasks that a textual encoding supports poorly (e.g., refactoring transitions). Modeling is an iterative process and you want fast iterations. You want tooling that supports that. So what tools do you have at your disposal?</p>
+<p>You have a professional, intuitive graph editor. You can model state machines by drawing them in that editor. When done, you save the graph in the native yEd <code>.graphml</code> format. To turn the drawing into an actual machine that you can run in a program, you then have two options:</p>
+<ul>
+<li>use the <code>yed2kingly</code> CLI; or</li>
+<li>use the <code>slim</code> CLI`. </li>
+</ul>
+<p>Why two separate CLIs? What are the differences between the two? <code>yed2kingly</code> fits well with development workflows; produce files that are easier to debug; and allows using the Kingly’s devtool extension. On the other hand, the <code>slim</code> command has optimizations that make it more fit to production; it produces file with a smaller size (most machines you will write will fit between 0.5 and 2.5KB). Both CLIs will produce JavaScript files that can be imported/required by other modules of the application. Those files export factories that create Kingly machines.</p>
+<p>This section will focus on the <code>yed2kingly</code> command. We start by reviewing in detail the end-to-end implementation workflow that the command supports. We then explain how to install and use the CLI.</p>
+<h2 id="From-a-drawing-to-a-programming-function"><a href="#From-a-drawing-to-a-programming-function" class="headerlink" title="From a drawing to a programming function"></a>From a drawing to a programming function</h2><p>A Kingly state machine computes outputs as a result of being passed an input —- we will sometimes say that the machine processes or receives an event. The high-level specifications of the machine computation can be represented with a graph. Nodes in the graph correspond to control states of the machine. Edges connecting two nodes represent transitions between control states of the machine.</p>
+<p>We said specifications because the drawing let us know how the machine will compute in response to an input depending on the state it is in. We said high-level specifications because the drawing does not allow the actual computing of a machine response —- it is a drawing. Let’s look at a <a href="https://brucou.github.io/documentation/v1/tutorials/counter-application.html">simple such drawing from the tutorials</a>:</p>
+<p><img src="https://brucou.github.io/documentation/graphs/trivial%20counter%20machine.png" alt="simple machine"></p>
+<p>This <strong>machine drawing</strong> tells us that when processing a <em>click</em> input, the modelized <strong>JavaScript machine</strong> should trigger the incrementing of a counter, and some rendering. It does not tell us how exactly that works. To turn the drawing into an actual JavaScript function, you need to provide the missing JavaScript objects: </p>
+<ul>
+<li>implementation of <em>increment counter</em>; and</li>
+<li>implementation of <em>render</em>.</li>
+</ul>
+<p>The <code>.graphml</code> file contains the following pieces of information:</p>
+<ul>
+<li>the inputs (events) that are accepted by the machine;</li>
+<li>the machine’s initial control state;</li>
+<li>the control states of the machine;</li>
+<li>the hierarchy of the machine; and</li>
+<li>the transitions of the machines.</li>
+</ul>
+<p>The <code>yed2kingly</code> CLI extracts the pieces of information contained in the <code>.graphml</code> file that it receives as a parameter and produces two almost identical JavaScript files. One is destined to be used in a browser context (<code>.js</code> file), the other in a Node.js context (<code>.cjs</code> file that can be <code>require</code>d but not <code>import</code>ed).</p>
+<p>The produced JavaScript files import/require the Kingly library, and export a machine factory that can be used by other modules to construct the actual JavaScript machine we seek. The machine factory must be passed as parameters the following pieces of information that are missing from the graph:</p>
+<ul>
+<li>the machine’s initial extended state;</li>
+<li>the implementation for the machine guards, if any —- we only have their names;</li>
+<li>the implementation for the machine actions, if any —- we only have their names;</li>
+<li>the implementation of how the machine updates its internal state (<code>updateState</code> parameter); and</li>
+<li>machine’s extra configuration —- e.g., debugging, tracing, dependency injection.</li>
+</ul>
+<p>You are invited to review the <a href="https://brucou.github.io/documentation/v1/tutorials/password-meter-using-graph-editor.html"><em>Password meter</em> tutorial</a> for a guided example of turning a machine drawing into a JavaScript machine with <code>yed2kingly</code>.</p>
+<h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><p>If you haven’t yet installed the <code>yEd</code> editor, please do so by following the instructions <a href="https://brucou.github.io/documentation/v1/tooling/graph_editing.html">here</a>.</p>
+<p>To use  <code>yed2kingly</code>  in the shell terminal, you will need to install the package globally:</p>
+<pre><code class="hljs bash">npm install -g yed2kingly</code></pre>
+<h2 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h2><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>yed2kingly</code> node script on the newly saved file and generates a JavaScript file that exports the events, state hierarchy, and transitions contained in the graph — you can of course also run the script manually instead of using a watcher. The provided <code>exports</code> can then be used as parameters to create a Kingly state machine.</p>
+<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p><code>npm install -g yed2kingly</code></p>
 <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre><code class="hljs bash">yed2kingly file.graphml</code></pre>
 <p>Running the converter produces two files, targeted at consumption in a browser and node.js environment:</p>
 <p>Before:<br><pre><code class="hljs bash">src/graphs/file.graphml</code></pre></p>
@@ -531,6 +561,23 @@ src/graphs/file.graphml.fsm.cjs</code></pre></p>
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </body>
 </html>
