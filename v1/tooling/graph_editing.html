@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Graph editors — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Graph editor — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Graph editors — Kingly.js">
+  <meta property="og:title" content="Graph editor — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Graph editors — Kingly.js">
+  <meta name="twitter:title" content="Graph editor — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -52,8 +52,9 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">    <div id="mobile-bar">
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+  <body class="docs">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
+      <a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -197,10 +198,30 @@
     
       
       
+    
+    <li>
+      <a href="/documentation/v1/tooling/index.html" class="sidebar-link">Overview</a>
+    </li>
+  
+    
+    
+    
+      
+      
       
     
     <li>
-      <a href="/documentation/v1/tooling/graph_editing.html" class="sidebar-link current new">Graph editors</a>
+      <a href="/documentation/v1/tooling/graph_editing.html" class="sidebar-link current">Graph editor</a>
+    </li>
+  
+    
+    
+    
+      
+      
+    
+    <li>
+      <a href="/documentation/v1/tooling/yed_kingly_integration.html" class="sidebar-link">Integration with Kingly</a>
     </li>
   
     
@@ -239,269 +260,55 @@
     
   
   
-    <h1>Graph editors</h1>
+    <h1>Graph editor</h1>
   
   
-    <h2 id="Graph-editing-with-yEd"><a href="#Graph-editing-with-yEd" class="headerlink" title="Graph editing with yEd"></a>Graph editing with yEd</h2><p><code>yEd</code> is a fairly intuitive graph editor. Instructions on how to use it can be found online. A short video (90s) introduction to <code>yEd</code> features is as follows:</p>
-<div class="video-container"><iframe src="//www.youtube.com/embed/OmSTwKw7dX4" frameborder="0" allowfullscreen></iframe></div>
-<p>A longer and more practical introduction addressing basic editing of graphs with <code>yEd</code>:</p>
-<div class="video-container"><iframe src="//www.youtube.com/embed/ujMhxPJnJCw" frameborder="0" allowfullscreen></iframe></div>
-<p>You will need to go to <code>yEd</code>‘s website and download the editor to use it on your desktop. You can also use <code>yEd live</code> which is the online version of the editor. In that case, you need not download anything and can edit a graph entirely from the browser. I do recommend the desktop version though for continuous use.</p>
-<p>In a typical graph editing session, the machine designer will use two types of shapes: one for pseudo-control-states, another one for regular control states. In accordance with conventions, I commonly use a round, small shape for initial control states origin node, and history states. For atomic control states, I use a rectangular shape. I leave the shape for compound control states to be the default offered by <code>yEd</code>. </p>
-<p>Shapes representing nodes can be linked with edges, which are entered by the user by clicking on the origin node of the edge and dragging the mouse towards the destination node of the edge.  Edges can be edited by selecting them and pressing F2, or double-clicking on the edge. There are faster ways to do many node and edge handling which users will acquire once they get acquainted with the keyboard shortcuts. </p>
-<p>To create a compound control state, also called a group, simply create a node, select that node, then right-click, then click <em>Grouping</em> (or <kbd>Ctrl-Alt-G</kbd>). Once you have such a group, you can double click on it to enter that group and see only the contents of that group. You can navigate back up with the right menu <em>Grouping -&gt; Previous view</em> or <kbd>Alt-Page-Up</kbd>. Groups can be collapsed or expanded (click on -/+ icon in the top-left corner of the compound node). </p>
-<p>One of the things that make <code>yEd</code> great is that you do not need to think about layouting the graph. Just add the nodes in random places, and focus on having the graph relations right. You can then use a large set of computer-generated layouts. The ones I use most commonly are the hierarchic layout, the orthogonal layout, the flowchart, and the BPMN layout. After playing a bit with the layouts, you will pick the one that expresses visually the best the relationship. Hierarchic layouts are for instance often useful when writing machines for user interfaces, because such machines often have a preferred direction, with a few dropbacks: the user progresses on a user flow, with occasionally returning to a previous stage of the flow (error, correcting inputs, etc.). Orthogonal layouts often use better the space, but do not display visually well graphs with expanded compound nodes. It takes only a few trials to get a sense of the layouts and their utility.</p>
-<p>All layouts can be customized with an extensive suite of parameters (minimum distance between nodes, etc.). Layout option windows can be floated or docked (my favorite option). Once docked, running a layout consists only of clicking a play button. You will then see your graph visually morph into the selected layout. </p>
-<p>Most of the graphs on the current documentation site have been authored and laid out with <code>yEd</code>. An example graph is as follows:</p>
-<p>  <img src="https://imgur.com/VjKaIkL.png" alt="example of yed graph with history pseudo-state and compound state"></p>
-<p>In the previous example, compound control states, i.e. nodes which contain other nodes, are represented in gray color. Pseudo-control-states are represented in dark orange color, while atomic control states, i.e. nodes which do not contain any other nodes are represented in yellow. There is no convention enforced for colors, nor for shapes, so feel free to pick the one you liked the most from the <em>Shape node</em> palette on the right (cf. video). </p>
-<p>In the next section, we will describe the <code>yed2kingly</code> utility script which supports converting a <code>yEd</code> graphml file containing nodes, edges, node labels and edge labels into a Kingly state machine.</p>
-<h2 id="yed2kingly"><a href="#yed2kingly" class="headerlink" title="yed2kingly"></a>yed2kingly</h2><h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>The <code>yed2kingly</code> package aims at supporting the creation of state machines with the <a href="https://brucou.github.io/documentation/">Kingly state machine library</a>. While by design the Kingly configuration for state machines follows a simple and minimal syntax, crafting and maintaining a large state machine by hand can involve repetitive tasks. Such tasks include for instance looking up a transition and remove it, or checking that a new transition to add does not conflict with an existing one.</p>
-<p> Furthermore, a large machine is rarely written directly in a textual format but is rather supported by some kind of visualization whether hand-written graphs or professional graph editors. When switching to text editing, the visual information is lost, the text-based version eventually becomes desynchronized with the visualization. </p>
-<p>This is a case in hand where visual tooling can strengthen part of an error-prone manual process, and automate the repetitive tasks.</p>
-<p><a href="https://www.yworks.com/products/yed" target="_blank" rel="noopener">yEd</a> is a versatile professional graph editor that produces high-quality diagrams for a large set of use cases. yEd is not open source, however, there is no fee linked to its usage as an end-user. I have been using it for the past four years to generate all kinds of diagrams including state machine graphs. The key features that I found extremely valuable in this time are the accessibility to non-professional users (this is no photoshop), its large set of sophisticated automatic highly-customizable layouts, and its text-based versionable graphml format.</p>
-<p>This makes yEd a valuable tool to use for state machine creation, edition, and maintenance. yEd exists in desktop and online versions. I recommend strongly the desktop version on the grounds that it is more productive for serious tasks, but your mileage may vary. For educational or demonstration purposes, there may be educational value in the online version.</p>
-<h3 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h3><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>yed2kingly</code> node script on the newly saved file and generates a JavaScript file that exports the events, state hierarchy, and transitions contained in the graph — you can of course also run the script manually instead of using a watcher. The provided <code>exports</code> can then be used as parameters to create a Kingly state machine.</p>
-<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p><code>npm install yed2kingly</code></p>
-<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre><code class="hljs bash">yed2kingly file.graphml</code></pre>
-<p>Running the converter produces two files, targeted at consumption in a browser and node.js environment:</p>
-<p>Before:<br><pre><code class="hljs bash">src/graphs/file.graphml</code></pre></p>
-<p>After:<br><pre><code class="hljs bash">src/graphs/file.graphml.fsm.js
-src/graphs/file.graphml.fsm.cjs</code></pre></p>
-<p>The converter must emit an error or exit with an error code if the converted graph will not give rise to a valid Kingly machine (in particular cf. rules). The idea is to fail as early as possible.</p>
-<p>The produced file export three objects: the events, state hierarchy and a transition factory. The first two objects can be used directly as parameters to create a Kingly machine, i.e. they follow the Kingly format. The transition factory requires the developer to associate a JavaScript function with any action and guard labels that are in the graph. The developer thus passed an object containing this information and is returned a Kingly <code>transitions</code> object. I provide an example which should clarify the expected syntax and usage.  </p>
-<h3 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h3><p>Some definitions:</p>
+    <h2 id="yEd-a-powerful-graph-editor"><a href="#yEd-a-powerful-graph-editor" class="headerlink" title="yEd, a powerful graph editor"></a>yEd, a powerful graph editor</h2><p>yWorks, the editor of the yEd graph editor describes it as follows:</p>
+<blockquote>
+<p>yEd is a powerful desktop application that can be used to quickly and effectively generate high-quality diagrams. […] Our automatic layout algorithms arrange even large data sets with just the press of a button. yEd is freely available and runs on all major platforms: Windows, Unix/Linux, and macOS.</p>
+</blockquote>
+<p>With yEd, you can</p>
 <ul>
-<li>An initial transition is that which originates from a node whose label is <code>init</code></li>
-<li>A top-level initial transition is that initial transition which does not have any parent node</li>
-<li>A history pseudo-state is a node whose label is H (shallow history) or H* (deep history)</li>
-<li>A compound node is a node that is created in the yEd interface by using the group functionality (<em>Grouping &gt; Group</em> or <em>Ctrl-Alt-G</em> in version 3.19).</li>
+<li>visually create state machine graphs with any number and kind of control states and hierarchy with an intuitive user interface. yEd comes with a variety of shape nodes, group nodes, edge types, and other ready-to-use elements. Developers can also import or create custom element types. The user interface consists of dockable panels and includes extensive undo, zoom, selection, clipboard, and search capabilities. </li>
+<li>automatically layout a machine modeling. The numerous best-in-class layouts algorithms available let developers produce optimized output (automatic label positioning, line crossing minimization, edge routing) with little effort. All layouts are extensively configurable.</li>
+<li>save your graphs in a serializable and versionable <code>graphml</code> format. Graphs can also be exported as bitmap and vector graphics (PNG, JPG, SVG, PDF, and more).</li>
 </ul>
+<p>More information about yEd can be <a href="https://www.yworks.com/products/yed/applicationfeatures" target="_blank" rel="noopener">found on its website</a>.</p>
+<h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><p>Developers may download and install the yEd desktop application on their machine from <a href="https://www.yworks.com/products/yed/download#download" target="_blank" rel="noopener">yWorks download page</a>. Supported platforms include Windows, Unix/Linux, and macOS. The downloaded installer must then be run with the appropriate permissions to natively install the graph editor.</p>
+<p>You can also use <a href="https://www.yworks.com/yed-live/" target="_blank" rel="noopener"><em>yEd Live</em></a>, which is the online version of the editor. In that case, you need not download anything and can edit a graph entirely from the browser. When you are done editing, save the file with the <em>Save as GraphML file</em> option in the <em>Save</em> menu. I do however recommend the desktop version for continuous use.</p>
+<h2 id="Using-yEd"><a href="#Using-yEd" class="headerlink" title="Using yEd"></a>Using yEd</h2><p>The yWorks website provides plenty of learning resources:</p>
 <ul>
-<li>yed2kingly rules:<ul>
-<li>With the exception of history and init pseudo-states, all nodes are converted to Kingly states</li>
-<li>The Kingly name for a compound state will be the label displayed in the yEd editor for the matching group nodes in a non-collapsed state. This is important as yEd has another name for group nodes in the collapsed state.</li>
-<li>The label for any edge in the graph maps to a Kingly transition record. The chosen syntax is <code>event [guard] / action</code>. Anyone of the event, guard, and action can be empty. Hence <code>[]/</code> is a valid syntax though not recommended.</li>
-<li>There cannot be an action in the (unique by construction) top-level initial transition. There may be guards.</li>
-<li>Labels <strong>must not</strong> include the reserved character <code>ღ</code></li>
-<li>you can use the exact same label for different nodes (I do so in some of the tests), however, beware that this may come and bite you when you are tracing or debugging</li>
-<li>The action label cannot be the reserved label <code>ACTION_IDENTITY</code></li>
-<li>A label <code>x</code> must be so that the following JavaScript <code>{[x]: value}</code> is valid syntactically. This means labels can have spaces and a large set of Unicode characters, as allowed by the JavaScript specifications. Action labels such as <em>do this, do that</em> are thus valid.</li>
-<li>edge labels (which contain the event/guard/action triple under the following syntax <code>event [guard] / action (comment)</code>) are parsed with an <a href="https://github.com/brucou/slim/blob/master/yedEdgeLabelGrammar.ne" target="_blank" rel="noopener">EBNF grammar</a>. As of June 2020, to avoid having to handle an ambiguous grammar:<ul>
-<li><code>event</code> cannot have the characters <code>[</code>, <code>]</code>, <code>/</code>, <code>,</code> and <code>|</code> </li>
-<li><code>guard</code> cannot have the characters <code>[</code>, <code>]</code>, and <code>,</code></li>
-<li><code>actions</code> cannot have the characters <code>[</code>, <code>]</code>, <code>/</code>, <code>,</code> <code>(</code>, <code>)</code>, and <code>|</code></li>
+<li>a <a href="https://yed.yworks.com/support/manual/index.html" target="_blank" rel="noopener">thorough manual</a></li>
+<li>a <a href="https://www.yworks.com/products/yed/videos" target="_blank" rel="noopener">video tutorial</a></li>
+<li>a <a href="https://yed.yworks.com/support/qa/" target="_blank" rel="noopener">Q&amp;A forum</a> to ask questions to the yEd community of users if that would become necessary. </li>
 </ul>
-</li>
-<li>an edge label may encode several transitions, separated by <code>|</code>. All rules above apply to each of the transition as if it was alone</li>
-<li>edge labels can encode multiple transitions, provided those transitions encoding are separated by the <code>|</code> (pipe) character:<ul>
-<li>e.g. <code>| event1 [guard1] / action1 | event2 [guard2] / action2</code> encodes two transitions triggered respectively by <code>event1</code> and <code>event2</code></li>
-</ul>
-</li>
-<li>edge labels also encode composite guards and composite actions. Composite guards and actions are comma-separated actions. <code>guard1, guard2</code> encodes a guard which will be satisfied only and only if both <code>guard1</code> and <code>guard2</code> are satisfied. Similarly, <code>action1, action2</code> encode two actions that will be composed to form a single action. The composed outputs are the concatenation of the outputs of each action, in the same order<ul>
-<li>e.g. <code>event [cond1, cond2] / action1, action2 (comment)</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>In short:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Edge label</th>
-<th>Valid</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>start / display initial screen</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>start / display / initial screen</td>
-<td>No</td>
-</tr>
-<tr>
-<td>typed [letters?] / display password</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>typed [!letters?] /</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>typed [!letters?]</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>[!letters?]</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>[!letters?] / display password</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>start</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>[]</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>/</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>[] /</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>/ display password</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>成為   [或不]   / 成為</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>である[またはない] /である</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>&#124; start / display initial screen &#124; reset / navigate back</td>
-<td>Yes, parses two transitions</td>
-</tr>
-<tr>
-<td>&#124; start [letters? &#124; ] / display initial screen &#124; reset / navigate back</td>
-<td>No</td>
-</tr>
-<tr>
-<td>&#124; start [visible?, letters?] / display initial screen, navigate back</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>We recommend using the pipe character <code>|</code> exclusively and only to separate transitions. We recommend the comma <code>,</code> character exclusively to separate the components of a composite guard or action.</p>
-<h4 id="Language-support"><a href="#Language-support" class="headerlink" title="Language support"></a>Language support</h4><p>Unfortunately, as of today, only English and German are supported in the yed interface. However, all UTF-8 characters are accepted in the graphs that you can edit. The previous Chinese and Japanese characters have been copy/pasted into yed and are displayed fine. </p>
-<p>There is however an old issue (dating from 2015) that seems to indicate that it may not be possible to write the characters from a Chinese/Japanese keyboard. Please open an issue in the GitHub directory if you encounter a problem.</p>
-<p>Lastly, right-to-left, and vertical languages will not be displayed in the correct order. Shamefully, yed offers very little in terms of internationalization and localization.</p>
-<h3 id="Conventions"><a href="#Conventions" class="headerlink" title="Conventions"></a>Conventions</h3><p>The following conventions are not rules and are not enforced in any way. They exist for practicality or readability purposes.</p>
+<p>In practice, it takes only a few minutes to get acquainted with the yEd interface and start drawing machines. After 5 years of using yEd for state machine modeling, most Kingly users never used the forum, never read the manual —- you likely will not need to either, but it is there if you need it. The video tutorial is however a recommended point of entry.</p>
+<p>After viewing the video, to familiarize yourself further with the editor, you may try to draw a machine from scratch, and reproduce machine graphs from the <a href="https://brucou.github.io/documentation/v1/tutorials/">tutorials</a>. You can alternatively start from one existing graph. You will find sample graphs in Kingly’s GitHub project directory:</p>
 <ul>
-<li>Nodes for machine states have a rectangular shape</li>
-<li>Init pseudo-states are represented by a small circle with a different color than regular nodes</li>
-<li>Compound states (group nodes in yEd terminology) should also be displayed in a third color </li>
+<li><a href="https://github.com/brucou/kingly/blob/master/test/graphs/chess_game_with_hierarchy_with_undo_and_timer_highlighted_with_init.graphml" target="_blank" rel="noopener">state machine modeling of a chess game</a></li>
+<li><a href="https://github.com/brucou/kingly/blob/master/test/graphs/routing_machine_v2.graphml" target="_blank" rel="noopener">routing machine</a></li>
 </ul>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>There are plenty of graph examples in the <a href="https://github.com/brucou/yed2kingly/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. An example, extracted from the tests directory and involving compound states and history pseudo-states is as follows:</p>
-<p><img src="https://imgur.com/VjKaIkL.png" alt="example of yed graph with history pseudo-state and compound state"></p>
-<p>Running the <code>yed2kingly</code> script produces the following JavaScript file:</p>
-<pre><code class="hljs js"><span class="hljs-comment">// Copy-paste help</span>
-<span class="hljs-comment">// For debugging purposes, functions should all have a name</span>
-<span class="hljs-comment">// Using natural language sentences in the graph is valid</span>
-<span class="hljs-comment">// However, you will have to find a valid JavaScript name for the matching function</span>
-<span class="hljs-comment">// -----Guards------</span>
-<span class="hljs-comment">// const guards = &#123;</span>
-<span class="hljs-comment">// &#125;;</span>
-<span class="hljs-comment">// -----Actions------</span>
-<span class="hljs-comment">// const actions = &#123;</span>
-<span class="hljs-comment">//   "logGroup1toH": function ()&#123;&#125;,,,</span>
-<span class="hljs-comment">//   "logBtoC": function ()&#123;&#125;,,</span>
-<span class="hljs-comment">//   "logBtoD": function ()&#123;&#125;,,</span>
-<span class="hljs-comment">//   "logCtoD": function ()&#123;&#125;,,</span>
-<span class="hljs-comment">//   "logGroup1toD": function ()&#123;&#125;,,</span>
-<span class="hljs-comment">//   "logGroup1toC": function ()&#123;&#125;,,</span>
-<span class="hljs-comment">//   "logDtoD": function ()&#123;&#125;,</span>
-<span class="hljs-comment">// &#125;;</span>
-<span class="hljs-comment">// ----------------</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">contains</span>(<span class="hljs-params">as, bs</span>) </span>&#123;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">as</span>.every(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a</span>) </span>&#123;
-    <span class="hljs-keyword">return</span> bs.indexOf(a) &gt; <span class="hljs-number">-1</span>;
-  &#125;);
-&#125;
-<span class="hljs-keyword">var</span> NO_OUTPUT = <span class="hljs-literal">null</span>;
-<span class="hljs-keyword">var</span> NO_STATE_UPDATE = [];
-<span class="hljs-keyword">var</span> events = [<span class="hljs-string">"event3"</span>, <span class="hljs-string">"event2"</span>, <span class="hljs-string">"event1"</span>];
-<span class="hljs-keyword">var</span> states = &#123;
-  n1ღE: <span class="hljs-string">""</span>,
-  <span class="hljs-string">"n2ღGroup 1"</span>: &#123; <span class="hljs-string">"n2::n0ღB"</span>: <span class="hljs-string">""</span>, <span class="hljs-string">"n2::n1ღC"</span>: <span class="hljs-string">""</span>, <span class="hljs-string">"n2::n2ღGroup 1"</span>: &#123; <span class="hljs-string">"n2::n2::n0ღD"</span>: <span class="hljs-string">""</span>, <span class="hljs-string">"n2::n2::n2ღD"</span>: <span class="hljs-string">""</span> &#125; &#125;,
-&#125;;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getKinglyTransitions</span>(<span class="hljs-params">record</span>) </span>&#123;
-  <span class="hljs-keyword">var</span> aF = record.actionFactories;
-  <span class="hljs-keyword">var</span> guards = record.guards;
-  <span class="hljs-keyword">var</span> actionList = [
-    <span class="hljs-string">"logGroup1toH"</span>,
-    <span class="hljs-string">"ACTION_IDENTITY"</span>,
-    <span class="hljs-string">"logBtoC"</span>,
-    <span class="hljs-string">"logBtoD"</span>,
-    <span class="hljs-string">"logCtoD"</span>,
-    <span class="hljs-string">"logGroup1toD"</span>,
-    <span class="hljs-string">"logGroup1toC"</span>,
-    <span class="hljs-string">"logDtoD"</span>,
-  ];
-  <span class="hljs-keyword">var</span> predicateList = [];
-  aF[<span class="hljs-string">"ACTION_IDENTITY"</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ACTION_IDENTITY</span>(<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-keyword">return</span> &#123;
-      <span class="hljs-attr">outputs</span>: NO_OUTPUT,
-      <span class="hljs-attr">updates</span>: NO_STATE_UPDATE,
-    &#125;;
-  &#125;;
-  <span class="hljs-keyword">if</span> (!contains(actionList, <span class="hljs-built_in">Object</span>.keys(aF))) &#123;
-    <span class="hljs-built_in">console</span>.error(&#123; <span class="hljs-attr">actionFactories</span>: <span class="hljs-built_in">Object</span>.keys(aF), actionList &#125;);
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Some action are missing either in the graph, or in the action implementation object!"</span>);
-  &#125;
-  <span class="hljs-keyword">if</span> (!contains(predicateList, <span class="hljs-built_in">Object</span>.keys(guards))) &#123;
-    <span class="hljs-built_in">console</span>.error(&#123; <span class="hljs-attr">guards</span>: <span class="hljs-built_in">Object</span>.keys(guards), predicateList &#125;);
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Some guards are missing either in the graph, or in the guard implementation object!"</span>);
-  &#125;
-  <span class="hljs-keyword">const</span> transitions = [
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2ღGroup 1"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"event3"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n1ღE"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logGroup1toH"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n1ღE"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">""</span>, <span class="hljs-attr">to</span>: &#123; <span class="hljs-attr">shallow</span>: <span class="hljs-string">"n2ღGroup 1"</span> &#125;, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"ACTION_IDENTITY"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"nok"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"init"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n0ღB"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"ACTION_IDENTITY"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n0ღB"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"event2"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n1ღC"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logBtoC"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n0ღB"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"event1"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n2::n2ღD"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logBtoD"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n1ღC"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">""</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n2::n0ღD"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logCtoD"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n2ღGroup 1"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"init"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n2::n0ღD"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logGroup1toD"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2ღGroup 1"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"init"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n1ღC"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logGroup1toC"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n2::n2ღD"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"event1"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n2::n0ღD"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logDtoD"</span>] &#125;,
-  ];
-
-  <span class="hljs-keyword">return</span> transitions;
-&#125;
-
-<span class="hljs-keyword">export</span> &#123; events, states, getKinglyTransitions &#125;;</code></pre>
-<p>The exported events, states, getKinglyTransitions can then be used in a regular JavaScript file as follows:</p>
-<pre><code class="lang-js">    import {createStateMachine} from &#39;kingly&#39;;
-    import {events, states, getKinglyTransitions} from &#39;tests/graphs/hierarchy-history-H.graphml.fsm.js&#39;;
-(...)
-
-    const guards = {};
-    const actionFactories = {
-      logGroup1toC: (s, e, stg) =&gt; traceTransition(&#39;Group1 -&gt; C&#39;),
-      logBtoC: (s, e, stg) =&gt; traceTransition(&#39;B -&gt; C&#39;),
-      logBtoD: (s, e, stg) =&gt; traceTransition(&#39;B -&gt; D&#39;),
-      logCtoD: (s, e, stg) =&gt; traceTransition(&#39;C -&gt; D&#39;),
-      logDtoGroup1H: (s, e, stg) =&gt; traceTransition(&#39;D -&gt; Group1H&#39;),
-    };
-    const fsmDef = {
-      // NOTE: updateState and initialExtendedState are provided by the user
-      updateState,
-      initialExtendedState,
-      events,
-      states,
-      transitions: getKinglyTransitions({ actionFactories, guards }),
-    };
-    const fsm = createStateMachine(fsmDef, settings);
-</code></pre>
-<h3 id="Final-note"><a href="#Final-note" class="headerlink" title="Final note"></a>Final note</h3><p>This process was chosen after plenty of reflection of pondering over what was the best approach for this functionality. A Babel plugin or macro was a possibility but the level of complexity was much higher — both from a macro creator and a macro user perspective, and the predictable requirements in terms of maintenance were also appreciable. The retained solution is to produce the outputs of the file conversion in a separate, independent JavaScript file. There is thus no necessity to write proprietary JavaScript, it is programming as usual.</p>
-<p>This is a first version based on personal usage. Comments and recommendations are welcome if you have them about a better way to handle the integration of a graph editor with Kingly JavaScript library. Feel free to open an issue.</p>
+<p>Note that the previous graphs must be first downloaded on your machine (click the <em>Raw</em> button that appears in the menu bar) before they can be opened with yEd.</p>
+<h2 id="State-machine-modeling"><a href="#State-machine-modeling" class="headerlink" title="State machine modeling"></a>State machine modeling</h2><p>In a typical graph editing session, the machine designer will use two types of shapes: one for pseudo-control-states, another one for regular control states. In accordance with conventions, I commonly use a round, small shape for initial states and history states. For atomic control states, you can rather use a rectangular shape. While the machine designer has ample freedom to choose the color, typography, and shape of any graph elements, the following conventions must be respected:</p>
+<ul>
+<li>Initial control states MUST have <em>init</em> or any alternative capitalization of the word as label;</li>
+<li>Shallow history states MUST have <em>H</em> as label;</li>
+<li>Deep history states MUST have <em>H*</em> as label; and</li>
+<li>Compound control states MUST be what yEd calls groups.</li>
+</ul>
+<p>The following illustration showcases initial, history, atomic, and compound (e.g., group with <em>Game on</em> label)) control states:</p>
+<p><img src="https://imgur.com/xcAzpYM.png" alt="Example of graph modelization"></p>
+<p>In the previous example, compound control states, i.e. nodes which contain other nodes, are represented in gray color. Pseudo-control-states are represented in dark orange color, while atomic control states, i.e. nodes which do not contain any other nodes are represented in yellow. While, as mentioned, there is no convention enforced for colors, nor for shapes, it makes sense to create some and use them consistently. For your first machine modeling, you may want to start from existing Kingly modeling, and use the same conventions.</p>
+<p>Shapes representing nodes can be linked with edges, which are entered by the user by clicking on the origin node of the edge and dragging the mouse towards the destination node of the edge.  Edges can be edited by selecting them and pressing F2, or double-clicking on the edge. There are faster ways to do many node and edge handling, which users will acquire once they get acquainted with the keyboard shortcuts. </p>
+<p>To create a compound control state, also called a group, simply create a node, select that node, click the right button of your mouse, click <em>Grouping</em> (or <kbd>Ctrl-Alt-G</kbd>). Once you have such a group, you can double click on it to navigate inside that group —- you will then see only the contents of that group. You can navigate back up with the right menu <em>Grouping -&gt; Previous view</em> or <kbd>Alt-Page-Up</kbd>. Groups can be collapsed or expanded (click on <em>-</em>/<em>+</em> icon in the top-left corner of the compound node). </p>
+<h2 id="Layouts"><a href="#Layouts" class="headerlink" title="Layouts"></a>Layouts</h2><p>One of the things that make <code>yEd</code> great for graph modeling is that you do not need to think about layouting the graph. Just add the nodes in places, and focus on having the graph relations right. You can then use a large set of computer-generated layouts. The most useful and satisfying are the hierarchic, orthogonal, flowchart, and BPMN layouts. Experiment with those first and find which one suits you best. It takes only a few trials to get a sense of the layouts and their utility: </p>
+<ul>
+<li>Hierarchic layouts are often useful when writing machines for user interfaces, because such machines often have a preferred direction, with a few dropbacks: the user follows a designed user flow, and occasionally returns to a previous stage of the flow (e.g., error, correcting inputs). </li>
+<li>Orthogonal layouts often use better the space —- but do not display visually well graphs with expanded compound nodes.</li>
+</ul>
+<p>All layouts have plenty of customizable parameters (e.g., minimum distance between nodes, edge routing). Layout option windows can be floated or docked (the recommended option). Once docked, running a layout consists only of clicking a play button. You will then see your graph visually morph into the selected layout. </p>
+<p>You are invited to review the <a href="https://brucou.github.io/documentation/v1/tutorials/password-meter-using-graph-editor.html"><em>Password meter</em> tutorial</a> for a guided example of state machine modeling with yEd.</p>
+<p>Most of the graphs on the current documentation site have been authored and laid out with <code>yEd</code>. </p>
 
   
   
@@ -523,23 +330,6 @@ src/graphs/file.graphml.fsm.cjs</code></pre></p>
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
