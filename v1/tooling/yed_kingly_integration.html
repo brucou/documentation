@@ -299,15 +299,10 @@
 <h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><p>If you haven’t yet installed the <code>yEd</code> editor, please do so by following the instructions <a href="https://brucou.github.io/documentation/v1/tooling/graph_editing.html">here</a>.</p>
 <p>To use  <code>yed2kingly</code>  in the shell terminal, you will need to install the package globally:</p>
 <pre><code class="hljs bash">npm install -g yed2kingly</code></pre>
-<h2 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h2><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>yed2kingly</code> node script on the newly saved file and generates a JavaScript file that exports the events, state hierarchy, and transitions contained in the graph — you can of course also run the script manually instead of using a watcher. The provided <code>exports</code> can then be used as parameters to create a Kingly state machine.</p>
-<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p><code>npm install -g yed2kingly</code></p>
-<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre><code class="hljs bash">yed2kingly file.graphml</code></pre>
-<p>Running the converter produces two files, targeted at consumption in a browser and node.js environment:</p>
-<p>Before:<br><pre><code class="hljs bash">src/graphs/file.graphml</code></pre></p>
-<p>After:<br><pre><code class="hljs bash">src/graphs/file.graphml.fsm.js
-src/graphs/file.graphml.fsm.cjs</code></pre></p>
-<p>The converter must emit an error or exit with an error code if the converted graph will not give rise to a valid Kingly machine (in particular cf. rules). The idea is to fail as early as possible.</p>
-<p>The produced file export three objects: the events, state hierarchy and a transition factory. The first two objects can be used directly as parameters to create a Kingly machine, i.e. they follow the Kingly format. The transition factory requires the developer to associate a JavaScript function with any action and guard labels that are in the graph. The developer thus passed an object containing this information and is returned a Kingly <code>transitions</code> object. I provide an example which should clarify the expected syntax and usage.  </p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><pre><code class="hljs bash">yed2kingly filename.graphml</code></pre>
+<p>Running the converter produces two files, targeted at consumption in a browser and Node.js environment. Assuming the file <code>src/graphs/file.graphml</code> is passed to <code>yed2kingly</code>, the following two files are created: <code>src/graphs/file.graphml.fsm.js</code>, and <code>src/graphs/file.graphml.fsm.cjs</code>.</p>
+<p>The converter exits with an error code if it does not recognize a valid <code>yEd</code> graph, or if that graph cannot be converted to a valid Kingly machine.</p>
+<p>TODO: organize better, specially the tutorial, maybe move it here? to think about.</p>
 <h3 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h3><p>Some definitions:</p>
 <ul>
 <li>An initial transition is that which originates from a node whose label is <code>init</code></li>
@@ -540,6 +535,7 @@ src/graphs/file.graphml.fsm.cjs</code></pre></p>
 </code></pre>
 <h3 id="Final-note"><a href="#Final-note" class="headerlink" title="Final note"></a>Final note</h3><p>This process was chosen after plenty of reflection of pondering over what was the best approach for this functionality. A Babel plugin or macro was a possibility but the level of complexity was much higher — both from a macro creator and a macro user perspective, and the predictable requirements in terms of maintenance were also appreciable. The retained solution is to produce the outputs of the file conversion in a separate, independent JavaScript file. There is thus no necessity to write proprietary JavaScript, it is programming as usual.</p>
 <p>This is a first version based on personal usage. Comments and recommendations are welcome if you have them about a better way to handle the integration of a graph editor with Kingly JavaScript library. Feel free to open an issue.</p>
+<h2 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h2><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>yed2kingly</code> node script on the newly saved file and generates a JavaScript file that exports the events, state hierarchy, and transitions contained in the graph — you can of course also run the script manually instead of using a watcher. The provided <code>exports</code> can then be used as parameters to create a Kingly state machine.</p>
 
   
   
