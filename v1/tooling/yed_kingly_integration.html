@@ -87,6 +87,7 @@
   <ul class="nav-dropdown">
     <li>
       <ul>
+        <li><a href="/documentation/v1/tooling/tools_overview.html" class="nav-link">Overview</a></li>
         <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
         <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
         <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
@@ -148,6 +149,7 @@
   <ul class="nav-dropdown">
     <li>
       <ul>
+        <li><a href="/documentation/v1/tooling/tools_overview.html" class="nav-link">Overview</a></li>
         <li><a href="/documentation/v1/tooling/graph_editing.html" class="nav-link">Graph editing</a></li>
         <li><a href="/documentation/v1/tooling/compiling.html" class="nav-link">Compiling</a></li>
         <li><a href="/documentation/v1/tooling/devtool.html" class="nav-link">Devtool</a></li>
@@ -199,7 +201,7 @@
       
     
     <li>
-      <a href="/documentation/v1/tooling/index.html" class="sidebar-link">Overview</a>
+      <a href="/documentation/v1/tooling/tools_overview.html" class="sidebar-link">Overview</a>
     </li>
   
     
@@ -266,7 +268,7 @@
 <p>You have a professional, intuitive graph editor. You can model state machines by drawing them in that editor. When done, you save the graph in the native yEd <code>.graphml</code> format. To turn the drawing into an actual machine that you can run in a program, you then have two options:</p>
 <ul>
 <li>use the <code>yed2kingly</code> CLI; or</li>
-<li>use the <code>slim</code> CLI`. </li>
+<li>use the <code>slim</code> CLI. </li>
 </ul>
 <p>Why two separate CLIs? What are the differences between the two? <code>yed2kingly</code> fits well with development workflows; produce files that are easier to debug; and allows using the Kingly’s devtool extension. On the other hand, the <code>slim</code> command has optimizations that make it more fit to production; it produces file with a smaller size (most machines you will write will fit between 0.5 and 2.5KB). Both CLIs will produce JavaScript files that can be imported/required by other modules of the application. Those files export factories that create Kingly machines.</p>
 <p>This section will focus on the <code>yed2kingly</code> command. We start by reviewing in detail the end-to-end implementation workflow that the command supports. We then explain how to install and use the CLI.</p>
@@ -301,137 +303,17 @@
 <pre><code class="hljs bash">npm install -g yed2kingly</code></pre>
 <h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><pre><code class="hljs bash">yed2kingly filename.graphml</code></pre>
 <p>Running the converter produces two files, targeted at consumption in a browser and Node.js environment. Assuming the file <code>src/graphs/file.graphml</code> is passed to <code>yed2kingly</code>, the following two files are created: <code>src/graphs/file.graphml.fsm.js</code>, and <code>src/graphs/file.graphml.fsm.cjs</code>.</p>
-<p>The converter exits with an error code if it does not recognize a valid <code>yEd</code> graph, or if that graph cannot be converted to a valid Kingly machine.</p>
+<h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>The converter exits with an error code if it does not recognize a valid <code>yEd</code> graph, or if that graph cannot be converted to a valid Kingly machine.</p>
 <p>TODO: organize better, specially the tutorial, maybe move it here? to think about.</p>
 <h3 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h3><p>Some definitions:</p>
 <ul>
-<li>An initial transition is that which originates from a node whose label is <code>init</code></li>
 <li>A top-level initial transition is that initial transition which does not have any parent node</li>
-<li>A history pseudo-state is a node whose label is H (shallow history) or H* (deep history)</li>
-<li>A compound node is a node that is created in the yEd interface by using the group functionality (<em>Grouping &gt; Group</em> or <em>Ctrl-Alt-G</em> in version 3.19).</li>
 </ul>
 <ul>
 <li>yed2kingly rules:<ul>
-<li>With the exception of history and init pseudo-states, all nodes are converted to Kingly states</li>
-<li>The Kingly name for a compound state will be the label displayed in the yEd editor for the matching group nodes in a non-collapsed state. This is important as yEd has another name for group nodes in the collapsed state.</li>
-<li>The label for any edge in the graph maps to a Kingly transition record. The chosen syntax is <code>event [guard] / action</code>. Anyone of the event, guard, and action can be empty. Hence <code>[]/</code> is a valid syntax though not recommended.</li>
 <li>There cannot be an action in the (unique by construction) top-level initial transition. There may be guards.</li>
-<li>Labels <strong>must not</strong> include the reserved character <code>ღ</code></li>
-<li>you can use the exact same label for different nodes (I do so in some of the tests), however, beware that this may come and bite you when you are tracing or debugging</li>
-<li>The action label cannot be the reserved label <code>ACTION_IDENTITY</code></li>
-<li>A label <code>x</code> must be so that the following JavaScript <code>{[x]: value}</code> is valid syntactically. This means labels can have spaces and a large set of Unicode characters, as allowed by the JavaScript specifications. Action labels such as <em>do this, do that</em> are thus valid.</li>
-<li>edge labels (which contain the event/guard/action triple under the following syntax <code>event [guard] / action (comment)</code>) are parsed with an <a href="https://github.com/brucou/slim/blob/master/yedEdgeLabelGrammar.ne" target="_blank" rel="noopener">EBNF grammar</a>. As of June 2020, to avoid having to handle an ambiguous grammar:<ul>
-<li><code>event</code> cannot have the characters <code>[</code>, <code>]</code>, <code>/</code>, <code>,</code> and <code>|</code> </li>
-<li><code>guard</code> cannot have the characters <code>[</code>, <code>]</code>, and <code>,</code></li>
-<li><code>actions</code> cannot have the characters <code>[</code>, <code>]</code>, <code>/</code>, <code>,</code> <code>(</code>, <code>)</code>, and <code>|</code></li>
 </ul>
 </li>
-<li>an edge label may encode several transitions, separated by <code>|</code>. All rules above apply to each of the transition as if it was alone</li>
-<li>edge labels can encode multiple transitions, provided those transitions encoding are separated by the <code>|</code> (pipe) character:<ul>
-<li>e.g. <code>| event1 [guard1] / action1 | event2 [guard2] / action2</code> encodes two transitions triggered respectively by <code>event1</code> and <code>event2</code></li>
-</ul>
-</li>
-<li>edge labels also encode composite guards and composite actions. Composite guards and actions are comma-separated actions. <code>guard1, guard2</code> encodes a guard which will be satisfied only and only if both <code>guard1</code> and <code>guard2</code> are satisfied. Similarly, <code>action1, action2</code> encode two actions that will be composed to form a single action. The composed outputs are the concatenation of the outputs of each action, in the same order<ul>
-<li>e.g. <code>event [cond1, cond2] / action1, action2 (comment)</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>In short:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Edge label</th>
-<th>Valid</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>start / display initial screen</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>start / display / initial screen</td>
-<td>No</td>
-</tr>
-<tr>
-<td>typed [letters?] / display password</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>typed [!letters?] /</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>typed [!letters?]</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>[!letters?]</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>[!letters?] / display password</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>start</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>[]</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>/</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>[] /</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>/ display password</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>成為   [或不]   / 成為</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>である[またはない] /である</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>&#124; start / display initial screen &#124; reset / navigate back</td>
-<td>Yes, parses two transitions</td>
-</tr>
-<tr>
-<td>&#124; start [letters? &#124; ] / display initial screen &#124; reset / navigate back</td>
-<td>No</td>
-</tr>
-<tr>
-<td>&#124; start [visible?, letters?] / display initial screen, navigate back</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>We recommend using the pipe character <code>|</code> exclusively and only to separate transitions. We recommend the comma <code>,</code> character exclusively to separate the components of a composite guard or action.</p>
-<h4 id="Language-support"><a href="#Language-support" class="headerlink" title="Language support"></a>Language support</h4><p>Unfortunately, as of today, only English and German are supported in the yed interface. However, all UTF-8 characters are accepted in the graphs that you can edit. The previous Chinese and Japanese characters have been copy/pasted into yed and are displayed fine. </p>
-<p>There is however an old issue (dating from 2015) that seems to indicate that it may not be possible to write the characters from a Chinese/Japanese keyboard. Please open an issue in the GitHub directory if you encounter a problem.</p>
-<p>Lastly, right-to-left, and vertical languages will not be displayed in the correct order. Shamefully, yed offers very little in terms of internationalization and localization.</p>
-<h3 id="Conventions"><a href="#Conventions" class="headerlink" title="Conventions"></a>Conventions</h3><p>The following conventions are not rules and are not enforced in any way. They exist for practicality or readability purposes.</p>
-<ul>
-<li>Nodes for machine states have a rectangular shape</li>
-<li>Init pseudo-states are represented by a small circle with a different color than regular nodes</li>
-<li>Compound states (group nodes in yEd terminology) should also be displayed in a third color </li>
 </ul>
 <h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>There are plenty of graph examples in the <a href="https://github.com/brucou/yed2kingly/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. An example, extracted from the tests directory and involving compound states and history pseudo-states is as follows:</p>
 <p><img src="https://imgur.com/VjKaIkL.png" alt="example of yed graph with history pseudo-state and compound state"></p>
