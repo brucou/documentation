@@ -272,8 +272,8 @@
 </ul>
 <p>Why two separate CLIs? What are the differences between the two? <code>yed2kingly</code> fits well with development workflows; produces files that are easier to debug; and allows using the Kingly’s devtool extension. On the other hand, the <code>slim</code> command has optimizations that makes it more fit to production; it produces file with a smaller size (most machines you will write will fit between 0.5 and 2.5KB). Both CLIs will produce JavaScript files that can be imported/required by other modules of the application. Those files export factories that create Kingly machines.</p>
 <p>This section will focus on the <code>yed2kingly</code> command. We start by reviewing in detail the end-to-end implementation workflow that the command supports. We then explain how to install and use the CLI.</p>
-<h2 id="From-a-drawing-to-a-programming-function"><a href="#From-a-drawing-to-a-programming-function" class="headerlink" title="From a drawing to a programming function"></a>From a drawing to a programming function</h2><p>A Kingly state machine computes outputs as a result of being passed an input —- we will often say that the machine processes or receives an event. The high-level specifications of the machine computation can be represented with a graph. Nodes in the graph correspond to control states of the machine. Edges connecting two nodes represent transitions between control states of the machine.</p>
-<p>We said specifications because the drawing let us know how the machine will compute in response to an input depending on the state it is in. We said high-level specifications because the drawing does not allow the actual computing of a machine response —- it is a drawing. Let’s look at a <a href="https://brucou.github.io/documentation/v1/tutorials/counter-application.html">simple such drawing from the tutorials</a>:</p>
+<h2 id="From-a-drawing-to-a-programming-function"><a href="#From-a-drawing-to-a-programming-function" class="headerlink" title="From a drawing to a programming function"></a>From a drawing to a programming function</h2><p>A Kingly state machine computes outputs as a result of being passed an input — we will often say that the machine processes or receives an event. The high-level specifications of the machine computation can be represented with a graph. Nodes in the graph correspond to control states of the machine. Edges connecting two nodes represent transitions between control states of the machine.</p>
+<p>We said specifications because the drawing let us know how the machine will compute in response to an input depending on the state it is in. We said high-level specifications because the drawing does not allow the actual computing of a machine response — it is a drawing. Let’s look at a <a href="https://brucou.github.io/documentation/v1/tutorials/counter-application.html">simple such drawing from the tutorials</a>:</p>
 <p><img src="https://brucou.github.io/documentation/graphs/trivial%20counter%20machine.png" alt="simple machine"></p>
 <p>This <strong>machine drawing</strong> tells us that when processing a <em>click</em> input, the modeled <strong>JavaScript machine</strong> should trigger the incrementing of a counter, and some rendering. It does not tell us how exactly that works. To turn the drawing into an actual JavaScript function, you need to provide the missing JavaScript objects: </p>
 <ul>
@@ -292,10 +292,10 @@
 <p>The produced JavaScript files import/require the Kingly library, and export a machine factory that can be used by other modules to construct the actual JavaScript machine we seek. The machine factory must be passed as parameters the following pieces of information that are missing from the graph:</p>
 <ul>
 <li>the machine’s initial extended state;</li>
-<li>the implementation for the machine guards, if any —- we only have their names;</li>
-<li>the implementation for the machine actions, if any —- we only have their names;</li>
+<li>the implementation for the machine guards, if any — we only have their names;</li>
+<li>the implementation for the machine actions, if any — we only have their names;</li>
 <li>the implementation of how the machine updates its internal state (<code>updateState</code> parameter); and</li>
-<li>the machine’s optional configuration —- e.g., debugging, tracing, dependency injection.</li>
+<li>the machine’s optional configuration — e.g., debugging, tracing, dependency injection.</li>
 </ul>
 <p>You are invited to review the <a href="https://brucou.github.io/documentation/v1/tutorials/password-meter-using-graph-editor.html"><em>Password meter</em> tutorial</a> for a guided example of turning a machine drawing into a JavaScript machine with <code>yed2kingly</code>.</p>
 <h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><p>If you haven’t yet installed the <code>yEd</code> editor, please do so by following the instructions <a href="https://brucou.github.io/documentation/v1/tooling/graph_editing.html">here</a>.</p>
@@ -315,7 +315,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>There are plenty of graph examples in the <a href="https://github.com/brucou/yed2kingly/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. An example, extracted from the tests directory and involving compound states and history pseudo-states is as follows:</p>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p>There are plenty of graph examples in the <a href="https://github.com/brucou/yed2kingly/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. An example, extracted from the tests directory and involving compound states and history pseudo-states is as follows:</p>
 <p><img src="https://imgur.com/VjKaIkL.png" alt="example of yed graph with history pseudo-state and compound state"></p>
 <p>Running the <code>yed2kingly</code> script produces the following JavaScript file:</p>
 <pre><code class="hljs js"><span class="hljs-comment">// Copy-paste help</span>
