@@ -519,22 +519,21 @@
     <h1>Installation</h1>
   
   
-    <h2 id="Browser-compatibility"><a href="#Browser-compatibility" class="headerlink" title="Browser compatibility"></a>Browser compatibility</h2><p>Kingly API exposes a <code>makeWebComponentFromFSM</code> function requiring <a href="https://developers.google.com/web/fundamentals/web-components/customelements" target="_blank" rel="noopener">custom-elements V1</a> support, which is supported by <a href="https://caniuse.com/#feat=custom-elementsv1" target="_blank" rel="noopener">most browsers</a> .</p>
-<h2 id="Release-Notes"><a href="#Release-Notes" class="headerlink" title="Release Notes"></a>Release Notes</h2><p>Latest stable version: 0.28</p>
-<p>See release notes on <a href="https://github.com/brucou/kingly/releases" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Global-lt-script-gt-Include"><a href="#Global-lt-script-gt-Include" class="headerlink" title="Global &lt;script&gt; Include"></a>Global <code>&lt;script&gt;</code> Include</h2><p>It is possible to directly include the library in a script tag in the browser. <code>Kingly</code> will be registered as a global variable.</p>
+    <h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><pre><code class="hljs bash">$ npm install kingly</code></pre>
+<h2 id="Global-lt-script-gt-Include"><a href="#Global-lt-script-gt-Include" class="headerlink" title="Global &lt;script&gt; Include"></a>Global <code>&lt;script&gt;</code> Include</h2><p>It is possible to directly include the library in a script tag in the browser. <code>Kingly</code> will then be registered as a global variable.</p>
 <p>For prototyping or learning purposes, you can use the latest version with:</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/kingly"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<p>For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:</p>
+<p>For production, we recommend linking to a specific version number:</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/kingly@0.28.0/dist/kingly.umd.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<p>Note that the Kingly library will not throw when it encounters unexpected situations. It will instead return an error object. I consider the present core API pretty much final. Future changes should add, and not remove or modify the current features. </p>
 <p>If you are using native ES Modules, there is also an ES Modules compatible build:</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="javascript">
   <span class="hljs-keyword">import</span> &#123;createStateMachine, makeWebComponentFromFsm, decorateWithEntryActions, traceFSM&#125; <span class="hljs-keyword">from</span> 
   <span class="hljs-string">'https://cdn.jsdelivr.net/npm/kingly@0.19.0/dist/kingly.es.min.js'</span>
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
-<h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><pre><code class="hljs bash">$ npm install kingly</code></pre>
 <h2 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h2><p>All UMD builds can be used directly as an AMD module.</p>
+<h2 id="Browser-compatibility"><a href="#Browser-compatibility" class="headerlink" title="Browser compatibility"></a>Browser compatibility</h2><p>Kingly’s API exposes a <code>makeWebComponentFromFSM</code> function requiring <a href="https://developers.google.com/web/fundamentals/web-components/customelements" target="_blank" rel="noopener">custom-elements V1</a> support, which is provided by <a href="https://caniuse.com/#feat=custom-elementsv1" target="_blank" rel="noopener">most browsers</a>.</p>
+<h2 id="Release-Notes"><a href="#Release-Notes" class="headerlink" title="Release Notes"></a>Release Notes</h2><p>Latest stable version: 0.29</p>
+<p>See release notes on <a href="https://github.com/brucou/kingly/releases" target="_blank" rel="noopener">GitHub</a>.</p>
 
   
   
