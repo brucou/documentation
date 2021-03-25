@@ -268,7 +268,7 @@
 <ul>
 <li>State machines can be prototyped with the intuitive, industry-grade <a href="https://www.yworks.com/products/yed" target="_blank" rel="noopener">yEd graph editor</a>, available on Windows, Linux, and macOS. You may also use an online <a href="https://www.yworks.com/products/yed-live" target="_blank" rel="noopener">browser version</a>. The graph editor allows saving graphs under a versionable format for easy management of prototyping iterations.</li>
 <li>In development, yEd state machine modelings can be compiled into a vanilla-JavaScript file that imports the Kingly JavaScript library so you can use the Kingly tooling available in development: configurable logs, <a href="/v1/tooling/devtool.html">devtool Chrome extension</a>.</li>
-<li>In production, state machine modelings created with yEd can be compiled into a zero-dependency vanilla-JavaScript file that weights between .5KB for simple machines and 2.5KB for large machines. Production bundles are as a result smaller than in development —- the Kingly library (between 5 and 12KB depending on tree-shaking) is no longer part of the bundle.</li>
+<li>In production, state machine modelings created with yEd can be compiled into an optimized zero-dependency vanilla-JavaScript file. The file size oscillates between .5KB for simple machines and 2.5KB for large machines vs. 12KB for the full Kingly library. </li>
 </ul>
 <p>The following sections go into the details of how to install and use the available tooling.</p>
 

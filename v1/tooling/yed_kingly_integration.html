@@ -264,13 +264,13 @@
     <h1>Integration with Kingly</h1>
   
   
-    <p>You do want to use yEd to create Kingly state machines. As simple and minimal as Kingly API strives to be, crafting and maintaining a large state machine by hand can involve repetitive tasks, tasks that a textual encoding supports poorly (e.g., refactoring transitions). Modeling is an iterative process and you want fast iterations. You want tooling that supports that. So what tools do you have at your disposal?</p>
+    <p>For anything serious, you do want to use yEd to create Kingly state machines. As simple and minimal as Kingly API strives to be, crafting and maintaining a large state machine by hand can involve repetitive tasks, tasks that a textual encoding supports poorly (e.g., refactoring transitions). Modeling is an iterative process and you want fast iterations. You want tooling that supports that. So what tools do you have at your disposal?</p>
 <p>You have a professional, intuitive graph editor. You can model state machines by drawing them in that editor. When done, you save the graph in the native yEd <code>.graphml</code> format. To turn the drawing into an actual machine that you can run in a program, you then have two options:</p>
 <ul>
 <li>use the <code>yed2kingly</code> CLI; or</li>
 <li>use the <code>slim</code> CLI. </li>
 </ul>
-<p>Why two separate CLIs? What are the differences between the two? <code>yed2kingly</code> fits well with development workflows; produces files that are easier to debug; and allows using the Kingly’s devtool extension. On the other hand, the <code>slim</code> command has optimizations that makes it more fit to production; it produces file with a smaller size (most machines you will write will fit between 0.5 and 2.5KB). Both CLIs will produce JavaScript files that can be imported/required by other modules of the application. Those files export factories that create Kingly machines.</p>
+<p>Why two separate CLIs? How do they differ? <code>yed2kingly</code> fits well with development workflows; produces files that are easier to debug; and allows using the Kingly’s devtool extension. On the other hand, the <code>slim</code> command has optimizations that makes it more fit to production; it produces files with a smaller size (most machines you will write will fit between 0.5 and 2.5KB). Both CLIs will produce JavaScript files that can be imported/required by other modules of the application. Those files export factories that create Kingly machines.</p>
 <p>This section will focus on the <code>yed2kingly</code> command. We start by reviewing in detail the end-to-end implementation workflow that the command supports. We then explain how to install and use the CLI.</p>
 <h2 id="From-a-drawing-to-a-programming-function"><a href="#From-a-drawing-to-a-programming-function" class="headerlink" title="From a drawing to a programming function"></a>From a drawing to a programming function</h2><p>A Kingly state machine computes outputs as a result of being passed an input — we will often say that the machine processes or receives an event. The high-level specifications of the machine computation can be represented with a graph. Nodes in the graph correspond to control states of the machine. Edges connecting two nodes represent transitions between control states of the machine.</p>
 <p>We said specifications because the drawing let us know how the machine will compute in response to an input depending on the state it is in. We said high-level specifications because the drawing does not allow the actual computing of a machine response — it is a drawing. Let’s look at a <a href="https://brucou.github.io/documentation/v1/tutorials/counter-application.html">simple such drawing from the tutorials</a>:</p>
@@ -289,7 +289,7 @@
 <li>the machine’s transitions.</li>
 </ul>
 <p>The <code>yed2kingly</code> CLI extracts the pieces of information contained in the <code>.graphml</code> file that it receives as a parameter and produces two almost identical JavaScript files. One is destined to be used in a browser context (<code>.js</code> file), the other in a Node.js context (<code>.cjs</code> file that can be <code>require</code>d but not <code>import</code>ed).</p>
-<p>The produced JavaScript files import/require the Kingly library, and export a machine factory that can be used by other modules to construct the actual JavaScript machine we seek. The machine factory must be passed as parameters the following pieces of information that are missing from the graph:</p>
+<p>The produced JavaScript files import/require the Kingly library, and export a machine factory that can be used by other modules to construct the actual JavaScript machine we seek. The machine factory must be passed the following pieces of information that are missing from the graph:</p>
 <ul>
 <li>the machine’s initial extended state;</li>
 <li>the implementation for the machine guards, if any — we only have their names;</li>
@@ -303,37 +303,44 @@
 <pre><code class="hljs bash">npm install -g yed2kingly</code></pre>
 <h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><pre><code class="hljs bash">yed2kingly filename.graphml</code></pre>
 <p>Running the converter produces two files, targeted at consumption in a browser and Node.js environment. Assuming the file <code>src/graphs/file.graphml</code> is passed to <code>yed2kingly</code>, the following two files are created: <code>src/graphs/file.graphml.fsm.js</code>, and <code>src/graphs/file.graphml.fsm.cjs</code>.</p>
-<h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>The converter exits with an error code if it does not recognize a valid <code>yEd</code> graph, or if that graph cannot be converted to a valid Kingly machine.</p>
-<p><strong>TODO: organize better, especially the tutorial, maybe move it here? to think about.</strong></p>
-<h2 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h2><p>Some definitions:</p>
-<ul>
-<li>A top-level initial transition is that initial transition which does not have any parent node</li>
-</ul>
-<ul>
-<li>yed2kingly rules:<ul>
-<li>There cannot be an action in the (unique by construction) top-level initial transition. There may be guards.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p>There are plenty of graph examples in the <a href="https://github.com/brucou/yed2kingly/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. An example, extracted from the tests directory and involving compound states and history pseudo-states is as follows:</p>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p>There are plenty of graph examples in the <a href="https://github.com/brucou/yed2kingly/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. One such example involving compound states and history pseudo-states is as follows:</p>
 <p><img src="https://imgur.com/VjKaIkL.png" alt="example of yed graph with history pseudo-state and compound state"></p>
-<p>Running the <code>yed2kingly</code> script produces the following JavaScript file:</p>
-<pre><code class="hljs js"><span class="hljs-comment">// Copy-paste help</span>
-<span class="hljs-comment">// For debugging purposes, functions should all have a name</span>
-<span class="hljs-comment">// Using natural language sentences in the graph is valid</span>
-<span class="hljs-comment">// However, you will have to find a valid JavaScript name for the matching function</span>
+<p>Running the <code>yed2kingly</code> script produces a JavaScript file that exports a <code>createStateMachineFromGraph</code> machine factory:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createStateMachine &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">"kingly"</span>;
+
+<span class="hljs-comment">// Copy-paste help</span>
+<span class="hljs-comment">// For debugging purposes, guards and actions functions should all have a name</span>
+<span class="hljs-comment">// Using natural language sentences for labels in the graph is valid</span>
+<span class="hljs-comment">// guard and action functions name still follow JavaScript rules though</span>
 <span class="hljs-comment">// -----Guards------</span>
+<span class="hljs-comment">/**
+ * @param &#123;E&#125; extendedState
+ * @param &#123;D&#125; eventData
+ * @param &#123;X&#125; settings
+ * @returns Boolean
+ */</span>
 <span class="hljs-comment">// const guards = &#123;</span>
+<span class="hljs-comment">//   "can move &amp;amp;&amp;amp; won": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "can move &amp;amp;&amp;amp; !won": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "white piece": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "black piece": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "&amp;gt;0 moves": function ()&#123;&#125;,</span>
 <span class="hljs-comment">// &#125;;</span>
 <span class="hljs-comment">// -----Actions------</span>
+<span class="hljs-comment">/**
+ * @param &#123;E&#125; extendedState
+ * @param &#123;D&#125; eventData
+ * @param &#123;X&#125; settings
+ * @returns &#123;&#123;updates: U[], outputs: O[]&#125;&#125;
+ * (such that updateState:: E -&gt; U[] -&gt; E)
+ */</span>
 <span class="hljs-comment">// const actions = &#123;</span>
-<span class="hljs-comment">//   "logGroup1toH": function ()&#123;&#125;,,,</span>
-<span class="hljs-comment">//   "logBtoC": function ()&#123;&#125;,,</span>
-<span class="hljs-comment">//   "logBtoD": function ()&#123;&#125;,,</span>
-<span class="hljs-comment">//   "logCtoD": function ()&#123;&#125;,,</span>
-<span class="hljs-comment">//   "logGroup1toD": function ()&#123;&#125;,,</span>
-<span class="hljs-comment">//   "logGroup1toC": function ()&#123;&#125;,,</span>
-<span class="hljs-comment">//   "logDtoD": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "update clock": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "cancel timer": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "Move": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "restart timer": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "Undo": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "reset and start clock": function ()&#123;&#125;,</span>
 <span class="hljs-comment">// &#125;;</span>
 <span class="hljs-comment">// ----------------</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">contains</span>(<span class="hljs-params">as, bs</span>) </span>&#123;
@@ -341,60 +348,130 @@
     <span class="hljs-keyword">return</span> bs.indexOf(a) &gt; <span class="hljs-number">-1</span>;
   &#125;);
 &#125;
-<span class="hljs-keyword">var</span> NO_OUTPUT = <span class="hljs-literal">null</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chain</span>(<span class="hljs-params">arrFns, actions</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">chain_</span>(<span class="hljs-params">s, ed, stg</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> arrFns.reduce(
+      <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">acc, fn</span>) </span>&#123;
+        <span class="hljs-keyword">var</span> r = actions[fn](s, ed, stg);
+
+        <span class="hljs-keyword">return</span> &#123;
+          <span class="hljs-attr">updates</span>: acc.updates.concat(r.updates),
+          <span class="hljs-attr">outputs</span>: acc.outputs.concat(r.outputs),
+        &#125;;
+      &#125;,
+      &#123; <span class="hljs-attr">updates</span>: [], <span class="hljs-attr">outputs</span>: [] &#125;
+    );
+  &#125;;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">every</span>(<span class="hljs-params">arrFns, guards</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">every_</span>(<span class="hljs-params">s, ed, stg</span>) </span>&#123;
+    <span class="hljs-keyword">return</span> arrFns.reduce(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">acc, fn</span>) </span>&#123;
+      <span class="hljs-keyword">var</span> r = guards[fn](s, ed, stg);
+
+      <span class="hljs-keyword">return</span> r &amp;&amp; acc;
+    &#125;, <span class="hljs-literal">true</span>);
+  &#125;;
+&#125;
+
+<span class="hljs-keyword">var</span> NO_OUTPUT = [];
 <span class="hljs-keyword">var</span> NO_STATE_UPDATE = [];
-<span class="hljs-keyword">var</span> events = [<span class="hljs-string">"event3"</span>, <span class="hljs-string">"event2"</span>, <span class="hljs-string">"event1"</span>];
-<span class="hljs-keyword">var</span> states = &#123;
-  n1ღE: <span class="hljs-string">""</span>,
-  <span class="hljs-string">"n2ღGroup 1"</span>: &#123; <span class="hljs-string">"n2::n0ღB"</span>: <span class="hljs-string">""</span>, <span class="hljs-string">"n2::n1ღC"</span>: <span class="hljs-string">""</span>, <span class="hljs-string">"n2::n2ღGroup 1"</span>: &#123; <span class="hljs-string">"n2::n2::n0ღD"</span>: <span class="hljs-string">""</span>, <span class="hljs-string">"n2::n2::n2ღD"</span>: <span class="hljs-string">""</span> &#125; &#125;,
-&#125;;
+<span class="hljs-keyword">var</span> events = [<span class="hljs-string">"clock ticked"</span>, <span class="hljs-string">"paused"</span>, <span class="hljs-string">"click"</span>, <span class="hljs-string">"resume"</span>, <span class="hljs-string">"Undo"</span>];
+<span class="hljs-keyword">var</span> states = <span class="hljs-literal">undefined</span>;
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getKinglyTransitions</span>(<span class="hljs-params">record</span>) </span>&#123;
   <span class="hljs-keyword">var</span> aF = record.actionFactories;
   <span class="hljs-keyword">var</span> guards = record.guards;
-  <span class="hljs-keyword">var</span> actionList = [
-    <span class="hljs-string">"logGroup1toH"</span>,
-    <span class="hljs-string">"ACTION_IDENTITY"</span>,
-    <span class="hljs-string">"logBtoC"</span>,
-    <span class="hljs-string">"logBtoD"</span>,
-    <span class="hljs-string">"logCtoD"</span>,
-    <span class="hljs-string">"logGroup1toD"</span>,
-    <span class="hljs-string">"logGroup1toC"</span>,
-    <span class="hljs-string">"logDtoD"</span>,
+  <span class="hljs-keyword">var</span> actionList = [<span class="hljs-string">"update clock"</span>, <span class="hljs-string">"cancel timer"</span>, <span class="hljs-string">"Move"</span>, <span class="hljs-string">"restart timer"</span>, <span class="hljs-string">"Undo"</span>, <span class="hljs-string">"reset and start clock"</span>];
+  <span class="hljs-keyword">var</span> predicateList = [
+    <span class="hljs-string">"can move &amp;amp;&amp;amp; won"</span>,
+    <span class="hljs-string">"can move &amp;amp;&amp;amp; !won"</span>,
+    <span class="hljs-string">"white piece"</span>,
+    <span class="hljs-string">"black piece"</span>,
+    <span class="hljs-string">"&amp;gt;0 moves"</span>,
   ];
-  <span class="hljs-keyword">var</span> predicateList = [];
-  aF[<span class="hljs-string">"ACTION_IDENTITY"</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ACTION_IDENTITY</span>(<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-keyword">return</span> &#123;
-      <span class="hljs-attr">outputs</span>: NO_OUTPUT,
-      <span class="hljs-attr">updates</span>: NO_STATE_UPDATE,
-    &#125;;
-  &#125;;
   <span class="hljs-keyword">if</span> (!contains(actionList, <span class="hljs-built_in">Object</span>.keys(aF))) &#123;
+    <span class="hljs-built_in">console</span>.error(
+      <span class="hljs-string">"Some actions are missing either in the graph, or in the action implementation object! Cf actionFactories (you passed that) vs. actionList (from the graph) below. They must have the same items!"</span>
+    );
     <span class="hljs-built_in">console</span>.error(&#123; <span class="hljs-attr">actionFactories</span>: <span class="hljs-built_in">Object</span>.keys(aF), actionList &#125;);
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Some action are missing either in the graph, or in the action implementation object!"</span>);
+    <span class="hljs-keyword">var</span> passedAndMissingInGraph = <span class="hljs-built_in">Object</span>.keys(aF).filter(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">k</span>) </span>&#123;
+      <span class="hljs-keyword">return</span> actionList.indexOf(k) === <span class="hljs-number">-1</span>;
+    &#125;);
+    passedAndMissingInGraph.length &gt; <span class="hljs-number">0</span> &amp;&amp;
+      <span class="hljs-built_in">console</span>.error(
+        <span class="hljs-string">"So the following actions were passed in parameters but do not match any action in the graph! This may happen if you modified the name of an action in the graph, but kept using the older name in the implementation! Please check."</span>,
+        passedAndMissingInGraph
+      );
+    <span class="hljs-keyword">var</span> inGraphButNotImplemented = actionList.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">k</span>) </span>&#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.keys(aF).indexOf(k) === <span class="hljs-number">-1</span>;
+    &#125;);
+    inGraphButNotImplemented.length &gt; <span class="hljs-number">0</span> &amp;&amp;
+      <span class="hljs-built_in">console</span>.error(
+        <span class="hljs-string">"So the following actions declared in the graph are not implemented! Please add the implementation. You can have a look at the comments of the generated fsm file for typing information."</span>,
+        inGraphButNotImplemented
+      );
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(
+      <span class="hljs-string">"Some actions implementations are missing either in the graph, or in the action implementation object!"</span>
+    );
   &#125;
   <span class="hljs-keyword">if</span> (!contains(predicateList, <span class="hljs-built_in">Object</span>.keys(guards))) &#123;
+    <span class="hljs-built_in">console</span>.error(
+      <span class="hljs-string">"Some guards are missing either in the graph, or in the action implementation object! Cf guards (you passed that) vs. predicateList (from the graph) below. They must have the same items!"</span>
+    );
     <span class="hljs-built_in">console</span>.error(&#123; <span class="hljs-attr">guards</span>: <span class="hljs-built_in">Object</span>.keys(guards), predicateList &#125;);
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Some guards are missing either in the graph, or in the guard implementation object!"</span>);
   &#125;
   <span class="hljs-keyword">const</span> transitions = [
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2ღGroup 1"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"event3"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n1ღE"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logGroup1toH"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n1ღE"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">""</span>, <span class="hljs-attr">to</span>: &#123; <span class="hljs-attr">shallow</span>: <span class="hljs-string">"n2ღGroup 1"</span> &#125;, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"ACTION_IDENTITY"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"nok"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"init"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n0ღB"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"ACTION_IDENTITY"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n0ღB"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"event2"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n1ღC"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logBtoC"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n0ღB"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"event1"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n2::n2ღD"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logBtoD"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n1ღC"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">""</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n2::n0ღD"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logCtoD"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n2ღGroup 1"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"init"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n2::n0ღD"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logGroup1toD"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2ღGroup 1"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"init"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n1ღC"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logGroup1toC"</span>] &#125;,
-    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n2::n2ღD"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"event1"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n2::n0ღD"</span>, <span class="hljs-attr">action</span>: aF[<span class="hljs-string">"logDtoD"</span>] &#125;,
+    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n1ღInit"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">""</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n2ღGame on"</span>, <span class="hljs-attr">action</span>: chain([], aF) &#125;,
+    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2ღGame on"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"clock ticked"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n3ღUpdating clock"</span>, <span class="hljs-attr">action</span>: chain([<span class="hljs-string">"update clock"</span>], aF) &#125;,
+    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n3ღUpdating clock"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">""</span>, <span class="hljs-attr">to</span>: &#123; <span class="hljs-attr">deep</span>: <span class="hljs-string">"n2ღGame on"</span> &#125;, <span class="hljs-attr">action</span>: chain([], aF) &#125;,
+    &#123; <span class="hljs-attr">from</span>: <span class="hljs-string">"n2ღGame on"</span>, <span class="hljs-attr">event</span>: <span class="hljs-string">"paused"</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">"n4ღPaused clock"</span>, <span class="hljs-attr">action</span>: chain([<span class="hljs-string">"cancel timer"</span>], aF) &#125;,
+    &#123;
+      <span class="hljs-attr">from</span>: <span class="hljs-string">"n2::n1::n1ღPiece selected"</span>,
+      <span class="hljs-attr">event</span>: <span class="hljs-string">"click"</span>,
+      <span class="hljs-attr">guards</span>: [
+        &#123; <span class="hljs-attr">predicate</span>: every([<span class="hljs-string">"can move &amp;amp;&amp;amp; won"</span>], guards), <span class="hljs-attr">to</span>: <span class="hljs-string">"n0ღGame over"</span>, <span class="hljs-attr">action</span>: chain([], aF) &#125;,
+        &#123;
+          <span class="hljs-attr">predicate</span>: every([<span class="hljs-string">"can move &amp;amp;&amp;amp; !won"</span>], guards),
+          <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n0::n0ღBlack plays"</span>,
+          <span class="hljs-attr">action</span>: chain([<span class="hljs-string">"Move"</span>], aF),
+        &#125;,
+        &#123; <span class="hljs-attr">predicate</span>: every([<span class="hljs-string">"white piece"</span>], guards), <span class="hljs-attr">to</span>: <span class="hljs-string">"n2::n1::n1ღPiece selected"</span>, <span class="hljs-attr">action</span>: chain([], aF) &#125;,
+      ],
+    &#125;,
+    ...
   ];
 
   <span class="hljs-keyword">return</span> transitions;
 &#125;
 
-<span class="hljs-keyword">export</span> &#123; events, states, getKinglyTransitions &#125;;</code></pre>
-<p>The exported events, states, getKinglyTransitions can then be used in a regular JavaScript file as follows:</p>
-<pre><code class="lang-js">    import {createStateMachine} from &#39;kingly&#39;;
-    import {events, states, getKinglyTransitions} from &#39;tests/graphs/hierarchy-history-H.graphml.fsm.js&#39;;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStateMachineFromGraph</span>(<span class="hljs-params">fsmDefForCompile, settings</span>) </span>&#123;
+  <span class="hljs-keyword">var</span> updateState = fsmDefForCompile.updateState;
+  <span class="hljs-keyword">var</span> initialExtendedState = fsmDefForCompile.initialExtendedState;
+
+  <span class="hljs-keyword">var</span> transitions = getKinglyTransitions(&#123;
+    <span class="hljs-attr">actionFactories</span>: fsmDefForCompile.actionFactories,
+    <span class="hljs-attr">guards</span>: fsmDefForCompile.guards,
+  &#125;);
+
+  <span class="hljs-keyword">var</span> fsm = createStateMachine(
+    &#123;
+      updateState,
+      initialExtendedState,
+      states,
+      events,
+      transitions,
+    &#125;,
+    settings
+  );
+
+  <span class="hljs-keyword">return</span> fsm;
+&#125;
+
+<span class="hljs-keyword">export</span> &#123; events, states, getKinglyTransitions, createStateMachineFromGraph &#125;;</code></pre>
+<p>The exported <code>createStateMachineFromGraph</code> factory can then be used in a regular JavaScript file as follows:</p>
+<pre><code class="lang-js">    import {createStateMachineFromGraph} from &#39;tests/graphs/hierarchy-history-H.graphml.fsm.js&#39;;
 (...)
 
     const guards = {};
@@ -409,15 +486,22 @@
       // NOTE: updateState and initialExtendedState are provided by the user
       updateState,
       initialExtendedState,
-      events,
-      states,
-      transitions: getKinglyTransitions({ actionFactories, guards }),
+      guards,
+      actionFactories
     };
-    const fsm = createStateMachine(fsmDef, settings);
+    const fsm = createStateMachineFromGraph(fsmDef, settings);
 </code></pre>
-<h3 id="Final-note"><a href="#Final-note" class="headerlink" title="Final note"></a>Final note</h3><p>This process was chosen after plenty of reflection of pondering over what was the best approach for this functionality. A Babel plugin or macro was a possibility but the level of complexity was much higher — both from a macro creator and a macro user perspective, and the predictable requirements in terms of maintenance were also appreciable. The retained solution is to produce the outputs of the file conversion in a separate, independent JavaScript file. There is thus no necessity to write proprietary JavaScript, it is programming as usual.</p>
-<p>This is a first version based on personal usage. Comments and recommendations are welcome if you have them about a better way to handle the integration of a graph editor with Kingly JavaScript library. Feel free to open an issue.</p>
-<p>&lt;## How does it work?<br>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>yed2kingly</code> node script on the newly saved file and generates a JavaScript file that exports the events, state hierarchy, and transitions contained in the graph — you can of course also run the script manually instead of using a watcher. The provided <code>exports</code> can then be used as parameters to create a Kingly state machine.&gt;</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
+<li>You can use the shortened <code>y2k</code> instead of <code>yed2kingly</code>.</li>
+<li>You can have a file watcher in development that automatically runs <code>yed2kingly</code> when a <code>.graphml</code> file changes. The script will thus run every time you save the graph that you are working on.</li>
+</ul>
+<h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>The script will exit with an error code whenever:</p>
+<ul>
+<li>there are syntax errors in the yEd graph (e.g., forbidden or ambiguous edge label syntax). You may want to review the <a href="http://localhost:4000/documentation/v1/tooling/graph_editing.html#Syntax-reference" target="_blank" rel="noopener">detailed syntax reference</a>. You can paste the <a href="https://github.com/brucou/slim/blob/master/yedEdgeLabelGrammar.ne" target="_blank" rel="noopener">grammar</a> in the <a href="https://omrelli.ug/nearley-playground/" target="_blank" rel="noopener">Nearley parser playground</a> and check your syntax.</li>
+<li>there are semantic errors in the yEd graph. That means that your drawing is legit, but it does not map to a valid Kingly machine. This may happen when you break Kingly contracts, for instance, if you have two initial control states for the same compound state. You may want to review <a href="http://localhost:4000/documentation/v1/api/index.html#Contracts" target="_blank" rel="noopener">Kingly contracts</a>.</li>
+<li>the script cannot parse the file. You may want to check that you wrote the filename correctly, that the file exists at the expected location, and that the file is a valid <code>.graphml</code> file by opening it in yEd.</li>
+<li>there is a bug! In that case, please <a href="https://github.com/brucou/kingly/issues" target="_blank" rel="noopener">open an issue on Github</a>.</li>
+</ul>
 
   
   

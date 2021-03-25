@@ -270,16 +270,16 @@
 </blockquote>
 <p>With yEd, you can</p>
 <ul>
-<li>visually create state machine graphs with any number and kind of control states and hierarchy with an intuitive user interface. yEd comes with a variety of shape nodes, group nodes, edge types, and other ready-to-use elements. Developers can also import or create custom element types. The user interface consists of dockable panels and includes extensive undo, zoom, selection, clipboard, and search capabilities. </li>
+<li>visually create state machine graphs of any size and structure with an intuitive user interface. yEd comes with a variety of shape nodes, group nodes, edge types, and other ready-to-use elements. Developers can also import or create custom element types. The user interface consists of dockable panels and includes extensive undo, zoom, selection, clipboard, and search capabilities. </li>
 <li>automatically layout a machine modeling. The numerous best-in-class layouts algorithms available let users produce optimized output (automatic label positioning, line crossing minimization, edge routing) with little effort. All layouts are extensively configurable.</li>
 <li>save your graphs in a serializable and versionable <code>graphml</code> format. Graphs can also be exported as bitmap and vector graphics (PNG, JPG, SVG, PDF, and more).</li>
 </ul>
-<h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><p>To get started, you may: </p>
+<h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><p>You may: </p>
 <ul>
 <li>download the yEd desktop application on your Windows/Unix/macOS machine from <a href="https://www.yworks.com/products/yed/download#download" target="_blank" rel="noopener">the official download page</a>; and</li>
 <li>run the downloaded installer.</li>
 </ul>
-<p>You can also use <a href="https://www.yworks.com/yed-live/" target="_blank" rel="noopener"><em>yEd Live</em></a>, which is the online version of the editor. In that case, you need not download anything and can edit a graph entirely from the browser. When you are done editing, save the file with the <em>Save as GraphML file</em> option in the <em>Save</em> menu. You may find the desktop version a better choice for continuous use.</p>
+<p>You can also use <a href="https://www.yworks.com/yed-live/" target="_blank" rel="noopener"><em>yEd Live</em></a>, which is the online version of the editor. In that case, you need not download anything and can edit a graph entirely from the browser. When you are done editing, save the file with the <em>Save as GraphML file</em> option in the <em>Save</em> menu. You may find the desktop version to be a far better option for professional use.</p>
 <h2 id="Using-yEd"><a href="#Using-yEd" class="headerlink" title="Using yEd"></a>Using yEd</h2><p>The yWorks website provides plenty of learning resources, among which:</p>
 <ul>
 <li>a <a href="https://www.yworks.com/products/yed/videos" target="_blank" rel="noopener">video tutorial</a>;</li>
@@ -288,28 +288,30 @@
 </ul>
 <p>In practice, it takes only a few minutes to get acquainted with the yEd interface and start drawing machines. You may want to start with the video tutorial:</p>
 <div class="video-container"><iframe src="//www.youtube.com/embed/ujMhxPJnJCw" frameborder="0" allowfullscreen></iframe></div>
-<p>After 5 years of using yEd for state machine modeling, most Kingly users never used the forum, and never read the manual —- you likely will not need to either, but it is there if you need it. </p>
+<p>Most known Kingly users never used the forum nor bothered reading the manual — you likely will not need to either, but it is there if you need it. </p>
 <p>To familiarize yourself further with the editor, you may try to draw a machine from scratch, and reproduce machine graphs from the <a href="https://brucou.github.io/documentation/v1/tutorials/">tutorials</a>. You can alternatively start from one existing graph. You will find sample graphs in Kingly’s GitHub project directory:</p>
 <ul>
 <li><a href="https://github.com/brucou/kingly/blob/master/test/graphs/chess_game_with_hierarchy_with_undo_and_timer_highlighted_with_init.graphml" target="_blank" rel="noopener">state machine modeling of a chess game</a>; or</li>
 <li><a href="https://github.com/brucou/kingly/blob/master/test/graphs/routing_machine_v2.graphml" target="_blank" rel="noopener">routing machine</a>.</li>
 </ul>
 <p>Note that the previous graphs must be first downloaded on your machine (click the <em>Raw</em> button that appears in the menu bar) before they can be opened with yEd.</p>
-<h2 id="State-machine-implementation-workflow"><a href="#State-machine-implementation-workflow" class="headerlink" title="State machine implementation workflow"></a>State machine implementation workflow</h2><p>If you reached here, hopefully you have installed the graph editor and played around with the basic graph editing functions. You now need to:</p>
+<h2 id="State-machine-implementation-workflow"><a href="#State-machine-implementation-workflow" class="headerlink" title="State machine implementation workflow"></a>State machine implementation workflow</h2><p>If you reached here, hopefully you have installed the graph editor and played around with the basic graph editing functions. To implement an actual state machine, you now need to:</p>
 <ol>
-<li>understand how state machine can model the behavior of web applications;</li>
+<li>understand how state machines can model the behavior of web applications;</li>
 <li>understand the visual language that is used to represent state machines;</li>
 <li>use the yEd editor to write and layout machines in that language; and</li>
 <li>turn a machine visual representation into an actual JavaScript function.</li>
 </ol>
-<p>The section <a href="http://localhost:4000/documentation/v1/tutorials/model-with-machines.html" target="_blank" rel="noopener"><em>Implementing UIs with state machines</em></a> addresses the first point. The second point is better introduced from concrete examples. The tutorials are your best entry point. The tutorials increase in difficulty; therefore you should start with the <a href="http://localhost:4000/documentation/v1/tutorials/password-meter.html" target="_blank" rel="noopener"><em>Password meter</em></a> if you have no prior modeling experience. The video tutorial included on this page should have covered the third point. The fourth point is covered in the <a href="http://localhost:4000/documentation/v1/tooling/yed_kingly_integration.html" target="_blank" rel="noopener"><em>Integration with Kingly</em></a> and <a href="http://localhost:4000/documentation/v1/tooling/compiling.html" target="_blank" rel="noopener"><em>Compiler</em></a> sections.</p>
+<p>The section <a href="http://localhost:4000/documentation/v1/tutorials/model-with-machines.html" target="_blank" rel="noopener"><em>Implementing UIs with state machines</em></a> addresses the first point. The second point is better introduced from concrete examples. The tutorials are your best entry point. The tutorials increase in difficulty; therefore you should start with the <a href="http://localhost:4000/documentation/v1/tutorials/password-meter.html" target="_blank" rel="noopener"><em>Password meter</em></a> if you have no prior modeling experience. The fine points are covered in the <a href="/v1/tooling/graph_editing.html#Syntax-reference">syntax reference</a>. The video tutorial included on this page should have covered the third point. The fourth point is covered in the <a href="http://localhost:4000/documentation/v1/tooling/yed_kingly_integration.html" target="_blank" rel="noopener"><em>Integration with Kingly</em></a> and <a href="http://localhost:4000/documentation/v1/tooling/compiling.html" target="_blank" rel="noopener"><em>Compiler</em></a> sections.</p>
 <p>Please refer to the appropriate linked sections to build up your skills. It may seems like it is a lot to learn. Anything new will indeed have a learning curve. Start small, review as many times as necessary the tutorials, and use the Github link at the end of every documentation page to log any issue you may encounter or questions you may have. You should get an answer within two business days.</p>
-<h2 id="Syntax-reference"><a href="#Syntax-reference" class="headerlink" title="Syntax reference"></a>Syntax reference</h2><h3 id="Visual-language"><a href="#Visual-language" class="headerlink" title="Visual language"></a>Visual language</h3><p>Graph nodes represent machine control states. Graph edges represent machine transitions. It is recommended to distinguish visually pseudo-control-states from regular control states with different shapes. Node labels are monikers for the corresponding control states. Edge labels describe one or several transitions, each of which may contains any number of events, guards, and actions. The edge label and node label syntax and semantics are described in subsequent sections.</p>
+<p>You may also want to learn to directly use the Kingly library without drawing first the machine graph, nor downloading software on your machine. In that case, you can <a href="http://localhost:4000/documentation/v1/tutorials/" target="_blank" rel="noopener">jump to the tutorials</a>.</p>
+<h2 id="Syntax-reference"><a href="#Syntax-reference" class="headerlink" title="Syntax reference"></a>Syntax reference</h2><h3 id="Visual-language"><a href="#Visual-language" class="headerlink" title="Visual language"></a>Visual language</h3><p>Graph nodes represent machine control states. Graph edges represent machine transitions. It is recommended to distinguish visually pseudo-control-states from regular control states with different shapes. Node labels are monikers for the corresponding control states. Edge labels describe one or several transitions, each of which may contain any number of events, guards, and actions. The edge label and node label syntax and semantics are described in subsequent sections.</p>
 <p>The following illustration showcases initial, history, atomic, and compound (e.g., group with <em>Game on</em> label)) control states:</p>
 <p><img src="https://imgur.com/xcAzpYM.png" alt="Example of graph modelization"></p>
 <p>In the previous example, compound control states, i.e. nodes which contain other nodes, are represented in gray. Pseudo-control-states are represented in dark orange color, while atomic control states, i.e. nodes which do not contain any other nodes are represented in blue or red. While, as mentioned, there is no convention enforced for colors, nor for shapes, it makes sense to create your conventions and use them consistently. Here the red color singles new control states vs. an older version of the machine. For your first machine modeling, you may want to start from existing Kingly modeling, and use the same conventions.</p>
 <p>Shapes representing nodes can be linked with edges, which are entered by the user by clicking on the origin node of the edge and dragging the mouse towards the destination node of the edge.  Edges can be edited by selecting them and pressing F2, or double-clicking on the edge. There are faster ways to do many node and edge handling, which users will acquire once they get acquainted with the keyboard shortcuts. </p>
 <p>To create a compound control state, also called a group, simply create a node, select that node, click the right button of your mouse, click <em>Grouping</em> (or <kbd>Ctrl-Alt-G</kbd>). Once you have such a group, you can double click on it to navigate inside that group —- you will then see only the contents of that group. You can navigate back up with the right menu <em>Grouping -&gt; Previous view</em> or <kbd>Alt-Page-Up</kbd>. Groups can be collapsed or expanded (click on <em>-</em>/<em>+</em> icon in the top-left corner of the compound node). </p>
+<p>The initial control state for the machine is determined from the graph by taking the target node of the edge whose origin node is a top-level (i.e. without parent) initial node. In the previous example, that means that the <em>Game on</em> group is the initial control state for the chess game machine.</p>
 <h3 id="Node-label-language"><a href="#Node-label-language" class="headerlink" title="Node label language"></a>Node label language</h3><p>While the machine designer has ample freedom to choose the color, typography, and shape of any graph elements, the following conventions must be respected for node labels:</p>
 <ul>
 <li>Initial control states <strong>MUST</strong> have <em>init</em> or any alternative capitalization of the word as label;</li>
@@ -328,11 +330,13 @@
 <li>Multiple transitions can be separated by the pipeline character (<code>|</code>): <code>event1 [guard1] / action1 (comment1) | event2 [guard2] / action2 (comment2)</code>.</li>
 </ul>
 <p>Any event, guard, and action strings can be empty. Hence <code>[]/</code> is a valid syntax though not recommended. Additionally, to protect against ambiguous labels:</p>
-<pre><code>- `event` cannot have the characters `[`, `]`, `/`, `,` and `|` ;
-- `guard` cannot have the characters `[`, `]`, and `,`; and
-- `actions` cannot have the characters `[`, `]`, `/`, `,` `(`, `)`, and `|`.
-</code></pre><p>A label <code>x</code> must be so that the following JavaScript <code>{[x]: value}</code> is valid syntactically. This means labels can have spaces and a large set of Unicode characters, as allowed by the JavaScript specifications. Action labels such as <em>do this, do that</em> are thus valid.</p>
-<p>In case of doubts, the full <a href="https://github.com/brucou/slim/blob/master/yedEdgeLabelGrammar.ne" target="_blank" rel="noopener">EBNF grammar</a> can be consulted online. </p>
+<ul>
+<li><code>event</code> cannot have the characters <code>[</code>, <code>]</code>, <code>/</code>, <code>,</code> and <code>|</code> ;</li>
+<li><code>guard</code> cannot have the characters <code>[</code>, <code>]</code>, and <code>,</code>; and</li>
+<li><code>actions</code> cannot have the characters <code>[</code>, <code>]</code>, <code>/</code>, <code>,</code> <code>(</code>, <code>)</code>, and <code>|</code>.</li>
+</ul>
+<p>A label <code>x</code> must be so that the following JavaScript <code>{[x]: value}</code> is valid syntactically. This means labels can have spaces and a large set of Unicode characters, as allowed by the JavaScript specifications. Action labels such as <em>do this, do that</em> are thus valid.</p>
+<p>In case of doubts, the full <a href="https://github.com/brucou/slim/blob/master/yedEdgeLabelGrammar.ne" target="_blank" rel="noopener">grammar</a> can be consulted online. You can paste the grammar in the <a href="https://omrelli.ug/nearley-playground/" target="_blank" rel="noopener">Nearley parser playground</a> and check your syntax.</p>
 <p>There goes a cheat sheet:</p>
 <div class="table-container">
 <table>
@@ -421,7 +425,7 @@
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><h3 id="Layouts"><a href="#Layouts" class="headerlink" title="Layouts"></a>Layouts</h3><p>One of the things that make <code>yEd</code> great for graph modeling is that you do not need to think about layouting the graph. Just add the nodes in places, and focus on having the graph relations right. You can then use a large set of computer-generated layouts. The most useful and satisfying are the hierarchic, orthogonal, flowchart, and BPMN layouts. Experiment with those first and find which one suits you best. It takes only a few trials to get a sense of the layouts and their favorite context of use: </p>
 <ul>
 <li>Hierarchic layouts are often useful when writing machines for user interfaces, because such machines often have a preferred direction, with a few dropbacks: the user follows a designed user flow, and occasionally returns to a previous stage of the flow (e.g., error, correcting inputs). </li>
-<li>Orthogonal layouts often use better the space —- but do not display visually well graphs with expanded compound nodes.</li>
+<li>Orthogonal layouts often use better the space — but do not display visually well graphs with expanded compound nodes.</li>
 </ul>
 <p>All layouts have plenty of customizable parameters (e.g., minimum distance between nodes, edge routing). Layout option windows can be floated or docked (the recommended option). Once docked, running a layout consists only of clicking a play button. You will then see your graph visually morph into the selected layout. The <a href="https://brucou.github.io/documentation/v1/tutorials/password-meter-using-graph-editor.html"><em>Password meter</em> tutorial</a> provides an example of one-click layouting:</p>
 <p><img src="https://brucou.github.io/documentation/images/yed/password-meter-hierarchic-anim.apng" alt="example of animated layout"></p>
@@ -430,7 +434,7 @@
 <p><img src="https://imgur.com/VjKaIkL.png" alt="example of yed graph with history pseudo-state and compound state"></p>
 <h2 id="Good-practices"><a href="#Good-practices" class="headerlink" title="Good practices"></a>Good practices</h2><ul>
 <li>It is a good habit to use explicit-enough labels that result in different nodes having different labels. When it does make sense, increases readability, and there is no source of confusion, you may still use the same label for different nodes. You may want to have several nodes with a <em>Saving</em> label. If those nodes are under different groups, there can be visually and logically distinguished with having to use <em>Group A - Saving</em> and <em>Group B - Saving</em> labels.</li>
-<li>save and commit versions of your machine visualizations. This is extremely useful to keep a history of the iterations your modeling goes through —- and revert changes with your favorite version control tool.</li>
+<li>save and commit versions of your machine visualizations. This is extremely useful to keep a history of the iterations your modeling goes through — and revert changes with your favorite version control tool.</li>
 </ul>
 
   
