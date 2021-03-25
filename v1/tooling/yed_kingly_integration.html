@@ -471,29 +471,45 @@
 
 <span class="hljs-keyword">export</span> &#123; events, states, getKinglyTransitions, createStateMachineFromGraph &#125;;</code></pre>
 <p>The exported <code>createStateMachineFromGraph</code> factory can then be used in a regular JavaScript file as follows:</p>
-<pre><code class="lang-js">    import {createStateMachineFromGraph} from &#39;tests/graphs/hierarchy-history-H.graphml.fsm.js&#39;;
+<pre><code class="hljs js">    <span class="hljs-keyword">import</span> &#123;createStateMachineFromGraph&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'tests/graphs/hierarchy-history-H.graphml.fsm.js'</span>;
 (...)
 
-    const guards = {};
-    const actionFactories = {
-      logGroup1toC: (s, e, stg) =&gt; traceTransition(&#39;Group1 -&gt; C&#39;),
-      logBtoC: (s, e, stg) =&gt; traceTransition(&#39;B -&gt; C&#39;),
-      logBtoD: (s, e, stg) =&gt; traceTransition(&#39;B -&gt; D&#39;),
-      logCtoD: (s, e, stg) =&gt; traceTransition(&#39;C -&gt; D&#39;),
-      logDtoGroup1H: (s, e, stg) =&gt; traceTransition(&#39;D -&gt; Group1H&#39;),
-    };
-    const fsmDef = {
-      // NOTE: updateState and initialExtendedState are provided by the user
+    <span class="hljs-keyword">const</span> guards = ...;
+    <span class="hljs-keyword">const</span> actionFactories = &#123;
+     <span class="hljs-string">"update clock"</span>: ...,
+     <span class="hljs-string">"cancel timer"</span>: ...,
+     <span class="hljs-string">"Move"</span>: ...,
+     <span class="hljs-string">"restart timer"</span>: ...,
+     <span class="hljs-string">"Undo"</span>: ...,
+     <span class="hljs-string">"reset and start clock"</span>: ...,
+    &#125;;
+    <span class="hljs-keyword">const</span> fsmDef = &#123;
+      <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> updateState and initialExtendedState are provided by the user</span>
       updateState,
       initialExtendedState,
       guards,
       actionFactories
-    };
-    const fsm = createStateMachineFromGraph(fsmDef, settings);
-</code></pre>
-<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
-<li>You can use the shortened <code>y2k</code> instead of <code>yed2kingly</code>.</li>
-<li>You can have a file watcher in development that automatically runs <code>yed2kingly</code> when a <code>.graphml</code> file changes. The script will thus run every time you save the graph that you are working on.</li>
+    &#125;;
+    <span class="hljs-keyword">const</span> fsm = createStateMachineFromGraph(fsmDef, settings);
+
+<span class="hljs-string">``</span><span class="hljs-string">` 
+
+
+## Tips
+- You can use the shortened `</span>y2k<span class="hljs-string">` instead of `</span>yed2kingly<span class="hljs-string">`.
+- You can have a file watcher in development that automatically runs `</span>yed2kingly<span class="hljs-string">` when a `</span>.graphml<span class="hljs-string">` file changes. The script will thus run every time you save the graph that you are working on.
+- the produced files include in comments pieces of code that you can copy paste to speed up your implementation and reduce the possibility of errors. For instance, in the previous example, you need to provide a map of action names to action factories. You can copy-paste and complete the following comments:
+`</span><span class="hljs-string">``</span>js
+<span class="hljs-comment">// const actions = &#123;</span>
+<span class="hljs-comment">//   "update clock": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "cancel timer": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "Move": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "restart timer": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "Undo": function ()&#123;&#125;,</span>
+<span class="hljs-comment">//   "reset and start clock": function ()&#123;&#125;,</span>
+<span class="hljs-comment">// &#125;;</span></code></pre>
+<ul>
+<li>Preferably use named functions for any action factories and guards. You will get friendlier logs in the dev console.</li>
 </ul>
 <h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>The script will exit with an error code whenever:</p>
 <ul>
