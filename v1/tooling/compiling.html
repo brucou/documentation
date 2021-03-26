@@ -264,24 +264,107 @@
     <h1>Compiler</h1>
   
   
-    <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>The <code>slim</code> package aims at supporting the creation of state machines with the <a href="https://brucou.github.io/documentation/">Kingly state machine library</a>. The Kingly state machine library may hover around a bundle size of 10-15KB. While Kingly is tree-shakeable and in practice the production size after tree-shaking is around 5KB (e.g. shaking away contracts, error management, and other development niceties), the <code>slim</code> compiler allows developers to reduce the footprint of their state machines. With real-life large machines (see below) compiling to ~2KB size, the gain may be large enough for the compilation step to be worthwhile. Additionally, the compiled code is standard, zero-dependency JavaScript that will work in older browsers (IE &gt; 8).</p>
-<p>With the <a href="https://www.yworks.com/products/yed-live" target="_blank" rel="noopener">yed graph editor</a>, <a href="https://github.com/brucou/yed2Kingly" target="_blank" rel="noopener">devtool</a>, and the present compiler, we believe the minimal set of pieces is in place for developing and maintaining comfortably large Kingly state machines.</p>
-<h2 id="Guiding-principles"><a href="#Guiding-principles" class="headerlink" title="Guiding principles"></a>Guiding principles</h2><ul>
-<li>the generated code should be readable by a human</li>
-<li>the generated code should work in as many browsers as possible with a minimum of polyfills</li>
-<li>the generated code should be easy to debug</li>
+    <p>The <code>slim</code> command supports the creation of state machines that are optimized for production. The Kingly state machine library may end up contributing between 5 and 12 KB of your production bundles. The <code>slim</code> compiler allows you to reduce further the footprint of your state machines by compiling away the Kingly library. Real-life, large machines compile to ~2 KB size. Additionally, the compiled code is plain, zero-dependency JavaScript that will work in older browsers (IE &gt; 8).</p>
+<p>The <code>slim</code> compiling command is designed to work with and complement the <a href="https://www.yworks.com/products/yed-live" target="_blank" rel="noopener">yed graph editor</a>. You may find more information on yEd in the <em>Graph editor</em> section of this documentation.</p>
+<p><code>slim</code> takes a <code>.grapml</code> yEd file as input and outputs JavaScript files that define and export a state machine factory function. Developers can then import the machine factory function in their program and create a Kingly state machine by calling the factory with the required parameters.</p>
+<p>You are invited to review the <a href="https://brucou.github.io/documentation/v1/tutorials/password-meter-compiling.html"><em>Password meter</em> tutorial</a> for a guided example of turning a machine drawing into a JavaScript function with <code>slim</code>.</p>
+<h2 id="From-a-drawing-to-a-JavaScript-function"><a href="#From-a-drawing-to-a-JavaScript-function" class="headerlink" title="From a drawing to a JavaScript function"></a>From a drawing to a JavaScript function</h2><p>A Kingly state machine computes outputs as a result of being passed an input — we will often say that the machine processes or receives an event. The high-level specifications of the machine computation can be represented with a graph. Nodes in the graph correspond to control states of the machine. Edges connecting two nodes represent transitions between control states of the machine.</p>
+<p>We said specifications because the drawing let us know how the machine will compute in response to an input depending on the state it is in. We said high-level specifications because the drawing does not allow the actual computing of a machine response — it is a drawing. Let’s look at a <a href="https://brucou.github.io/documentation/v1/tutorials/counter-application.html">simple such drawing from the tutorials</a>:</p>
+<p><img src="https://brucou.github.io/documentation/graphs/trivial%20counter%20machine.png" alt="simple machine"></p>
+<p>This <strong>machine drawing</strong> tells us that when processing a <em>click</em> input, the modeled <strong>JavaScript machine</strong> should trigger the incrementing of a counter, and some rendering. It does not tell us how exactly that works. To turn the drawing into an actual JavaScript function, you need to provide the missing JavaScript objects: </p>
+<ul>
+<li>implementation of <em>increment counter</em>; and</li>
+<li>implementation of <em>render</em>.</li>
 </ul>
-<p>We thus decided to use <code>prettier</code>, include comments in the generated code, and avoid arrow functions and other newer JavaScript language features.</p>
-<h2 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h2><p>In a typical process, I start designing a machine from the specifications by drawing it in the yEd editor. When I am done or ready to test the results of my design, I save the file. yEd by default saves its files in a <code>.graphml</code> format. I save the graphml file in the same directory in which I want to use the created state machine. From there, a previously launched watcher runs the <code>slim</code> node script on the newly saved file and generates the compiled JavaScript file which exports the machine factory — you can of course also run the script manually instead of using a watcher. The provided exports can then be used as parameters to create a Kingly state machine.</p>
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p><code>npm install slim</code></p>
-<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><pre><code class="hljs bash">slim file.graphml</code></pre>
-<p>Running the converter produces two files, targeted at consumption in a browser and node.js environment:</p>
-<p>Before:<br><pre><code class="hljs bash">src/graphs/file.graphml</code></pre></p>
-<p>After:<br><pre><code class="hljs bash">src/graphs/file.graphml.fsm.compiled.js
-src/graphs/file.graphml.fsm.compiled.cjs</code></pre></p>
-<p>The converter must emit an error or exit with an error code if the converted graph will not give rise to a valid Kingly machine (in particular cf. rules). The idea is to fail as early as possible.</p>
-<p>The produced file exports one factory function which when run with the right parameters will return a Kingly state machine.</p>
-<p>There are plenty of examples of use in the test directory. Let’s illustrate the parameters received by the factory function:</p>
+<p>The <code>.graphml</code> file contains the following pieces of information:</p>
+<ul>
+<li>the inputs (events) that are accepted by the machine;</li>
+<li>the machine’s initial control state;</li>
+<li>the control states of the machine;</li>
+<li>the hierarchy of the machine; and</li>
+<li>the machine’s transitions.</li>
+</ul>
+<p>The <code>slim</code> CLI extracts the pieces of information contained in the <code>.graphml</code> file that it receives as a parameter and produces two almost identical JavaScript files. One is destined to be used in a browser context (<code>.js</code> file), the other in a Node.js context (<code>.cjs</code> file that can be <code>require</code>d but not <code>import</code>ed).</p>
+<p>The produced JavaScript files import/require the Kingly library, and export a machine factory that can be used by other modules to construct the actual JavaScript machine we seek. The machine factory must be passed the following pieces of information that are missing from the graph:</p>
+<ul>
+<li>the machine’s initial extended state;</li>
+<li>the implementation for the machine guards, if any — we only have their names;</li>
+<li>the implementation for the machine actions, if any — we only have their names;</li>
+<li>the implementation of how the machine updates its internal state (<code>updateState</code> parameter); and</li>
+<li>the machine’s optional configuration — e.g., debugging, tracing, dependency injection.</li>
+</ul>
+<p>You are invited to review the <a href="https://brucou.github.io/documentation/v1/tutorials/password-meter-using-graph-editor.html"><em>Password meter</em> tutorial</a> for a guided example of turning a machine drawing into a JavaScript machine with <code>yed2kingly</code>.</p>
+<h2 id="How-does-it-work"><a href="#How-does-it-work" class="headerlink" title="How does it work?"></a>How does it work?</h2><p>In a typical process, you draw a machine with the yEd editor. When done or ready to test, you save the file in the default <code>.graphml</code> format in the same directory in which you want to use the target state machine. You run the <code>slim</code> command on the newly saved file. That generates the compiled JavaScript file which exports a machine factory function. The factory is passed parameters to create a Kingly state machine.</p>
+<h2 id="Get-started"><a href="#Get-started" class="headerlink" title="Get started"></a>Get started</h2><p>If you haven’t yet installed the <code>yEd</code> editor, please do so by following the instructions <a href="https://brucou.github.io/documentation/v1/tooling/graph_editing.html">here</a>.</p>
+<p>To use  <code>slim</code>  in the shell terminal, you will need to install the package globally:</p>
+<pre><code class="hljs bash">npm install -g slim</code></pre>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><pre><code class="hljs bash">slim filename.graphml</code></pre>
+<p>Running the converter produces two files, targeted at consumption in a browser and Node.js environment. Assuming the file <code>src/graphs/file.graphml</code> is passed to <code>slim</code>, the following two files are created: <code>src/graphs/file.graphml.fsm.compiled.js</code>, and <code>src/graphs/file.graphml.fsm.compiled.cjs</code>.</p>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p>The following machine graph:</p>
+<p><img src="https://imgur.com/SWWMdGb.png" alt="top-level-init test graph"></p>
+<p>when compiled with <code>slim</code> leads to the following JavaScript file:</p>
+<pre><code class="hljs js"><span class="hljs-comment">// Generated automatically by Kingly, version 0.29</span>
+<span class="hljs-comment">// http://github.com/brucou/Kingly</span>
+<span class="hljs-comment">// Copy-paste help</span>
+<span class="hljs-comment">// For debugging purposes, guards and actions functions should all have a name</span>
+<span class="hljs-comment">// Using natural language sentences for labels in the graph is valid</span>
+<span class="hljs-comment">// guard and action functions name still follow JavaScript rules though</span>
+<span class="hljs-comment">// -----Guards------</span>
+<span class="hljs-comment">/**
+ * @param &#123;E&#125; extendedState
+ * @param &#123;D&#125; eventData
+ * @param &#123;X&#125; settings
+ * @returns Boolean
+ */</span>
+<span class="hljs-comment">// const guards = &#123;</span>
+<span class="hljs-comment">//   "isNumber": function (extendedState, eventData, settings)&#123;&#125;,</span>
+<span class="hljs-comment">//   "not(isNumber)": function (extendedState, eventData, settings)&#123;&#125;,</span>
+<span class="hljs-comment">// &#125;;</span>
+<span class="hljs-comment">// -----Actions------</span>
+<span class="hljs-comment">/**
+ * @param &#123;E&#125; extendedState
+ * @param &#123;D&#125; eventData
+ * @param &#123;X&#125; settings
+ * @returns &#123;&#123;updates: U[], outputs: O[]&#125;&#125;
+ * (such that updateState:: E -&gt; U[] -&gt; E)
+ */</span>
+<span class="hljs-comment">// const actions = &#123;</span>
+<span class="hljs-comment">//   "logNumber": function (extendedState, eventData, settings)&#123;&#125;,</span>
+<span class="hljs-comment">//   "logOther": function (extendedState, eventData, settings)&#123;&#125;,</span>
+<span class="hljs-comment">// &#125;;</span>
+<span class="hljs-comment">// -------Control states---------</span>
+<span class="hljs-comment">/*
+      &#123;"0":"nok","1":"Numberღn0","2":"Otherღn2","3":"Doneღn3"&#125;
+      */</span>
+<span class="hljs-comment">// ------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStateMachine</span>(<span class="hljs-params">fsmDefForCompile, stg</span>) </span>&#123;
+  <span class="hljs-keyword">var</span> actions = fsmDefForCompile.actionFactories;
+  <span class="hljs-keyword">var</span> guards = fsmDefForCompile.guards;
+  <span class="hljs-keyword">var</span> updateState = fsmDefForCompile.updateState;
+  <span class="hljs-keyword">var</span> initialExtendedState = fsmDefForCompile.initialExtendedState;
+
+  <span class="hljs-comment">// Initialize machine state,</span>
+  <span class="hljs-comment">// Start with pre-initial state "nok"</span>
+  <span class="hljs-keyword">var</span> cs = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">var</span> es = initialExtendedState;
+
+  <span class="hljs-keyword">var</span> eventHandlers = [
+    ...
+  ];
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">process</span>(<span class="hljs-params">event</span>) </span>&#123;
+    ...
+  &#125;
+
+  <span class="hljs-comment">// Start the machine</span>
+  process(&#123; [<span class="hljs-string">"init"</span>]: initialExtendedState &#125;);
+
+  <span class="hljs-keyword">return</span> process;
+&#125;
+
+<span class="hljs-keyword">export</span> &#123; createStateMachine &#125;;</code></pre>
+<p>Let’s illustrate the parameters received by the <code>createStateMachine</code> factory function:</p>
 <pre><code class="hljs js"><span class="hljs-comment">// require the js file</span>
 <span class="hljs-keyword">const</span> &#123; createStateMachine &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;graphMlFile&#125;</span>.fsm.compiled.cjs`</span>);
 
@@ -300,74 +383,71 @@ src/graphs/file.graphml.fsm.compiled.cjs</code></pre></p>
   guards,
   updateState,
 &#125;, settings);</code></pre>
-<p>As can be seen from the example, the factory function’s first parameter consists of four objects: the initial extended state of the machine; the JavaScript code for the action factories and guards referenced by name in the <code>.graphml</code> file;  and a reducer function <code>updateState</code> which takes an object and an array of modifications to perform on that object.</p>
-<p>Note that the compiled machine does not offer error messages, protection against malformed inputs, devtool, or logging functionality. This is only possible when using the Kingly library.</p>
-<p>Note also that, as much as possible, we refrain from using advanced JavaScript language features in the code generated by the compiler with a view for that code to be usable in older browsers without polyfilling or babel-parsing. This, however, has not really been tested so far.</p>
-<h2 id="Browser-compatibility"><a href="#Browser-compatibility" class="headerlink" title="Browser compatibility"></a>Browser compatibility</h2><p>The compiled code should be working with older browsers, including IE &gt; 8. This has not however been thoroughly tested. If you do encounter an issue with browser compatibility, do let us know by filing an issue in the GitHub repository.</p>
-<h2 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h2><h4 id="Some-definitions"><a href="#Some-definitions" class="headerlink" title="Some definitions:"></a>Some definitions:</h4><ul>
-<li>An initial transition is that which originates from a node whose label is <code>init</code> or any capitalized variations (such as <code>Init</code>, <code>INit</code>, <code>iniT</code>, etc.)</li>
-<li>A top-level initial transition is that initial transition which does not have any parent node  </li>
-<li>A history pseudo-state is a node whose label is <code>H</code> (shallow history) or <code>H*</code> (deep history) with this same capitalization  </li>
-<li>A compound node is a node that is created in the yEd interface by using the group functionality (<em>Grouping &gt; Group</em> or <em>Ctrl-Alt-G</em> in version 3.19).  </li>
+<p>As the example illustrates, the factory function’s first parameter consists of four objects: </p>
+<ul>
+<li>the initial extended state of the machine; </li>
+<li>the mapping between the action factories name and their JavaScript implementation;</li>
+<li>the mapping between the guards name and their JavaScript implementation; and</li>
+<li>a reducer function <code>updateState</code> whose parameters are a state value and an array of state updates operations. The reducer function return an updated state value. </li>
 </ul>
-<h4 id="slim-rules"><a href="#slim-rules" class="headerlink" title="slim rules:"></a><code>slim</code> rules:</h4><ul>
-<li>The compiler converts the <code>.graphml</code> file using the same algorithm than <code>yed2Kingly</code>. As such the same conversion rules that apply: the machine encoded in the <code>.graphml</code> file must correspond to a valid Kingly machine.</li>
-<li>no control state, i.e. no node in the yEd graph can have an <code>init</code>-like label if that control state is not an initial transition.</li>
-<li>the previous rule applies also to control states which are not pseudo-control states. They cannot be labeled a <code>H</code> or <code>H*</code>. Be careful that <code>h</code> will not be considered to be a pseudo control state, but a regular control state.</li>
-<li>edge labels (which contain the event/guard/action triple under the following syntax <code>event [guard] / action (comment)</code>) are parsed with an <a href="https://github.com/brucou/slim/blob/master/yedEdgeLabelGrammar.ne" target="_blank" rel="noopener">EBNF grammar</a>. As of July 2020, to avoid having to handle an ambiguous grammar:<ul>
-<li><code>event</code> cannot have the characters <code>[</code>, <code>]</code>, <code>/</code>, <code>,</code> and <code>|</code> </li>
-<li><code>guard</code> cannot have the characters <code>[</code>, <code>]</code>, and <code>,</code></li>
-<li><code>actions</code> cannot have the characters <code>[</code>, <code>]</code>, <code>/</code>, <code>,</code> <code>(</code>, <code>)</code>, and <code>|</code></li>
-</ul>
-</li>
-<li>edge labels can encode multiple transitions, provided those transitions encoding are separated by the <code>|</code> (pipe) character:<ul>
-<li>e.g. <code>| event1 [guard1] / action1 | event2 [guard2] / action2</code> encodes two transitions triggered respectively by <code>event1</code> and <code>event2</code></li>
-</ul>
-</li>
-<li>edge labels also encode composite guards and composite actions. Composite guards and actions are comma-separated actions. <code>guard1, guard2</code> encodes a guard which will be satisfied only and only if both <code>guard1</code> and <code>guard2</code> are satisfied. Similarly, <code>action1, action2</code> encode two actions that will be composed to form a single action. The composed outputs are the concatenation of the outputs of each action, in the same order<ul>
-<li>e.g. <code>event [cond1, cond2] / action1, action2 (comment)</code></li>
-</ul>
+<p>Note that the compiled machine does not offer error messages, protection against malformed inputs, devtool support, or logging functionality. This is only possible when using the Kingly library — and its extra kilobytes.</p>
+<p>Note also that, as much as possible, <code>slim</code> refrains from using advanced JavaScript language features in the generated code to be compatible with older browsers without polyfilling or babel-parsing. This, however, has not been thoroughly tested so far.</p>
+<p>You will find additional examples in the <a href="https://github.com/brucou/slim/tree/master/tests" target="_blank" rel="noopener"><code>/tests</code> directory</a> of the <code>slim</code> Github repository.</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
+<li>You can have a file watcher in development that automatically runs <code>slim</code> when a <code>.graphml</code> file changes. The script will thus run every time you save the graph that you are working on.</li>
+<li>the produced files include commented pieces of code that you can copy paste to speed up your implementation and reduce the possibility of errors. For instance, in the previous example, you need to provide a map of action names to action factories. You can copy-paste, uncomment, and complete the following commented code:<pre><code class="hljs js"><span class="hljs-comment">// const actions = &#123;</span>
+<span class="hljs-comment">//   "logNumber": function (extendedState, eventData, settings)&#123;&#125;,</span>
+<span class="hljs-comment">//   "logOther": function (extendedState, eventData, settings)&#123;&#125;,</span>
+<span class="hljs-comment">// &#125;;</span></code></pre>
 </li>
 </ul>
-<p>The rules have been chosen for expressiveness, readability, and multi-language support. Events, guards, and actions can thus be described with several words if that is more descriptive. Unicode characters are accepted, meaning all languages supported by Unicode are supported by the compiler too. The few existing restrictions are for unambiguity: we do not want the compiler user to write erroneous labels inadvertently.</p>
-<h4 id="EBNF-grammar"><a href="#EBNF-grammar" class="headerlink" title="EBNF grammar"></a>EBNF grammar</h4><pre><code class="hljs ebnf">MAIN -&gt; OneTransitionLabel | MultipleTransitionLabel
-MultipleTransitionLabel -&gt; ("|" OneTransitionLabel):+
-OneTransitionLabel -&gt;
-  EventClause "[" GuardClause "]" _ "/" ActionsClause  
-| EventClause "[" GuardClause "]" _                    
-| EventClause "/" ActionsClause                        
-| EventClause                                          
-| "[" GuardClause "]" _ "/" ActionsClause              
-| "/" ActionsClause                                    
-| "[" GuardClause "]"                                  
-
-EventClause -&gt; [^\/\[\]\|,]:+
-GuardClause -&gt; Guard ("," Guard):*                     
-Guard -&gt; [^\[\],]:*
-ActionsClause -&gt; Action ("," Action):*                 
-Action        -&gt; [^\/\|\[\]\(\),]:* ActionsComments:*
-ActionsComments -&gt; "(" __ ")" _
-StringLiteral -&gt; [\w]:+
-  _ -&gt; [\s]:*
-  __ -&gt; [^()]:*</code></pre>
-<h2 id="Size-of-the-generated-file"><a href="#Size-of-the-generated-file" class="headerlink" title="Size of the generated file"></a>Size of the generated file</h2><p>There are plenty of graph examples in the <a href="https://github.com/brucou/slim/tree/master/tests/graphs" target="_blank" rel="noopener">test directory</a>. </p>
-<p>Assuming the machine has no isolated states (i.e. states which are not reached by any transitions), the size of the compiled file follows the shape <code>a + b x Number of transitions</code>, i.e. is mostly proportional to the number of transitions of the graph. The proportional coefficient <code>b</code> seems to be fairly low and the compression factor increases with the size of the machine. In short, you need to write a really large graph to get to 5Kb just for the machine.</p>
-<p>We give two data points. For the sake of these measurements, minification is performed online with the <a href="https://javascript-minifier.com/" target="_blank" rel="noopener">javascript-minifier</a> tool. Liens of code are counted with an <a href="https://codetabs.com/count-loc/count-loc-online.html" target="_blank" rel="noopener">online tool</a>. The simple counter machine, which is about the smallest non-trivial machine that can be drawn:</p>
-<p><img src="https://imgur.com/mk9hM6u.png" alt="counter machine graph"></p>
-<p>is compiled (as of Slim 0.10.0) to 50 lines of code, and has a minified compressed size of 500 bytes.</p>
-<p>The password meter machine, a slightly more complex but still small example from the <a href="https://brucou.github.io/documentation/v1/tutorials/password-meter.html">documentation website</a>:   </p>
-<p><img src="https://brucou.github.io/documentation/graphs/password-meter.png" alt="[password meter modelization]"></p>
-<p>is compiled (as of Slim 0.10.0) to zero-dependency 76 lines of code, with a minified compressed size of 600 bytes, with a minified compressed size of 600 bytes. </p>
-<p>The following complex wizard form:</p>
-<figure class="fullwidth"><p><img src="https://imgur.com/xcO9xnY.jpg" alt="Imgur"></p>
-</figure>
-<p>was <a href="https://github.com/brucou/cycle-state-machine-demo" target="_blank" rel="noopener">implemented</a> with a machine having around 25 transitions: </p>
-<p><img src="https://github.com/brucou/cycle-state-machine-demo/raw/master/public/assets/images/graphs/sparks%20application%20process%20with%20comeback%20proper%20syntax%20-%20flat%20fsm.png" alt="subscription wizard form modelization"></p>
-<p>An implementation of the <a href="https://rw-kingly-svelte.bricoi1.now.sh/#/" target="_blank" rel="noopener">Conduit average-sized application</a> has ~35 states, ~75 transitions and weighted 2.3KB min.gzipped. We estimated that writing this logic by hand may have shaved 100 (extra code due to compiler) + 400 bytes (extra code due to using a graph editor), which is thus the cost we pay for using state machines and the graph editor (0.5KB).</p>
-<p>Those preliminary results are fairly consistent. Assuming 20 bytes per transitions (computed from the previous data points), with a baseline of 500 bytes, to reach 5KB (i.e. the size of the core Kingly library) we need a machine with 220 transitions!! Note that this size does not (and cannot) include the actions and guards but does represent the size of the logic encoded in the machine.</p>
-<p>In summary, endowed with the present compiler, <strong>Kingly proposes state machines as a zero-cost abstraction</strong>. This means that if you would have written that logic by hand, you would not have been able to achieve a significantly improved min.gzipped size.</p>
-<h2 id="Known-limitations"><a href="#Known-limitations" class="headerlink" title="Known limitations"></a>Known limitations</h2><p>The <code>.graphml</code> format for yEd is not publicly documented. The parser for it thus may have holes or may break if the format specifications change, It is thus important that you log issues if you encounter any errors while running the compiler. To be fair, the specifications have not changed in many years.</p>
-<h2 id="Final-note"><a href="#Final-note" class="headerlink" title="Final note"></a>Final note</h2><p>After using and working with state machines for the past four years, I believe I am reaching a satisfying API and process. The idea is really to avoid unnecessary complexity. I am however interested in hearing your comments, and suggestions together with use cases that you believe are not satisfactorily addressed -&gt; post an issue in the project directory.</p>
+<h2 id="Size-of-the-generated-file"><a href="#Size-of-the-generated-file" class="headerlink" title="Size of the generated file"></a>Size of the generated file</h2><p>This section contains rather technical considerations that do not impact your usage of Kingly or its tooling. Feel free to skip if you have more pressing matters to consider.</p>
+<p>Assuming the machine has no isolated states (i.e. states which are not reached by any transitions), the size of the compiled file roughly follows the shape <code>a + b x Number of transitions</code>, i.e. is mostly proportional to the number of transitions of the graph. The proportional coefficient <code>b</code> seems to be fairly low and the compression factor increases with the size of the machine. In short, you need to write a really large graph to get to 5Kb just for the machine.</p>
+<label for="mn-demo-5" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-5" class="margin-toggle"><span class="marginnote"><p>Minification is performed online with the <a href="https://javascript-minifier.com/" target="_blank" rel="noopener">javascript-minifier</a> tool. Lines of code are counted with an <a href="https://codetabs.com/count-loc/count-loc-online.html" target="_blank" rel="noopener">online tool</a>. </p>
+</span>
+<p>We give a few data points: </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Machine graph</th>
+<th>Machine graph size</th>
+<th>Compiled machine size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://imgur.com/mk9hM6u.png" alt="counter machine graph"></td>
+<td>1 control state, 1 transition</td>
+<td>~50 loc, 0.5 KB</td>
+</tr>
+<tr>
+<td><img src="https://brucou.github.io/documentation/graphs/password-meter.png" alt="[password meter modelization]"></td>
+<td>4 control state, 5 transitions</td>
+<td>~80 loc, 0.6 KB</td>
+</tr>
+<tr>
+<td><a href="https://rw-kingly-svelte.bricoi1.now.sh/#/" target="_blank" rel="noopener"><img src="https://brucou.github.io/documentation/graphs/real-world/realworld-routing-article.png" alt="Conduit average-sized application"></a></td>
+<td>~35 control states, 75 transitions</td>
+<td>~2.3 KB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We estimate that writing logic by hand for average-size machines may shave 100 (extra code due to the compiler) + 400 bytes (extra code due to using a graph editor) for a total of 0.5 KB.</p>
+<label for="mn-demo-14" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-14" class="margin-toggle"><span class="marginnote"><p>Note that this size does not (and cannot) include the actions and guards but does represent the size of the logic encoded in the machine.</p>
+</span>
+<p>Those preliminary results are fairly consistent. Assuming 20 bytes per transitions (computed from the previous data points), with a baseline of 500 bytes, to reach 5 KB (i.e. the size of the core Kingly library) we need a machine with over 200 transitions!! </p>
+<p>In summary, with the <code>slim</code> compiler, <strong>Kingly proposes state machines as a near-zero-cost abstraction</strong>. This means that if you would have written that logic by hand, you would not have been able to achieve a significantly improved min.gzipped size.</p>
+<h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>The script will exit with an error code whenever:</p>
+<ul>
+<li>there are syntax errors in the yEd graph (e.g., forbidden or ambiguous edge label syntax). You may want to review the <a href="http://localhost:4000/documentation/v1/tooling/graph_editing.html#Syntax-reference" target="_blank" rel="noopener">detailed syntax reference</a>. You can paste the <a href="https://github.com/brucou/slim/blob/master/yedEdgeLabelGrammar.ne" target="_blank" rel="noopener">grammar</a> in the <a href="https://omrelli.ug/nearley-playground/" target="_blank" rel="noopener">Nearley parser playground</a> and check your syntax.</li>
+<li>there are semantic errors in the yEd graph. That means that your drawing is legit, but it does not map to a valid Kingly machine. This may happen when you break Kingly contracts, for instance, if you have two initial control states for the same compound state. You may want to review <a href="http://localhost:4000/documentation/v1/api/index.html#Contracts" target="_blank" rel="noopener">Kingly contracts</a>.</li>
+<li>the script cannot parse the file. You may want to check that you wrote the filename correctly, that the file exists at the expected location, and that the file is a valid <code>.graphml</code> file by opening it in yEd.</li>
+<li>there is a bug! In that case, please <a href="https://github.com/brucou/kingly/issues" target="_blank" rel="noopener">open an issue on Github</a>.</li>
+</ul>
+<h2 id="Known-limitations"><a href="#Known-limitations" class="headerlink" title="Known limitations"></a>Known limitations</h2><p>The <code>.graphml</code> format for yEd is not publicly documented. The specifications for the format have not changed in many years. However, our parser may still have holes or break if the format specifications change. It is thus important that you log issues if you encounter any errors while running the compiler. </p>
+<h2 id="Feedback-welcome"><a href="#Feedback-welcome" class="headerlink" title="Feedback welcome!"></a>Feedback welcome!</h2><p>Kingly tooling exist to address pain points from real use cases, and drive your productivity up. Your feedback is welcome and may result in the improvement or extension of the existing set of tools. If there is anything you feel should be addressed and is not, or should be addressed differently, get in touch by <a href="https://github.com/brucou/kingly/issues" target="_blank" rel="noopener">opening an issue on Github</a>.</p>
 
   
   
