@@ -70,6 +70,7 @@
   <ul class="nav-dropdown">
     <li>
       <ul>
+        <li><a href="/documentation/v1/concepts/" class="nav-link">Concepts</a></li>
         <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
         <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
         <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
@@ -132,6 +133,7 @@
   <ul class="nav-dropdown">
     <li>
       <ul>
+        <li><a href="/documentation/v1/concepts/" class="nav-link">Concepts</a></li>
         <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
         <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
         <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
@@ -203,6 +205,7 @@
       
       
       
+      
     
     
     <li>
@@ -216,27 +219,18 @@
       
       
       
+      
     
     
     <li>
-      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Counter application</a>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Get started</a>
     </li>
   
     
     
       
       
-      
-      
-      
-    
-    
-    <li>
-      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
-    </li>
-  
-    
-    
+        <li><h3>Counter</h3></li>
       
       
       
@@ -245,11 +239,12 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">Implementation</a>
     </li>
   
     
     
+      
       
       
         <li><h3>Password meter</h3></li>
@@ -270,6 +265,7 @@
       
       
       
+      
     
     
     <li>
@@ -278,6 +274,7 @@
   
     
     
+      
       
       
       
@@ -296,6 +293,7 @@
       
       
       
+      
     
     
     <li>
@@ -304,6 +302,7 @@
   
     
     
+      
       
       
       
@@ -322,6 +321,7 @@
       
       
       
+      
     
     
     <li>
@@ -330,6 +330,7 @@
   
     
     
+      
       
       
       
@@ -350,6 +351,7 @@
       
       
       
+      
     
     
     <li>
@@ -363,6 +365,7 @@
       
       
       
+      
     
     
     <li>
@@ -371,6 +374,7 @@
   
     
     
+      
       
       
       
@@ -391,6 +395,7 @@
       
       
       
+      
     
     
     <li>
@@ -399,6 +404,7 @@
   
     
     
+      
       
       
       
@@ -417,6 +423,7 @@
       
       
       
+      
     
     
     <li>
@@ -425,6 +432,7 @@
   
     
     
+      
       
       
       
@@ -443,6 +451,7 @@
       
       
       
+      
     
     
     <li>
@@ -451,6 +460,7 @@
   
     
     
+      
       
       
       
@@ -469,6 +479,7 @@
       
       
       
+      
     
     
     <li>
@@ -482,6 +493,7 @@
       
       
       
+      
     
     
     <li>
@@ -490,6 +502,7 @@
   
     
     
+      
       
       
       
@@ -519,16 +532,20 @@
     <h1>Why Kingly</h1>
   
   
-    <p>Kingly is a state machine library to specify user interface <strong>behavior</strong>. It is designed to be used in conjunction with <strong>any user interface library or framework</strong> (such as React, Vue, Svelte, or Vanilla JavaScript); and for parts (components or custom elements) or the whole of your user interface. You <strong>declaratively</strong> specify the behavior of your user interface as a set of actions to perform in response to events processed by the user interface. The actions to perform in response to events are computed by a state machine. The state machine acts as a <strong>model</strong> of the interface’s behavior, which can be instrumented in several ways of interest to speed up the development of your application:</p>
-<ul>
-<li>the model is a <strong>single source of truth</strong>, and <strong>living documentation</strong> for the behavior of your interface</li>
-<li>the model can be visualized to communicate and discuss features both within and outside your development team (designers, testers, developers)</li>
-<li>test sequences can be <strong>automatically generated</strong> from the model and used for both unit testing and integration testing</li>
-<li>you can iterate quickly and with confidence on the model, knowing what part of the behavior your modifications will impact and <strong>what part will not be impacted</strong></li>
-<li>the model can be shared and reuse in other projects by simply publishing it on <code>npm</code> or any package manager of your choice</li>
-</ul>
-<p>The net result is a productive development process resulting in <strong>robust, maintainable, self-documented user interfaces or components</strong>.</p>
-<p>If you want to understand the benefits of state-machine-based modelization of interface behavior, I published a <a href="http://www.infoq.com/articles/robust-user-interfaces-with-state-machines" target="_blank" rel="noopener">detailed article</a> which provides a 10,000 feet view, easy-to-follow review of the subject.</p>
+    <p>Kingly is a state machine library to specify the <strong>behavior</strong> of applications. Kingly complements tools that specify the <strong>appearance</strong> of applications (e.g., Sketch, Figma). It is designed to be used in conjunction with <strong>any user interface library or framework</strong> (e.g., React, Vue, Svelte, or plain JavaScript). You can use it to describe the behavior of one component of your application, or have it take over the whole application. </p>
+<p>Kingly lets you declare what your application <strong>should do</strong> in response to the events it receives — from the user, the network, and any other systems the application interfaces with. It computes the application response, it does not perform that response. Kingly <a href="http://www.catb.org/jargon/html/Z/Zawinskis-Law.html" target="_blank" rel="noopener">will never send emails</a>.</p>
+<p>Kingly lets you <strong>draw</strong> your application response to events with a <a href="https://www.yworks.com/products/yed" target="_blank" rel="noopener">professional graph editor</a>. Here is the drawn behavior of a wizard form that handles user subscriptions across a few screens:</p>
+<p><img src="http://localhost:4000/documentation/graphs/sparks%20application%20process%20with%20comeback%20proper%20syntax%20hierarchical%20fsm.png" alt="User application process"></p>
+<p>It ressembles the original user flows:</p>
+<figure class="fullwidth"><p><img src="https://imgur.com/xcO9xnY.jpg" alt="User application process: user flow"></p>
+</figure>
+<p>except that with Kingly’s visual language, it can be made precise enough that a JavaScript implementation can be <strong>automatically generated</strong> from the graph. If you got the drawing right, the generated code will also be correct. You can <strong>focus on what your application does</strong>, separately from how you are going to do it.</p>
+<p>You can quickly iterate on the modeling of the application behavior, knowing that the generated code will be kept in sync. The drawn model, like your code, is versionable. You can go back to any versions at any time.</p>
+<p>You won’t break your budget. Kingly has a <a href="http://localhost:4000/documentation/v1/tooling/compiling.html" target="_blank" rel="noopener">compiler</a> that gets the implementation of your application behavior between 0.5 and 3 KB.</p>
+<p>The net result is a productive development process resulting in <strong>robust, maintainable, visually self-documented applications and components</strong>.</p>
+<p>Did you get interested? Let’s <a href="http://localhost:4000/documentation/v1/tutorials/installation.html" target="_blank" rel="noopener">get started</a>.</p>
+<p><strong>To remove. That ends really well now</strong>. Continue with </p>
+<p>If you want to understand the benefits of state-machine-based modelization of application behavior, I published a <a href="http://www.infoq.com/articles/robust-user-interfaces-with-state-machines" target="_blank" rel="noopener">detailed article</a> which provides a 10,000 feet view, easy-to-follow review of the subject.</p>
 <p>The next sections of the tutorial build progressively the concepts, demonstrating the library’s API, and providing meaningful examples.</p>
 
   
@@ -538,7 +555,7 @@
       
       
       
-        <span style="float: right;"><a href="/documentation/v1/tutorials/counter-application.html">Counter application</a> →</span>
+        <span style="float: right;"><a href="/documentation/v1/tutorials/installation.html">Get started</a> →</span>
       
     </div>
   

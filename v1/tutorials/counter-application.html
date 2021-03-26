@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Counter application — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Implementation — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Counter application — Kingly.js">
+  <meta property="og:title" content="Implementation — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Counter application — Kingly.js">
+  <meta name="twitter:title" content="Implementation — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -70,6 +70,7 @@
   <ul class="nav-dropdown">
     <li>
       <ul>
+        <li><a href="/documentation/v1/concepts/" class="nav-link">Concepts</a></li>
         <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
         <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
         <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
@@ -132,6 +133,7 @@
   <ul class="nav-dropdown">
     <li>
       <ul>
+        <li><a href="/documentation/v1/concepts/" class="nav-link">Concepts</a></li>
         <li><a href="/documentation/v1/tutorials/" class="nav-link current">Tutorials</a></li>
         <li><a href="/documentation/v1/examples/" class="nav-link">Examples</a></li>
         <li><a href="/documentation/v1/cookbook/" class="nav-link">Cookbook</a></li>
@@ -203,6 +205,7 @@
       
       
       
+      
     
     
     <li>
@@ -216,27 +219,18 @@
       
       
       
+      
     
     
     <li>
-      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link current">Counter application</a>
+      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Get started</a>
     </li>
   
     
     
       
       
-      
-      
-      
-    
-    
-    <li>
-      <a href="/documentation/v1/tutorials/installation.html" class="sidebar-link">Installation</a>
-    </li>
-  
-    
-    
+        <li><h3>Counter</h3></li>
       
       
       
@@ -245,11 +239,12 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/model-with-machines.html" class="sidebar-link">Implementing UIs with state machines</a>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link current">Implementation</a>
     </li>
   
     
     
+      
       
       
         <li><h3>Password meter</h3></li>
@@ -270,6 +265,7 @@
       
       
       
+      
     
     
     <li>
@@ -278,6 +274,7 @@
   
     
     
+      
       
       
       
@@ -296,6 +293,7 @@
       
       
       
+      
     
     
     <li>
@@ -304,6 +302,7 @@
   
     
     
+      
       
       
       
@@ -322,6 +321,7 @@
       
       
       
+      
     
     
     <li>
@@ -330,6 +330,7 @@
   
     
     
+      
       
       
       
@@ -350,6 +351,7 @@
       
       
       
+      
     
     
     <li>
@@ -363,6 +365,7 @@
       
       
       
+      
     
     
     <li>
@@ -371,6 +374,7 @@
   
     
     
+      
       
       
       
@@ -391,6 +395,7 @@
       
       
       
+      
     
     
     <li>
@@ -399,6 +404,7 @@
   
     
     
+      
       
       
       
@@ -417,6 +423,7 @@
       
       
       
+      
     
     
     <li>
@@ -425,6 +432,7 @@
   
     
     
+      
       
       
       
@@ -443,6 +451,7 @@
       
       
       
+      
     
     
     <li>
@@ -451,6 +460,7 @@
   
     
     
+      
       
       
       
@@ -469,6 +479,7 @@
       
       
       
+      
     
     
     <li>
@@ -482,6 +493,7 @@
       
       
       
+      
     
     
     <li>
@@ -490,6 +502,7 @@
   
     
     
+      
       
       
       
@@ -516,10 +529,10 @@
     
   
   
-    <h1>Counter application</h1>
+    <h1>Implementation</h1>
   
   
-    <p>We continue here with a very trivial example often used as a starter by user interfaces libraries: a counter application. As with any trivial example, it does not properly illustrate the power of the library. We will be short on explanations. The example however is useful to give a feel of the API. </p>
+    <p>We continue here with a very trivial example often used as a starter by user interface libraries: a counter application. As with any trivial example, it does not properly illustrate the power of the library. We will be short on explanations. The example however is useful to give a feel of the API. </p>
 <p>The counter behavior is described by the following state machine:</p>
 <p><img src="../../graphs/trivial counter machine.png" alt="counter machine"></p>
 <p>The machine starts in the counting control state, with an extended state which holds the initial value of the counter: <code>{count: 0}</code>. Every time a click occurs, the transition visualized on the previous graph tells us what commands to execute: increment the extended state’s <code>count</code> property, and display the incremented counter on the screen.</p>
@@ -538,7 +551,7 @@
   
   <span class="hljs-keyword">return</span> NO_OUTPUT
 &#125;</code></pre>
-<p>This is it! There is nothing weird. We write stateful functions like <code>controller</code> all the time when implementing user interfaces. Using an explicit state machine to write those functions and drive our user interface brings a lot of benefits that will be introduced in the remainder of the tutorials. </p>
+<p>This is it! There is nothing weird. We write stateful functions like <code>controller</code> all the time when implementing event handlers. Using an explicit state machine to write those functions and drive our user interface brings a lot of benefits that will be introduced in the remainder of the tutorials. </p>
 <p>This is the very short story about state machines used for modeling the behavior of user interfaces. The machine works as a controller that transforms inputs/events into commands. The application is implemented by sequential composition of three parts: listening to the inputs, computing the corresponding commands, and executing those commands. To execute the render command, you can use any UI library you fancy, or just plain JavaScript.</p>
 
   
@@ -546,11 +559,11 @@
     <div class="next-links">
       
       
-        <span>← <a href="/documentation/v1/tutorials/index.html">Why Kingly</a></span>
+        <span>← <a href="/documentation/v1/tutorials/installation.html">Get started</a></span>
       
       
       
-        <span style="float: right;"><a href="/documentation/v1/tutorials/installation.html">Installation</a> →</span>
+        <span style="float: right;"><a href="/documentation/v1/tutorials/password-meter.html">Modelization</a> →</span>
       
     </div>
   
