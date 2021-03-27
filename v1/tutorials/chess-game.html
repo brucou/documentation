@@ -605,7 +605,7 @@
   eventEmitter,
   chessEngine
 &#125;);</code></pre>
-<label for="mn-demo-24" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-24" class="margin-toggle"><span class="marginnote"><p>We use here the chess engine to establish the validity of a move and detect the end game, but take care of reversing its effects. As a rule, guards and action factories <strong>must be pure functions</strong>. This avoids difficult-to-detect bugs where the game state is de-synchronized from the machine state. </p>
+<label for="mn-demo-23" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-23" class="margin-toggle"><span class="marginnote"><p>We use here the chess engine to establish the validity of a move and detect the end game, but take care of reversing its effects. As a rule, guards and action factories <strong>must be pure functions</strong>. This avoids difficult-to-detect bugs where the game state is de-synchronized from the machine state. </p>
 </span>
 <p>Doing so makes the event emitter and engine visible in guards and action factories. For instance:</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isLegalNonWinningMove</span>(<span class="hljs-params">extendedState, eventData, settings</span>)</span>&#123;
@@ -745,11 +745,12 @@
     </div>
   
   <div class="footer">
+    Caught a mistake?
+    <a href="https://github.com/brucou/documentation/tree/master/v1/tutorials/chess-game.html" rel="noopener" target="_blank">
+      Edit this on GitHub!
+    </a>
     <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
       <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
-    </a>
-    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
-      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
     </a>
   </div>
 </div>

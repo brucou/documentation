@@ -532,27 +532,65 @@
     <h1>Implementation</h1>
   
   
-    <p>We continue here with a very trivial example often used as a starter by user interface libraries: a counter application. As with any trivial example, it does not properly illustrate the power of the library. We will be short on explanations. The example however is useful to give a feel of the API. </p>
-<p>The counter behavior is described by the following state machine:</p>
+    <div class="tip"><p>This section deals with a very trivial example often used as a starter by user interface libraries: a counter application. As with any such example, it does not properly illustrate the power of the library. This tutorial gives a first feel of the Kingly API. It also shows that Kingly state machines are simple stateful JavaScript functions, like the event handlers that you have been writing. Lastly, it introduces slightly the architecture that Kingly encourages.</p>
+</div>
+<p>Let’s implement the simplest behavior we can think of: a counter. A behavior is the set of reactions that corresponds to the set of accepted events. Here, there is only one event: the user click on the incrementing button. The behavior of the counter application is to display an incremented counter every time the user clicks the incrementing button. This behavior can be represented with a state machine that:</p>
+<ul>
+<li>starts  in the <em>Counting</em> state (termed as <em>control state</em>);</li>
+<li>encapsulates the counter value in its internal state (termed as <em>extended state</em>); and</li>
+<li>on every click, updates its internal state (increments the counter), and displays the new screen.</li>
+</ul>
+<p>In other words, the counter behavior may be described as follows:</p>
 <p><img src="../../graphs/trivial counter machine.png" alt="counter machine"></p>
-<p>The machine starts in the counting control state, with an extended state which holds the initial value of the counter: <code>{count: 0}</code>. Every time a click occurs, the transition visualized on the previous graph tells us what commands to execute: increment the extended state’s <code>count</code> property, and display the incremented counter on the screen.</p>
-<p>The machine computes the commands to execute. We only have to write the procedures which execute those commands to have the full counter application: </p>
+<p>The previous graph illustrates the <code>event [guard] / actions</code> notation that is used by the graph editor and throughout all the tutorials. Here there are no guards, as the action must always be computed when the event occurs. </p>
+<p>The machine only computes the commands to execute and updates its internal state. We have left to write the procedures that execute those commands to have the full counter application: </p>
 <iframe src="https://codesandbox.io/embed/w6x42521n7?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-<p>We can already emphasize a key feature of Kingly’s state machines. <strong>They are normal, plain, standard JavaScript functions!</strong> In this trivial example, that means you can replace the <code>fsm</code> created by Kingly in the previous code by your own function <code>controller</code> fulfilling the same specifications:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> counter=<span class="hljs-number">0</span>;
+<p>Open the console in the playground and have a look at the logs. Click the button, and have another look at the logs. Formatting aside, you should see this:</p>
+<pre><code class="hljs bash">send event ▶&#123;init: Object&#125;
+
+found event handler!
+WHEN EVENT init ▶&#123;count: 0&#125;
+IN STATE nok
+CASE: unguarded transition
+THEN : we execute the action ACTION_IDENTITY
+left state -nok-
+AND TRANSITION TO STATE -counting-
+ENTERING NEXT STATE: -counting-
+with extended state: ▶&#123;count: 0&#125;
+
+send event ▶&#123;clicked: undefined&#125;
+
+found event handler!
+WHEN EVENT clicked undefined
+IN STATE counting
+CASE: unguarded transition
+THEN : we execute the action incCounterAndDisplay
+left state -counting-
+AND TRANSITION TO STATE -counting-
+ENTERING NEXT STATE: -counting-
+with extended state: ▶&#123;count: 1&#125;
+
+OUTPUTS: ▶(1) [Object]
+        ▶0: Object
+            <span class="hljs-built_in">command</span>: <span class="hljs-string">"render"</span>
+            params: 1</code></pre>
+<p>The logs allows you to trace back the machine processing as it receives an input. You can activate the logs by passing a console object in settings (<code>const settings = { debug: { console }};</code>).</p>
+<p>The previous code illustrates a key feature of Kingly’s state machines. <strong>They are normal, plain, standard JavaScript functions!</strong>. That means you can replace the <code>fsm</code> created by Kingly in the previous code by a function <code>controller</code> fulfilling the same specifications:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> count=<span class="hljs-number">0</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">controller</span>(<span class="hljs-params">event</span>)</span>&#123;
   <span class="hljs-keyword">const</span> eventName = <span class="hljs-built_in">Object</span>.keys(event)[<span class="hljs-number">0</span>];
   <span class="hljs-keyword">if</span> (eventName === <span class="hljs-string">'clicked'</span>)&#123;
-    counter++;
-    <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">command</span>: COMMAND_RENDER, <span class="hljs-attr">params</span>: counter&#125;
+    count++;
+    <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">command</span>: <span class="hljs-string">"render"</span>, <span class="hljs-attr">params</span>: count&#125;
   &#125;
   
-  <span class="hljs-keyword">return</span> NO_OUTPUT
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>
 &#125;</code></pre>
-<p>This is it! There is nothing weird. We write stateful functions like <code>controller</code> all the time when implementing event handlers. Using an explicit state machine to write those functions and drive our user interface brings a lot of benefits that will be introduced in the remainder of the tutorials. </p>
-<p>This is the very short story about state machines used for modeling the behavior of user interfaces. The machine works as a controller that transforms inputs/events into commands. The application is implemented by sequential composition of three parts: listening to the inputs, computing the corresponding commands, and executing those commands. To execute the render command, you can use any UI library you fancy, or just plain JavaScript.</p>
+<p>This is it! There is nothing weird. We write stateful functions like <code>controller</code> all the time when implementing event handlers. Behind the fancy name of state machines is simply a function that computes commands from events. We already write those functions. Writing them by adopting the discipline of the state machine formalism brings a lot of benefits that will be introduced in the remainder of the tutorials. </p>
+<p>This is the very short story about state machines used for modeling the behavior of user interfaces. The machine works as a controller that transforms inputs/events into commands. The application is implemented by sequential composition of three parts: instantiation of event listeners, computation of the reaction (commands) to events, and execution of the reactions. To execute the command that render a screen, you can use any UI library you fancy, or just plain JavaScript — as we did in this example.</p>
+<p>Let’s move to a more interesting example: <a href="./password-meter.html">a password meter</a>.</p>
 
   
   
@@ -568,11 +606,12 @@
     </div>
   
   <div class="footer">
+    Caught a mistake?
+    <a href="https://github.com/brucou/documentation/tree/master/v1/tutorials/counter-application.html" rel="noopener" target="_blank">
+      Edit this on GitHub!
+    </a>
     <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
       <img class="github" src="/documentation/images/GitHub-Mark-32px.png" alt="github">
-    </a>
-    <a id="follow-button" class="btn" title="Follow Kingly on Twitter" href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fbrucou.github.io/documentation%2F&amp;ref_src=twsrc%5Etfw&amp;region=follow_link&amp;screen_name=bricoi1&amp;tw_p=followbutton">
-      <img class="twitter" src="/documentation/images/icons8-twitter-48.png" alt="twitter">
     </a>
   </div>
 </div>
