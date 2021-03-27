@@ -541,6 +541,9 @@ body.docs #nav {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
 }
+.sidebar h3 {
+  margin-bottom: 0.1em;
+}
 .sidebar h2 {
   margin-top: 0.2em;
 }
