@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Concepts and architecture — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Introduction — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Concepts and architecture — Kingly.js">
+  <meta property="og:title" content="Introduction — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Concepts and architecture — Kingly.js">
+  <meta name="twitter:title" content="Introduction — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -200,7 +200,7 @@
     
     
     <li>
-      <a href="/documentation/v1/concepts/index.html" class="sidebar-link current">Concepts and architecture</a>
+      <a href="/documentation/v1/concepts/index.html" class="sidebar-link current">Introduction</a>
     </li>
   
     
@@ -225,17 +225,37 @@
     
   
   
-    <h1>Concepts and architecture</h1>
+    <h1>Introduction</h1>
   
   
-    <p>We recommend to review the following articles:</p>
+    <p>Kingly lets you declaratively describe the <em>behavior</em> of <em>reactive applications</em> with <em>state machines</em>. In this section, we are going to introduce separately each of these concepts. In the subsequent section, we will detail Kingly’s favored architecture.</p>
+<h2 id="Reactive-applications"><a href="#Reactive-applications" class="headerlink" title="Reactive applications"></a>Reactive applications</h2><p>Reactive applications are reactive systems. They are reactive systems because they operate rarely in isolation but within a system that contains other parts that are external to the application. If the application has a way to communicate with these systems (for instance through an API), those systems are called interfaced systems (APIs are interfaces between the application and an interfaced system). </p>
+<p>Reactive systems have several definitions that are often scoped to a specific field. We use the one that is often used in academia: reactive systems are systems which continuously react to inputs from the environment by generating corresponding outputs. <a href="https://en.wikipedia.org/wiki/David_Harel" target="_blank" rel="noopener">David Harel</a>, the creator of the statecharts visual formalism, <a href="http://www.wisdom.weizmann.ac.il/~harel/SCANNED.PAPERS/ReactiveSystems.pdf" target="_blank" rel="noopener">explained the distinction</a> between transformational systems and reactive systems as follows:</p>
+<blockquote>
+<p>A transformational system accepts inputs, perform transformations on them and produces outputs. […] Reactive systems, on the other hand, are repeatedly prompted by the outside world and their role is to continuously respond to external inputs. Common to all [reactive systems] is the notion of the system responding or reacting to external stimuli, whether normal user-generated or environment-generated ones […] or abnormal ones.</p>
+</blockquote>
+<h2 id="Reactive-application-behavior"><a href="#Reactive-application-behavior" class="headerlink" title="Reactive application behavior"></a>Reactive application behavior</h2><p>The vast majority of the software applications that we write are thus reactive in nature. They continuously react to user or environment inputs. The task of specifying such applications thus consists of specifying the reaction(s) of the application to inputs across its lifetime. Harel <a href="http://www.inf.ed.ac.uk/teaching/courses/seoc1/2005_2006/resources/statecharts.pdf" target="_blank" rel="noopener">further explains</a>:</p>
+<blockquote>
+<p>The problem [of specifying reactive systems] is rooted in the difficulty of describing reactive  behavior in ways that are clear and realistic, and at the same time formal and  rigorous, sufficiently so to be amenable to detailed computerized simulation. The  behavior of a reactive system is really the set of allowed sequences of input and  output events, conditions, and actions […] </p>
+</blockquote>
+<h2 id="State-machines"><a href="#State-machines" class="headerlink" title="State machines"></a>State machines</h2><p>State machines are one way by which the behavior of reactive application can be accurately specified or modeled. There are <a href="https://github.com/brucou/state-machines" target="_blank" rel="noopener">many kinds of state machines</a>, depending on the capabilities that we give to the machine (e.g., memory, hierarchy, communication mechanism). </p>
 <ul>
-<li><a href="https://medium.com/dailyjs/user-interfaces-you-can-trust-with-state-machines-49de7fa138a6" target="_blank" rel="noopener">User Interfaces You Can Trust with State Machines</a> </li>
-<li><a href="http://brucou.github.io/documentation/v1/contributed/User%20interfaces%20as%20reactive%20systems.html">User interfaces as reactive systems</a></li>
+<li>Finite automata accept input but do not produce outputs. </li>
+<li>Kingly relies on hierarchical state machines with memory (encapsulated internal state) that compute outputs from received inputs. That type of machines is called hierarchical (it admits sub-machines as control states) state transducer (it computes outputs).</li>
+<li>Statecharts are based on communicating hierarchical state transducers. That means statecharts computes outputs, admits sub-machines as control states, but can also be comprised of several isolated machines that are not in a hierarchical relationship and communicate together through some mechanism (statecharts use broadcasting).</li>
 </ul>
-<p>More articles will be added.</p>
+<p>Unless otherwise mentioned, when we will talk about state machines, we will talk about the kind of state machines leveraged by Kingly, i.e. hierarchical state transducers with memory. Let’s see how all of this is useful to specify the behavior of reactive applications.</p>
 
   
+  
+    <div class="next-links">
+      
+      
+      
+      
+        <span style="float: right;"><a href="/documentation/v1/concepts/model-with-machines.html">Implementing UIs with state machines</a> →</span>
+      
+    </div>
   
   <div class="footer">
     Caught a mistake?
