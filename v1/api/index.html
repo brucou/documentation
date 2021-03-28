@@ -244,48 +244,15 @@
   
     <p>To start defining a state machine with Kingly, it is necessary to get acquainted with:</p>
 <ul>
-<li>the basic state machine formalism</li>
-<li>its extension, including hierarchy (compound states), and history states</li>
-<li>the library API</li>
-<li>the semantics for a Kingly machine</li>
+<li>the basic state machine formalism;</li>
+<li>its extension, including hierarchy (compound states), and history states;</li>
+<li>the library’s API; and</li>
+<li>Kingly machine semantics.</li>
 </ul>
-<p>For those with interest in software architecture, we will start with the principles at the core of Kingly design. Alternatively, you can skip to the next section where we introduce the Kingly configuration for standard state machines and hierarchical state machines. We then cover in detail the API semantics. </p>
-<p>In the remainder of this page, we will dedicate a section to each function part of the Kingly API. Those sections aim to serve as a reference documentation for the function. If there is anything you would like to add, ping me on <a href="https://twitter.com/bricoi1" target="_blank" rel="noopener">twitter</a>. </p>
-<h2 id="API-design"><a href="#API-design" class="headerlink" title="API design"></a>API design</h2><p>The key objectives for the API were:</p>
-<ul>
-<li><strong>generality</strong>, <strong>reusability</strong>, and <strong>simplicity</strong> <ul>
-<li>there is no explicit provision made to accommodate specific use cases or frameworks</li>
-<li>it must be possible to add a <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.92.6145&amp;rep=rep1&amp;type=pdf" target="_blank" rel="noopener">concurrency and/or communication mechanism</a> on top of the current design</li>
-<li>it must be possible to integrate smoothly into React, Angular, and your popular framework</li>
-<li>support for both interactive and reactive programming</li>
-</ul>
-</li>
-<li>parallel and sequential composability of state machines</li>
-</ul>
-<p>As a result of this, the following choices were made:</p>
-<ul>
-<li><strong>functional interface</strong>: the state machine is just a function. As such, it is a black-box, and only its computed outputs can be observed</li>
-<li><strong>complete encapsulation</strong> of the state of the machine</li>
-<li><strong>no effects</strong> performed by the machine</li>
-<li>no exit and entry actions, or activities as in other state machine formalisms<ul>
-<li>there is no loss of generality as both entry and exit actions can be implemented with our state machine. There is simply no syntactic support for it in the core API. This can however be provided through standard functional programming patterns (higher-order functions, etc.)</li>
-</ul>
-</li>
-<li>every computation performed is synchronous (asynchrony is an effect)</li>
-<li>action factories return the <strong>updates</strong> to the extended state to avoid any unwanted direct modification of the extended state (API user must provide such update function, which in turn allows him to use any formalism to represent state - for instance <code>immutable.js</code>)</li>
-<li>no restriction is made on the outputs of Kingly machines, but inputs must follow some conventions (if a machine’s output match those conventions, two such machines can be sequentially composed</li>
-<li>parallel composition naturally occurs by feeding two state machines the same input(s))<ul>
-<li>as a result, reactive programming is naturally enabled. If <code>inputs</code> is a stream of well-formatted machine inputs, and <code>f</code> is the fsm, then the stream of outputs will be <code>inputs.map(f)</code>. It is so simple that we do not even surface it at the API level.</li>
-</ul>
-</li>
-</ul>
-<p>Concretely, our state machine will be created by the factory function <code>createStateMachine</code>, which returns a state machine which:</p>
-<ul>
-<li>immediately positions itself in its configured initial state (as defined by its initial control state and initial extended state) </li>
-<li>will compute an output for any input that is sent to it since that</li>
-</ul>
-<p>Let us insist again on the fact that the state machine is not, in general, a pure function of its inputs. However, a given output of the machine depends exclusively on the sequence of inputs it has received so far (<a href="https://en.wikipedia.org/wiki/Causal_system" target="_blank" rel="noopener">causality property</a>). This means that it is possible to associate to a state machine another function that takes a sequence of inputs into a sequence of outputs, in a way that <strong>that</strong> function is pure. This is what enables simple and automated testing.</p>
-<h2 id="General-concepts"><a href="#General-concepts" class="headerlink" title="General concepts"></a>General concepts</h2><p>We encourage the novice reader to refer to the <a href="../tutorials">tutorials</a> for a step-by-step introduction to the concepts, with examples analyzed by order of complexity. In this section, we will use the example of a reasonably complex CD player application, whose behavior is modelized by a hierarchical state machine. For this example, we will show a run of the machine, and by doing so, illustrate advanced concepts such as compound states, and history states. This example will be focused on the modeling rather than the implementation. The reader can refer to the <a href="../examples">examples</a> section of this documentation for full-fledged examples. </p>
+<p>In this section, we explicit the Kingly’s API for standard state machines and hierarchical state machines; and cover in detail the API semantics. For those with interest in software architecture, we also detail the principles at the core of Kingly design. </p>
+<p>In the remainder of this page, we will dedicate a sub-section to each function part of the Kingly API. Those sections aim to serve as a <strong>reference documentation</strong> for the function. If there is anything you would like to add, <a href="https://github.com/brucou/kingly/issues/new" target="_blank" rel="noopener">let us know!</a>. We love to hear from you. </p>
+<p>Readers who would prefer a step-by-step introduction to the concepts may refer to the <a href="../tutorials">tutorials</a>.</p>
+<h2 id="General-concepts"><a href="#General-concepts" class="headerlink" title="General concepts"></a>General concepts</h2><p>In this section, we will use the example of a reasonably complex CD player application, whose behavior is modeled by a hierarchical state machine. For this example, we will show a run of the machine, and by doing so, illustrate advanced concepts such as compound states, and history states. This example will be focused on the modeling rather than the implementation. The reader can refer to the <a href="../examples">examples</a> section of this documentation for full-fledged examples. </p>
 <h3 id="CD-drawer-modelization"><a href="#CD-drawer-modelization" class="headerlink" title="CD drawer modelization"></a>CD drawer modelization</h3><p>This example is taken from Ian Horrock’s seminal book on statecharts and is the specification of a CD player. The behavior of the CD player is pretty straight forward and understandable immediately from the visualization. From a didactical point of view, the example serves to feature advanced characteristics of hierarchical state machines, including history states, composite states,  transient states, automatic transitions, and entry points. For a deeper understanding of how the transitions work in the case of a hierarchical machine, you can have a look at the <a href="https://github.com/brucou/kingly#terminology" target="_blank" rel="noopener">terminology</a> and <a href="#Example-run">sample run</a> for the CD player machine.</p>
 <p><img src="http://i.imgur.com/ygsOVi9.jpg" alt="cd player state chart"></p>
 <p>The salient facts are:</p>
@@ -553,6 +520,40 @@
 <li>the purity of functions cannot be checked, even at runtime</li>
 </ul>
 <p>Contracts enforcement can be parameterized with <code>settings.debug.checkContracts</code>.</p>
+<h2 id="Design-goals"><a href="#Design-goals" class="headerlink" title="Design goals"></a>Design goals</h2><p>The key objectives for the API were:</p>
+<ul>
+<li><strong>generality</strong>, <strong>reusability</strong>, and <strong>simplicity</strong> <ul>
+<li>there is no explicit provision made to accommodate specific use cases or frameworks</li>
+<li>it must be possible to add a <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.92.6145&amp;rep=rep1&amp;type=pdf" target="_blank" rel="noopener">concurrency and/or communication mechanism</a> on top of the current design</li>
+<li>it must be possible to integrate smoothly into React, Angular, and your popular framework</li>
+<li>support for both interactive and reactive programming</li>
+</ul>
+</li>
+<li>parallel and sequential composability of state machines</li>
+</ul>
+<p>As a result of this, the following choices were made:</p>
+<ul>
+<li><strong>functional interface</strong>: the state machine is just a function. As such, it is a black-box, and only its computed outputs can be observed</li>
+<li><strong>complete encapsulation</strong> of the state of the machine</li>
+<li><strong>no effects</strong> performed by the machine</li>
+<li>no exit and entry actions, or activities as in other state machine formalisms<ul>
+<li>there is no loss of generality as both entry and exit actions can be implemented with our state machine. There is simply no syntactic support for it in the core API. This can however be provided through standard functional programming patterns (higher-order functions, etc.)</li>
+</ul>
+</li>
+<li>every computation performed is synchronous (asynchrony is an effect)</li>
+<li>action factories return the <strong>updates</strong> to the extended state to avoid any unwanted direct modification of the extended state (API user must provide such update function, which in turn allows him to use any formalism to represent state - for instance <code>immutable.js</code>)</li>
+<li>no restriction is made on the outputs of Kingly machines, but inputs must follow some conventions (if a machine’s output match those conventions, two such machines can be sequentially composed</li>
+<li>parallel composition naturally occurs by feeding two state machines the same input(s))<ul>
+<li>as a result, reactive programming is naturally enabled. If <code>inputs</code> is a stream of well-formatted machine inputs, and <code>f</code> is the fsm, then the stream of outputs will be <code>inputs.map(f)</code>. It is so simple that we do not even surface it at the API level.</li>
+</ul>
+</li>
+</ul>
+<p>Concretely, our state machine will be created by the factory function <code>createStateMachine</code>, which returns a state machine which:</p>
+<ul>
+<li>immediately positions itself in its configured initial state (as defined by its initial control state and initial extended state) </li>
+<li>will compute an output for any input that is sent to it since that</li>
+</ul>
+<p>Let us insist again on the fact that the state machine is not, in general, a pure function of its inputs. However, a given output of the machine depends exclusively on the sequence of inputs it has received so far (<a href="https://en.wikipedia.org/wiki/Causal_system" target="_blank" rel="noopener">causality property</a>). This means that it is possible to associate to a state machine another function that takes a sequence of inputs into a sequence of outputs, in a way that <strong>that</strong> function is pure. This is what enables simple and automated testing.</p>
 
   
   
