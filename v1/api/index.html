@@ -214,6 +214,13 @@
     
     
     <li>
+      <a href="/documentation/v1/api/createPureStateMachine.html" class="sidebar-link">createPureStateMachine</a>
+    </li>
+  
+    
+    
+    
+    <li>
       <a href="/documentation/v1/api/makeWebComponent.html" class="sidebar-link">makeWebComponentFromFsm</a>
     </li>
   
@@ -242,27 +249,28 @@
     <h1>Overview</h1>
   
   
-    <p>To start defining a state machine with Kingly, it is necessary to get acquainted with:</p>
+    <p>In this section, we explicit the Kingly’s API for standard state machines and hierarchical state machines; and cover in detail the API semantics. For those with interest in software architecture, we also detail the principles at the core of Kingly design. </p>
+<p>To start defining a state machine with Kingly, it is necessary to get acquainted with:</p>
 <ul>
 <li>the basic state machine formalism;</li>
 <li>its extension, including hierarchy (compound states), and history states;</li>
 <li>the library’s API; and</li>
 <li>Kingly machine semantics.</li>
 </ul>
-<p>In this section, we explicit the Kingly’s API for standard state machines and hierarchical state machines; and cover in detail the API semantics. For those with interest in software architecture, we also detail the principles at the core of Kingly design. </p>
-<p>In the remainder of this page, we will dedicate a sub-section to each function part of the Kingly API. Those sections aim to serve as a <strong>reference documentation</strong> for the function. If there is anything you would like to add, <a href="https://github.com/brucou/kingly/issues/new" target="_blank" rel="noopener">let us know!</a>. We love to hear from you. </p>
-<p>Readers who would prefer a step-by-step introduction to the concepts may refer to the <a href="../tutorials">tutorials</a>.</p>
-<h2 id="General-concepts"><a href="#General-concepts" class="headerlink" title="General concepts"></a>General concepts</h2><p>In this section, we will use the example of a reasonably complex CD player application, whose behavior is modeled by a hierarchical state machine. For this example, we will show a run of the machine, and by doing so, illustrate advanced concepts such as compound states, and history states. This example will be focused on the modeling rather than the implementation. The reader can refer to the <a href="../examples">examples</a> section of this documentation for full-fledged examples. </p>
-<h3 id="CD-drawer-modelization"><a href="#CD-drawer-modelization" class="headerlink" title="CD drawer modelization"></a>CD drawer modelization</h3><p>This example is taken from Ian Horrock’s seminal book on statecharts and is the specification of a CD player. The behavior of the CD player is pretty straight forward and understandable immediately from the visualization. From a didactical point of view, the example serves to feature advanced characteristics of hierarchical state machines, including history states, composite states,  transient states, automatic transitions, and entry points. For a deeper understanding of how the transitions work in the case of a hierarchical machine, you can have a look at the <a href="https://github.com/brucou/kingly#terminology" target="_blank" rel="noopener">terminology</a> and <a href="#Example-run">sample run</a> for the CD player machine.</p>
+<p>While that may seem like a lot, it is actually fairly simple to get started and progressively build up skills. Readers may find a gradual step-by-step introduction to the concepts may refer to the <a href="../tutorials">tutorials</a>. You may want to go back and forth between the present reference and the tutorials, as one complements the other. The reader can also refer to the <a href="../examples">examples</a> section for full-fledged additional examples. </p>
+<p>This section aim to serve as a <strong>reference documentation</strong> and should contain the entire description of the public Kingly API. We also provide a glossary of terms that you can refer to anytime you doubt the meaning of a word.</p>
+<p>If there is anything you would like to add or any feedback on the current API, <a href="https://github.com/brucou/kingly/issues/new" target="_blank" rel="noopener">let us know!</a> We love to hear from you. </p>
+<h2 id="General-concepts"><a href="#General-concepts" class="headerlink" title="General concepts"></a>General concepts</h2><p>In this section, we will use the example of a reasonably complex CD player application, whose behavior is modeled by a hierarchical state machine. For this example, we will show a run of the machine, and by doing so, illustrate advanced concepts such as compound states, and history states. This example will be focused on the modeling rather than the implementation.</p>
+<h3 id="CD-drawer-modeling"><a href="#CD-drawer-modeling" class="headerlink" title="CD drawer modeling"></a>CD drawer modeling</h3><p>This example is taken from Ian Horrock’s seminal book on statecharts and is the specification of a CD player. The behavior of the CD player should be understandable from the visualization, or if not, from your previous experience with a CD player. From a didactic point of view, the example features advanced characteristics of hierarchical state machines, including history states, composite states,  transient states, automatic transitions, and entry points. For a deeper understanding of how the transitions work in the case of a hierarchical machine, you can have a look at the <a href="https://github.com/brucou/kingly#terminology" target="_blank" rel="noopener">terminology</a> and <a href="#Example-run">sample run</a> for the CD player machine.</p>
 <p><img src="http://i.imgur.com/ygsOVi9.jpg" alt="cd player state chart"></p>
 <p>The salient facts are:</p>
 <ul>
 <li><code>NO Cd loaded</code>, <code>CD_Paused</code> are control states which are composite states: they are themselves state machines comprised of control states.</li>
-<li>The control state <code>H</code> is a pseudo-control state called shallow history state</li>
+<li>The control state <code>H</code> is a pseudo-control state called shallow history state.</li>
 <li>All composite states feature an entry point and an automatic transition. For instance, <code>CD_Paused</code> has the sixth control state as an entry point, and the transition from <code>CD_Paused</code> into that control state is called an automatic transition. Entering the <code>CD_Paused</code> control state automatically triggers that transition.</li>
-<li><code>Closing CD drawer</code> is a transient state. The machine will automatically transition away from it, picking a path according to the guards configured on the available exiting transitions</li>
+<li><code>Closing CD drawer</code> is a transient state. The machine will automatically transition away from it, picking a path according to the guards configured on the available exiting transitions.</li>
 </ul>
-<h3 id="Example-run"><a href="#Example-run" class="headerlink" title="Example run"></a>Example run</h3><p>To illustrate the previously described machine semantics, let’s run the CD player example.</p>
+<h3 id="Example-run"><a href="#Example-run" class="headerlink" title="Example run"></a>Example run</h3><p>To illustrate the previously described machine semantics, let’s run the CD player example. The machine processes internal and external events. External events comes from the user or external systems. Internal events are generated by the machine itself. For instance, the <code>INIT</code> event is an internal event that the machine triggers to go to its initial control state (<code>No Cd loaded</code> here), or every time it transitions to a compound state (for instance <code>CD Loaded</code>) — in order to go to the initial control control state of the compound state. </p>
 <div class="table-container">
 <table>
 <thead>
@@ -275,7 +283,7 @@
 <tbody>
 <tr>
 <td>INIT_STATE</td>
-<td style="text-align:center">INIT_EVENT</td>
+<td style="text-align:center">INIT</td>
 <td></td>
 </tr>
 <tr>
@@ -300,7 +308,7 @@
 </tr>
 <tr>
 <td>Closing CD Drawer</td>
-<td style="text-align:center">eventless</td>
+<td style="text-align:center">(eventless)</td>
 <td></td>
 </tr>
 <tr>
@@ -341,15 +349,20 @@
 </tbody>
 </table>
 </div>
+<p>The previous table illustrates the semantics of the visualization. At start, the machine will transition to the <code>No Cd Loaded</code> control state. As this is a compound state, it will transition again to the initial control state of that compound state and end up in the <code>CD Drawer Closed</code> state. That compound state is not a compound state, so the machine will remain there. When the user triggers the <code>Eject</code> event, the graph tells us that the machine will transition to the <code>CD Drawer Open</code> control state. Triggering <code>Eject</code> again will have the machine transition to the <code>Closing CD Drawer</code> control state. That control state is eventless. That means that there are no events that causes it to change its control state. Instead the machine immediately takes any transition that is possible. We have two here, according to whether there is a CD in the drawer or not. You can try to do the run in your head  by looking at the graph and compare your results with the previous table.</p>
+<p>This is how a graph is used to model the behavior of an application. The control state (graph node) in which the machine is has transitions (graph edges) that define what events are reacted to, and what those reactions are (edge labels).</p>
 <p>Note:</p>
 <ul>
-<li>the state entry semantics — entering <code>No Cd Loaded</code> leads to enter <code>CD Drawer Closed</code></li>
-<li>the guard — because we put a CD in the drawer, the machine transitions from <code>Closing CD Drawer</code> to <code>CD Loaded</code> </li>
-<li>the eventless transition — the latter is an eventless transition: the guards are automatically evaluated to select a transition to progress the state machine (by contract, there must be one)</li>
-<li>the hierarchy of states — the <code>Forward down</code> event transitions the state machines to <code>Stepping forwards</code>, as it applies to all atomic states nested in the <code>CD Loaded subgroup</code> control state</li>
-<li>the history semantics — releasing the forward key on the CD player returns to <code>CD Playing</code> the last atomic state for compound state <code>CD Loaded subgroup</code>.</li>
+<li>the state entry semantics — entering <code>No Cd Loaded</code> leads to enter <code>CD Drawer Closed</code>.</li>
+<li>the guard — because we put a CD in the drawer, the machine transitions from <code>Closing CD Drawer</code> to <code>CD Loaded</code> .</li>
+<li>the eventless transition — the guards are automatically evaluated to select a transition to progress the state machine (by contract, there must be one).</li>
+<li>the hierarchy of states — the <code>Forward down</code> event transitions the state machines to <code>Stepping forwards</code>, as it applies to all atomic states nested in the <code>CD Loaded subgroup</code> control state.</li>
+<li>the history semantics — releasing the forward key on the CD player returns to <code>CD Playing</code>, the last atomic state for compound state <code>CD Loaded subgroup</code>.</li>
 </ul>
-<h2 id="Kingly-machine-semantics"><a href="#Kingly-machine-semantics" class="headerlink" title="Kingly machine semantics"></a>Kingly machine semantics</h2><p>We give here a quick summary of the behavior of the state machine:</p>
+<p>The <a href="https://brucou.github.io/documentation/v1/tooling/graph_editing.html#Syntax-reference">full syntax for the visual language</a> used to model state machines with graphs can be found in the <em>Graph editor</em> section. </p>
+<p>From here, you can go to explore the <code>createStateMachine</code> API that allows you creating state machines. The parameters passed to the function will include a JavaScript encoding of graphs like the one we just presented.</p>
+<h2 id="Kingly-machine-semantics"><a href="#Kingly-machine-semantics" class="headerlink" title="Kingly machine semantics"></a>Kingly machine semantics</h2><p>The following is fairly technical. The objective is to provide you with a thorough understanding of how a Kingly machine processes inputs. You may not need to reach this level of details if you are just starting with the Kingly library. You may want to review the <a href="../tutorials">tutorials</a> and <a href="../examples">additional examples</a>.</p>
+<p>We give here a quick summary of the behavior of a Kingly state machine:</p>
 <p><strong>Preconditions</strong></p>
 <ul>
 <li>the machine is configured with a set of control states, an initial extended state, transitions, guards, action factories, and user settings</li>
@@ -559,7 +572,7 @@
   
   <div class="footer">
     Caught a mistake?
-    <a href="https://github.com/brucou/documentation/tree/master/v1/api/index.html" rel="noopener" target="_blank">
+    <a href="https://github.com/brucou/kingly-site/tree/master/v1/api/index.html" rel="noopener" target="_blank">
       Edit this on GitHub!
     </a>
     <a id="follow-button" class="btn" title="Kingly Github" href="https://github.com/brucou/kingly">
