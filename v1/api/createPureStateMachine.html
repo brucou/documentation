@@ -249,7 +249,42 @@
     <h1>createPureStateMachine</h1>
   
   
-    <p><img src="../../images/coming-soon/pngkit_under-construction-sign-png_880130.png" alt></p>
+    <p><code>createPureStateMachine :: FSM_Def -&gt; FSM_Settings -&gt; Pure_FSM</code></p>
+<h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>The <code>createPureStateMachine</code> factory accepts the same parameters as the <code>createStateMachine</code> factory. It however returns a function that implements what we call a pure state machine. This is a term that we made up (i.e. it does not exist in the literature) to reflect the difference in signature of the returned function. A pure state machine not only requires an input, but also needs to be provided with a state from which to operate its computation. It then returns not only the outputs computed by the machine as per the standard formalism, but also the updated state. In other words, the pieces of state that were hidden (encapsulated) in the machine returned by the <code>createStateMachine</code> factory are now exposed at the API level. The main driver for the pure factory is to facilitate remote workflows, where the state of a machine can be saved in a remote database to be restored at a later time. The second main driver is to speed up testing. </p>
+<p>For a detailed reference of the factory parameters, please refer to the <a href="./createStateMachine.html">reference documentation for the <code>createStateMachine</code> factory</a>.</p>
+<h3 id="Pure-FSM"><a href="#Pure-FSM" class="headerlink" title="Pure_FSM"></a>Pure_FSM</h3><p>The type is as follows:</p>
+<pre><code class="hljs js"><span class="hljs-comment">/**
+ * @callback Pure_FSM
+ * @param &#123;*&#125; input
+ * @param &#123;FSM_Internal_State&#125; fsm_state
+ * @returns &#123;&#123;outputs: FSM_Outputs|Error, fsmState: FSM_Internal_State&#125;&#125;
+ */</span></code></pre>
+<p><code>FSM_Internal_State</code> is an <a href="https://en.wikipedia.org/wiki/Opaque_data_type" target="_blank" rel="noopener">opaque type</a>. You need not know or manipulate it. It only serves as an argument to a machine invocation. There are three semantics available depending on the shape of the <code>fsm_state</code> parameter:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><em>Shape of <code>fsm_state</code></em></th>
+<th>Semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>undefined</em></td>
+<td>The pure machine uses its current internal state to process <code>input</code>.</td>
+</tr>
+<tr>
+<td><em>null</em></td>
+<td>The pure machine is reset and restarts as if it has never been called previously.</td>
+</tr>
+<tr>
+<td><em>opaque type</em></td>
+<td>The pure machine uses the state encapsulated in the opaque type to process <code>input</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The first shape of <code>fsm_state</code> allows using the pure API exactly as the stateful API if that is desired. This makes the stateful API a special case of the more general pure API. The second shape of <code>fsm_state</code> is useful to reset the machine without incurring the creation costs of rerunning the factory. The third shape may be used in the context of property-based testing, where many paths through the machine graph are explored, and we want to avoid the cost of recreating from scratch the machine time for every path. When running thousands of tests, the improvement is sensible. Another use case is using a machine in asynchronous workflows. The pure API gives the possibility to embed the machine in a process that can be stopped (saving the machine state) and resumed (recalling the machine state).</p>
 
   
   
