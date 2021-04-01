@@ -256,7 +256,36 @@
 <p> This library proposes an integration of the Kingly state machine library with React that takes  the shape of a <code>&lt;Machine /&gt;</code> component which can be used in a React application like any other components. The <code>&lt;Machine /&gt;</code> component will listen to user events, compute commands and execute  them, generally leading to updating the screen.</p>
 <h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p><code>react</code>  is a peer dependency. The component has been tested with React 16.4 and above. It may however work with lower versions of React as it does not use hooks, context, etc. If you encounter an issue with a given version of React, please log an issue.</p>
 <pre><code class="hljs sh">npm install react-state-driven</code></pre>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><h3 id="lt-Machine-fsm-renderWith-commandHandlers-eventHandler-preprocessor-effectHandlers-options-gt"><a href="#lt-Machine-fsm-renderWith-commandHandlers-eventHandler-preprocessor-effectHandlers-options-gt" class="headerlink" title="&lt;Machine fsm, renderWith, commandHandlers, eventHandler?, preprocessor?, effectHandlers?, options? /&gt;"></a><code>&lt;Machine fsm, renderWith, commandHandlers, eventHandler?, preprocessor?, effectHandlers?, options? /&gt;</code></h3><p>We expose a <code>&lt;Machine /&gt;</code> React component which will hold the state machine and implement its behaviour using React’s API. The <code>Machine</code> component behaviour is specified by its props. </p>
+<h2 id="Tutorials-and-examples"><a href="#Tutorials-and-examples" class="headerlink" title="Tutorials and examples"></a>Tutorials and examples</h2><p>You can refer to:</p>
+<ul>
+<li>the <a href="../tutorials/chess-game.html">Two-player chess game tutorial</a>; </li>
+<li>examples from the project repository:</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Code playground</th>
+<th style="text-align:center">Machine</th>
+<th style="text-align:center">Screenshot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://codesandbox.io/s/ym8vpqm7m9" target="_blank" rel="noopener">TMDb movie search</a></td>
+<td style="text-align:center"><img src="https://github.com/brucou/movie-search-app/raw/specs-all/article/movie%20search%20good%20fsm%20corrected%20flowchart%20no%20emphasis%20switchMap.png" alt="graph"></td>
+<td style="text-align:center"><img src="https://github.com/brucou/movie-search-app/raw/specs-all/article/app%20screenshot%20query%20detail%20-%20success.png" alt="TMDb online interface screenshot"></td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://codesandbox.io/s/flickr-search-app-with-kingly-qivl3?file=/src/index.js" target="_blank" rel="noopener">flickr image search</a></td>
+<td style="text-align:center"><img src="./assets/image%20gallery%20state%20cat.png" alt></td>
+<td style="text-align:center"><img src="https://i.imgur.com/mDQQTX8.png?1" alt="image search interface"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Additional examples may be found in the API reference of the present documentation.</p>
+<h2 id="API-reference"><a href="#API-reference" class="headerlink" title="API reference"></a>API reference</h2><h3 id="lt-Machine-fsm-renderWith-commandHandlers-eventHandler-preprocessor-effectHandlers-options-gt"><a href="#lt-Machine-fsm-renderWith-commandHandlers-eventHandler-preprocessor-effectHandlers-options-gt" class="headerlink" title="&lt;Machine fsm, renderWith, commandHandlers, eventHandler?, preprocessor?, effectHandlers?, options? /&gt;"></a><code>&lt;Machine fsm, renderWith, commandHandlers, eventHandler?, preprocessor?, effectHandlers?, options? /&gt;</code></h3><p>We expose a <code>&lt;Machine /&gt;</code> React component which will hold the state machine and implement its behaviour using React’s API. The <code>Machine</code> component behaviour is specified by its props. </p>
 <p>There are 3 mandatory props and four optional props. The three mandatory props are the machine specifying the component’s behavior, the component to render the screens with, and the command handlers to execute the commands computed by the machine.</p>
 <p>The four optional props exist to address more complex use cases without modifying the <code>&lt;Machine/&gt;</code> component. This is in line with the open-closed principle which states that “software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification”. </p>
 <p>We will examine these use cases in a dedicated section. Let’s now describe the semantics of the component:</p>
@@ -478,7 +507,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <li>type contracts</li>
 <li><code>next</code> is injected as a <em>prop</em> to the <code>renderWith</code> component and as such cannot be overridden by the component’s defined <em>props</em></li>
 </ul>
-<h2 id="Semantics"><a href="#Semantics" class="headerlink" title="Semantics"></a>Semantics</h2><ul>
+<h3 id="Semantics"><a href="#Semantics" class="headerlink" title="Semantics"></a>Semantics</h3><ul>
 <li>The <code>&lt;Machine /&gt;</code> component:<ul>
 <li>initializes the raw event source (event handler) which receives and forwards all raw events (user events and system events)</li>
 <li>creates a global command handler to dispatch to user-defined command handlers</li>
@@ -510,7 +539,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <li>The event handler must be an object with a <strong>synchronous</strong> <code>next</code> method (<code>Observer</code> interface) and optionally a <code>subscribe</code> method (<code>Observable</code> interface)</li>
 <li>The event source is terminated when the <code>&lt;Machine/&gt;</code> component is removed from the screen (<code>componentWillUnmount</code> lifecycle method)</li>
 </ul>
-<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>We are going all along to refer to an image search application example to illustrate our argumentation. Cf. <a href="#example">Example section</a> for more details.</p>
+<h2 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a>Concepts</h2><h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><p>We are going all along to refer to an image search application example to illustrate our argumentation. Cf. <a href="#example">Example section</a> for more details.</p>
 <p>In a traditional architecture, a simple scenario would be expressed as follows:</p>
 <figure class="fullwidth"><p><img src="https://imgur.com/AbCtBgn.png" alt="image search basic scenario"></p>
 </figure>
@@ -553,31 +582,7 @@ preprocessor: <span class="hljs-function"><span class="hljs-params">rawEventSour
 <blockquote id="fn_1">
 <sup>1</sup>. Another term used elsewhere is <em>deterministic</em> functions, but we       found that term could be confusing.<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
 </blockquote>
-<h2 id="Code-examples"><a href="#Code-examples" class="headerlink" title="Code examples"></a>Code examples</h2><p>For the impatient ones, you can directly review the available demos:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Code playground</th>
-<th style="text-align:center">Machine</th>
-<th style="text-align:center">Screenshot</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><a href="https://codesandbox.io/s/ym8vpqm7m9" target="_blank" rel="noopener">TMDb movie search</a></td>
-<td style="text-align:center"><img src="https://github.com/brucou/movie-search-app/raw/specs-all/article/movie%20search%20good%20fsm%20corrected%20flowchart%20no%20emphasis%20switchMap.png" alt="graph"></td>
-<td style="text-align:center"><img src="https://github.com/brucou/movie-search-app/raw/specs-all/article/app%20screenshot%20query%20detail%20-%20success.png" alt="TMDb online interface screenshot"></td>
-</tr>
-<tr>
-<td style="text-align:left"><a href="https://codesandbox.io/s/flickr-search-app-with-kingly-qivl3?file=/src/index.js" target="_blank" rel="noopener">flickr image search</a></td>
-<td style="text-align:center"><img src="./assets/image%20gallery%20state%20cat.png" alt></td>
-<td style="text-align:center"><img src="https://i.imgur.com/mDQQTX8.png?1" alt="image search interface"></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="API-design-goals"><a href="#API-design-goals" class="headerlink" title="API design goals"></a>API design goals</h2><p>We want to have an integration that is generic enough to accommodate a large set of use cases, and specific enough to be able to take advantage as much as possible of the <code>React</code> ecosystem and API. Unit-testing should ideally be based on the specifications of the behaviour of the component rather than its implementation details, and leverage the automatic test generator of the underlying <code>kingly</code> library. In particular:</p>
+<h3 id="API-design-goals"><a href="#API-design-goals" class="headerlink" title="API design goals"></a>API design goals</h3><p>We want to have an integration that is generic enough to accommodate a large set of use cases, and specific enough to be able to take advantage as much as possible of the <code>React</code> ecosystem and API. Unit-testing should ideally be based on the specifications of the behaviour of the component rather than its implementation details, and leverage the automatic test generator of the underlying <code>kingly</code> library. In particular:</p>
 <ul>
 <li>it should be seamless to use both controlled and uncontrolled components</li>
 <li>it should be possible to use without risk of interference standard React features like <code>Context</code></li>
