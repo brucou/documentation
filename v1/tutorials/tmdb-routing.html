@@ -261,7 +261,7 @@
 </table>
 </div>
 <p>This, in addition to the requirements about loading screens, gives us a more explicit <code>fsmA</code>:</p>
-<label for="mn-demo-12" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-12" class="margin-toggle"><span class="marginnote"><p>Yes, we could implement <code>fsmA</code> without using the <em>ROUTING</em> control state. We do need the eventless <em>ROUTING</em> state though to express <code>fsmA</code> semantics in the equivalent state machine, so we keep it here to allow for direct comparison.</p>
+<label for="mn-demo-11" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-11" class="margin-toggle"><span class="marginnote"><p>Yes, we could implement <code>fsmA</code> without using the <em>ROUTING</em> control state. We do need the eventless <em>ROUTING</em> state though to express <code>fsmA</code> semantics in the equivalent state machine, so we keep it here to allow for direct comparison.</p>
 </span>
 <pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsmA</span>(<span class="hljs-params">event</span>)</span>&#123;
   <span class="hljs-keyword">if</span> (controlState === TMDB_APP) &#123;
@@ -333,7 +333,7 @@
     (...) <span class="hljs-comment">// no changes</span>
 &#125;</code></pre>
 <p>Then we collapse the two aforementioned control states into a new one <code>MOVIE_QUERY</code> (and add an <code>extendedState</code> variable to the <code>controlState</code> variable in closure of the top level <code>fsm</code> — not visible here):</p>
-<label for="mn-demo-27" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-27" class="margin-toggle"><span class="marginnote"><p>Yes, we could refactor further and join together the <code>matches(route...)</code> branches and conserve semantics. We won’t. It is beneficial when we read a machine to be able to match it quickly to the specifications. Because our specifications mention three routes with differentiated behaviour, we keep those three routes visible in three separate branches. </p>
+<label for="mn-demo-26" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-26" class="margin-toggle"><span class="marginnote"><p>Yes, we could refactor further and join together the <code>matches(route...)</code> branches and conserve semantics. We won’t. It is beneficial when we read a machine to be able to match it quickly to the specifications. Because our specifications mention three routes with differentiated behaviour, we keep those three routes visible in three separate branches. </p>
 </span>
 <pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsmA</span>(<span class="hljs-params">event</span>)</span>&#123;
   <span class="hljs-keyword">if</span> (controlState === TMDB_APP) &#123;
