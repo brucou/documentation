@@ -52,9 +52,8 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
-      <a class="menu-button"></a>
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -256,9 +255,7 @@
     <h2 id="Target-architecture"><a href="#Target-architecture" class="headerlink" title="Target architecture"></a>Target architecture</h2><p>As mentioned in the <a href="../concepts/model-with-machines.html">Concepts section</a>, Kingly’s preferred architecture is the following:</p>
 <p><img src="../../graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly.jpg" alt="kingly-favoured ui architecture"></p>
 <p>As such, using Kingly in a vanilla-JS implementation involves defining modules for the interfaced systems and command handlers, and interfaces of those modules with Kingly.</p>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>We already provided an example of such integration in the <a href="../tutorials/password-meter-ui-implementation.html#Vanilla-js">password meter tutorial</a>.  </p>
-<p>Additionally, I am in the investigation phase for writing the <a href="https://www.youtube.com/watch?v=FiEVfa1OK_o" target="_blank" rel="noopener">BoulderDash game</a> in vanilla-JS, leveraging Kingly to handle game events.</p>
-<p>Follow the dedicated account on <a href="https://twitter.com/bricoi1" target="_blank" rel="noopener">twitter</a> to be informed when the page is ready! </p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>You can refer to the provided example of such integration available in the <a href="../tutorials/password-meter-ui-implementation.html#Vanilla-js">password meter tutorial</a>.</p>
 
   
   
@@ -281,6 +278,23 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </body>
 </html>
