@@ -553,7 +553,7 @@ found event handler!
 WHEN EVENT init ▶&#123;count: 0&#125;
 IN STATE nok
 CASE: unguarded transition
-THEN : we execute the action ACTION_IDENTITY
+THEN: we execute the action ACTION_IDENTITY
 left state -nok-
 AND TRANSITION TO STATE -counting-
 ENTERING NEXT STATE: -counting-
@@ -565,7 +565,7 @@ found event handler!
 WHEN EVENT clicked undefined
 IN STATE counting
 CASE: unguarded transition
-THEN : we execute the action incCounterAndDisplay
+THEN: we execute the action incCounterAndDisplay
 left state -counting-
 AND TRANSITION TO STATE -counting-
 ENTERING NEXT STATE: -counting-
