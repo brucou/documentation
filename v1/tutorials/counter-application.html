@@ -532,7 +532,7 @@
     <h1>Implementation</h1>
   
   
-    <div class="tip"><p>This section deals with a very trivial example often used as a starter by user interface libraries: a counter application. As with any such example, it does not properly illustrate the power of the library. This tutorial gives a first feel of the Kingly API. It also shows that Kingly state machines are simple stateful JavaScript functions, like the event handlers that you have been writing. Lastly, it introduces slightly the architecture that Kingly encourages.</p>
+    <div class="tip"><p>This section deals with a very trivial example often used as a starter by user interface libraries: a counter application. The goal of such example is not to illustrate the power of the library. It rather aims at quickly giving you a feel of the API. The concepts (state machines, behavior modeling) will come as you go through the remainder of the tutorials. The goal here is thus to show immediately that Kingly state machines are simple stateful JavaScript functions, like the event handlers that you have been writing. Lastly, we introduce the architecture that Kingly encourages.</p>
 </div>
 <p>Let’s implement the simplest behavior we can think of: a counter. A behavior is the set of reactions that corresponds to the set of accepted events. Here, there is only one event: the user click on the incrementing button. The behavior of the counter application is to display an incremented counter every time the user clicks the incrementing button. This behavior can be represented with a state machine that:</p>
 <ul>
