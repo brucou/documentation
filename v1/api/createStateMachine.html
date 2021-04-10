@@ -380,7 +380,7 @@ const settings = &#123; <span class="hljs-attr">debug</span>: &#123; <span class
   &#123; <span class="hljs-attr">from</span>: PAUSED_CLOCK, <span class="hljs-attr">event</span>: CLOCK_CLICKED, <span class="hljs-attr">to</span>: historyState(DEEP, GAME_ON), <span class="hljs-attr">action</span>: resumeClock &#125;,
   (...)
 ];</code></pre>
-<p>If there is any missing information, you may refer to the <a href="https://github.com/brucou/kingly/blob/master/src/types.js" target="_blank" rel="noopener">types file</a> in the project repository. You may also <a href="https://github.com/brucou/kingly/issues/new" target="_blank" rel="noopener">leave us a comment</a>, we will update the documentation to reflect the missing information.</p>
+<p>If there is any missing information, you may refer to the <a href="https://github.com/brucou/kingly/blob/master/src/types.js" target="_blank" rel="noopener">types file</a> in the project repository. You may also <a href="https://github.com/brucou/kingly/discussions/new" target="_blank" rel="noopener">leave us a comment</a>, we will update the documentation to reflect the missing information.</p>
 <h4 id="initial-extended-state"><a href="#initial-extended-state" class="headerlink" title="initial extended state"></a><code>initial extended state</code></h4><p>This parameter holds the initial extended state for the machine.</p>
 <h4 id="updateState"><a href="#updateState" class="headerlink" title="updateState"></a><code>updateState</code></h4><p>This parameter is a reducer function that takes a state and a series of updates to compute an update state: <code>updateState: function(ExtendedState, ExtendedStateUpdates) : ExtendedState</code>. <code>ExtendedStateUpdates</code> MUST be an array. The empty array is used by default to indicate the absence of modifications of the extended state.</p>
 <p>The <code>updateState</code> property is mandatory. We successfully used <a href="http://jsonpatch.com/" target="_blank" rel="noopener">JSON patch</a> operations for model updates, but you can choose to use the immutable library of your choice or a simple reducer. The important point is that the extended state <strong>should not be modified in place</strong>, i.e. <code>updateState</code> should be a pure function. You can relax that condition in some trivial cases where you do not need immutability (e.g., specific and limited tests). In the general case, do not shoot yourself in the feet. Bugs due to mutability are incredibly hard to trace back to their origin.</p>
@@ -453,7 +453,7 @@ const settings = &#123; <span class="hljs-attr">debug</span>: &#123; <span class
     <a href="https://github.com/brucou/kingly-site/tree/master/src/v1/api/createStateMachine.md" rel="noopener" target="_blank">
             Edit this on GitHub!
     </a><br>
-    Can we help you?     <a href="https://github.com/brucou/kingly/issues/new" rel="noopener" target="_blank">
+    Can we help you?     <a href="https://github.com/brucou/kingly/discussions/new" rel="noopener" target="_blank">
       Let us know!
     </a>
   </div>
