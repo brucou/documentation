@@ -534,19 +534,53 @@
   
     <div class="tip"><p>This section deals with a very trivial example often used as a starter by user interface libraries: a counter application. The goal of such example is not to illustrate the power of the library. It rather aims at quickly giving you a feel of the API. The concepts (state machines, behavior modeling) will come as you go through the remainder of the tutorials. So don’t worry if there are new words whose meaning is not entirely clear from the get go. The goal here is to show immediately that Kingly state machines are simple stateful JavaScript functions, like the event handlers that you have been writing. We also introduce the architecture that Kingly encourages.</p>
 </div>
-<p>Let’s implement the simplest behavior we can think of: a counter. A behavior is the set of reactions that corresponds to the set of accepted events. Here, there is only one event: the user click on the incrementing button. The behavior of the counter application is to display an incremented counter every time the user clicks the incrementing button. This behavior can be represented with a state machine that:</p>
+<h2 id="What-you-will-learn"><a href="#What-you-will-learn" class="headerlink" title="What you will learn"></a>What you will learn</h2><p>This section uses a fairly simple behavior to illustrate key concepts that underlie Kingly usage: application behavior, state machine modeling, and visual language. We also show how the application behavior can be connected to the rest of the application concerns — e.g., displaying screens, fetching remote data.</p>
+<h2 id="Counter-application-behavior"><a href="#Counter-application-behavior" class="headerlink" title="Counter application behavior"></a>Counter application behavior</h2><p>Let’s implement the simplest behavior we can think of: a counter. <strong>The behavior of an application is the mapping of the reactions of the application to the set of possible events</strong>. Here, there is only one event: the user click on the incrementing button. The behavior of the counter application is to display an incremented counter every time the user clicks the incrementing button. In summary:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Reaction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>click on button</td>
+<td>display screen with incremented counter</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Counter-application-modeling"><a href="#Counter-application-modeling" class="headerlink" title="Counter application modeling"></a>Counter application modeling</h2><p>A Kingly state machine is a function with two encapsulated pieces of state that are updated as inputs (events) are processed: the <em>control state</em> and the <em>extended state</em>. To each control state is associated a different way to compute the reaction to events. Any such computations receives the extended state of the machine in addition to the machine input, and returns the reactions (commands) to the processed input, after updating the machine state. In pseudo code, it would look like follows:</p>
+<pre><code class="hljs js"><span class="hljs-keyword">let</span> controlState = ...;
+<span class="hljs-keyword">let</span> extendedState= ...;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsm</span>(<span class="hljs-params">event</span>)</span>&#123;
+  <span class="hljs-keyword">if</span> (controlState === CS1)&#123;
+  <span class="hljs-keyword">return</span> someComputation(extendedState, event)    
+  &#125;
+  <span class="hljs-keyword">if</span> (controlState === CS2)&#123;
+  <span class="hljs-keyword">return</span> anotherComputation(extendedState, event)    
+  &#125;
+&#125;</code></pre>
+<p>The control state takes its name from the fact that it determines the control flow (branch) of the machine. A state machine thus simply breaks down one stateful computation into several stateful computations that only apply when the machine is in specific control states. The challenge of modeling an application behavior is to identify those control states that determine the computation of the machine.</p>
+<p>For our counter application, it is rather simple. We only have one event, and one reaction to compute, so a single control state is enough. The extended state of the machine can host the counter value. The counter application behavior can thus be represented with a state machine that:</p>
 <ul>
-<li>starts  in the <em>Counting</em> state (termed as <em>control state</em>);</li>
-<li>encapsulates the counter value in its internal state (termed as <em>extended state</em>); and</li>
-<li>on every click, updates its internal state (increments the counter), and displays the new screen.</li>
+<li>starts  in the <em>Counting</em> control state;</li>
+<li>encapsulates the counter value in its extended state (initial value 0); and</li>
+<li>on every click, updates its internal state(identical control state, increment extended state), and displays the new screen.</li>
 </ul>
-<p>In other words, the counter behavior may be described as follows:</p>
+<p>State machines can be visually represented by a graph that links together its control states. The counter behavior may for instance be visualized as follows:</p>
 <p><img src="../../graphs/trivial counter machine.png" alt="counter machine"></p>
-<p>The previous graph illustrates the <code>event [guard] / actions</code> notation that is used by the graph editor and throughout all the tutorials. Here there are no guards, as the action must always be computed when the event occurs. </p>
-<p>The machine only computes the commands to execute and updates its internal state. We have left to write the procedures that execute those commands to have the full counter application: </p>
+<p>The previous graph illustrates the <code>event [guard] / actions</code> notation that is used by the graph editor and throughout all the tutorials (guards are optional and here there are no guards). </p>
+<p>Alright. So we have our behavior, the machine that model that behavior, the graph that represents the machine. We still have to draw the application screen. A Kingly machine merely computes commands, it does not execute commands (i.e., it does not perform effects besides updating its own state). We thus have left to write the procedures that execute the  computed commands to have the full counter application. Our implementation is as follows: </p>
 <iframe src="https://codesandbox.io/embed/w6x42521n7?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-<p>Open the console in the playground and have a look at the logs. Click the button, and have another look at the logs. Formatting aside, you should see this:</p>
+<p>Note how in the previous code events are passed as inputs to the machine, leading to commands being computed and executed. In this simple case, we opted for direct DOM updates to render the counter application screen.</p>
+<label for="mn-demo-18" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-18" class="margin-toggle"><span class="marginnote"><p>Logs are activated by passing a console object in <code>settings</code> (<code>{ debug: { console }}</code>).</p>
+</span>
+<p>Now open the console in the playground and have a look at the logs. Click the button, and have another look at the logs. Formatting aside, you should see messages that allow following the machine computation step by step:</p>
 <pre><code class="hljs bash">send event ▶&#123;init: Object&#125;
 
 found event handler!
@@ -575,7 +609,6 @@ OUTPUTS: ▶(1) [Object]
         ▶0: Object
             <span class="hljs-built_in">command</span>: <span class="hljs-string">"render"</span>
             params: 1</code></pre>
-<p>Every time the button is clicked, the corresponding event is processed by the machine which returns the commands to execute. The logs allows you to trace back the machine processing as it receives an input. You can activate the logs by passing a console object in settings (<code>const settings = { debug: { console }};</code>).</p>
 <p>The previous code illustrates a key feature of Kingly’s state machines. <strong>They are normal, plain, standard JavaScript functions!</strong>. That means you can replace the <code>fsm</code> created by Kingly in the previous code by a function <code>controller</code> fulfilling the same specifications:</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> count=<span class="hljs-number">0</span>;
 
@@ -588,8 +621,9 @@ OUTPUTS: ▶(1) [Object]
   
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>
 &#125;</code></pre>
-<p>This is it! There is nothing weird. You write stateful functions like <code>controller</code> all the time when implementing event handlers. Behind the fancy name of state machines is simply a function that computes commands from events. Writing such functions by adopting the discipline of the state machine formalism brings a lot of benefits that will be introduced in the remainder of the tutorials. </p>
-<p>This is the very short story about state machines used for modeling the behavior of user interfaces. The machine works as a controller that transforms inputs/events into commands. The application is implemented by sequential composition of three parts: instantiation of event listeners, computation of the reaction (commands) to events, and execution of the reactions. To execute the command that render a screen, you can use any UI library you fancy, or just plain JavaScript — as we did in this example.</p>
+<p>This is it! You don’t need a PhD to understand Kingly state machines. You write stateful functions like <code>controller</code> all the time when implementing event handlers. Writing such functions by adopting the discipline of the state machine formalism brings a lot of benefits that will be introduced in the remainder of the tutorials. </p>
+<h2 id="What-we-learned"><a href="#What-we-learned" class="headerlink" title="What we learned"></a>What we learned</h2><p>This is the very short story about state machines used for modeling the behavior of user interfaces. The machine works as a controller that transforms inputs/events into commands. The application is implemented by composition of three parts: instantiation of event listeners, computation of the reaction (commands) to events, and execution of the reactions. To execute the command that render a screen, you can use any UI library you fancy, or just plain JavaScript — as we did in this example.</p>
+<p>States machines can be visually represented by a graph whose nodes are the machine’s control states. The  edges of that graph represent the change of control state of the machine as it receives events.</p>
 <p>Let’s move to a more interesting example: <a href="./password-meter.html">a password meter</a>.</p>
 
   

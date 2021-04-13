@@ -264,13 +264,13 @@
 <h2 id="Application-implementation"><a href="#Application-implementation" class="headerlink" title="Application implementation"></a>Application implementation</h2><p>A possible workflow consists of the following steps:</p>
 <ul>
 <li>get a refined understanding of the interface behavior from its informal specifications;</li>
-<li>define the user interface’s interface (i.e. <em>props</em> interface, and dispatched events);</li>
+<li>define the user interface’s interface (i.e., <em>props</em> interface, and dispatched events);</li>
 <li>implement and test the user interface;</li>
-<li>define the command module interface (i.e. which commands are triggered by the user, the shape of those commands, and which events they produce as a result of their execution);</li>
+<li>define the command module interface (i.e., which commands are triggered by the user, the shape of those commands, and which events they produce as a result of their execution);</li>
 <li>implement and test the command module;</li>
 <li>modelize the interface behavior with a graph editor (I recommend <a href="https://www.yworks.com/downloads#yEd" target="_blank" rel="noopener">yed</a>);</li>
 <li>write some tests (with at least all-transitions coverage of the modelized machine);</li>
-<li>write the definition of the machine (i.e. initial state, events, transitions, guards, action factories) and pass the previous tests;</li>
+<li>write the definition of the machine (i.e., initial state, events, transitions, guards, action factories) and pass the previous tests;</li>
 <li>write and pass a few integration tests (all-states coverage may suffice if high confidence derived from unit tests); and</li>
 <li>fully test the machine with automatically generated tests.</li>
 </ul>
