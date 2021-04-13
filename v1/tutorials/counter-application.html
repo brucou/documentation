@@ -578,12 +578,12 @@
 </ul>
 <p>State machines can be visually represented by a graph that links together its control states. The counter behavior may for instance be visualized as follows:</p>
 <p><img src="../../graphs/trivial counter machine.png" alt="counter machine"></p>
-<p>The previous graph illustrates the <code>event [guard] / actions</code> notation that is used by the graph editor and throughout all the tutorials (guards are optional and here there are no guards). </p>
+<p>The previous graph illustrates the <code>event [guard] / actions</code> notation that is used by the graph editor and throughout all the tutorials (guards are optional; here there are no guards; the syntax in this case shortens to <code>event / actions</code>). </p>
 <p>Alright. So we have our behavior, the machine that model that behavior, the graph that represents the machine. We still have to draw the application screen. A Kingly machine merely computes commands, it does not execute commands (i.e., it does not perform effects besides updating its own state). We thus have left to write the procedures that execute the  computed commands to have the full counter application. Our implementation is as follows: </p>
 <iframe src="https://codesandbox.io/embed/w6x42521n7?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 <p>Note how in the previous code events are passed as inputs to the machine, leading to commands being computed and executed. In this simple case, we opted for direct DOM updates to render the counter application screen.</p>
-<label for="mn-demo-8" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-8" class="margin-toggle"><span class="marginnote"><p>Logs are activated by passing a console object in <code>settings</code> (<code>{ debug: { console }}</code>).</p>
+<label for="mn-demo-9" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-9" class="margin-toggle"><span class="marginnote"><p>Logs are activated by passing a console object in <code>settings</code> (<code>{ debug: { console }}</code>).</p>
 </span>
 <p>Now open the console in the playground and have a look at the logs. Click the button, and have another look at the logs. Formatting aside, you should see messages that allow following the machine computation step by step:</p>
 <pre><code class="hljs bash">send event ▶&#123;init: Object&#125;
