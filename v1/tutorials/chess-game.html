@@ -581,7 +581,7 @@
       &#125;
     ]
 &#125;</code></pre>
-<label for="mn-demo-17" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-17" class="margin-toggle"><span class="marginnote"><p>However, it is recommended to configure a set of predicates that is mutually exclusive and which cover the entire space of possibilities. Ideally, one and only one predicate must be satisfied to avoid ambiguity. If multiple predicates are satisfied when evaluating a transition, the first satisfied predicate defined in the guard array is used for determining the transition to take.</p>
+<label for="mn-demo-18" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-18" class="margin-toggle"><span class="marginnote"><p>However, it is recommended to configure a set of predicates that is mutually exclusive and which cover the entire space of possibilities. Ideally, one and only one predicate must be satisfied to avoid ambiguity. If multiple predicates are satisfied when evaluating a transition, the first satisfied predicate defined in the guard array is used for determining the transition to take.</p>
 </span>
 <p>If the guard’s predicate <code>isWhitePieceClicked</code> is not fulfilled, the machine <strong>will not change state nor execute any action factory</strong>. This contributes to the robustness of our interface.</p>
 <p>We also have to indicate the nesting of control states in the <code>states</code> property as follows:</p>
