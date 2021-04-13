@@ -551,7 +551,10 @@
 </tbody>
 </table>
 </div>
-<h2 id="Counter-application-modeling"><a href="#Counter-application-modeling" class="headerlink" title="Counter application modeling"></a>Counter application modeling</h2><p>A Kingly state machine is a function with two encapsulated pieces of state that are updated as inputs (events) are processed: the <em>control state</em> and the <em>extended state</em>. To each control state is associated a different way to compute the reaction to events. Any such computations has access to the extended state of the machine in addition to the machine input, and returns the reactions (commands) to the processed input, after updating the machine state. In pseudocode, it would look like follows:</p>
+<h2 id="Counter-application-modeling"><a href="#Counter-application-modeling" class="headerlink" title="Counter application modeling"></a>Counter application modeling</h2><p>A Kingly state machine is a function that computes the reactions (commands) corresponding to the event (input) it is passed as parameter. In pseudocode:</p>
+<pre><code class="hljs js"><span class="hljs-comment">// fsm is a Kingly state machine</span>
+<span class="hljs-keyword">const</span> commands = fsm(event);</code></pre>
+<p>A Kingly state machine has two encapsulated pieces of state that are updated as events are processed: the <em>control state</em> and the <em>extended state</em>. To each control state is associated a different way to compute the reaction to events. Any such computations has access to the extended state of the machine in addition to the machine input, and returns the reactions (commands) to the processed input, after updating the machine state. In pseudocode, it would look like follows:</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> controlState = ...;
 <span class="hljs-keyword">let</span> extendedState= ...;
 
@@ -583,7 +586,7 @@
 <iframe src="https://codesandbox.io/embed/w6x42521n7?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 <p>Note how in the previous code events are passed as inputs to the machine, leading to commands being computed and executed. In this simple case, we opted for direct DOM updates to render the counter application screen.</p>
-<label for="mn-demo-9" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-9" class="margin-toggle"><span class="marginnote"><p>Logs are activated by passing a console object in <code>settings</code> (<code>{ debug: { console }}</code>). We recommend to activate logs in the early stages of your learning and as a debugging tool.</p>
+<label for="mn-demo-13" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-13" class="margin-toggle"><span class="marginnote"><p>Logs are activated by passing a console object in <code>settings</code> (<code>{ debug: { console }}</code>). We recommend to activate logs in the early stages of your learning and as a debugging tool.</p>
 </span>
 <p>Now open the console in the playground and have a look at the logs. Click the button, and have another look at the logs. Formatting aside, you should see messages that allow following the machine computation step by step:</p>
 <pre><code class="hljs bash">send event ▶&#123;init: Object&#125;
