@@ -532,7 +532,7 @@
     <h1>Implementation</h1>
   
   
-    <h2 id="What-you-will-learn"><a href="#What-you-will-learn" class="headerlink" title="What you will learn"></a>What you will learn</h2><p>This section uses a fairly simple behavior to illustrate key concepts that underlie Kingly usage: application behavior, state machine modeling, and visual language. We also show how the application behavior can be connected to the rest of the application concerns — e.g., displaying screens, fetching remote data.</p>
+    <p>This section uses a fairly simple behavior to illustrate key concepts that underlie Kingly usage: application behavior, state machine modeling, and visual language. We also show how the application behavior can be connected to the rest of the application concerns — e.g., displaying screens, fetching remote data.</p>
 <p>Do not worry if there are new words whose meaning is not entirely clear from the get go. The remainder of the tutorials will explore the concepts more in details. What follows will give you a preliminary feel of the API. </p>
 <h2 id="Counter-application-behavior"><a href="#Counter-application-behavior" class="headerlink" title="Counter application behavior"></a>Counter application behavior</h2><p>Let’s implement the simplest behavior we can think of: a counter. <strong>The behavior of an application is the mapping of the reactions of the application to the set of possible events</strong>. Here, there is only one event: the user click on the incrementing button. The behavior of the counter application is to display an incremented counter every time the user clicks the incrementing button. In summary:</p>
 <div class="table-container">
@@ -577,7 +577,7 @@
 <iframe src="https://codesandbox.io/embed/w6x42521n7?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 <p>Note how in the previous code events are passed as inputs to the machine, leading to commands being computed and executed. In this simple case, we opted for direct DOM updates to render the counter application screen.</p>
-<label for="mn-demo-9" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-9" class="margin-toggle"><span class="marginnote"><p>Logs are activated by passing a console object in <code>settings</code> (<code>{ debug: { console }}</code>).</p>
+<label for="mn-demo-6" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-6" class="margin-toggle"><span class="marginnote"><p>Logs are activated by passing a console object in <code>settings</code> (<code>{ debug: { console }}</code>).</p>
 </span>
 <p>Now open the console in the playground and have a look at the logs. Click the button, and have another look at the logs. Formatting aside, you should see messages that allow following the machine computation step by step:</p>
 <pre><code class="hljs bash">send event ▶&#123;init: Object&#125;
