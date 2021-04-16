@@ -52,9 +52,8 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
-      <a class="menu-button"></a>
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -275,10 +274,10 @@
 <li>user-generated data must be validated </li>
 <li>after entering all necessary data for his application, the user can review them and decide to modify some of them, by returning to the appropriate screen (cf. pencil icons in the wireframe)</li>
 </ul>
-<h3 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h3><p>Modelizing the user flows with a state machine surfaces issues that did not appear in the high-level user flow, which catered mostly to the happy path for the user. We have to handle data fetching and error flows nicely. The resulting state machine, which acts as detailed specifications, is as follows:</p>
+<h3 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h3><p>Modeling the user flows with a state machine surfaces issues that did not appear in the high-level user flow, which catered mostly to the happy path for the user. We have to handle data fetching and error flows nicely. The resulting state machine, which acts as detailed specifications, is as follows:</p>
 <figure class="fullwidth"><p><img src="../../graphs/sparks%20application%20process%20with%20comeback%20proper%20syntax%20hierarchical%20fsm.png" alt="modelization - first iteration"></p>
 </figure>
-<p>Using this machine as a basis for a working prototype <strong>without reaching the implementation phase</strong>, new requirements emerge and the modelization is subsequently updated. </p>
+<p>Using this machine as a basis for a working prototype <strong>without reaching the implementation phase</strong>, new requirements emerge and the model is subsequently updated. </p>
 <h2 id="Second-iteration"><a href="#Second-iteration" class="headerlink" title="Second iteration"></a>Second iteration</h2><p>In the second iteration, some improvements on user experience are decided. </p>
 <h3 id="Specifications-1"><a href="#Specifications-1" class="headerlink" title="Specifications"></a>Specifications</h3><p>We end up with the following specifications:</p>
 <ul>
@@ -300,7 +299,7 @@
 <li><strong class="new">NEW</strong>: To avoid having to reenter information, previously entered information should be kept</li>
 <li><strong class="new">NEW</strong>: The user will be able to join a team, but also to unjoin it, if it was joined previously. The same button will be used to that purpose, with the corresponding action displayed (i.e. Join if the team is not joined yet, Unjoin if the team is already joined)</li>
 </ul>
-<h3 id="Modelization-1"><a href="#Modelization-1" class="headerlink" title="Modelization"></a>Modelization</h3><p>The resulting updated machine is as follows:</p>
+<h3 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h3><p>The resulting updated machine is as follows:</p>
 <figure class="fullwidth"><p><img src="../../graphs/sparks%20application%20process%20with%20comeback%20proper%20syntax%20hierarchical%20fsm%20iter1.1.png" alt="second iteration modelization"> </p>
 </figure>
 <h2 id="Cyclejs-implementation"><a href="#Cyclejs-implementation" class="headerlink" title="Cyclejs implementation"></a>Cyclejs implementation</h2><p>A (re-)implementation (to avoid licensing issues) was realized with <code>cycle.js</code>, a stream-based front-end framework. I reproduce here an animated gif:</p>
@@ -331,6 +330,23 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </body>
 </html>

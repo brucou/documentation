@@ -52,9 +52,8 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
-      <a class="menu-button"></a>
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -265,7 +264,7 @@
   
   
     <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This example illustrates a simple hierarchical state machine implementing a behavior similar to React Suspense. It also showcases how a state machine definition can be compiled into a standard standalone JavaScript function — this is a key motivation behind Kingly’s API design. Compiling the machine allows us to mostly eliminate the footprint linked to the machine library.</p>
-<h2 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h2><p>The suspense functionality can be summarized by the following state machine:</p>
+<h2 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h2><p>The suspense functionality can be summarized by the following state machine:</p>
 <p><img src="../../graphs/suspense%20machine.png" alt="suspense finite state machine"></p>
 <h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><p><img src="../../images/suspense/suspense%20demo.gif" alt="suspense demo"></p>
 <p>Clone the <a href="https://github.com/brucou/svelte-suspense-app" target="_blank" rel="noopener">GitHub repository</a>. </p>
@@ -363,6 +362,23 @@ function fetchAlbums(intents)&#123;
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </body>
 </html>

@@ -52,9 +52,8 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
-      <a class="menu-button"></a>
+  <body class="docs">    <div id="mobile-bar">
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -265,7 +264,7 @@
   
   
     <h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>This example is a non-trivial user interface dealing with error flows, asynchronous requests and the associated concurrency issues. This example is extensively discussed in a <a href="https://www.infoq.com/articles/robust-user-interfaces-with-state-machines/" target="_blank" rel="noopener">dedicated article</a> on state machines.</p>
-<h2 id="Modelization"><a href="#Modelization" class="headerlink" title="Modelization"></a>Modelization</h2><p><img src="https://res.infoq.com/articles/robust-user-interfaces-with-state-machines/en/resources/18-movie-search-good-fsm-corrected-flowchart%20no%20emphasis%20switchMap-1555879148127.jpg" alt="Online interface to TMDB movie database machine graph"></p>
+<h2 id="Modeling"><a href="#Modeling" class="headerlink" title="Modeling"></a>Modeling</h2><p><img src="https://res.infoq.com/articles/robust-user-interfaces-with-state-machines/en/resources/18-movie-search-good-fsm-corrected-flowchart%20no%20emphasis%20switchMap-1555879148127.jpg" alt="Online interface to TMDB movie database machine graph"></p>
 <h2 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h2><iframe src="https://codesandbox.io/s/p7xv6r1moq?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
   
@@ -289,6 +288,23 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </body>
 </html>
