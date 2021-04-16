@@ -52,8 +52,9 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">    <div id="mobile-bar">
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+  <body class="docs">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
+      <a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -230,7 +231,7 @@
 <blockquote>
 <p>A transformational system accepts inputs, perform transformations on them and produces outputs. […] Reactive systems, on the other hand, are repeatedly prompted by the outside world and their role is to continuously respond to external inputs. Common to all [reactive systems] is the notion of the system responding or reacting to external stimuli, whether normal user-generated or environment-generated ones […] or abnormal ones.</p>
 </blockquote>
-<h2 id="Reactive-application-behavior"><a href="#Reactive-application-behavior" class="headerlink" title="Reactive application behavior"></a>Reactive application behavior</h2><p>The vast majority of the software applications that we write are thus reactive in nature. They continuously react to user or environment inputs. The task of specifying such applications thus consists of specifying the reaction(s) of the application to inputs across its lifetime. Harel <a href="http://www.inf.ed.ac.uk/teaching/courses/seoc1/2005_2006/resources/statecharts.pdf" target="_blank" rel="noopener">further explains</a>:</p>
+<h2 id="Reactive-application-behavior"><a href="#Reactive-application-behavior" class="headerlink" title="Reactive application behavior"></a>Reactive application behavior</h2><p>The vast majority of the software applications that we write are thus reactive in nature. They continuously react to user or environment inputs. The task of specifying such applications thus consists of specifying the reaction(s) of the application to inputs across its lifetime. Harel <a href="https://www.sciencedirect.com/science/article/pii/0167642387900359" target="_blank" rel="noopener">further explains</a>:</p>
 <blockquote>
 <p>The problem [of specifying reactive systems] is rooted in the difficulty of describing reactive  behavior in ways that are clear and realistic, and at the same time formal and  rigorous, sufficiently so to be amenable to detailed computerized simulation. The  behavior of a reactive system is really the set of allowed sequences of input and  output events, conditions, and actions […] </p>
 </blockquote>
@@ -272,23 +273,6 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

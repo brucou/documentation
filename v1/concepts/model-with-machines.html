@@ -52,8 +52,9 @@
   </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   </head>
 
-  <body class="docs">    <div id="mobile-bar">
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><a class="menu-button"></a>
+  <body class="docs">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="mobile-bar">
+      <a class="menu-button"></a>
       <a class="logo" href="/documentation"></a>
     </div>
     
@@ -268,8 +269,8 @@
 <li>implement and test the user interface;</li>
 <li>define the command module interface (i.e., which commands are triggered by the user, the shape of those commands, and which events they produce as a result of their execution);</li>
 <li>implement and test the command module;</li>
-<li>modelize the interface behavior with a graph editor (I recommend <a href="https://www.yworks.com/downloads#yEd" target="_blank" rel="noopener">yed</a>);</li>
-<li>write some tests (with at least all-transitions coverage of the modelized machine);</li>
+<li>model the interface behavior with a graph editor (I recommend <a href="https://www.yworks.com/downloads#yEd" target="_blank" rel="noopener">yed</a>);</li>
+<li>write some tests (with at least all-transitions coverage of the modeled machine);</li>
 <li>write the definition of the machine (i.e., initial state, events, transitions, guards, action factories) and pass the previous tests;</li>
 <li>write and pass a few integration tests (all-states coverage may suffice if high confidence derived from unit tests); and</li>
 <li>fully test the machine with automatically generated tests.</li>
@@ -306,23 +307,6 @@
     <script src="/documentation/js/css.escape.js"></script>
     <script src="/documentation/js/common.js"></script>
     <!-- mathjax-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
