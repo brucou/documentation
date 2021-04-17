@@ -3,18 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>First steps — Kingly.js</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Site map — Kingly.js</title>
   <meta charset="utf-8">
   <meta name="description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="First steps — Kingly.js">
+  <meta property="og:title" content="Site map — Kingly.js">
   <meta property="og:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta property="og:image" content="https://brucou.github.io/documentation//documentation/images/kingly_logo.png">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="First steps — Kingly.js">
+  <meta name="twitter:title" content="Site map — Kingly.js">
   <meta name="twitter:description" content="Kingly - The Modelling Library for Portable UIs">
   <meta name="twitter:image" content="https://brucou.github.io/documentation/images/kingly_logo.png">
 
@@ -207,7 +207,7 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/Site-map.html" class="sidebar-link">Site map</a>
+      <a href="/documentation/v1/tutorials/Site-map.html" class="sidebar-link current">Site map</a>
     </li>
   
     
@@ -253,7 +253,7 @@
     
     
     <li>
-      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link current">First steps</a>
+      <a href="/documentation/v1/tutorials/counter-application.html" class="sidebar-link">First steps</a>
     </li>
   
     
@@ -543,136 +543,42 @@
     
   
   
-    <h1>First steps</h1>
+    <h1>Site map</h1>
   
   
-    <p>This section uses a fairly simple behavior to illustrate key concepts that underlie Kingly usage: application behavior, state machine modeling, and visual language. We also show how the application behavior can be connected to the rest of the application concerns — e.g., displaying screens, fetching remote data.</p>
-<p>Do not worry if there are new words whose meaning is not entirely clear from the get go. The remainder of the tutorials will explore the concepts more in details. What follows will give you a preliminary feel of the API. </p>
-<h2 id="Counter-application-behavior"><a href="#Counter-application-behavior" class="headerlink" title="Counter application behavior"></a>Counter application behavior</h2><p>Let’s implement the simplest behavior we can think of: a counter. The behavior of an application is <strong>the mapping of the reactions of the application to the set of possible events</strong>. Here, there is only one event: the user click on the incrementing button. The behavior of the counter application is to display an incremented counter every time the user clicks the incrementing button. In summary:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Event</th>
-<th>Reaction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>click on button</td>
-<td>display screen with incremented counter</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="Counter-application-modeling"><a href="#Counter-application-modeling" class="headerlink" title="Counter application modeling"></a>Counter application modeling</h2><p>A Kingly state machine is a function that computes the reactions (commands) corresponding to the event (input) it is passed as parameter. In pseudocode:</p>
-<pre><code class="hljs js"><span class="hljs-comment">// fsm is a Kingly state machine</span>
-<span class="hljs-keyword">const</span> commands = fsm(event);</code></pre>
-<p>A Kingly state machine has two encapsulated pieces of state that are updated as events are processed: the <em>control state</em> and the <em>extended state</em>. To each control state is associated a different way to compute the reaction to events. Any such computation has access to the extended state of the machine in addition to the event, and returns the reactions (commands) to the processed event, after updating the machine state. In pseudocode, it would look as follows:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> controlState = ...;
-<span class="hljs-keyword">let</span> extendedState= ...;
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsm</span>(<span class="hljs-params">event</span>)</span>&#123;
-  <span class="hljs-keyword">if</span> (controlState === CS1)&#123;
-    <span class="hljs-comment">// Updates state in closure</span>
-    <span class="hljs-keyword">return</span> someComputation(event)    
-  &#125;
-  <span class="hljs-keyword">if</span> (controlState === CS2)&#123;
-    <span class="hljs-comment">// Updates state in closure</span>
-    <span class="hljs-keyword">return</span> anotherComputation(event)    
-  &#125;
-&#125;
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">someComputation</span>(<span class="hljs-params">event</span>)</span>&#123;...&#125;
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">anotherComputation</span>(<span class="hljs-params">event</span>)</span>&#123;...&#125;</code></pre>
-<p>The control state takes its name from the fact that it determines the control flow (branch) of the machine computations. A state machine thus simply breaks down one stateful computation into several stateful computations that only apply when the machine is in specific control states. The challenge of modeling an application behavior is to identify those control states that determine the reaction to events in ways that are both economical and insightful.</p>
-<p>For our counter application, it is rather simple. We only have one event, and one reaction to compute, so a single control state is enough. The extended state of the machine can host the counter value. The counter application behavior can thus be represented with a state machine that:</p>
+    <p>This section provides an overview of the Kingly documentation and related resources. Feel free to come back to it anytime that you are looking for specific information.</p>
+<p><strong>Quick links</strong></p>
 <ul>
-<li>starts  in the <em>Counting</em> control state;</li>
-<li>encapsulates the counter value in its extended state (initial value 0); and</li>
-<li>on every click, updates its internal state(identical control state, increment extended state), and displays the new screen.</li>
+<li><a href="./index.html">Why Kingly?</a></li>
+<li><a href="./installation">Install Kingly</a></li>
+<li><a href="#Learn-Kingly">Learn Kingly</a></li>
+<li><a href="../api/index.html">API reference</a></li>
+<li><a href="./counter-application.html">Tutorials</a></li>
+<li><a href="../tooling/tools_overview.html">Tooling ecosystem</a></li>
+<li><a href="#Staying-Informed">Staying informed</a></li>
+<li><a href="#Feedback">Something missing?</a></li>
 </ul>
-<p>State machines can be visually represented by a graph that links together its control states. The counter behavior may for instance be visualized as follows:</p>
-<p><img src="../../graphs/trivial counter machine.png" alt="counter machine"></p>
-<p>The previous graph illustrates the <code>event [guard] / actions</code> notation that is used by the graph editor and throughout all the tutorials (guards are optional; here there are no guards; the syntax in this case shortens to <code>event / actions</code>). </p>
-<p>Alright. So we have our behavior, the machine that model that behavior, the graph that represents the machine. We still have to draw the application screen. A Kingly machine merely computes commands, it does not execute commands (i.e., it does not perform effects besides updating its own state). We thus have left to write the procedures that execute the computed commands to have the full counter application. Our implementation is as follows: </p>
-<iframe src="https://codesandbox.io/embed/w6x42521n7?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
-
-<label for="mn-demo-9" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-9" class="margin-toggle"><span class="marginnote"><p>Logs are activated by passing a console object in <code>settings</code> (<code>{ debug: { console }}</code>). We recommend to activate logs in the early stages of your learning and as a debugging tool.</p>
-</span>
-<p>Note how in the previous code events are passed as inputs to the machine, leading to commands being computed and executed. In this simple case, we opted for direct DOM updates to render the counter application screen.</p>
-<p>Now open the console in the playground and have a look at the logs. Click the button once, and have another look at the logs. Formatting aside, you should see messages that allow following the machine computation step by step:</p>
-<label for="mn-demo-21" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-21" class="margin-toggle"><span class="marginnote"><ul>
-<li>The first event (<code>init</code>) is an internal event that is sent to put the machine in its initial state. That event is sent when the machine is created. </li>
-<li>The second event (<code>clicked</code>) corresponds to your button click.</li>
-<li><em>Action factories</em> are functions that compute <em>actions</em>. Actions are of two kinds: updates to the machine extended state, and commands output by the machine.</li>
-<li><code>ACTION_IDENTITY</code> stands for an action factory that produces no actions, leaving the state of the machine intact, and producing no commands.</li>
-</ul>
-</span>
-<pre><code class="hljs bash">send event ▶&#123;init: Object&#125;
-
-found event handler!
-WHEN EVENT init ▶&#123;count: 0&#125;
-IN STATE -nok-
-CASE: unguarded transition
-THEN: we execute the action factory ACTION_IDENTITY
-left state -nok-
-AND TRANSITION TO STATE -counting-
-ENTERING NEXT STATE: -counting-
-with extended state: ▶&#123;count: 0&#125;
-
-send event ▶&#123;clicked: undefined&#125;
-
-found event handler!
-WHEN EVENT clicked undefined
-IN STATE -counting-
-CASE: unguarded transition
-THEN: we execute the action factory incCounterAndDisplay
-left state -counting-
-AND TRANSITION TO STATE -counting-
-ENTERING NEXT STATE: -counting-
-with extended state: ▶&#123;count: 1&#125;
-
-OUTPUTS: ▶(1) [Object]
-         ▶0: Object
-            <span class="hljs-built_in">command</span>: <span class="hljs-string">"render"</span>
-            params: 1</code></pre>
-<label for="mn-demo-28" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-28" class="margin-toggle"><span class="marginnote"><p>“Sometimes the elegant implementation is a function. Not a method. Not a class. Not a framework. Just a function.” – <em>John Carmack</em></p>
-</span>
-<p>The previous code illustrates a key feature of Kingly’s state machines. <strong>They are normal, plain, standard JavaScript functions!</strong> That means you can replace the <code>fsm</code> created by Kingly in the previous code by a function <code>controller</code> fulfilling the same specifications:</p>
-<pre><code class="hljs js"><span class="hljs-keyword">let</span> count=<span class="hljs-number">0</span>;
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">controller</span>(<span class="hljs-params">event</span>)</span>&#123;
-  <span class="hljs-keyword">const</span> eventName = <span class="hljs-built_in">Object</span>.keys(event)[<span class="hljs-number">0</span>];
-  <span class="hljs-keyword">if</span> (eventName === <span class="hljs-string">'clicked'</span>)&#123;
-    count++;
-    <span class="hljs-keyword">return</span> [&#123;<span class="hljs-attr">command</span>: <span class="hljs-string">"render"</span>, <span class="hljs-attr">params</span>: count&#125;]
-  &#125;
-  
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>
-&#125;</code></pre>
-<p>This is it! You don’t need a PhD to understand Kingly state machines. You write stateful functions like <code>controller</code> all the time when implementing event handlers. Writing such functions by adopting the discipline of the state machine formalism brings a lot of benefits that will be introduced in the remainder of the tutorials. </p>
-<h2 id="What-we-learned"><a href="#What-we-learned" class="headerlink" title="What we learned"></a>What we learned</h2><p>This is the very short story about state machines used for modeling the behavior of user interfaces. The application behavior is the set of its reactions to events. A Kingly state machine works as a functional, stateful controller that transforms events into commands. The application is implemented by composition of three parts: instantiation of event listeners, computation of the reaction (commands) to events, and execution of the reactions. To execute the command that render a screen, you can use any UI library you fancy, or just plain JavaScript — as we did in this example.</p>
-<p>States machines can be visually represented by a graph whose nodes are the machine’s control states. The  edges of that graph represent the change of control state of the machine as it receives events.</p>
-<p>Let’s move to a more interesting example: <a href="./password-meter.html">a password meter</a>.</p>
+<h2 id="Learn-Kingly"><a href="#Learn-Kingly" class="headerlink" title="Learn Kingly"></a>Learn Kingly</h2><p>Kingly describe the behavior of applications with state machines. What are state machines? How can state machines describe behavior? How to use Kingly within a development workflow? There are several ways to answer these questions. </p>
+<p>If you would like a more theoretical, high-level understanding of the subject, go to <a href="../concepts"><em>Concepts and architecture</em></a>.</p>
+<p>If you prefer to learn concepts step by step, start with the <a href="./counter-application.html">tutorials</a>. The tutorials strive to start really slowly with a trivial counter application, up to the implementation of a medium-sized application. </p>
+<p>Like anything new or unfamiliar, Kingly has a learning curve. It is however designed to be simple. It also <a href="https://paulrcook.com/simple-made-easy" target="_blank" rel="noopener">strives to be easy</a> once the required mental model is acquired. Do not despair if you encounter difficulties and <a href="https://github.com/brucou/kingly/discussions/new" target="_blank" rel="noopener">keep in touch with the development team</a> if you have any questions/feedback. Relentless and stubborn practice (and a ton of coffee) are behind any good software.</p>
+<h2 id="Feedback"><a href="#Feedback" class="headerlink" title="Feedback"></a>Feedback</h2><p><a href="https://github.com/brucou/kingly/discussions/new" target="_blank" rel="noopener">Leave us your feedback on Github</a> if you would like us to document topics that are currently not addressed or if you found anything incorrect. We love to hear from you.</p>
+<h2 id="Staying-informed"><a href="#Staying-informed" class="headerlink" title="Staying informed"></a>Staying informed</h2><p><img src="../../images/coming-soon/pngkit_under-construction-sign-png_880130.png" alt></p>
 
   
   
     <div class="next-links">
       
       
-        <span>← <a href="/documentation/v1/tutorials/installation.html">Get started</a></span>
       
       
-      
-        <span style="float: right;"><a href="/documentation/v1/tutorials/password-meter-implementation.html">Machine implementation</a> →</span>
+        <span style="float: right;"><a href="/documentation/v1/tutorials/index.html">Why Kingly</a> →</span>
       
     </div>
   
   <div class="footer">
     Caught a mistake?
-    <a href="https://github.com/brucou/kingly-site/tree/master/src/v1/tutorials/counter-application.md" rel="noopener" target="_blank">
+    <a href="https://github.com/brucou/kingly-site/tree/master/src/v1/tutorials/Site-map.md" rel="noopener" target="_blank">
             Edit this on GitHub!
     </a><br>
     Can we help you?     <a href="https://github.com/brucou/kingly/discussions/new" rel="noopener" target="_blank">
