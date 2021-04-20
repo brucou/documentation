@@ -599,11 +599,11 @@
 <p>Alright. So we have our behavior, the machine that model that behavior, the graph that represents the machine. We still have to draw the application screen. A Kingly machine merely computes commands, it does not execute commands (i.e., it does not perform effects besides updating its own state). We thus have left to write the procedures that execute the computed commands to have the full counter application. Our implementation is as follows: </p>
 <iframe src="https://codesandbox.io/embed/w6x42521n7?fontsize=12&hidenavigation=1" title="Counter app" style="width:1000px; height:700px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
-<label for="mn-demo-8" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-8" class="margin-toggle"><span class="marginnote"><p>Logs are activated by passing a console object in <code>settings</code> (<code>{ debug: { console }}</code>). We recommend to activate logs in the early stages of your learning and as a debugging tool.</p>
+<label for="mn-demo-10" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-10" class="margin-toggle"><span class="marginnote"><p>Logs are activated by passing a console object in <code>settings</code> (<code>{ debug: { console }}</code>). We recommend to activate logs in the early stages of your learning and as a debugging tool.</p>
 </span>
 <p>Note how in the previous code events are passed as inputs to the machine, leading to commands being computed and executed. In this simple case, we opted for direct DOM updates to render the counter application screen.</p>
 <p>Now open the console in the playground and have a look at the logs. Click the button once, and have another look at the logs. Formatting aside, you should see messages that allow following the machine computation step by step:</p>
-<label for="mn-demo-21" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-21" class="margin-toggle"><span class="marginnote"><ul>
+<label for="mn-demo-22" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-22" class="margin-toggle"><span class="marginnote"><ul>
 <li>The first event (<code>init</code>) is an internal event that is sent to put the machine in its initial state. That event is sent when the machine is created. </li>
 <li>The second event (<code>clicked</code>) corresponds to your button click.</li>
 <li><em>Action factories</em> are functions that compute <em>actions</em>. Actions are of two kinds: updates to the machine extended state, and commands output by the machine.</li>
@@ -638,7 +638,7 @@ OUTPUTS: ▶(1) [Object]
          ▶0: Object
             <span class="hljs-built_in">command</span>: <span class="hljs-string">"render"</span>
             params: 1</code></pre>
-<label for="mn-demo-28" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-28" class="margin-toggle"><span class="marginnote"><p>“Sometimes the elegant implementation is a function. Not a method. Not a class. Not a framework. Just a function.” – <em>John Carmack</em></p>
+<label for="mn-demo-29" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-29" class="margin-toggle"><span class="marginnote"><p>“Sometimes the elegant implementation is a function. Not a method. Not a class. Not a framework. Just a function.” – <em>John Carmack</em></p>
 </span>
 <p>The previous code illustrates a key feature of Kingly’s state machines. <strong>They are normal, plain, standard JavaScript functions!</strong> That means you can replace the <code>fsm</code> created by Kingly in the previous code by a function <code>controller</code> fulfilling the same specifications:</p>
 <pre><code class="hljs js"><span class="hljs-keyword">let</span> count=<span class="hljs-number">0</span>;

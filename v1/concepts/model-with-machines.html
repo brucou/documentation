@@ -224,7 +224,7 @@
     <h1>Implementing UIs with state machines</h1>
   
   
-    <p>In this section, we make the link between reactive systems, behavior, state machines, and Kingly. We however strive to remain concise. You can alternatively review previously published long-form articles that, while gentle, go more in-depth:</p>
+    <p>In this section, we make the link between reactive systems, behavior, state machines, and Kingly. We however strive to remain concise. You can alternatively review previously published long-form articles that gently go more in depth:</p>
 <ul>
 <li><a href="https://medium.com/dailyjs/user-interfaces-you-can-trust-with-state-machines-49de7fa138a6" target="_blank" rel="noopener">User Interfaces You Can Trust with State Machines</a> </li>
 <li><a href="http://brucou.github.io/documentation/v1/contributed/User%20interfaces%20as%20reactive%20systems.html">User interfaces as reactive systems</a></li>
@@ -235,25 +235,24 @@
 <li>implementing the actual application (with its user interface and all else). </li>
 </ul>
 <p>The application behavior is simply the relation between events received by the interface and commands to perform on the interfaced systems. Implementing the actual application includes performing the commands on the interfaced systems and creating listeners for the events accepted by the UI.</p>
-<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>Kingly is thus designed to encourage a UI implementation consisting of three separate modules with separate concerns:</p>
-<p><img src="../../graphs/high%20level%20architecture%20ui%20implementation%20with%20kingly.jpg" alt="kingly-favoured ui architecture"></p>
-<p>The interfaced systems — that includes the input device (e.g. your laptop or mobile phone) are operated by command handlers. Interfaced systems can:</p>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>Kingly is thus designed to encourage a UI implementation consisting of separate modules with delimited responsibilities:</p>
+<p><img src="https://res.infoq.com/articles/functional-UI-introduction-no-framework/en/resources/1xD93AvB-1614186594811.png" alt="kingly-favoured ui architecture"></p>
+<p>The interfaced systems — that includes the input device (e.g. your laptop or mobile phone) — are operated by command handlers. Interfaced systems can:</p>
 <ul>
-<li>respond to requests from the command handlers; or<label for="mn-demo-1" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-1" class="margin-toggle"><span class="marginnote"><p>The direct communication is a shortcut to avoid boilerplate, e.g., having to write a command handler that simply passes through inputs to the machine. The shortcut often makes sense for input devices.</p>
-</span></li>
-<li>directly send events to the state machine. For instance, the Web API is the interface by which a web application communicates with both output devices (e.g., screen) and input devices (e.g., keyboard, mouse, touch screens, microphone) that the browser recognizes. DOM elements may have event handlers that are directly connected to the machine. </li>
+<li>respond to requests from the command handlers; or</li>
+<li>generate events that are dispatched to their intended recipient. For instance, web users may generate user events by interacting with DOM elements. DOM elements may have event handlers that dispatch those events to the machine. </li>
 </ul>
-<p>Command handlers may react to responses from interfaced systems (e.g., remotely fetched data) by passing on events to the machine. The machine computes commands from the events it receives which are executed by command handlers. Those commands may result in API calls on the interfaced systems, which in turn may result in responses. The operation of the application is the result of the choreography triggered by the constant flow of events between the three modules of the architecture.</p>
-<p>Note that the output device — typically a screen, is but one of the interfaced systems, and <strong>rendering is simply a command to an interfaced output device</strong>.</p>
+<p>Command handlers may react to responses from interfaced systems (e.g., remotely fetched data) by passing on events to the machine. The machine computes commands from the events it receives which are executed by command handlers. Those commands may result in API calls on the interfaced systems, which in turn may result in responses.</p>
+<p>Note that the output device (e.g., a screen), is also one of the interfaced systems, and <strong>rendering is simply a command to an interfaced output device</strong>.</p>
 <h2 id="Modeling-behavior"><a href="#Modeling-behavior" class="headerlink" title="Modeling behavior"></a>Modeling behavior</h2><p>The behavior of an application can be specified by a relation between events received by the application and actions to be performed as a result on the interfaced system. With Kingly, you are expressing this relation with a procedure <code>fsm</code> which takes an event received by the interface into commands to perform on the interfaced systems: <code>commands = fsm(event)</code>. </p>
 <p>In most of the cases, the same event may result in different commands to be executed. This means that the <code>fsm</code> procedure is a stateful one. A Kingly state machine is such a function, which <strong>encapsulates</strong> the necessary state so that it is only accessible and visible to the <code>fsm</code> function itself. If we make the encapsulated state visible, we can define a pure function $g$ such that  $(actions_n, state_{n+1}) = g (state_n, event_n)$, where $n$ is the $n^{th}$ invocation of the <code>fsm</code>  function for the $n^{th}$ input it processes.</p>
 <p>Additionally, a Kingly state machine divides its encapsulated state in two kinds of state: control states, and extended state. The machine starts in an initial control state. For each control state, the state machine must define a sub-procedure <code>fsm&#39;</code> which will:</p>
 <ul>
-<li>perform the computation of commands when the machine is in that control state (i.e. <code>fsm(event) = fsm&#39;(event)</code>)</li>
-<li>update its control state (we say that the machine <em>transitions</em> to its new control state) if some conditions are fulfilled (we call such conditions <em>guards</em>)</li>
-<li>update its extended state</li>
+<li>perform the computation of commands when the machine is in that control state (i.e. <code>fsm(event) = fsm&#39;(event)</code>);</li>
+<li>update its control state (we say that the machine <em>transitions</em> to its new control state) if some conditions are fulfilled (we call such conditions <em>guards</em>); and</li>
+<li>update its extended state.</li>
 </ul>
-<p>Control states thus define a ‘formula’ computing the commands, while the extended state gathers the data necessary to perform the computation. As the machine changes of control state, the computation to perform changes accordingly. Control states may for instance serve to model interfaces going through different screens, associating a different relation between events and commands (i.e. behavior) to each screen.</p>
+<p>Control states thus define a “formula” computing the commands, while the extended state gathers the data necessary to perform the computation. As the machine changes of control state, the computation to perform changes accordingly. Control states may for instance serve to model interfaces going through different screens, associating a different relation between events and commands (i.e. behavior) to each screen.</p>
 <p>State machines can be visually represented by a graph that links two control states whenever there is a possible transition between the two control states. The visualized graph summarizes accurately the <code>fsm</code> computation, i.e. the behavior of the interface to implement. </p>
 <p>Modeling an interface behavior with state machines has the following advantages:</p>
 <ul>
@@ -269,7 +268,7 @@
 <li>the interface behavior being separated from other concerns; it can be reused and shared among projects (for example on <code>npm</code>). </li>
 </ul>
 <h2 id="Application-implementation"><a href="#Application-implementation" class="headerlink" title="Application implementation"></a>Application implementation</h2><p>You should always start with getting a refined understanding of the application behavior from its informal specifications. From there, the previously described architecture allows you to decide in which order to go about implementing the separate modules. After some time doing this, we found the following workflow convenient:</p>
- <label for="mn-demo-17" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-17" class="margin-toggle"><span class="marginnote"><p>Pick the order that makes more sense for you. Understanding what a screen depends on (<em>props</em>), and what are the events that it may generate also often helps define the set of events accepted by the machine; the parameters that the machine must compute for rendering a screen; and the set of commands executed by command handlers.</p>
+ <label for="mn-demo-1" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-1" class="margin-toggle"><span class="marginnote"><p>Pick the order that makes more sense for you. Understanding what a screen depends on (<em>props</em>), and what are the events that it may generate also often helps define the set of events accepted by the machine; the parameters that the machine must compute for rendering a screen; and the set of commands executed by command handlers.</p>
 </span>
 <ul>
 <li>get a refined understanding of the application behavior from its informal specifications;</li>
