@@ -619,7 +619,7 @@
   eventEmitter,
   chessEngine
 &#125;);</code></pre>
-<label for="mn-demo-29" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-29" class="margin-toggle"><span class="marginnote"><p>We use here the chess engine to establish the validity of a move and detect the end game, but take care of reversing its effects. As a rule, guards and action factories <strong>must be pure functions</strong>. This avoids difficult-to-detect bugs where the game state is de-synchronized from the machine state. </p>
+<label for="mn-demo-28" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-28" class="margin-toggle"><span class="marginnote"><p>We use here the chess engine to establish the validity of a move and detect the end game, but take care of reversing its effects. As a rule, guards and action factories <strong>must be pure functions</strong>. This avoids difficult-to-detect bugs where the game state is de-synchronized from the machine state. </p>
 </span>
 <p>Doing so makes the event emitter and engine visible in guards and action factories. For instance:</p>
 <pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isLegalNonWinningMove</span>(<span class="hljs-params">extendedState, eventData, settings</span>)</span>&#123;
@@ -692,7 +692,7 @@
 &#125;,</code></pre>
 <p>will lead to rendering the React element <code>ChessBoard(draggable, width, position, boardStyle, squareStyles, onSquareClick)</code>.</p>
 <p>Non-render commands are addressed by specifying a command handler that receives in addition to the commands parameters, the event emitter, and the effect handlers. Effect handlers isolate the execution of effects into single-concern functions. In our example, the <code>MOVE_PIECE</code> command handler will be called as a <code>function (next, {from, to}, effectHandlers)</code>, matching the parameters of the command (<code>params: {from: fromSquare, to:square}</code>): </p>
-<label for="mn-demo-35" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-35" class="margin-toggle"><span class="marginnote"><p>Note how the chess engine is passed as effect handler, and made available to the <code>MOVE_PIECE</code> command handler. At testing time, it will be easy to replace the chess engine by a mock without recurring to an extra mocking library or tying tests to a specific framework. This is yet another facet of Kingly’s portable UI philosophy.</p>
+<label for="mn-demo-34" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-34" class="margin-toggle"><span class="marginnote"><p>Note how the chess engine is passed as effect handler, and made available to the <code>MOVE_PIECE</code> command handler. At testing time, it will be easy to replace the chess engine by a mock without recurring to an extra mocking library or tying tests to a specific framework. This is yet another facet of Kingly’s portable UI philosophy.</p>
 </span> 
 <pre><code class="hljs js">render(
   h(
