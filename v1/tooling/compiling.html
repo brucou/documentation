@@ -390,7 +390,7 @@
 <li>the initial extended state of the machine; </li>
 <li>the mapping between the action factories name and their JavaScript implementation;</li>
 <li>the mapping between the guards name and their JavaScript implementation; and</li>
-<li>a reducer function <code>updateState</code> whose parameters are a state value and an array of state updates operations. The reducer function return an updated state value. </li>
+<li>a reducer function <code>updateState</code> whose parameters are a state value and an array of state updates operations. The reducer function returns an updated state value. </li>
 </ul>
 <p>Note that the compiled machine does not offer error messages, protection against malformed inputs, devtool support, or logging functionality. This is only possible when using the Kingly library — and its extra kilobytes.</p>
 <p>Note also that, as much as possible, <code>slim</code> refrains from using advanced JavaScript language features in the generated code to be compatible with older browsers without polyfilling or babel-parsing. This, however, has not been thoroughly tested so far.</p>
@@ -405,7 +405,7 @@
 </ul>
 <h2 id="Size-of-the-generated-file"><a href="#Size-of-the-generated-file" class="headerlink" title="Size of the generated file"></a>Size of the generated file</h2><p>This section contains rather technical considerations that do not impact your usage of Kingly or its tooling. Feel free to skip if you have more pressing matters to consider.</p>
 <p>Assuming the machine has no isolated states (i.e. states which are not reached by any transitions), the size of the compiled file roughly follows the shape <code>a + b x Number of transitions</code>, i.e. is mostly proportional to the number of transitions of the graph. The proportional coefficient <code>b</code> seems to be fairly low and the compression factor increases with the size of the machine. In short, you need to write a really large graph to get to 5Kb just for the machine.</p>
-<label for="mn-demo-6" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-6" class="margin-toggle"><span class="marginnote"><p>Minification is performed online with the <a href="https://javascript-minifier.com/" target="_blank" rel="noopener">javascript-minifier</a> tool. Lines of code are counted with an <a href="https://codetabs.com/count-loc/count-loc-online.html" target="_blank" rel="noopener">online tool</a>. </p>
+<label for="mn-demo-2" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-2" class="margin-toggle"><span class="marginnote"><p>Minification is performed online with the <a href="https://javascript-minifier.com/" target="_blank" rel="noopener">javascript-minifier</a> tool. Lines of code are counted with an <a href="https://codetabs.com/count-loc/count-loc-online.html" target="_blank" rel="noopener">online tool</a>. </p>
 </span>
 <p>We give a few data points: </p>
 <div class="table-container">
@@ -437,7 +437,7 @@
 </table>
 </div>
 <p>We estimate that writing logic by hand for average-size machines may shave 100 (extra code due to the compiler) + 400 bytes (extra code due to using a graph editor) for a total of 0.5 KB.</p>
-<label for="mn-demo-18" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-18" class="margin-toggle"><span class="marginnote"><p>Note that this size does not (and cannot) include the actions and guards but does represent the size of the logic encoded in the machine.</p>
+<label for="mn-demo-17" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-17" class="margin-toggle"><span class="marginnote"><p>Note that this size does not (and cannot) include the actions and guards but does represent the size of the logic encoded in the machine.</p>
 </span>
 <p>Those preliminary results are fairly consistent. Assuming 20 bytes per transitions (computed from the previous data points), with a baseline of 500 bytes, to reach 5 KB (i.e. the size of the core Kingly library) we need a machine with over 200 transitions!! </p>
 <p>In summary, with the <code>slim</code> compiler, <strong>Kingly proposes state machines as a near-zero-cost abstraction</strong>. This means that if you would have written that logic by hand, you would not have been able to achieve a significantly improved min.gzipped size.</p>
