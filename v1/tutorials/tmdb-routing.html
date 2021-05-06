@@ -261,7 +261,7 @@
 </table>
 </div>
 <p>This, in addition to the requirements about loading screens, gives us a more explicit <code>fsmA</code>:</p>
-<label for="mn-demo-15" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-15" class="margin-toggle"><span class="marginnote"><p>Yes, we could implement <code>fsmA</code> without using the <em>ROUTING</em> control state. We do need the eventless <em>ROUTING</em> state though to express <code>fsmA</code> semantics in the equivalent state machine, so we keep it here to allow for direct comparison.</p>
+<label for="mn-demo-16" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-16" class="margin-toggle"><span class="marginnote"><p>Yes, we could implement <code>fsmA</code> without using the <em>ROUTING</em> control state. We do need the eventless <em>ROUTING</em> state though to express <code>fsmA</code> semantics in the equivalent state machine, so we keep it here to allow for direct comparison.</p>
 </span>
 <pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fsmA</span>(<span class="hljs-params">event</span>)</span>&#123;
   <span class="hljs-keyword">if</span> (controlState === TMDB_APP) &#123;
@@ -308,7 +308,7 @@
 &#125;</code></pre>
 <p>Note that we now have <code>fsmC</code>, <code>fsmD</code> and <code>fsmE</code> appearing to deal with particular states of the <code>fsmA</code> computation, and that we left that undefined for now. As before, we do not know yet the explicit form they take, though we do know which events they handle and the commands resulting from processing those events.</p>
 <p>This can be summarized by the following state machine which has similar semantics:</p>
-<label for="mn-demo-23" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-23" class="margin-toggle"><span class="marginnote"><p>For readability purposes, going further, we are not going to represent control state’s self-loops which we cannot fully express yet (<code>shouldProcess</code> not explicited yet). For instance, the flow related to the processing of the <code>SEARCH_RESULTS_RECEIVED</code> event in the <em>Movie Custom Query</em> control state will not be represented.</p>
+<label for="mn-demo-24" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-24" class="margin-toggle"><span class="marginnote"><p>For readability purposes, going further, we are not going to represent control state’s self-loops which we cannot fully express yet (<code>shouldProcess</code> not explicited yet). For instance, the flow related to the processing of the <code>SEARCH_RESULTS_RECEIVED</code> event in the <em>Movie Custom Query</em> control state will not be represented.</p>
 </span>
 <p><img src="../../graphs/movie-search/TMDB%20routing.png" alt="TMDB with routing"></p>
 <p>You should be able to see confirmed a pattern now in our implementation. According to our control state, we delegate the processing of events to dedicated functions <code>fsmX</code>. This is generally referred to as <a href="https://en.wikipedia.org/wiki/State_pattern" target="_blank" rel="noopener">the state pattern</a>.</p>
