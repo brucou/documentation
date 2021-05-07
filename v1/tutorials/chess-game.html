@@ -678,7 +678,7 @@
 &#125;,</code></pre>
 <p>will lead to rendering the React element <code>ChessBoard(draggable, width, position, boardStyle, squareStyles, onSquareClick)</code>.</p>
 <p>Non-render commands are addressed by specifying a command handler that receives in addition to the commands parameters, the event emitter, and the effect handlers. Effect handlers isolate the execution of effects into single-concern functions. In our example, the <code>MOVE_PIECE</code> command handler will be called as a <code>function (next, {from, to}, effectHandlers)</code>, matching the parameters of the command (<code>params: {from: fromSquare, to:square}</code>): </p>
-<label for="mn-demo-34" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-34" class="margin-toggle"><span class="marginnote"><p>Note how the chess engine is passed as effect handler, and made available to the <code>MOVE_PIECE</code> command handler. At testing time, it will be easy to replace the chess engine by a mock without recurring to an extra mocking library or tying tests to a specific framework. This is yet another facet of Kingly’s portable UI philosophy.</p>
+<label for="mn-demo-35" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-35" class="margin-toggle"><span class="marginnote"><p>Note how the chess engine is passed as effect handler, and made available to the <code>MOVE_PIECE</code> command handler. At testing time, it will be easy to replace the chess engine by a mock without recurring to an extra mocking library or tying tests to a specific framework. This is yet another facet of Kingly’s portable UI philosophy.</p>
 </span> 
 <pre><code class="hljs js">render(
   h(
