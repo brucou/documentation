@@ -437,7 +437,7 @@
 </table>
 </div>
 <p>We estimate that writing logic by hand for average-size machines may shave 100 (extra code due to the compiler) + 400 bytes (extra code due to using a graph editor) for a total of 0.5 KB.</p>
-<label for="mn-demo-18" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-18" class="margin-toggle"><span class="marginnote"><p>Note that this size does not (and cannot) include the actions and guards but does represent the size of the logic encoded in the machine.</p>
+<label for="mn-demo-19" class="margin-toggle">⊕</label><input type="checkbox" id="mn-demo-19" class="margin-toggle"><span class="marginnote"><p>Note that this size does not (and cannot) include the actions and guards but does represent the size of the logic encoded in the machine.</p>
 </span>
 <p>Those preliminary results are fairly consistent. Assuming 20 bytes per transitions (computed from the previous data points), with a baseline of 500 bytes, to reach 5 KB (i.e. the size of the core Kingly library) we need a machine with over 200 transitions!! </p>
 <p>In summary, with the <code>slim</code> compiler, <strong>Kingly proposes state machines as a near-zero-cost abstraction</strong>. This means that if you would have written that logic by hand, you would not have been able to achieve a significantly improved min.gzipped size.</p>
